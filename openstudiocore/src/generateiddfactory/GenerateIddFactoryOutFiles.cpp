@@ -64,6 +64,7 @@ GenerateIddFactoryOutFiles::GenerateIddFactoryOutFiles(
     const std::string& outFileHeader,
     const std::vector<IddFileFactoryData>& iddFiles)
   : iddEnumsHxx("IddEnums.hxx",outPath,outFileHeader),
+    iddEnumsCxx("IddEnums.cxx",outPath,outFileHeader),
     iddFieldEnumsHxx("IddFieldEnums.hxx",outPath,outFileHeader),
     iddFieldEnumsIxx("IddFieldEnums.ixx",outPath,outFileHeader),
     iddFactoryHxx("IddFactory.hxx",outPath,outFileHeader),
@@ -83,6 +84,7 @@ GenerateIddFactoryOutFiles::GenerateIddFactoryOutFiles(
 
 void GenerateIddFactoryOutFiles::finalize() {
   finalizeIddFactoryOutFile(iddEnumsHxx);
+  finalizeIddFactoryOutFile(iddEnumsCxx);
   finalizeIddFactoryOutFile(iddFieldEnumsHxx);
   finalizeIddFactoryOutFile(iddFieldEnumsIxx);
   finalizeIddFactoryOutFile(iddFactoryHxx);

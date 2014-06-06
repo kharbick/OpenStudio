@@ -54,6 +54,7 @@ struct IddFactoryOutFile {
 /** Structure to hold GenerateIddFactory's output files as they are being written. */
 struct GenerateIddFactoryOutFiles {
   IddFactoryOutFile iddEnumsHxx;
+  IddFactoryOutFile iddEnumsCxx;
   IddFactoryOutFile iddFieldEnumsHxx;
   IddFactoryOutFile iddFieldEnumsIxx;
   IddFactoryOutFile iddFactoryHxx;

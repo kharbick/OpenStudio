@@ -14,6 +14,7 @@ ADD_CUSTOM_COMMAND(
 set_source_files_properties(
   "${CMAKE_CURRENT_BINARY_DIR}/idd/IddFactoryFileIndex.hxx"
   "${CMAKE_CURRENT_BINARY_DIR}/idd/IddEnums.hxx"
+  "${CMAKE_CURRENT_BINARY_DIR}/idd/IddEnums.cxx"
   "${CMAKE_CURRENT_BINARY_DIR}/idd/IddFieldEnums.hxx"
   "${CMAKE_CURRENT_BINARY_DIR}/idd/IddFactory.hxx"
   "${CMAKE_CURRENT_BINARY_DIR}/idd/IddFactory.cxx"
@@ -30,6 +31,7 @@ SET( idd_src
   ${CMAKE_CURRENT_BINARY_DIR}/idd/IddFactory_done.stamp
   ${CMAKE_CURRENT_BINARY_DIR}/idd/IddFactoryFileIndex.hxx
   ${CMAKE_CURRENT_BINARY_DIR}/idd/IddEnums.hxx
+  ${CMAKE_CURRENT_BINARY_DIR}/idd/IddEnums.cxx
   ${CMAKE_CURRENT_BINARY_DIR}/idd/IddFieldEnums.hxx
   ${CMAKE_CURRENT_BINARY_DIR}/idd/IddFactory.hxx
   ${CMAKE_CURRENT_BINARY_DIR}/idd/IddFactory.cxx
