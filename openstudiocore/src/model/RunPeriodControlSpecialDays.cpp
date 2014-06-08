@@ -302,7 +302,7 @@ RunPeriodControlSpecialDays::RunPeriodControlSpecialDays(boost::shared_ptr<detai
 {}
 
 IddObjectType RunPeriodControlSpecialDays::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_RunPeriodControl_SpecialDays);
+  IddObjectType result(iddobjectname::OS_RunPeriodControl_SpecialDays);
   return result;
 }
 

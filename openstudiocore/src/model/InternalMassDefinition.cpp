@@ -320,7 +320,7 @@ InternalMassDefinition::InternalMassDefinition(const Model& model)
 }
 
 IddObjectType InternalMassDefinition::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_InternalMass_Definition);
+  IddObjectType result(iddobjectname::OS_InternalMass_Definition);
   return result;
 }
 

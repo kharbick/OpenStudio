@@ -226,7 +226,7 @@ CurveRectangularHyperbola1::CurveRectangularHyperbola1(const Model& model)
 }
 
 IddObjectType CurveRectangularHyperbola1::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_RectangularHyperbola1);
+  IddObjectType result(iddobjectname::OS_Curve_RectangularHyperbola1);
   return result;
 }
 

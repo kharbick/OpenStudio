@@ -116,7 +116,7 @@ SkyTemperature::SkyTemperature(boost::shared_ptr<detail::SkyTemperature_Impl> im
 {}
 
 IddObjectType SkyTemperature::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_WeatherProperty_SkyTemperature);
+  IddObjectType result(iddobjectname::OS_WeatherProperty_SkyTemperature);
   return result;
 }
 

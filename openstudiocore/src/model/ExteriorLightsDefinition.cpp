@@ -84,7 +84,7 @@ ExteriorLightsDefinition::ExteriorLightsDefinition(const Model& model)
 }
 
 IddObjectType ExteriorLightsDefinition::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Exterior_Lights_Definition);
+  IddObjectType result(iddobjectname::OS_Exterior_Lights_Definition);
   return result;
 }
 

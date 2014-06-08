@@ -285,7 +285,7 @@ CoilHeatingLowTempRadiantVarFlow::CoilHeatingLowTempRadiantVarFlow(const Model& 
 
 IddObjectType CoilHeatingLowTempRadiantVarFlow::iddObjectType() 
 {
-  return IddObjectType(IddObjectType::OS_Coil_Heating_LowTemperatureRadiant_VariableFlow);
+  return IddObjectType(iddobjectname::OS_Coil_Heating_LowTemperatureRadiant_VariableFlow);
 }
 
 boost::optional<double> CoilHeatingLowTempRadiantVarFlow::maximumHotWaterFlow() const 

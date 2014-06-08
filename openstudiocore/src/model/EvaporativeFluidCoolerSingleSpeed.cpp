@@ -603,7 +603,7 @@ EvaporativeFluidCoolerSingleSpeed::EvaporativeFluidCoolerSingleSpeed(const Model
 }
 
 IddObjectType EvaporativeFluidCoolerSingleSpeed::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_EvaporativeFluidCooler_SingleSpeed);
+  return IddObjectType(iddobjectname::OS_EvaporativeFluidCooler_SingleSpeed);
 }
 
 std::vector<std::string> EvaporativeFluidCoolerSingleSpeed::performanceInputMethodValues() {

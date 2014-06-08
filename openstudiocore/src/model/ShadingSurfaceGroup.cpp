@@ -464,7 +464,7 @@ ShadingSurfaceGroup::ShadingSurfaceGroup(const Model& model)
 }
 
 IddObjectType ShadingSurfaceGroup::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_ShadingSurfaceGroup);
+  IddObjectType result(iddobjectname::OS_ShadingSurfaceGroup);
   return result;
 }
 

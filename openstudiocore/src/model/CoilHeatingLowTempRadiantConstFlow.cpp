@@ -344,7 +344,7 @@ CoilHeatingLowTempRadiantConstFlow::CoilHeatingLowTempRadiantConstFlow(const Mod
 }
 
 IddObjectType CoilHeatingLowTempRadiantConstFlow::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Coil_Heating_LowTemperatureRadiant_ConstantFlow);
+  return IddObjectType(iddobjectname::OS_Coil_Heating_LowTemperatureRadiant_ConstantFlow);
 }
 
 boost::optional<Schedule> CoilHeatingLowTempRadiantConstFlow::heatingHighWaterTemperatureSchedule() const {

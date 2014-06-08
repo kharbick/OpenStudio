@@ -203,7 +203,7 @@ void UtilityCost_Charge_Simple::setCostPerUnitValueOrVariableName(const std::str
 
 IddObjectType UtilityCost_Charge_Simple::iddObjectType()
 {
-  IddObjectType result(IddObjectType::OS_UtilityCost_Charge_Simple);
+  IddObjectType result(iddobjectname::OS_UtilityCost_Charge_Simple);
   return result;
 }
 

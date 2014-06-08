@@ -273,7 +273,7 @@ ScheduleFixedInterval::ScheduleFixedInterval(const Model& model)
 }
 
 IddObjectType ScheduleFixedInterval::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Schedule_FixedInterval);
+  IddObjectType result(iddobjectname::OS_Schedule_FixedInterval);
   return result;
 }
 

@@ -1178,7 +1178,7 @@ void CoilCoolingDXSingleSpeed::resetBasinHeaterOperatingSchedule() {
 }
 
 IddObjectType CoilCoolingDXSingleSpeed::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Coil_Cooling_DX_SingleSpeed);
+  IddObjectType result(iddobjectname::OS_Coil_Cooling_DX_SingleSpeed);
   return result;
 }
 

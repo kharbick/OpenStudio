@@ -1265,7 +1265,7 @@ Blind::Blind(const Model& model,
 }
 
 IddObjectType Blind::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_WindowMaterial_Blind);
+  return IddObjectType(iddobjectname::OS_WindowMaterial_Blind);
 }
 
 std::vector<std::string> Blind::slatOrientationValues() {

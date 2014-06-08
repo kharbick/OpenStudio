@@ -452,7 +452,7 @@ BoilerHotWater::BoilerHotWater(const Model& model)
 }
 
 IddObjectType BoilerHotWater::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Boiler_HotWater);
+  IddObjectType result(iddobjectname::OS_Boiler_HotWater);
   return result;
 }
 

@@ -288,7 +288,7 @@ unsigned UtilityCost_Charge_Block::maxNumBlocks() const {
 
 IddObjectType UtilityCost_Charge_Block::iddObjectType()
 {
-  IddObjectType result(IddObjectType::OS_UtilityCost_Charge_Block);
+  IddObjectType result(iddobjectname::OS_UtilityCost_Charge_Block);
   return result;
 }
 

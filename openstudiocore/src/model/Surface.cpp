@@ -505,7 +505,7 @@ namespace detail {
   {
     SubSurfaceVector result;
     ModelObject object = getObject<ModelObject>();
-    WorkspaceObjectVector idfSubSurfaces = object.getSources(IddObjectType(IddObjectType::OS_SubSurface));
+    WorkspaceObjectVector idfSubSurfaces = object.getSources(IddObjectType(iddobjectname::OS_SubSurface));
     BOOST_FOREACH(const WorkspaceObject& idfSubSurface, idfSubSurfaces){
       OptionalSubSurface subSurface = this->model().getModelObject<SubSurface>(idfSubSurface.handle());
       if (subSurface){
@@ -1871,7 +1871,7 @@ Surface::Surface(const std::vector<Point3d>& vertices, const Model& model)
 }
 
 IddObjectType Surface::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Surface);
+  IddObjectType result(iddobjectname::OS_Surface);
   return result;
 }
 

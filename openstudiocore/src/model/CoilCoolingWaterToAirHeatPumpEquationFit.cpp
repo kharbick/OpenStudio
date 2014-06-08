@@ -667,7 +667,7 @@ namespace detail {
 
   IddObjectType CoilCoolingWaterToAirHeatPumpEquationFit::iddObjectType()
   {
-    return IddObjectType(IddObjectType::OS_Coil_Cooling_WaterToAirHeatPump_EquationFit);
+    return IddObjectType(iddobjectname::OS_Coil_Cooling_WaterToAirHeatPump_EquationFit);
   }
 
   boost::optional<double> CoilCoolingWaterToAirHeatPumpEquationFit::ratedAirFlowRate() const

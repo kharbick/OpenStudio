@@ -724,7 +724,7 @@ CoolingTowerVariableSpeed::CoolingTowerVariableSpeed(const Model& model)
 }
 
 IddObjectType CoolingTowerVariableSpeed::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_CoolingTower_VariableSpeed);
+  return IddObjectType(iddobjectname::OS_CoolingTower_VariableSpeed);
 }
 
 std::vector<std::string> CoolingTowerVariableSpeed::modelTypeValues() {

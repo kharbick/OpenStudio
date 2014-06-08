@@ -786,7 +786,7 @@ GasMixture::GasMixture(const Model& model,
 }
 
 IddObjectType GasMixture::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_WindowMaterial_GasMixture);
+  return IddObjectType(iddobjectname::OS_WindowMaterial_GasMixture);
 }
 
 const std::vector<std::string>& GasMixture::validGasTypes() {

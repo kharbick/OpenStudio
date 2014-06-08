@@ -2257,7 +2257,7 @@ std::vector<FuelType> Facility::fossilFuels() {
 }
 
 IddObjectType Facility::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Facility);
+  IddObjectType result(iddobjectname::OS_Facility);
   return result;
 }
 

@@ -330,7 +330,7 @@ RefrigerationDefrostCycleParameters::RefrigerationDefrostCycleParameters(const M
 }
 
 IddObjectType RefrigerationDefrostCycleParameters::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_DefrostCycleParameters);
+  return IddObjectType(iddobjectname::OS_Refrigeration_DefrostCycleParameters);
 }
 
 /// @cond

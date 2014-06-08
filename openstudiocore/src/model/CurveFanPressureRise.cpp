@@ -223,7 +223,7 @@ CurveFanPressureRise::CurveFanPressureRise(const Model& model)
 }
 
 IddObjectType CurveFanPressureRise::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_FanPressureRise);
+  IddObjectType result(iddobjectname::OS_Curve_FanPressureRise);
   return result;
 }
 

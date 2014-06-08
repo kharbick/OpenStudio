@@ -326,7 +326,7 @@ AirLoopHVACSupplyPlenum::AirLoopHVACSupplyPlenum(const Model& model)
 }
 
 IddObjectType AirLoopHVACSupplyPlenum::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_AirLoopHVAC_SupplyPlenum);
+  return IddObjectType(iddobjectname::OS_AirLoopHVAC_SupplyPlenum);
 }
 
 boost::optional<ThermalZone> AirLoopHVACSupplyPlenum::thermalZone() const {

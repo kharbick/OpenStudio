@@ -672,7 +672,7 @@ DesignDay::DesignDay(boost::shared_ptr<detail::DesignDay_Impl> impl)
 {}
 
 IddObjectType DesignDay::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SizingPeriod_DesignDay);
+  IddObjectType result(iddobjectname::OS_SizingPeriod_DesignDay);
   return result;
 }
 

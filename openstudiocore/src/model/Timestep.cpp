@@ -117,7 +117,7 @@ Timestep::Timestep(boost::shared_ptr<detail::Timestep_Impl> impl)
 {}
 
 IddObjectType Timestep::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Timestep);
+  IddObjectType result(iddobjectname::OS_Timestep);
   return result;
 }
 

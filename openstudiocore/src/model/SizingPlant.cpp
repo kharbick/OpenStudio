@@ -197,7 +197,7 @@ SizingPlant::SizingPlant(const Model& model, const PlantLoop & plantLoop)
 }
 
 IddObjectType SizingPlant::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Sizing_Plant);
+  return IddObjectType(iddobjectname::OS_Sizing_Plant);
 }
 
 std::vector<std::string> SizingPlant::loopTypeValues() {

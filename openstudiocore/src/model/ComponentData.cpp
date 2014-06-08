@@ -156,7 +156,7 @@ namespace detail {
 } // detail
 
 IddObjectType ComponentData::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_ComponentData);
+  IddObjectType result(iddobjectname::OS_ComponentData);
   return result;
 }
 

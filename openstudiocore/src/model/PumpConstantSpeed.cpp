@@ -709,7 +709,7 @@ PumpConstantSpeed::PumpConstantSpeed(const Model& model)
 }
 
 IddObjectType PumpConstantSpeed::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Pump_ConstantSpeed);
+  return IddObjectType(iddobjectname::OS_Pump_ConstantSpeed);
 }
 
 std::vector<std::string> PumpConstantSpeed::pumpControlTypeValues() {

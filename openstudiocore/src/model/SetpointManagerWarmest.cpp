@@ -187,7 +187,7 @@ SetpointManagerWarmest::SetpointManagerWarmest(const Model& model)
 }
 
 IddObjectType SetpointManagerWarmest::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_SetpointManager_Warmest);
+  return IddObjectType(iddobjectname::OS_SetpointManager_Warmest);
 }
 
 std::vector<std::string> SetpointManagerWarmest::controlVariableValues() {

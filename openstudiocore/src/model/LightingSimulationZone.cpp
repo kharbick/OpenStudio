@@ -127,7 +127,7 @@ LightingSimulationZone::LightingSimulationZone(const Model& model)
 }
 
 IddObjectType LightingSimulationZone::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_LightingSimulationZone);
+  IddObjectType result(iddobjectname::OS_LightingSimulationZone);
   return result;
 }
 

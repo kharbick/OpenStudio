@@ -623,7 +623,7 @@ ScheduleRule::ScheduleRule(ScheduleRuleset& scheduleRuleset, const ScheduleDay& 
 }
 
 IddObjectType ScheduleRule::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Schedule_Rule);
+  IddObjectType result(iddobjectname::OS_Schedule_Rule);
   return result;
 }
 

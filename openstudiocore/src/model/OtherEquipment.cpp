@@ -264,7 +264,7 @@ OtherEquipment::OtherEquipment(const OtherEquipmentDefinition& definition)
 }
 
 IddObjectType OtherEquipment::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_OtherEquipment);
+  IddObjectType result(iddobjectname::OS_OtherEquipment);
   return result;
 }
 

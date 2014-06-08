@@ -243,7 +243,7 @@ void UtilityCost_Ratchet::setOffsetValueOrVariableName(const std::string& str)
 
 IddObjectType UtilityCost_Ratchet::iddObjectType()
 {
-  IddObjectType result(IddObjectType::OS_UtilityCost_Ratchet);
+  IddObjectType result(iddobjectname::OS_UtilityCost_Ratchet);
   return result;
 }
 

@@ -154,7 +154,7 @@ Construction Construction::reverseConstruction() const{
 }
 
 IddObjectType Construction::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Construction);
+  IddObjectType result(iddobjectname::OS_Construction);
   return result;
 }
 

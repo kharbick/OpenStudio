@@ -437,7 +437,7 @@ DaylightingControl::DaylightingControl(const Model& model)
 }
 
 IddObjectType DaylightingControl::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Daylighting_Control);
+  IddObjectType result(iddobjectname::OS_Daylighting_Control);
   return result;
 }
 

@@ -164,7 +164,7 @@ ScheduleConstant::ScheduleConstant(boost::shared_ptr<detail::ScheduleConstant_Im
 {}
 
 IddObjectType ScheduleConstant::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Schedule_Constant);
+  IddObjectType result(iddobjectname::OS_Schedule_Constant);
   return result;
 }
 

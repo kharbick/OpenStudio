@@ -337,7 +337,7 @@ RefrigerationWalkInZoneBoundary::RefrigerationWalkInZoneBoundary(const Model& mo
 }
 
 IddObjectType RefrigerationWalkInZoneBoundary::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_WalkIn_ZoneBoundary);
+  return IddObjectType(iddobjectname::OS_Refrigeration_WalkIn_ZoneBoundary);
 }
 
 std::vector<std::string> RefrigerationWalkInZoneBoundary::stockingDoorOpeningProtectionTypeFacingZoneValues() {

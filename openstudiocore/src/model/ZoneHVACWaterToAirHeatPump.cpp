@@ -813,7 +813,7 @@ ZoneHVACWaterToAirHeatPump::ZoneHVACWaterToAirHeatPump(const Model& model,
 }
 
 IddObjectType ZoneHVACWaterToAirHeatPump::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_ZoneHVAC_WaterToAirHeatPump);
+  return IddObjectType(iddobjectname::OS_ZoneHVAC_WaterToAirHeatPump);
 }
 
 std::vector<std::string> ZoneHVACWaterToAirHeatPump::fanPlacementValues() {

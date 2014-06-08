@@ -500,7 +500,7 @@ AirTerminalSingleDuctVAVNoReheat::AirTerminalSingleDuctVAVNoReheat(const Model& 
 }
 
 IddObjectType AirTerminalSingleDuctVAVNoReheat::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_AirTerminal_SingleDuct_VAV_NoReheat);
+  return IddObjectType(iddobjectname::OS_AirTerminal_SingleDuct_VAV_NoReheat);
 }
 
 std::vector<std::string> AirTerminalSingleDuctVAVNoReheat::zoneMinimumAirFlowInputMethodValues() {

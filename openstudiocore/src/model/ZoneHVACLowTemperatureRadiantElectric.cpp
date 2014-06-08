@@ -447,7 +447,7 @@ ZoneHVACLowTemperatureRadiantElectric::ZoneHVACLowTemperatureRadiantElectric(con
 
 IddObjectType ZoneHVACLowTemperatureRadiantElectric::iddObjectType() 
 {
-  return IddObjectType(IddObjectType::OS_ZoneHVAC_LowTemperatureRadiant_Electric);
+  return IddObjectType(iddobjectname::OS_ZoneHVAC_LowTemperatureRadiant_Electric);
 }
 
 std::vector<std::string> ZoneHVACLowTemperatureRadiantElectric::radiantSurfaceTypeValues() 

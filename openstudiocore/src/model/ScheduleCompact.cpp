@@ -247,7 +247,7 @@ boost::optional<Quantity> ScheduleCompact::getConstantValue(bool returnIP) const
 }
 
 IddObjectType ScheduleCompact::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Schedule_Compact);
+  IddObjectType result(iddobjectname::OS_Schedule_Compact);
   return result;
 }
 

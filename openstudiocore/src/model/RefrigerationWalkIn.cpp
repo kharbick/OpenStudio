@@ -973,7 +973,7 @@ RefrigerationWalkIn::RefrigerationWalkIn(const Model& model, Schedule& walkinDef
 }
 
 IddObjectType RefrigerationWalkIn::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_WalkIn);
+  return IddObjectType(iddobjectname::OS_Refrigeration_WalkIn);
 }
 
 std::vector<std::string> RefrigerationWalkIn::defrostTypeValues() {

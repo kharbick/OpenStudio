@@ -322,7 +322,7 @@ FanZoneExhaust::FanZoneExhaust(const Model& model)
 }
 
 IddObjectType FanZoneExhaust::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Fan_ZoneExhaust);
+  return IddObjectType(iddobjectname::OS_Fan_ZoneExhaust);
 }
 
 std::vector<std::string> FanZoneExhaust::systemAvailabilityManagerCouplingModeValues() {

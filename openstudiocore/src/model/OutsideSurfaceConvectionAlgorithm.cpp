@@ -121,7 +121,7 @@ OutsideSurfaceConvectionAlgorithm::OutsideSurfaceConvectionAlgorithm(
 {}
 
 IddObjectType OutsideSurfaceConvectionAlgorithm::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SurfaceConvectionAlgorithm_Outside);
+  IddObjectType result(iddobjectname::OS_SurfaceConvectionAlgorithm_Outside);
   return result;
 }
 

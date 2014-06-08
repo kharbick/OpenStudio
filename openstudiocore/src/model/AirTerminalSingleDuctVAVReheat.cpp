@@ -678,7 +678,7 @@ AirTerminalSingleDuctVAVReheat::AirTerminalSingleDuctVAVReheat(boost::shared_ptr
 {}
 
 IddObjectType AirTerminalSingleDuctVAVReheat::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_AirTerminal_SingleDuct_VAV_Reheat);
+  return IddObjectType(iddobjectname::OS_AirTerminal_SingleDuct_VAV_Reheat);
 }
 
 boost::optional<double> AirTerminalSingleDuctVAVReheat::maximumAirFlowRate() const

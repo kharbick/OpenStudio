@@ -243,7 +243,7 @@ void ComponentCostAdjustments::setRegionalAdjustmentFactor(double num)
 
 IddObjectType ComponentCostAdjustments::iddObjectType()
 {
-  IddObjectType result(IddObjectType::OS_ComponentCost_Adjustments);
+  IddObjectType result(iddobjectname::OS_ComponentCost_Adjustments);
   return result;
 }
 

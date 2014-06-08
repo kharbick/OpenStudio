@@ -543,7 +543,7 @@ AirTerminalSingleDuctConstantVolumeReheat::AirTerminalSingleDuctConstantVolumeRe
 }
 
 IddObjectType AirTerminalSingleDuctConstantVolumeReheat::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_AirTerminal_SingleDuct_ConstantVolume_Reheat);
+  return IddObjectType(iddobjectname::OS_AirTerminal_SingleDuct_ConstantVolume_Reheat);
 }
 
 Schedule AirTerminalSingleDuctConstantVolumeReheat::availabilitySchedule() const {

@@ -358,7 +358,7 @@ CoilCoolingCooledBeam::CoilCoolingCooledBeam(const Model& model)
 
 IddObjectType CoilCoolingCooledBeam::iddObjectType() 
 {
-  return IddObjectType(IddObjectType::OS_Coil_Cooling_CooledBeam);
+  return IddObjectType(iddobjectname::OS_Coil_Cooling_CooledBeam);
 }
 
 double CoilCoolingCooledBeam::coilSurfaceAreaperCoilLength() const 

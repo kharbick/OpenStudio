@@ -301,7 +301,7 @@ AirLoopHVACReturnPlenum::AirLoopHVACReturnPlenum(const Model& model)
 }
 
 IddObjectType AirLoopHVACReturnPlenum::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_AirLoopHVAC_ReturnPlenum);
+  return IddObjectType(iddobjectname::OS_AirLoopHVAC_ReturnPlenum);
 }
 
 boost::optional<ThermalZone> AirLoopHVACReturnPlenum::thermalZone() const {

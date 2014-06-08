@@ -239,7 +239,7 @@ ControllerWaterCoil::ControllerWaterCoil(const Model& model)
 }
 
 IddObjectType ControllerWaterCoil::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Controller_WaterCoil);
+  IddObjectType result(iddobjectname::OS_Controller_WaterCoil);
   return result;
 }
 

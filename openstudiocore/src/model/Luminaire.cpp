@@ -615,7 +615,7 @@ Luminaire::Luminaire(const LuminaireDefinition& luminaireDefinition)
 }
 
 IddObjectType Luminaire::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Luminaire);
+  IddObjectType result(iddobjectname::OS_Luminaire);
   return result;
 }
 

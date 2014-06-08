@@ -170,7 +170,7 @@ namespace detail {
 } // detail
 
 IddObjectType ZoneAirContaminantBalance::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_ZoneAirContaminantBalance);
+  return IddObjectType(iddobjectname::OS_ZoneAirContaminantBalance);
 }
 
 bool ZoneAirContaminantBalance::carbonDioxideConcentration() const {

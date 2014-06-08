@@ -225,7 +225,7 @@ CurveQuadratic::CurveQuadratic(const Model& model)
 }
 
 IddObjectType CurveQuadratic::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_Quadratic);
+  IddObjectType result(iddobjectname::OS_Curve_Quadratic);
   return result;
 }
 

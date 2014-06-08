@@ -293,7 +293,7 @@ HotWaterEquipment::HotWaterEquipment(const HotWaterEquipmentDefinition& hotWater
 }
 
 IddObjectType HotWaterEquipment::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_HotWaterEquipment);
+  IddObjectType result(iddobjectname::OS_HotWaterEquipment);
   return result;
 }
 

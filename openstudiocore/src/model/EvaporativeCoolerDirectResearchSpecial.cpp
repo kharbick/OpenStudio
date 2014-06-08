@@ -308,7 +308,7 @@ EvaporativeCoolerDirectResearchSpecial::EvaporativeCoolerDirectResearchSpecial(
 {}
 
 IddObjectType EvaporativeCoolerDirectResearchSpecial::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_EvaporativeCooler_Direct_ResearchSpecial);
+  IddObjectType result(iddobjectname::OS_EvaporativeCooler_Direct_ResearchSpecial);
   return result;
 }
 

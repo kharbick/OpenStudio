@@ -335,7 +335,7 @@ Lights::Lights(const LightsDefinition& lightsDefinition)
 }
 
 IddObjectType Lights::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Lights);
+  IddObjectType result(iddobjectname::OS_Lights);
   return result;
 }
 

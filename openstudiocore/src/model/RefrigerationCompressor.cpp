@@ -386,7 +386,7 @@ RefrigerationCompressor::RefrigerationCompressor(const Model& model)
 }
 
 IddObjectType RefrigerationCompressor::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_Compressor);
+  return IddObjectType(iddobjectname::OS_Refrigeration_Compressor);
 }
 
 std::vector<std::string> RefrigerationCompressor::modeofOperationValues() {

@@ -789,7 +789,7 @@ TableMultiVariableLookup::TableMultiVariableLookup(const Model& model, const int
 }
 
 IddObjectType TableMultiVariableLookup::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Table_MultiVariableLookup);
+  return IddObjectType(iddobjectname::OS_Table_MultiVariableLookup);
 }
 
 std::vector<std::string> TableMultiVariableLookup::interpolationMethodValues() {

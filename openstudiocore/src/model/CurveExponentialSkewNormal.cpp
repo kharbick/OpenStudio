@@ -243,7 +243,7 @@ CurveExponentialSkewNormal::CurveExponentialSkewNormal(const Model& model)
 }
 
 IddObjectType CurveExponentialSkewNormal::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_ExponentialSkewNormal);
+  IddObjectType result(iddobjectname::OS_Curve_ExponentialSkewNormal);
   return result;
 }
 

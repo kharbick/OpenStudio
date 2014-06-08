@@ -539,7 +539,7 @@ People::People(const PeopleDefinition& peopleDefinition)
 }
 
 IddObjectType People::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_People);
+  IddObjectType result(iddobjectname::OS_People);
   return result;
 }
 

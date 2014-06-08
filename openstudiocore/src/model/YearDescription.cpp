@@ -332,7 +332,7 @@ namespace detail {
 } // detail
 
 IddObjectType YearDescription::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_YearDescription);
+  IddObjectType result(iddobjectname::OS_YearDescription);
   return result;
 }
 

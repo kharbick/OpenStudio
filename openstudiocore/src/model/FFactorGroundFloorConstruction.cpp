@@ -203,7 +203,7 @@ FFactorGroundFloorConstruction::FFactorGroundFloorConstruction(const Model& mode
 }
 
 IddObjectType FFactorGroundFloorConstruction::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Construction_FfactorGroundFloor);
+  IddObjectType result(iddobjectname::OS_Construction_FfactorGroundFloor);
   return result;
 }
 

@@ -704,7 +704,7 @@ void CoilHeatingWater::setRatedRatioForAirAndWaterConvection( double value )
 }
 
 IddObjectType CoilHeatingWater::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Coil_Heating_Water);
+  IddObjectType result(iddobjectname::OS_Coil_Heating_Water);
   return result;
 }
 

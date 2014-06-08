@@ -347,7 +347,7 @@ namespace detail {
 } // detail
 
 IddObjectType Site::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Site);
+  IddObjectType result(iddobjectname::OS_Site);
   return result;
 }
 

@@ -115,7 +115,7 @@ void Version::setVersionIdentifier(const std::string& s)
 }
 
 IddObjectType Version::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Version);
+  IddObjectType result(iddobjectname::OS_Version);
   return result;
 }
 

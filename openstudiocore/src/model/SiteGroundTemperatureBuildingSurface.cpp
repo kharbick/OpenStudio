@@ -318,7 +318,7 @@ namespace detail {
 } // detail
 
 IddObjectType SiteGroundTemperatureBuildingSurface::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Site_GroundTemperature_BuildingSurface);
+  IddObjectType result(iddobjectname::OS_Site_GroundTemperature_BuildingSurface);
   return result;
 }
 

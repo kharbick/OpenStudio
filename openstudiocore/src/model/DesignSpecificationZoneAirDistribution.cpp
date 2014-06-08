@@ -260,7 +260,7 @@ DesignSpecificationZoneAirDistribution::DesignSpecificationZoneAirDistribution(c
 }
 
 IddObjectType DesignSpecificationZoneAirDistribution::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_DesignSpecification_ZoneAirDistribution);
+  return IddObjectType(iddobjectname::OS_DesignSpecification_ZoneAirDistribution);
 }
 
 double DesignSpecificationZoneAirDistribution::zoneAirDistributionEffectivenessinCoolingMode() const {

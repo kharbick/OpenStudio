@@ -708,7 +708,7 @@ RefrigerationAirChiller::RefrigerationAirChiller(const Model& model, Schedule& d
 }
 
 IddObjectType RefrigerationAirChiller::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_AirChiller);
+  return IddObjectType(iddobjectname::OS_Refrigeration_AirChiller);
 }
 
 std::vector<std::string> RefrigerationAirChiller::capacityRatingTypeValues() {

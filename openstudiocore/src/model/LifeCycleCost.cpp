@@ -548,7 +548,7 @@ LifeCycleCost::LifeCycleCost(boost::shared_ptr<detail::LifeCycleCost_Impl> impl)
 
 IddObjectType LifeCycleCost::iddObjectType() 
 {
-  IddObjectType result(IddObjectType::OS_LifeCycleCost);
+  IddObjectType result(iddobjectname::OS_LifeCycleCost);
   return result;
 }
 

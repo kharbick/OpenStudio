@@ -146,7 +146,7 @@ RefrigerationSubcoolerLiquidSuction::RefrigerationSubcoolerLiquidSuction(const M
 }
 
 IddObjectType RefrigerationSubcoolerLiquidSuction::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_Subcooler_LiquidSuction);
+  return IddObjectType(iddobjectname::OS_Refrigeration_Subcooler_LiquidSuction);
 }
 
 boost::optional<double> RefrigerationSubcoolerLiquidSuction::liquidSuctionDesignSubcoolingTemperatureDifference() const {

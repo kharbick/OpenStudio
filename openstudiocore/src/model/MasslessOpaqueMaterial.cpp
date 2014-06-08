@@ -479,7 +479,7 @@ MasslessOpaqueMaterial::MasslessOpaqueMaterial(const Model& model,
 }
 
 IddObjectType MasslessOpaqueMaterial::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Material_NoMass);
+  return IddObjectType(iddobjectname::OS_Material_NoMass);
 }
 
 std::vector<std::string> MasslessOpaqueMaterial::roughnessValues() {

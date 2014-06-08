@@ -127,7 +127,7 @@ ZoneControlHumidistat::ZoneControlHumidistat(const Model& model)
 }
 
 IddObjectType ZoneControlHumidistat::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_ZoneControl_Humidistat);
+  return IddObjectType(iddobjectname::OS_ZoneControl_Humidistat);
 }
 
 boost::optional<Schedule> ZoneControlHumidistat::humidifyingRelativeHumiditySetpointSchedule() const {

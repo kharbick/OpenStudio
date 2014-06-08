@@ -782,7 +782,7 @@ CoilHeatingDXSingleSpeed::CoilHeatingDXSingleSpeed( const Model& model,
 }
 
 IddObjectType CoilHeatingDXSingleSpeed::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Coil_Heating_DX_SingleSpeed);
+  IddObjectType result(iddobjectname::OS_Coil_Heating_DX_SingleSpeed);
   return result;
 }
 

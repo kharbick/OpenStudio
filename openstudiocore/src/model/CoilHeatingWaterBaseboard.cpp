@@ -238,7 +238,7 @@ unsigned CoilHeatingWaterBaseboard::outletPort()
 }
 
 IddObjectType CoilHeatingWaterBaseboard::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Coil_Heating_Water_Baseboard);
+  return IddObjectType(iddobjectname::OS_Coil_Heating_Water_Baseboard);
 }
 
 boost::optional<double> CoilHeatingWaterBaseboard::uFactorTimesAreaValue() const {

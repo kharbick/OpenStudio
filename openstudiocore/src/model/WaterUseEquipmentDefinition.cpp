@@ -263,7 +263,7 @@ WaterUseEquipmentDefinition::WaterUseEquipmentDefinition(const Model& model)
 }
 
 const IddObjectType& WaterUseEquipmentDefinition::iddObjectType() {
-  static IddObjectType result(IddObjectType::OS_WaterUse_Equipment_Definition);
+  static IddObjectType result(iddobjectname::OS_WaterUse_Equipment_Definition);
   return result;
 }
 

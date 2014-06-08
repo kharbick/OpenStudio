@@ -568,7 +568,7 @@ RefrigerationTranscriticalSystem::RefrigerationTranscriticalSystem(const Model& 
 }
 
 IddObjectType RefrigerationTranscriticalSystem::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_TranscriticalSystem);
+  return IddObjectType(iddobjectname::OS_Refrigeration_TranscriticalSystem);
 }
 
 std::vector<std::string> RefrigerationTranscriticalSystem::refrigerationSystemWorkingFluidTypeValues() {

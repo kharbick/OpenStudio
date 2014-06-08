@@ -204,7 +204,7 @@ void LifeCycleCostUsePriceEscalation::setEscalationStartMonth(const std::string&
 
 IddObjectType LifeCycleCostUsePriceEscalation::iddObjectType()
 {
-  IddObjectType result(IddObjectType::OS_LifeCycleCost_UsePriceEscalation);
+  IddObjectType result(iddobjectname::OS_LifeCycleCost_UsePriceEscalation);
   return result;
 }
 

@@ -789,7 +789,7 @@ ChillerElectricEIR::ChillerElectricEIR(const Model& model,
 }
 
 IddObjectType ChillerElectricEIR::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Chiller_Electric_EIR);
+  IddObjectType result(iddobjectname::OS_Chiller_Electric_EIR);
   return result;
 }
 

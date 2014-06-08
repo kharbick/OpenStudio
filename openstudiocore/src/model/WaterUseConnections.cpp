@@ -272,7 +272,7 @@ WaterUseConnections::WaterUseConnections(const Model& model)
 }
 
 IddObjectType WaterUseConnections::iddObjectType() {
-  static IddObjectType result(IddObjectType::OS_WaterUse_Connections);
+  static IddObjectType result(iddobjectname::OS_WaterUse_Connections);
   return result;
 }
 

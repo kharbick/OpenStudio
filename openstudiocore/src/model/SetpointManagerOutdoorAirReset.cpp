@@ -625,7 +625,7 @@ SetpointManagerOutdoorAirReset::SetpointManagerOutdoorAirReset(const Model& mode
 }
 
 IddObjectType SetpointManagerOutdoorAirReset::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_SetpointManager_OutdoorAirReset);
+  return IddObjectType(iddobjectname::OS_SetpointManager_OutdoorAirReset);
 }
 
 std::vector<std::string> SetpointManagerOutdoorAirReset::controlVariableValues() {

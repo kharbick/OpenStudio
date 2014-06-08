@@ -311,7 +311,7 @@ OtherEquipmentDefinition::OtherEquipmentDefinition(const Model& model)
 }
 
 IddObjectType OtherEquipmentDefinition::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_OtherEquipment_Definition);
+  IddObjectType result(iddobjectname::OS_OtherEquipment_Definition);
   return result;
 }
 

@@ -527,7 +527,7 @@ void CoilHeatingGas::resetPartLoadFractionCorrelationCurve()
 }
 
 IddObjectType CoilHeatingGas::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Coil_Heating_Gas);
+  IddObjectType result(iddobjectname::OS_Coil_Heating_Gas);
   return result;
 }
 

@@ -696,7 +696,7 @@ DefaultConstructionSet::DefaultConstructionSet(const Model& model)
 }
 
 IddObjectType DefaultConstructionSet::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_DefaultConstructionSet);
+  IddObjectType result(iddobjectname::OS_DefaultConstructionSet);
   return result;
 }
 

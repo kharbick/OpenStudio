@@ -1387,7 +1387,7 @@ SpaceType::SpaceType(const Model& model)
 }
 
 IddObjectType SpaceType::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SpaceType);
+  IddObjectType result(iddobjectname::OS_SpaceType);
   return result;
 }
 

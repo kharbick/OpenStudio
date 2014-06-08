@@ -975,7 +975,7 @@ ZoneHVACFourPipeFanCoil::ZoneHVACFourPipeFanCoil(const Model& model,
 }
 
 IddObjectType ZoneHVACFourPipeFanCoil::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_ZoneHVAC_FourPipeFanCoil);
+  return IddObjectType(iddobjectname::OS_ZoneHVAC_FourPipeFanCoil);
 }
 
 std::vector<std::string> ZoneHVACFourPipeFanCoil::capacityControlMethodValues() {

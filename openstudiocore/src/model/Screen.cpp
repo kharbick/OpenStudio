@@ -622,7 +622,7 @@ Screen::Screen(const Model& model,
 }
 
 IddObjectType Screen::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_WindowMaterial_Screen);
+  return IddObjectType(iddobjectname::OS_WindowMaterial_Screen);
 }
 
 double Screen::thermalConductivity() const {

@@ -361,7 +361,7 @@ ShadingSurface::ShadingSurface(const std::vector<Point3d>& vertices, const Model
 }
 
 IddObjectType ShadingSurface::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_ShadingSurface);
+  IddObjectType result(iddobjectname::OS_ShadingSurface);
   return result;
 }
 

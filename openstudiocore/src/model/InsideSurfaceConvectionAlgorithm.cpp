@@ -105,7 +105,7 @@ namespace detail {
 } // detail
 
 IddObjectType InsideSurfaceConvectionAlgorithm::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SurfaceConvectionAlgorithm_Inside);
+  IddObjectType result(iddobjectname::OS_SurfaceConvectionAlgorithm_Inside);
   return result;
 }
 

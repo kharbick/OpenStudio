@@ -225,7 +225,7 @@ OutputVariable::OutputVariable(boost::shared_ptr<detail::OutputVariable_Impl> im
 {}
 
 IddObjectType OutputVariable::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Output_Variable);
+  IddObjectType result(iddobjectname::OS_Output_Variable);
   return result;
 }
 

@@ -89,7 +89,7 @@ WindowDataFile::WindowDataFile(const Model& model)
 }
 
 IddObjectType WindowDataFile::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Construction_WindowDataFile);
+  IddObjectType result(iddobjectname::OS_Construction_WindowDataFile);
   return result;
 }
 

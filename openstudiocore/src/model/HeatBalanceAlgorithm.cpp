@@ -246,7 +246,7 @@ namespace detail {
 } // detail
 
 IddObjectType HeatBalanceAlgorithm::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_HeatBalanceAlgorithm);
+  return IddObjectType(iddobjectname::OS_HeatBalanceAlgorithm);
 }
 
 std::vector<std::string> HeatBalanceAlgorithm::algorithmValues() {

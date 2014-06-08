@@ -311,7 +311,7 @@ IlluminanceMap::IlluminanceMap(const Model& model)
 }
 
 IddObjectType IlluminanceMap::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_IlluminanceMap);
+  IddObjectType result(iddobjectname::OS_IlluminanceMap);
   return result;
 }
 

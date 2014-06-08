@@ -308,7 +308,7 @@ CurveBiquadratic::CurveBiquadratic(const Model& model)
 }
 
 IddObjectType CurveBiquadratic::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_Biquadratic);
+  IddObjectType result(iddobjectname::OS_Curve_Biquadratic);
   return result;
 }
 

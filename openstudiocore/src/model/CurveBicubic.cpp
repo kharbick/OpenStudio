@@ -363,7 +363,7 @@ CurveBicubic::CurveBicubic(const Model& model)
 }
 
 IddObjectType CurveBicubic::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_Bicubic);
+  IddObjectType result(iddobjectname::OS_Curve_Bicubic);
   return result;
 }
 

@@ -255,7 +255,7 @@ SetpointManagerFollowOutdoorAirTemperature::SetpointManagerFollowOutdoorAirTempe
 }
 
 IddObjectType SetpointManagerFollowOutdoorAirTemperature::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_SetpointManager_FollowOutdoorAirTemperature);
+  return IddObjectType(iddobjectname::OS_SetpointManager_FollowOutdoorAirTemperature);
 }
 
 boost::optional<Node> SetpointManagerFollowOutdoorAirTemperature::setpointNode() const

@@ -681,7 +681,7 @@ AirTerminalSingleDuctConstantVolumeCooledBeam::AirTerminalSingleDuctConstantVolu
 
 IddObjectType AirTerminalSingleDuctConstantVolumeCooledBeam::iddObjectType()
 {
-  return IddObjectType(IddObjectType::OS_AirTerminal_SingleDuct_ConstantVolume_CooledBeam);
+  return IddObjectType(iddobjectname::OS_AirTerminal_SingleDuct_ConstantVolume_CooledBeam);
 }
 
 std::vector<std::string> AirTerminalSingleDuctConstantVolumeCooledBeam::cooledBeamTypeValues()

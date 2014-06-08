@@ -1045,7 +1045,7 @@ PumpVariableSpeed::PumpVariableSpeed(const Model& model)
 }
 
 IddObjectType PumpVariableSpeed::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Pump_VariableSpeed);
+  IddObjectType result(iddobjectname::OS_Pump_VariableSpeed);
   return result;
 }
 

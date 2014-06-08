@@ -205,7 +205,7 @@ ShadingControl::ShadingControl(const ShadingMaterial& shadingMaterial)
 }
 
 IddObjectType ShadingControl::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_ShadingControl);
+  return IddObjectType(iddobjectname::OS_ShadingControl);
 }
 
 std::vector<std::string> ShadingControl::shadingTypeValues() {

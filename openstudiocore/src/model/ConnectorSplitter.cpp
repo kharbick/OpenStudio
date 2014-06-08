@@ -152,7 +152,7 @@ ModelObject ConnectorSplitter::clone(Model model) const
 }
 
 IddObjectType ConnectorSplitter::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Connector_Splitter);
+  IddObjectType result(iddobjectname::OS_Connector_Splitter);
   return result;
 }
 

@@ -180,7 +180,7 @@ ShadowCalculation::ShadowCalculation(boost::shared_ptr<detail::ShadowCalculation
 {}
 
 IddObjectType ShadowCalculation::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_ShadowCalculation);
+  IddObjectType result(iddobjectname::OS_ShadowCalculation);
   return result;
 }
 

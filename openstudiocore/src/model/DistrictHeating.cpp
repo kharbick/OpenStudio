@@ -132,7 +132,7 @@ DistrictHeating::DistrictHeating(const Model& model)
 }
 
 IddObjectType DistrictHeating::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_DistrictHeating);
+  IddObjectType result(iddobjectname::OS_DistrictHeating);
   return result;
 }
 

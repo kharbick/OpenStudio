@@ -657,7 +657,7 @@ boost::optional<double> TimeDependentValuation::getCostTimeDependentValuation(
 }
 
 IddObjectType TimeDependentValuation::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_TimeDependentValuation);
+  IddObjectType result(iddobjectname::OS_TimeDependentValuation);
   return result;
 }
 

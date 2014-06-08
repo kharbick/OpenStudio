@@ -291,7 +291,7 @@ SpaceInfiltrationEffectiveLeakageArea::SpaceInfiltrationEffectiveLeakageArea(con
 }
 
 IddObjectType SpaceInfiltrationEffectiveLeakageArea::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SpaceInfiltration_EffectiveLeakageArea);
+  IddObjectType result(iddobjectname::OS_SpaceInfiltration_EffectiveLeakageArea);
   return result;
 }
 

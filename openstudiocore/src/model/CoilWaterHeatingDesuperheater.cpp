@@ -537,7 +537,7 @@ CoilWaterHeatingDesuperheater::CoilWaterHeatingDesuperheater(const Model& model,
 }
 
 IddObjectType CoilWaterHeatingDesuperheater::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Coil_WaterHeating_Desuperheater);
+  return IddObjectType(iddobjectname::OS_Coil_WaterHeating_Desuperheater);
 }
 
 boost::optional<ModelObject> CoilWaterHeatingDesuperheater::heatRejectionTarget() const {

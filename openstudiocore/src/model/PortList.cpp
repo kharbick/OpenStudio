@@ -319,7 +319,7 @@ PortList::PortList(const HVACComponent& comp)
 }
 
 IddObjectType PortList::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_PortList);
+  return IddObjectType(iddobjectname::OS_PortList);
 }
 
 unsigned PortList::port(unsigned portIndex)

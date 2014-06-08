@@ -1247,7 +1247,7 @@ std::vector<std::string> LifeCycleCostParameters::validDepreciationMethodValues(
 
 IddObjectType LifeCycleCostParameters::iddObjectType()
 {
-  IddObjectType result(IddObjectType::OS_LifeCycleCost_Parameters);
+  IddObjectType result(iddobjectname::OS_LifeCycleCost_Parameters);
   return result;
 }
 

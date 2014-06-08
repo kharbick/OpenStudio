@@ -229,7 +229,7 @@ LuminaireDefinition::LuminaireDefinition(const Model& model)
 }
 
 IddObjectType LuminaireDefinition::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Luminaire_Definition);
+  IddObjectType result(iddobjectname::OS_Luminaire_Definition);
   return result;
 }
 

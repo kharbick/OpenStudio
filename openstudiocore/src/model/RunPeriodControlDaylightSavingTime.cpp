@@ -273,7 +273,7 @@ namespace detail {
 } // detail
 
 IddObjectType RunPeriodControlDaylightSavingTime::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_RunPeriodControl_DaylightSavingTime);
+  IddObjectType result(iddobjectname::OS_RunPeriodControl_DaylightSavingTime);
   return result;
 }
 

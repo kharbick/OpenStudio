@@ -830,7 +830,7 @@ SizingZone::SizingZone(const Model& model, const ThermalZone & thermalZone)
 }
 
 IddObjectType SizingZone::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Sizing_Zone);
+  return IddObjectType(iddobjectname::OS_Sizing_Zone);
 }
 
 std::vector<std::string> SizingZone::coolingDesignAirFlowMethodValues() {

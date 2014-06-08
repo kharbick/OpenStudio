@@ -358,7 +358,7 @@ namespace detail {
 } // detail
 
 IddObjectType WeatherFile::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_WeatherFile);
+  IddObjectType result(iddobjectname::OS_WeatherFile);
   return result;
 }
 

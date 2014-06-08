@@ -429,7 +429,7 @@ Meter::Meter(const Model& model)
 }
 
 IddObjectType Meter::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Meter);
+  IddObjectType result(iddobjectname::OS_Meter);
   return result;
 }
 

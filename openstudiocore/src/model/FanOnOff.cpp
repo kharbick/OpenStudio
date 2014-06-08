@@ -539,7 +539,7 @@ FanOnOff::FanOnOff(const Model& model,
 
 IddObjectType FanOnOff::iddObjectType()
 {
-  return IddObjectType(IddObjectType::OS_Fan_OnOff);
+  return IddObjectType(iddobjectname::OS_Fan_OnOff);
 }
 
 // Field Availability Schedule Name

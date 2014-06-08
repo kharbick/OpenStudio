@@ -970,7 +970,7 @@ const std::vector<std::string>& Gas::validGasTypes() {
 }
 
 IddObjectType Gas::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_WindowMaterial_Gas);
+  return IddObjectType(iddobjectname::OS_WindowMaterial_Gas);
 }
 
 std::vector<std::string> Gas::gasTypeValues() {

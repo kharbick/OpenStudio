@@ -850,7 +850,7 @@ namespace detail {
 } // detail
 
 IddObjectType Building::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Building);
+  IddObjectType result(iddobjectname::OS_Building);
   return result;
 }
 

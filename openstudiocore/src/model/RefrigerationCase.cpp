@@ -1312,7 +1312,7 @@ RefrigerationCase::RefrigerationCase(const Model& model, Schedule& caseDefrostSc
 }
 
 IddObjectType RefrigerationCase::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_Case);
+  return IddObjectType(iddobjectname::OS_Refrigeration_Case);
 }
 
 std::vector<std::string> RefrigerationCase::latentCaseCreditCurveTypeValues() {

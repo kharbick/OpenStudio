@@ -253,7 +253,7 @@ void UtilityCost_Qualify::setThresholdTest(const std::string& str)
 
 IddObjectType UtilityCost_Qualify::iddObjectType()
 {
-  IddObjectType result(IddObjectType::OS_UtilityCost_Qualify);
+  IddObjectType result(iddobjectname::OS_UtilityCost_Qualify);
   return result;
 }
 

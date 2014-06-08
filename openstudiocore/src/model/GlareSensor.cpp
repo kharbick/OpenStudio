@@ -311,7 +311,7 @@ GlareSensor::GlareSensor(const Model& model)
 }
 
 const IddObjectType& GlareSensor::iddObjectType() {
-  static IddObjectType result(IddObjectType::OS_Glare_Sensor);
+  static IddObjectType result(iddobjectname::OS_Glare_Sensor);
   return result;
 }
 

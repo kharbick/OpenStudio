@@ -403,7 +403,7 @@ LightsDefinition::LightsDefinition(const Model& model)
 }
 
 IddObjectType LightsDefinition::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Lights_Definition);
+  IddObjectType result(iddobjectname::OS_Lights_Definition);
   return result;
 }
 

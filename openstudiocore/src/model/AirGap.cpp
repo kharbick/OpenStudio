@@ -234,7 +234,7 @@ AirGap::AirGap(const Model& model,
 }
 
 IddObjectType AirGap::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Material_AirGap);
+  return IddObjectType(iddobjectname::OS_Material_AirGap);
 }
 
 double AirGap::thermalResistance() const {

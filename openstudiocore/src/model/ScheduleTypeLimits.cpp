@@ -273,7 +273,7 @@ ScheduleTypeLimits::ScheduleTypeLimits(const Model& model)
 }
 
 IddObjectType ScheduleTypeLimits::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_ScheduleTypeLimits);
+  IddObjectType result(iddobjectname::OS_ScheduleTypeLimits);
   return result;
 }
 

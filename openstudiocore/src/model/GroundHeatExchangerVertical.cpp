@@ -531,7 +531,7 @@ GroundHeatExchangerVertical::GroundHeatExchangerVertical(const Model& model)
 }
 
 IddObjectType GroundHeatExchangerVertical::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_GroundHeatExchanger_Vertical);
+  return IddObjectType(iddobjectname::OS_GroundHeatExchanger_Vertical);
 }
 
 bool GroundHeatExchangerVertical::addGFunction(double gFunctionLN, double gFunctionGValue){

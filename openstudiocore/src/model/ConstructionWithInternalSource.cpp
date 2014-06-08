@@ -277,7 +277,7 @@ ConstructionWithInternalSource::ConstructionWithInternalSource(const std::vector
 }
 
 IddObjectType ConstructionWithInternalSource::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Construction_InternalSource);
+  IddObjectType result(iddobjectname::OS_Construction_InternalSource);
   return result;
 }
 

@@ -317,7 +317,7 @@ namespace detail {
 } // detail
 
 IddObjectType SiteGroundReflectance::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Site_GroundReflectance);
+  IddObjectType result(iddobjectname::OS_Site_GroundReflectance);
   return result;
 }
 

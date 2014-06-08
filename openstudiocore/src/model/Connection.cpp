@@ -186,7 +186,7 @@ void Connection::setTargetObjectPort(unsigned port)
 }
 
 IddObjectType Connection::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Connection);
+  IddObjectType result(iddobjectname::OS_Connection);
   return result;
 }
 

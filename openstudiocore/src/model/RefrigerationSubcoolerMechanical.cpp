@@ -132,7 +132,7 @@ RefrigerationSubcoolerMechanical::RefrigerationSubcoolerMechanical(const Model& 
 }
 
 IddObjectType RefrigerationSubcoolerMechanical::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_Subcooler_Mechanical);
+  return IddObjectType(iddobjectname::OS_Refrigeration_Subcooler_Mechanical);
 }
 
 boost::optional<RefrigerationSystem> RefrigerationSubcoolerMechanical::capacityProvidingSystem() const {

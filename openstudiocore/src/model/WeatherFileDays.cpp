@@ -102,7 +102,7 @@ WeatherFileDays::WeatherFileDays(boost::shared_ptr<detail::WeatherFileDays_Impl>
 {}
 
 IddObjectType WeatherFileDays::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SizingPeriod_WeatherFileDays);
+  IddObjectType result(iddobjectname::OS_SizingPeriod_WeatherFileDays);
   return result;
 }
 

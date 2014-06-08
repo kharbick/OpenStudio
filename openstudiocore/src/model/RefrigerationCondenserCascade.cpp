@@ -212,7 +212,7 @@ RefrigerationCondenserCascade::RefrigerationCondenserCascade(const Model& model)
 }
 
 IddObjectType RefrigerationCondenserCascade::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_Condenser_Cascade);
+  return IddObjectType(iddobjectname::OS_Refrigeration_Condenser_Cascade);
 }
 
 std::vector<std::string> RefrigerationCondenserCascade::condensingTemperatureControlTypeValues() {

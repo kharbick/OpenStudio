@@ -151,7 +151,7 @@ ModelObject ConnectorMixer::clone(Model model) const
 }
 
 IddObjectType ConnectorMixer::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Connector_Mixer);
+  IddObjectType result(iddobjectname::OS_Connector_Mixer);
   return result;
 }
 

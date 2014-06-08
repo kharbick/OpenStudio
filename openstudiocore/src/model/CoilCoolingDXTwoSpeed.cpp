@@ -1259,7 +1259,7 @@ void CoilCoolingDXTwoSpeed::resetBasinHeaterOperatingSchedule() {
 }
 
 IddObjectType CoilCoolingDXTwoSpeed::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Coil_Cooling_DX_TwoSpeed);
+  IddObjectType result(iddobjectname::OS_Coil_Cooling_DX_TwoSpeed);
   return result;
 }
 

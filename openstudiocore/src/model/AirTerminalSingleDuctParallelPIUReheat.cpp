@@ -627,7 +627,7 @@ AirTerminalSingleDuctParallelPIUReheat::AirTerminalSingleDuctParallelPIUReheat( 
 }
 
 IddObjectType AirTerminalSingleDuctParallelPIUReheat::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_AirTerminal_SingleDuct_ParallelPIU_Reheat);
+  return IddObjectType(iddobjectname::OS_AirTerminal_SingleDuct_ParallelPIU_Reheat);
 }
 
 boost::optional<double> AirTerminalSingleDuctParallelPIUReheat::maximumPrimaryAirFlowRate() const {

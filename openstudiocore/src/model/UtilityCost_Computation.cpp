@@ -176,7 +176,7 @@ unsigned UtilityCost_Computation::maxComputeSteps() const {
 
 IddObjectType UtilityCost_Computation::iddObjectType()
 {
-  IddObjectType result(IddObjectType::OS_UtilityCost_Computation);
+  IddObjectType result(iddobjectname::OS_UtilityCost_Computation);
   return result;
 }
 

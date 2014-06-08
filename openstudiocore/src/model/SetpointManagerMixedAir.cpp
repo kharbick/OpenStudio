@@ -238,7 +238,7 @@ ModelObject SetpointManagerMixedAir::clone(Model model) const
 }
 
 IddObjectType SetpointManagerMixedAir::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SetpointManager_MixedAir);
+  IddObjectType result(iddobjectname::OS_SetpointManager_MixedAir);
   return result;
 }
 

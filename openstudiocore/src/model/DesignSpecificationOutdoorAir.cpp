@@ -323,7 +323,7 @@ DesignSpecificationOutdoorAir::DesignSpecificationOutdoorAir(const Model& model)
 }
 
 IddObjectType DesignSpecificationOutdoorAir::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_DesignSpecification_OutdoorAir);
+  IddObjectType result(iddobjectname::OS_DesignSpecification_OutdoorAir);
   return result;
 }
 

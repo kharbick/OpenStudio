@@ -254,7 +254,7 @@ CurveSigmoid::CurveSigmoid(const Model& model)
 }
 
 IddObjectType CurveSigmoid::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_Sigmoid);
+  IddObjectType result(iddobjectname::OS_Curve_Sigmoid);
   return result;
 }
 

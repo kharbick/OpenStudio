@@ -78,7 +78,7 @@ AirWallMaterial::AirWallMaterial(const Model& model)
 }
 
 IddObjectType AirWallMaterial::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Material_AirWall);
+  return IddObjectType(iddobjectname::OS_Material_AirWall);
 }
 
 /// @cond

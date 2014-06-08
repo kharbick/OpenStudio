@@ -680,7 +680,7 @@ RefrigerationSystem::RefrigerationSystem(const Model& model)
 }
 
 IddObjectType RefrigerationSystem::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_System);
+  return IddObjectType(iddobjectname::OS_Refrigeration_System);
 }
 
 std::vector<std::string> RefrigerationSystem::refrigerationSystemWorkingFluidTypeValues() {

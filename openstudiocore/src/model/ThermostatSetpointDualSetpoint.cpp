@@ -185,7 +185,7 @@ ThermostatSetpointDualSetpoint::ThermostatSetpointDualSetpoint(boost::shared_ptr
 
 IddObjectType ThermostatSetpointDualSetpoint::iddObjectType()
 {
-  IddObjectType result(IddObjectType::OS_ThermostatSetpoint_DualSetpoint);
+  IddObjectType result(iddobjectname::OS_ThermostatSetpoint_DualSetpoint);
   return result;
 }
 

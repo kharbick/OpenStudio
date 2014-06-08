@@ -640,7 +640,7 @@ AirLoopHVACUnitaryHeatPumpAirToAir::AirLoopHVACUnitaryHeatPumpAirToAir( const Mo
 }
 
 IddObjectType AirLoopHVACUnitaryHeatPumpAirToAir::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_AirLoopHVAC_UnitaryHeatPump_AirToAir);
+  IddObjectType result(iddobjectname::OS_AirLoopHVAC_UnitaryHeatPump_AirToAir);
   return result;
 }
 

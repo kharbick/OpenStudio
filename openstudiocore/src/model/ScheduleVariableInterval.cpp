@@ -250,7 +250,7 @@ ScheduleVariableInterval::ScheduleVariableInterval(const Model& model)
 }
 
 IddObjectType ScheduleVariableInterval::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Schedule_VariableInterval);
+  IddObjectType result(iddobjectname::OS_Schedule_VariableInterval);
   return result;
 }
 

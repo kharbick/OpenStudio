@@ -84,7 +84,7 @@ WeatherFileConditionType::WeatherFileConditionType(
 {}
 
 IddObjectType WeatherFileConditionType::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SizingPeriod_WeatherFileConditionType);
+  IddObjectType result(iddobjectname::OS_SizingPeriod_WeatherFileConditionType);
   return result;
 }
 

@@ -850,7 +850,7 @@ Splitter PlantLoop::demandSplitter()
 }
 
 IddObjectType PlantLoop::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_PlantLoop);
+  IddObjectType result(iddobjectname::OS_PlantLoop);
   return result;
 }
 

@@ -669,7 +669,7 @@ void CoilCoolingWater::setHeatExchangerConfiguration( std::string value )
 }
 
 IddObjectType CoilCoolingWater::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Coil_Cooling_Water);
+  IddObjectType result(iddobjectname::OS_Coil_Cooling_Water);
   return result;
 }
 

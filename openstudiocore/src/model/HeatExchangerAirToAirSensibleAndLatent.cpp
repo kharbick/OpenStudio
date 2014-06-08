@@ -732,7 +732,7 @@ HeatExchangerAirToAirSensibleAndLatent::HeatExchangerAirToAirSensibleAndLatent(c
 }
 
 IddObjectType HeatExchangerAirToAirSensibleAndLatent::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_HeatExchanger_AirToAir_SensibleAndLatent);
+  return IddObjectType(iddobjectname::OS_HeatExchanger_AirToAir_SensibleAndLatent);
 }
 
 std::vector<std::string> HeatExchangerAirToAirSensibleAndLatent::heatExchangerTypeValues() {

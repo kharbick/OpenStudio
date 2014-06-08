@@ -683,7 +683,7 @@ ModelObject Node::clone(Model model) const
 }
 
 IddObjectType Node::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Node);
+  IddObjectType result(iddobjectname::OS_Node);
   return result;
 }
 

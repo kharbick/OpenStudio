@@ -159,7 +159,7 @@ namespace detail {
 } // detail
 
 IddObjectType ConvergenceLimits::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_ConvergenceLimits);
+  IddObjectType result(iddobjectname::OS_ConvergenceLimits);
   return result;
 }
 

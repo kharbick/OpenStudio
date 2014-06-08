@@ -134,7 +134,7 @@ DistrictCooling::DistrictCooling(const Model& model)
 }
 
 IddObjectType DistrictCooling::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_DistrictCooling);
+  IddObjectType result(iddobjectname::OS_DistrictCooling);
   return result;
 }
 

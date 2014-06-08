@@ -114,7 +114,7 @@ namespace detail {
 } // detail
 
 IddObjectType ZoneAirHeatBalanceAlgorithm::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_ZoneAirHeatBalanceAlgorithm);
+  return IddObjectType(iddobjectname::OS_ZoneAirHeatBalanceAlgorithm);
 }
 
 std::vector<std::string> ZoneAirHeatBalanceAlgorithm::validAlgorithmValues() {

@@ -184,7 +184,7 @@ ModelObjectList::ModelObjectList(const Model& model)
 }
 
 IddObjectType ModelObjectList::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_ModelObjectList);
+  return IddObjectType(iddobjectname::OS_ModelObjectList);
 }
 
 std::vector<IdfObject> ModelObjectList::remove() {

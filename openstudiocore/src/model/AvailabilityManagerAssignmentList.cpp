@@ -146,7 +146,7 @@ AvailabilityManagerNightCycle AvailabilityManagerAssignmentList::availabilityMan
 }
 
 IddObjectType AvailabilityManagerAssignmentList::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_AvailabilityManagerAssignmentList);
+  return IddObjectType(iddobjectname::OS_AvailabilityManagerAssignmentList);
 }
 
 /// @cond

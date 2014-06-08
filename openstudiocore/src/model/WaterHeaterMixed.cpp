@@ -1578,7 +1578,7 @@ WaterHeaterMixed::WaterHeaterMixed(const Model& model)
 }
 
 IddObjectType WaterHeaterMixed::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_WaterHeater_Mixed);
+  return IddObjectType(iddobjectname::OS_WaterHeater_Mixed);
 }
 
 std::vector<std::string> WaterHeaterMixed::heaterControlTypeValues() {

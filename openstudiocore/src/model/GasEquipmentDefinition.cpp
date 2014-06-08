@@ -366,7 +366,7 @@ GasEquipmentDefinition::GasEquipmentDefinition(const Model& model)
 }
 
 IddObjectType GasEquipmentDefinition::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_GasEquipment_Definition);
+  IddObjectType result(iddobjectname::OS_GasEquipment_Definition);
   return result;
 }
 

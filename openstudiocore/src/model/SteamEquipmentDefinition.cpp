@@ -298,7 +298,7 @@ SteamEquipmentDefinition::SteamEquipmentDefinition(const Model& model)
 }
 
 IddObjectType SteamEquipmentDefinition::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SteamEquipment_Definition);
+  IddObjectType result(iddobjectname::OS_SteamEquipment_Definition);
   return result;
 }
 

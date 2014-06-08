@@ -569,7 +569,7 @@ ZoneHVACLowTempRadiantConstFlow::ZoneHVACLowTempRadiantConstFlow(const Model& mo
 }
 
 IddObjectType ZoneHVACLowTempRadiantConstFlow::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_ZoneHVAC_LowTemperatureRadiant_ConstantFlow);
+  return IddObjectType(iddobjectname::OS_ZoneHVAC_LowTemperatureRadiant_ConstantFlow);
 }
 
 std::vector<std::string> ZoneHVACLowTempRadiantConstFlow::radiantSurfaceTypeValues() {

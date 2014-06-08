@@ -296,7 +296,7 @@ ScheduleWeek::ScheduleWeek(const Model& model)
 }
 
 IddObjectType ScheduleWeek::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Schedule_Week);
+  IddObjectType result(iddobjectname::OS_Schedule_Week);
   return result;
 }
 

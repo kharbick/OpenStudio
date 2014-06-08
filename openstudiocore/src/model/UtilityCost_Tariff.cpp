@@ -394,7 +394,7 @@ void UtilityCost_Tariff::setBuyOrSell(const std::string& str)
 
 IddObjectType UtilityCost_Tariff::iddObjectType()
 {
-  IddObjectType result(IddObjectType::OS_UtilityCost_Tariff);
+  IddObjectType result(iddobjectname::OS_UtilityCost_Tariff);
   return result;
 }
 

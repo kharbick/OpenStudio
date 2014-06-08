@@ -441,7 +441,7 @@ std::vector<std::string> ClimateZones::validClimateZoneValues(const std::string&
 }
 
 IddObjectType ClimateZones::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_ClimateZones);
+  IddObjectType result(iddobjectname::OS_ClimateZones);
   return result;
 }
 

@@ -489,7 +489,7 @@ namespace detail {
 } // detail
 
 IddObjectType RadianceParameters::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_RadianceParameters);
+  return IddObjectType(iddobjectname::OS_RadianceParameters);
 }
 
 int RadianceParameters::accumulatedRaysperRecord() const {

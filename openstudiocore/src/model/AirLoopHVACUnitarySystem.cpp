@@ -1188,7 +1188,7 @@ AirLoopHVACUnitarySystem::AirLoopHVACUnitarySystem(const Model& model)
 }
 
 IddObjectType AirLoopHVACUnitarySystem::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_AirLoopHVAC_UnitarySystem);
+  return IddObjectType(iddobjectname::OS_AirLoopHVAC_UnitarySystem);
 }
 
 // std::vector<std::string> AirLoopHVACUnitarySystem::controlTypeValues() {

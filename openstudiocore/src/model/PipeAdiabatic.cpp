@@ -112,7 +112,7 @@ PipeAdiabatic::PipeAdiabatic(boost::shared_ptr<detail::PipeAdiabatic_Impl> p)
 {}
 
 IddObjectType PipeAdiabatic::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Pipe_Adiabatic);
+  IddObjectType result(iddobjectname::OS_Pipe_Adiabatic);
   return result;
 }
 

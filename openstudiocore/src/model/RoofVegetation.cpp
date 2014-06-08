@@ -993,7 +993,7 @@ RoofVegetation::RoofVegetation(const Model& model,
 }
 
 IddObjectType RoofVegetation::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Material_RoofVegetation);
+  return IddObjectType(iddobjectname::OS_Material_RoofVegetation);
 }
 
 std::vector<std::string> RoofVegetation::roughnessValues() {

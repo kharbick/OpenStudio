@@ -319,7 +319,7 @@ AirTerminalSingleDuctUncontrolled::AirTerminalSingleDuctUncontrolled(boost::shar
 {}
 
 IddObjectType AirTerminalSingleDuctUncontrolled::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_AirTerminal_SingleDuct_Uncontrolled);
+  IddObjectType result(iddobjectname::OS_AirTerminal_SingleDuct_Uncontrolled);
   return result;
 }
 

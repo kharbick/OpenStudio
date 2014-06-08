@@ -280,7 +280,7 @@ ScheduleYear::ScheduleYear(const Model& model)
 }
 
 IddObjectType ScheduleYear::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Schedule_Year);
+  IddObjectType result(iddobjectname::OS_Schedule_Year);
   return result;
 }
 

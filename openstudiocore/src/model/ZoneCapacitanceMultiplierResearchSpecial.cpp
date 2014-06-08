@@ -218,7 +218,7 @@ namespace detail {
 } // detail
 
 IddObjectType ZoneCapacitanceMultiplierResearchSpecial::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_ZoneCapacitanceMultiplier_ResearchSpecial);
+  return IddObjectType(iddobjectname::OS_ZoneCapacitanceMultiplier_ResearchSpecial);
 }
 
 double ZoneCapacitanceMultiplierResearchSpecial::temperatureCapacityMultiplier() const {

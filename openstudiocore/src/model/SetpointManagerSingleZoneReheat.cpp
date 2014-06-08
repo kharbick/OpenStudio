@@ -245,7 +245,7 @@ ModelObject SetpointManagerSingleZoneReheat::clone(Model model) const
 }
 
 IddObjectType SetpointManagerSingleZoneReheat::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SetpointManager_SingleZone_Reheat);
+  IddObjectType result(iddobjectname::OS_SetpointManager_SingleZone_Reheat);
   return result;
 }
 

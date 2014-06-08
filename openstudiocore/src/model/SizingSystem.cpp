@@ -459,7 +459,7 @@ SizingSystem::SizingSystem(const Model& model, const AirLoopHVAC & airLoopHVAC)
 }
 
 IddObjectType SizingSystem::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Sizing_System);
+  IddObjectType result(iddobjectname::OS_Sizing_System);
   return result;
 }
 

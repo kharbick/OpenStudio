@@ -492,7 +492,7 @@ ScheduleRuleset::ScheduleRuleset(const Model& model)
 }
 
 IddObjectType ScheduleRuleset::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Schedule_Ruleset);
+  IddObjectType result(iddobjectname::OS_Schedule_Ruleset);
   return result;
 }
 

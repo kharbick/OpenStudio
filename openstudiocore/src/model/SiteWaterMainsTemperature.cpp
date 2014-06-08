@@ -301,7 +301,7 @@ SiteWaterMainsTemperature::SiteWaterMainsTemperature(const Model& model)
 }
 
 IddObjectType SiteWaterMainsTemperature::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Site_WaterMainsTemperature);
+  IddObjectType result(iddobjectname::OS_Site_WaterMainsTemperature);
   return result;
 }
 

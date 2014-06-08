@@ -382,7 +382,7 @@ ZoneHVACEquipmentList::ZoneHVACEquipmentList(const ThermalZone & thermalZone)
 }
 
 IddObjectType ZoneHVACEquipmentList::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_ZoneHVAC_EquipmentList);
+  return IddObjectType(iddobjectname::OS_ZoneHVAC_EquipmentList);
 }
 
 void ZoneHVACEquipmentList::addEquipment(const ModelObject & equipment)

@@ -293,7 +293,7 @@ BuildingStory::BuildingStory(const Model& model)
 }
 
 IddObjectType BuildingStory::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_BuildingStory);
+  IddObjectType result(iddobjectname::OS_BuildingStory);
   return result;
 }
 

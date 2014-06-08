@@ -174,7 +174,7 @@ CurveFunctionalPressureDrop::CurveFunctionalPressureDrop(const Model& model)
 }
 
 IddObjectType CurveFunctionalPressureDrop::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_Functional_PressureDrop);
+  IddObjectType result(iddobjectname::OS_Curve_Functional_PressureDrop);
   return result;
 }
 

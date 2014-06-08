@@ -2166,7 +2166,7 @@ ThermalZone::ThermalZone(const Model& model)
 }
 
 IddObjectType ThermalZone::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_ThermalZone);
+  IddObjectType result(iddobjectname::OS_ThermalZone);
   return result;
 }
 

@@ -172,7 +172,7 @@ void AirLoopHVACZoneMixer::disconnect()
 }
 
 IddObjectType AirLoopHVACZoneMixer::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_AirLoopHVAC_ZoneMixer);
+  IddObjectType result(iddobjectname::OS_AirLoopHVAC_ZoneMixer);
   return result;
 }
 

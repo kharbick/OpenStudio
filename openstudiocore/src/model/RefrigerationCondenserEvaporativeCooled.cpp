@@ -587,7 +587,7 @@ RefrigerationCondenserEvaporativeCooled::RefrigerationCondenserEvaporativeCooled
 }
 
 IddObjectType RefrigerationCondenserEvaporativeCooled::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_Condenser_EvaporativeCooled);
+  return IddObjectType(iddobjectname::OS_Refrigeration_Condenser_EvaporativeCooled);
 }
 
 std::vector<std::string> RefrigerationCondenserEvaporativeCooled::fanSpeedControlTypeValues() {

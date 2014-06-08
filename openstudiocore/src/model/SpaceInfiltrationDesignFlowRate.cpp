@@ -598,7 +598,7 @@ SpaceInfiltrationDesignFlowRate::SpaceInfiltrationDesignFlowRate(const Model& mo
 }
 
 IddObjectType SpaceInfiltrationDesignFlowRate::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SpaceInfiltration_DesignFlowRate);
+  IddObjectType result(iddobjectname::OS_SpaceInfiltration_DesignFlowRate);
   return result;
 }
 

@@ -1346,7 +1346,7 @@ UtilityBill::UtilityBill(const FuelType& fuelType, const Model& model)
 }
 
 IddObjectType UtilityBill::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_UtilityBill);
+  return IddObjectType(iddobjectname::OS_UtilityBill);
 }
 
 std::vector<std::string> UtilityBill::consumptionUnitValues() {

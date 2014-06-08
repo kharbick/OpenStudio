@@ -699,7 +699,7 @@ RefrigerationSecondarySystem::RefrigerationSecondarySystem(const Model& model)
 }
 
 IddObjectType RefrigerationSecondarySystem::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_SecondarySystem);
+  return IddObjectType(iddobjectname::OS_Refrigeration_SecondarySystem);
 }
 
 std::vector<std::string> RefrigerationSecondarySystem::circulatingFluidNameValues() {

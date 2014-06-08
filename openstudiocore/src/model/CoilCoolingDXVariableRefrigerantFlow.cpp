@@ -287,7 +287,7 @@ CoilCoolingDXVariableRefrigerantFlow::CoilCoolingDXVariableRefrigerantFlow(const
 }
 
 IddObjectType CoilCoolingDXVariableRefrigerantFlow::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Coil_Cooling_DX_VariableRefrigerantFlow);
+  return IddObjectType(iddobjectname::OS_Coil_Cooling_DX_VariableRefrigerantFlow);
 }
 
 Schedule CoilCoolingDXVariableRefrigerantFlow::availabilitySchedule() const {

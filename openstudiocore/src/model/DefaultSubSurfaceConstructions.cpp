@@ -456,7 +456,7 @@ DefaultSubSurfaceConstructions::DefaultSubSurfaceConstructions(const Model& mode
 }
 
 IddObjectType DefaultSubSurfaceConstructions::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_DefaultSubSurfaceConstructions);
+  IddObjectType result(iddobjectname::OS_DefaultSubSurfaceConstructions);
   return result;
 }
 

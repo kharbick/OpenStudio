@@ -624,7 +624,7 @@ ZoneHVACPackagedTerminalAirConditioner::ZoneHVACPackagedTerminalAirConditioner( 
 }
 
 IddObjectType ZoneHVACPackagedTerminalAirConditioner::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_ZoneHVAC_PackagedTerminalAirConditioner);
+  IddObjectType result(iddobjectname::OS_ZoneHVAC_PackagedTerminalAirConditioner);
   return result;
 }
 

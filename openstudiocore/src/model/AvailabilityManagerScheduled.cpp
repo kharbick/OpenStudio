@@ -141,7 +141,7 @@ AvailabilityManagerScheduled::AvailabilityManagerScheduled(const Model& model)
 }
 
 IddObjectType AvailabilityManagerScheduled::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_AvailabilityManager_Scheduled);
+  return IddObjectType(iddobjectname::OS_AvailabilityManager_Scheduled);
 }
 
 Schedule AvailabilityManagerScheduled::schedule() const {

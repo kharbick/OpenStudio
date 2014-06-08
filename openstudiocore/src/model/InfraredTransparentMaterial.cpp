@@ -77,7 +77,7 @@ InfraredTransparentMaterial::InfraredTransparentMaterial(const Model& model)
 }
 
 IddObjectType InfraredTransparentMaterial::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Material_InfraredTransparent);
+  return IddObjectType(iddobjectname::OS_Material_InfraredTransparent);
 }
 
 /// @cond

@@ -1135,7 +1135,7 @@ bool AirLoopHVAC::removeBranchForZone(openstudio::model::ThermalZone & thermalZo
 }
 
 IddObjectType AirLoopHVAC::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_AirLoopHVAC);
+  return IddObjectType(iddobjectname::OS_AirLoopHVAC);
 }
 
 bool AirLoopHVAC::addBranchForZone(openstudio::model::ThermalZone & thermalZone)

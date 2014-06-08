@@ -137,7 +137,7 @@ CurrencyType::CurrencyType(boost::shared_ptr<detail::CurrencyType_Impl> impl)
 
 IddObjectType CurrencyType::iddObjectType()
 {
-  IddObjectType result(IddObjectType::OS_CurrencyType);
+  IddObjectType result(iddobjectname::OS_CurrencyType);
   return result;
 }
 

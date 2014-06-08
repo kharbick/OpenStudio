@@ -415,7 +415,7 @@ PeopleDefinition::PeopleDefinition(const Model& model)
 }
 
 IddObjectType PeopleDefinition::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_People_Definition);
+  IddObjectType result(iddobjectname::OS_People_Definition);
   return result;
 }
 

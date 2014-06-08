@@ -207,7 +207,7 @@ LightingDesignDay::LightingDesignDay(const std::string& cieSkyModel, const opens
 }
 
 IddObjectType LightingDesignDay::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_LightingDesignDay);
+  IddObjectType result(iddobjectname::OS_LightingDesignDay);
   return result;
 }
 

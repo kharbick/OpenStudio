@@ -291,7 +291,7 @@ ZoneHVACBaseboardConvectiveElectric::ZoneHVACBaseboardConvectiveElectric(const M
 }
 
 IddObjectType ZoneHVACBaseboardConvectiveElectric::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_ZoneHVAC_Baseboard_Convective_Electric);
+  return IddObjectType(iddobjectname::OS_ZoneHVAC_Baseboard_Convective_Electric);
 }
 
 Schedule ZoneHVACBaseboardConvectiveElectric::availabilitySchedule() const {

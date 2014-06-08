@@ -372,7 +372,7 @@ std::vector<std::string> StandardsInformationConstruction::intendedSurfaceTypeVa
 }
 
 IddObjectType StandardsInformationConstruction::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_StandardsInformation_Construction);
+  IddObjectType result(iddobjectname::OS_StandardsInformation_Construction);
   return result;
 }
 

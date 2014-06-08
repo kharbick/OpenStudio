@@ -309,7 +309,7 @@ InteriorPartitionSurfaceGroup::InteriorPartitionSurfaceGroup(const Model& model)
 }
 
 IddObjectType InteriorPartitionSurfaceGroup::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_InteriorPartitionSurfaceGroup);
+  IddObjectType result(iddobjectname::OS_InteriorPartitionSurfaceGroup);
   return result;
 }
 

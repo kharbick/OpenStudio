@@ -317,7 +317,7 @@ SetpointManagerScheduled::SetpointManagerScheduled(boost::shared_ptr<detail::Set
 }
 
 IddObjectType SetpointManagerScheduled::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SetpointManager_Scheduled);
+  IddObjectType result(iddobjectname::OS_SetpointManager_Scheduled);
   return result;
 }
 

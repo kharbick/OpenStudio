@@ -243,7 +243,7 @@ AvailabilityManagerNightCycle::AvailabilityManagerNightCycle(const Model& model)
 }
 
 IddObjectType AvailabilityManagerNightCycle::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_AvailabilityManager_NightCycle);
+  return IddObjectType(iddobjectname::OS_AvailabilityManager_NightCycle);
 }
 
 std::vector<std::string> AvailabilityManagerNightCycle::controlTypeValues() {

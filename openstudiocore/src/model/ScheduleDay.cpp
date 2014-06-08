@@ -425,7 +425,7 @@ ScheduleDay::ScheduleDay(const Model& model)
 }
 
 IddObjectType ScheduleDay::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Schedule_Day);
+  IddObjectType result(iddobjectname::OS_Schedule_Day);
   return result;
 }
 

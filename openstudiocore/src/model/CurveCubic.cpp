@@ -238,7 +238,7 @@ CurveCubic::CurveCubic(const Model& model)
 }
 
 IddObjectType CurveCubic::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_Cubic);
+  IddObjectType result(iddobjectname::OS_Curve_Cubic);
   return result;
 }
 

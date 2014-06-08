@@ -240,7 +240,7 @@ CoilHeatingDesuperheater::CoilHeatingDesuperheater(const Model& model)
 }
 
 IddObjectType CoilHeatingDesuperheater::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Coil_Heating_Desuperheater);
+  return IddObjectType(iddobjectname::OS_Coil_Heating_Desuperheater);
 }
 
 boost::optional<Schedule> CoilHeatingDesuperheater::availabilitySchedule() const {

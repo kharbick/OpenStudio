@@ -765,7 +765,7 @@ ZoneHVACPackagedTerminalHeatPump::ZoneHVACPackagedTerminalHeatPump( const Model&
 }
 
 IddObjectType ZoneHVACPackagedTerminalHeatPump::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_ZoneHVAC_PackagedTerminalHeatPump);
+  IddObjectType result(iddobjectname::OS_ZoneHVAC_PackagedTerminalHeatPump);
   return result;
 }
 

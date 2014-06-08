@@ -752,7 +752,7 @@ bool AirLoopHVACOutdoorAirSystem::addToNode(Node & node)
 }
 
 IddObjectType AirLoopHVACOutdoorAirSystem::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_AirLoopHVAC_OutdoorAirSystem);
+  IddObjectType result(iddobjectname::OS_AirLoopHVAC_OutdoorAirSystem);
   return result;
 }
 

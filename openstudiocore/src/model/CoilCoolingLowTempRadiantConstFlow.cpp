@@ -391,7 +391,7 @@ namespace detail {
 }
 
  IddObjectType CoilCoolingLowTempRadiantConstFlow::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Coil_Cooling_LowTemperatureRadiant_ConstantFlow);
+  return IddObjectType(iddobjectname::OS_Coil_Cooling_LowTemperatureRadiant_ConstantFlow);
 }
 
 std::vector<std::string> CoilCoolingLowTempRadiantConstFlow::condensationControlTypeValues() {

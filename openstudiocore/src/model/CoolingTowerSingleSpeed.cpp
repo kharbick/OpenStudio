@@ -1168,7 +1168,7 @@ CoolingTowerSingleSpeed::CoolingTowerSingleSpeed(const Model& model)
 }
 
 IddObjectType CoolingTowerSingleSpeed::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_CoolingTower_SingleSpeed);
+  return IddObjectType(iddobjectname::OS_CoolingTower_SingleSpeed);
 }
 
 std::vector<std::string> CoolingTowerSingleSpeed::performanceInputMethodValues() {

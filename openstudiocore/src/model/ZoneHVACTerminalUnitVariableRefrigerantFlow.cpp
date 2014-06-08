@@ -483,7 +483,7 @@ ZoneHVACTerminalUnitVariableRefrigerantFlow::ZoneHVACTerminalUnitVariableRefrige
 }
 
 IddObjectType ZoneHVACTerminalUnitVariableRefrigerantFlow::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_ZoneHVAC_TerminalUnit_VariableRefrigerantFlow);
+  return IddObjectType(iddobjectname::OS_ZoneHVAC_TerminalUnit_VariableRefrigerantFlow);
 }
 
 std::vector<std::string> ZoneHVACTerminalUnitVariableRefrigerantFlow::supplyAirFanplacementValues() {

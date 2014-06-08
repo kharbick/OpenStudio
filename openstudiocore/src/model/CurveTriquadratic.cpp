@@ -911,7 +911,7 @@ CurveTriquadratic::CurveTriquadratic(const Model& model)
 }
 
 IddObjectType CurveTriquadratic::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_Triquadratic);
+  IddObjectType result(iddobjectname::OS_Curve_Triquadratic);
   return result;
 }
 

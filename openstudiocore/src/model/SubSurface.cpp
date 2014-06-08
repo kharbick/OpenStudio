@@ -947,7 +947,7 @@ SubSurface::SubSurface(const std::vector<Point3d>& vertices, const Model& model)
 }
 
 IddObjectType SubSurface::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_SubSurface);
+  IddObjectType result(iddobjectname::OS_SubSurface);
   return result;
 }
 

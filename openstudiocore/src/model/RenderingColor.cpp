@@ -160,7 +160,7 @@ RenderingColor::RenderingColor(const Model& model)
 }
 
 IddObjectType RenderingColor::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Rendering_Color);
+  IddObjectType result(iddobjectname::OS_Rendering_Color);
   return result;
 }
 

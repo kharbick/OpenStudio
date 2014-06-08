@@ -591,7 +591,7 @@ CoolingTowerPerformanceCoolTools::CoolingTowerPerformanceCoolTools(const Model& 
 }
 
 IddObjectType CoolingTowerPerformanceCoolTools::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_CoolingTowerPerformance_CoolTools);
+  return IddObjectType(iddobjectname::OS_CoolingTowerPerformance_CoolTools);
 }
 
 double CoolingTowerPerformanceCoolTools::minimumInletAirWetBulbTemperature() const {

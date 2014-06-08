@@ -369,7 +369,7 @@ CoilHeatingElectric::CoilHeatingElectric(const Model& model, Schedule & schedule
 }
 
 IddObjectType CoilHeatingElectric::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Coil_Heating_Electric);
+  IddObjectType result(iddobjectname::OS_Coil_Heating_Electric);
   return result;
 }
 

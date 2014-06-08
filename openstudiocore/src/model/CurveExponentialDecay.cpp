@@ -224,7 +224,7 @@ CurveExponentialDecay::CurveExponentialDecay(const Model& model)
 }
 
 IddObjectType CurveExponentialDecay::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_ExponentialDecay);
+  IddObjectType result(iddobjectname::OS_Curve_ExponentialDecay);
   return result;
 }
 

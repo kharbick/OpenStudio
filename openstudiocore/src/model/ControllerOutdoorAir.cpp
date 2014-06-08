@@ -861,7 +861,7 @@ void ControllerOutdoorAir::setHeatRecoveryBypassControlType(const std::string& v
 
 IddObjectType ControllerOutdoorAir::iddObjectType()
 {
- IddObjectType result(IddObjectType::OS_Controller_OutdoorAir);
+ IddObjectType result(iddobjectname::OS_Controller_OutdoorAir);
  return result;
 }
 

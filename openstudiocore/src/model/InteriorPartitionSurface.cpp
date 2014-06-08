@@ -312,7 +312,7 @@ InteriorPartitionSurface::InteriorPartitionSurface(const std::vector<Point3d>& v
 }
 
 IddObjectType InteriorPartitionSurface::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_InteriorPartitionSurface);
+  IddObjectType result(iddobjectname::OS_InteriorPartitionSurface);
   return result;
 }
 

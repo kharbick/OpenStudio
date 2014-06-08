@@ -428,7 +428,7 @@ bool RunPeriod::isRepeated() const {
 }
 
 IddObjectType RunPeriod::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_RunPeriod);
+  IddObjectType result(iddobjectname::OS_RunPeriod);
   return result;
 }
 

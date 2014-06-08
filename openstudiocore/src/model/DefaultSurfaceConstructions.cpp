@@ -221,7 +221,7 @@ DefaultSurfaceConstructions::DefaultSurfaceConstructions(const Model& model)
 }
 
 IddObjectType DefaultSurfaceConstructions::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_DefaultSurfaceConstructions);
+  IddObjectType result(iddobjectname::OS_DefaultSurfaceConstructions);
   return result;
 }
 

@@ -212,7 +212,7 @@ CurveLinear::CurveLinear(const Model& model)
 }
 
 IddObjectType CurveLinear::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_Linear);
+  IddObjectType result(iddobjectname::OS_Curve_Linear);
   return result;
 }
 

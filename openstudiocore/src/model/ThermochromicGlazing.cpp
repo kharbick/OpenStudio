@@ -253,7 +253,7 @@ ThermochromicGlazing::ThermochromicGlazing(const Model& model,double opticalData
 }
 
 IddObjectType ThermochromicGlazing::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_WindowMaterial_GlazingGroup_Thermochromic);
+  return IddObjectType(iddobjectname::OS_WindowMaterial_GlazingGroup_Thermochromic);
 }
 
 /// @cond

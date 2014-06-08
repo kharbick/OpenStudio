@@ -633,7 +633,7 @@ DefaultScheduleSet::DefaultScheduleSet(const Model& model)
 }
 
 IddObjectType DefaultScheduleSet::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_DefaultScheduleSet);
+  IddObjectType result(iddobjectname::OS_DefaultScheduleSet);
   return result;
 }
 

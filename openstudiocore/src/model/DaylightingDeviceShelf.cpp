@@ -175,7 +175,7 @@ DaylightingDeviceShelf::DaylightingDeviceShelf(const SubSurface& subSurface)
 }
 
 IddObjectType DaylightingDeviceShelf::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_DaylightingDevice_Shelf);
+  IddObjectType result(iddobjectname::OS_DaylightingDevice_Shelf);
   return result;
 }
 

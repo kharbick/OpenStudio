@@ -310,7 +310,7 @@ CurveQuadraticLinear::CurveQuadraticLinear(const Model& model)
 }
 
 IddObjectType CurveQuadraticLinear::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_QuadraticLinear);
+  IddObjectType result(iddobjectname::OS_Curve_QuadraticLinear);
   return result;
 }
 

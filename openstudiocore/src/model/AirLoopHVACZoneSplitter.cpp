@@ -194,7 +194,7 @@ unsigned AirLoopHVACZoneSplitter::nextOutletPort()
 }
 
 IddObjectType AirLoopHVACZoneSplitter::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_AirLoopHVAC_ZoneSplitter);
+  IddObjectType result(iddobjectname::OS_AirLoopHVAC_ZoneSplitter);
   return result;
 }
 

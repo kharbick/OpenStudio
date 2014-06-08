@@ -457,7 +457,7 @@ ZoneHVACUnitHeater::ZoneHVACUnitHeater(const Model& model,
 
 IddObjectType ZoneHVACUnitHeater::iddObjectType() 
 {
-  return IddObjectType(IddObjectType::OS_ZoneHVAC_UnitHeater);
+  return IddObjectType(iddobjectname::OS_ZoneHVAC_UnitHeater);
 }
 
 std::vector<std::string> ZoneHVACUnitHeater::fanControlTypeValues() 

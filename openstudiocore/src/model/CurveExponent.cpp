@@ -224,7 +224,7 @@ CurveExponent::CurveExponent(const Model& model)
 }
 
 IddObjectType CurveExponent::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Curve_Exponent);
+  IddObjectType result(iddobjectname::OS_Curve_Exponent);
   return result;
 }
 

@@ -114,7 +114,7 @@ namespace detail {
 } // detail
 
 IddObjectType LightingSimulationControl::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_LightingSimulationControl);
+  IddObjectType result(iddobjectname::OS_LightingSimulationControl);
   return result;
 }
 

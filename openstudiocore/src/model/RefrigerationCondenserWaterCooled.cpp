@@ -408,7 +408,7 @@ RefrigerationCondenserWaterCooled::RefrigerationCondenserWaterCooled(const Model
 }
 
 IddObjectType RefrigerationCondenserWaterCooled::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Refrigeration_Condenser_WaterCooled);
+  return IddObjectType(iddobjectname::OS_Refrigeration_Condenser_WaterCooled);
 }
 
 std::vector<std::string> RefrigerationCondenserWaterCooled::waterCooledLoopFlowTypeValues() {

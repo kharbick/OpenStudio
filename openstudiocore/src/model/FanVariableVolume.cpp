@@ -874,7 +874,7 @@ FanVariableVolume::FanVariableVolume(const Model& model, Schedule & schedule)
 }
 
 IddObjectType FanVariableVolume::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Fan_VariableVolume);
+  IddObjectType result(iddobjectname::OS_Fan_VariableVolume);
   return result;
 }
 

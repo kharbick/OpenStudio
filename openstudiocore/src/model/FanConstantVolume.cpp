@@ -520,7 +520,7 @@ void FanConstantVolume::setEndUseSubcategory(std::string val)
 }
 
 IddObjectType FanConstantVolume::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Fan_ConstantVolume);
+  IddObjectType result(iddobjectname::OS_Fan_ConstantVolume);
   return result;
 }
 

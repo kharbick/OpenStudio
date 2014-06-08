@@ -603,7 +603,7 @@ SimulationControl::SimulationControl(boost::shared_ptr<detail::SimulationControl
 {}
 
 IddObjectType SimulationControl::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_SimulationControl);
+  return IddObjectType(iddobjectname::OS_SimulationControl);
 }
 
 std::vector<std::string> SimulationControl::validSolarDistributionValues() {

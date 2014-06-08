@@ -204,7 +204,7 @@ ControllerMechanicalVentilation::ControllerMechanicalVentilation(const Model& mo
 }
 
 IddObjectType ControllerMechanicalVentilation::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_Controller_MechanicalVentilation);
+  return IddObjectType(iddobjectname::OS_Controller_MechanicalVentilation);
 }
 
 std::vector<std::string> ControllerMechanicalVentilation::systemOutdoorAirMethodValues() {

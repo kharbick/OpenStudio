@@ -2211,7 +2211,7 @@ AirConditionerVariableRefrigerantFlow::AirConditionerVariableRefrigerantFlow(con
 }
 
 IddObjectType AirConditionerVariableRefrigerantFlow::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_AirConditioner_VariableRefrigerantFlow);
+  return IddObjectType(iddobjectname::OS_AirConditioner_VariableRefrigerantFlow);
 }
 
 std::vector<std::string> AirConditionerVariableRefrigerantFlow::heatingPerformanceCurveOutdoorTemperatureTypeValues() {

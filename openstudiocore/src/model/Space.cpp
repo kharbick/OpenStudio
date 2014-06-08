@@ -2857,7 +2857,7 @@ Space::Space(const Model& model)
 }
 
 IddObjectType Space::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Space);
+  IddObjectType result(iddobjectname::OS_Space);
   return result;
 }
 

@@ -166,7 +166,7 @@ CFactorUndergroundWallConstruction::CFactorUndergroundWallConstruction(const Mod
 }
 
 IddObjectType CFactorUndergroundWallConstruction::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_Construction_CfactorUndergroundWall);
+  IddObjectType result(iddobjectname::OS_Construction_CfactorUndergroundWall);
   return result;
 }
 

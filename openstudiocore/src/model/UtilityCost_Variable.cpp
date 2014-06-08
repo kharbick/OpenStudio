@@ -393,7 +393,7 @@ void UtilityCost_Variable::setVariableType(const std::string& str)
 
 IddObjectType UtilityCost_Variable::iddObjectType()
 {
-  IddObjectType result(IddObjectType::OS_UtilityCost_Variable);
+  IddObjectType result(iddobjectname::OS_UtilityCost_Variable);
   return result;
 }
 

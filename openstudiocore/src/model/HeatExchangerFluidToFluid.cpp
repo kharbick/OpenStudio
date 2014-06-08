@@ -433,7 +433,7 @@ HeatExchangerFluidToFluid::HeatExchangerFluidToFluid(const Model& model)
 }
 
 IddObjectType HeatExchangerFluidToFluid::iddObjectType() {
-  return IddObjectType(IddObjectType::OS_HeatExchanger_FluidToFluid);
+  return IddObjectType(iddobjectname::OS_HeatExchanger_FluidToFluid);
 }
 
 std::vector<std::string> HeatExchangerFluidToFluid::heatExchangeModelTypeValues() {

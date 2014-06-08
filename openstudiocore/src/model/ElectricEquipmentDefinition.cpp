@@ -344,7 +344,7 @@ ElectricEquipmentDefinition::ElectricEquipmentDefinition(const Model& model)
 }
 
 IddObjectType ElectricEquipmentDefinition::iddObjectType() {
-  IddObjectType result(IddObjectType::OS_ElectricEquipment_Definition);
+  IddObjectType result(iddobjectname::OS_ElectricEquipment_Definition);
   return result;
 }
 
