@@ -27,6 +27,8 @@
 #include <sstream>
 #include <exception>
 
+#include <boost/algorithm/string.hpp>
+
 namespace openstudio {
 
 IddFileFactoryDataVector constructIddFileObjects(const std::vector<std::string>& iddArgs) {
@@ -303,14 +305,43 @@ void completeOutFiles(const IddFileFactoryDataVector& iddFiles,
 
   // complete and close IddEnums.cxx
 
-  unsigned iddvalue = 0; 
+  unsigned iddindex = 0; 
   BOOST_FOREACH(const IddFileFactoryData& idd,iddFiles) {
     // write out an IddObjectType enum value for each object in the IDD file
     BOOST_FOREACH(const StringPair& objectName,idd.objectNames()) {
       // writes the enum value (name and description)
       tempSS
-        << "  result[\"" << objectName.first << "\"] = " << iddvalue << ";" << std::endl;
-      ++iddvalue;
+        << "  result[\"" << objectName.first << "\"] = " << iddindex << ";" << std::endl;
+
+      // comlete fieldEnumHxx
+      std::string upperObjectName(objectName.first);
+      boost::algorithm::to_upper(upperObjectName);
+      boost::shared_ptr<IddFactoryOutFile> fieldEnumHxx = idd.fieldEnumhxxFile(objectName.first);
+      if( fieldEnumHxx )
+      {
+        fieldEnumHxx->tempFile
+          << std::endl
+          << "namespace iddobjectname {" << std::endl
+          << std::endl
+          << "  const std::string " << objectName.first <<  " = \"" << objectName.second << "\";" << std::endl
+          << std::endl
+          << "}" << std::endl
+          << std::endl
+          << "namespace iddobjectvalue {" << std::endl
+          << std::endl
+          << "  const unsigned " << objectName.first <<  " = " <<iddindex << ";" << std::endl
+          << std::endl
+          << "}" << std::endl
+          //<< std::endl
+          //<< "#define " << "IddObjectType::" << objectName.first << " IddObjectType(\"" << objectName.second << "\")" << std::endl
+          //<< std::endl
+          << "} // openstudio" << std::endl
+          << std::endl
+          << "#endif // UTILITIES_IDD_" << upperObjectName << "_FIELDENUMS_HXX" << std::endl;
+        outFiles.finalizeIddFactoryOutFile(*fieldEnumHxx);
+      }
+
+      ++iddindex;
     }
   }
   outFiles.iddEnumsCxx.tempFile 

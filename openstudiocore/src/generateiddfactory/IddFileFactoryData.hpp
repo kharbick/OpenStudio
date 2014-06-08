@@ -50,6 +50,8 @@ class IddFileFactoryData {
 
   std::vector<StringPair> objectNames() const;
 
+  boost::shared_ptr<IddFactoryOutFile> fieldEnumhxxFile(const std::string & objectName) const;
+
   typedef std::pair<std::string,std::vector<std::string> > FileNameRemovedObjectsPair;
 
   unsigned numIncludedFiles() const;
@@ -67,6 +69,7 @@ class IddFileFactoryData {
 
   std::string m_convertName(const std::string& originalName) const;
   std::string m_readyLineForOutput(const std::string& line) const;
+  std::map<std::string,boost::shared_ptr<IddFactoryOutFile> > m_fieldEnumhxxFiles;
 };
 
 typedef std::vector<IddFileFactoryData> IddFileFactoryDataVector;

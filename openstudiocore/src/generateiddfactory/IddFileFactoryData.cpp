@@ -223,13 +223,14 @@ void IddFileFactoryData::parseFile(const path& outPath,
           ss << objectName.first << "_FieldEnums.hxx";
           std::string filename = ss.str(); ss.str("");
 
-          IddFactoryOutFile fieldEnumHxx(filename,outPath,outFileHeader);
+          boost::shared_ptr<IddFactoryOutFile> fieldEnumHxx(new IddFactoryOutFile(filename,outPath,outFileHeader));
+          m_fieldEnumhxxFiles[objectName.first] = fieldEnumHxx;
           std::string upperObjectName(objectName.first);
           boost::algorithm::to_upper(upperObjectName);
 
           std::stringstream tempSS;
  
-          fieldEnumHxx.tempFile
+          fieldEnumHxx->tempFile
             << "#ifndef UTILITIES_IDD_" << upperObjectName << "_FIELDENUMS_HXX" << std::endl
             << "#define UTILITIES_IDD_" << upperObjectName << "_FIELDENUMS_HXX" << std::endl
             << std::endl
@@ -245,7 +246,7 @@ void IddFileFactoryData::parseFile(const path& outPath,
             }
             tempSS << ");";
 
-            fieldEnumHxx.tempFile
+            fieldEnumHxx->tempFile
               << std::endl
               << "/** \\class " << objectName.first << "Fields" << std::endl
               << " *  \\brief Enumeration of " << objectName.second << "'s Idd and Idf non-extensible fields. " << std::endl
@@ -269,7 +270,7 @@ void IddFileFactoryData::parseFile(const path& outPath,
               tempSS << "  ((" << m_convertName(name) << ")(" << name << "))" << std::endl;
             }
             tempSS << ");";
-            fieldEnumHxx.tempFile
+            fieldEnumHxx->tempFile
               << std::endl
               << "/** \\class " << objectName.first << "ExtensibleFields" << std::endl
               << " *  \\brief Enumeration of " << objectName.second << "'s Idd and Idf extensible fields" << std::endl
@@ -288,20 +289,20 @@ void IddFileFactoryData::parseFile(const path& outPath,
             tempSS.str("");
           }
 
-          fieldEnumHxx.tempFile
-            << std::endl
-            << "namespace iddobjectname {" << std::endl
-            << std::endl
-            << "  const std::string " << objectName.first <<  " = \"" << objectName.second << "\";" << std::endl
-            << std::endl
-            << "}" << std::endl
-            //<< std::endl
-            //<< "#define " << "IddObjectType::" << objectName.first << " IddObjectType(\"" << objectName.second << "\")" << std::endl
-            //<< std::endl
-            << "} // openstudio" << std::endl
-            << std::endl
-            << "#endif // UTILITIES_IDD_" << upperObjectName << "_FIELDENUMS_HXX" << std::endl;
-          outFiles.finalizeIddFactoryOutFile(fieldEnumHxx);
+          //fieldEnumHxx->tempFile
+          //  << std::endl
+          //  << "namespace iddobjectname {" << std::endl
+          //  << std::endl
+          //  << "  const std::string " << objectName.first <<  " = \"" << objectName.second << "\";" << std::endl
+          //  << std::endl
+          //  << "}" << std::endl
+          //  //<< std::endl
+          //  //<< "#define " << "IddObjectType::" << objectName.first << " IddObjectType(\"" << objectName.second << "\")" << std::endl
+          //  //<< std::endl
+          //  << "} // openstudio" << std::endl
+          //  << std::endl
+          //  << "#endif // UTILITIES_IDD_" << upperObjectName << "_FIELDENUMS_HXX" << std::endl;
+          ////outFiles.finalizeIddFactoryOutFile(*fieldEnumHxx);
 
           // add to aggregate headers
           outFiles.iddFieldEnumsHxx.tempFile
@@ -391,6 +392,17 @@ std::string IddFileFactoryData::header() const {
 
 std::vector<std::pair<std::string,std::string> > IddFileFactoryData::objectNames() const {
   return m_objectNames;
+}
+
+boost::shared_ptr<IddFactoryOutFile> IddFileFactoryData::fieldEnumhxxFile(const std::string & objectName) const {
+  std::map<std::string,boost::shared_ptr<IddFactoryOutFile> >::const_iterator it;
+  it = m_fieldEnumhxxFiles.find(objectName);
+  if( it != m_fieldEnumhxxFiles.end() )
+  {
+    return it->second;
+  }
+
+  return boost::shared_ptr<IddFactoryOutFile>();
 }
 
 unsigned IddFileFactoryData::numIncludedFiles() const {
