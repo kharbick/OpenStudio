@@ -43,7 +43,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateZoneInfiltrationEffectiveLeakageArea( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::ZoneInfiltration_EffectiveLeakageArea ){
+  if( workspaceObject.iddObject().type() != iddobjectname::ZoneInfiltration_EffectiveLeakageArea ){
     LOG(Error, "WorkspaceObject " << workspaceObject.briefDescription()
         << " is not IddObjectType: SpaceInfiltration_EffectiveLeakageArea");
     return boost::none;

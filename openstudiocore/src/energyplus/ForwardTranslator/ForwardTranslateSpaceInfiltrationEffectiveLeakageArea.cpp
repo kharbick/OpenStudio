@@ -45,7 +45,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateSpaceInfiltrationEffectiveLeakageArea( SpaceInfiltrationEffectiveLeakageArea& modelObject )
 {
-  IdfObject idfObject(openstudio::IddObjectType::ZoneInfiltration_EffectiveLeakageArea );
+  IdfObject idfObject(openstudio::iddobjectname::ZoneInfiltration_EffectiveLeakageArea );
   m_idfObjects.push_back(idfObject);
 
   idfObject.setString(ZoneInfiltration_EffectiveLeakageAreaFields::Name, modelObject.name().get());

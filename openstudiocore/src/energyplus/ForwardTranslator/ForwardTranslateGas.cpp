@@ -32,7 +32,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateGas( Gas & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::WindowMaterial_Gas);
+  IdfObject idfObject( openstudio::iddobjectname::WindowMaterial_Gas);
 
   m_idfObjects.push_back(idfObject);
 

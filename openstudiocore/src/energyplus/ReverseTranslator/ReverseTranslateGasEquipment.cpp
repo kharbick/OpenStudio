@@ -43,7 +43,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateGasEquipment( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::GasEquipment ){
+  if( workspaceObject.iddObject().type() != iddobjectname::GasEquipment ){
     LOG(Error, "WorkspaceObject is not IddObjectType: GasEquipment");
     return boost::none;
   }

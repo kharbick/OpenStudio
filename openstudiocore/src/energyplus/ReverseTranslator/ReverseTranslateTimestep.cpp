@@ -32,7 +32,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateTimestep( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Timestep )
+  if( workspaceObject.iddObject().type() != iddobjectname::Timestep )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: Timestep");
      return boost::none;

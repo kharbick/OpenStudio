@@ -34,7 +34,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateCurveBicubic(CurveBicubic& modelObject)
 {
-  IdfObject idfObject(IddObjectType::Curve_Bicubic);
+  IdfObject idfObject(iddobjectname::Curve_Bicubic);
 
   m_idfObjects.push_back(idfObject);
 

@@ -32,7 +32,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateRunPeriodControlSpecialDays( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::RunPeriodControl_SpecialDays )
+  if( workspaceObject.iddObject().type() != iddobjectname::RunPeriodControl_SpecialDays )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: RunPeriodControl_SpecialDays");
      return boost::none;

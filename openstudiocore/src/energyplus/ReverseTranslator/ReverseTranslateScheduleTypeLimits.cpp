@@ -36,7 +36,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateScheduleTypeLimits( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::ScheduleTypeLimits )
+  if( workspaceObject.iddObject().type() != iddobjectname::ScheduleTypeLimits )
   {
     LOG(Error, "WorkspaceObject is not IddObjectType: ScheduleTypeLimits");
     return boost::none;

@@ -22,6 +22,12 @@
 #include <model/Model.hpp>
 #include <model/PlantLoop.hpp>
 #include <model/PlantLoop_Impl.hpp>
+#include <model/DistrictHeating.hpp>
+#include <model/DistrictHeating_Impl.hpp>
+#include <model/DistrictCooling.hpp>
+#include <model/DistrictCooling_Impl.hpp>
+#include <model/GroundHeatExchangerVertical.hpp>
+#include <model/GroundHeatExchangerVertical_Impl.hpp>
 #include <model/SizingPlant.hpp>
 #include <model/SizingPlant_Impl.hpp>
 #include <model/Node.hpp>
@@ -296,8 +302,8 @@ IdfObject ForwardTranslator::populateBranch( IdfObject & branchIdfObject,
 
 boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & plantLoop )
 {
-  // Create a new IddObjectType::PlantLoop
-  IdfObject idfObject(IddObjectType::PlantLoop);
+  // Create a new iddobjectname::PlantLoop
+  IdfObject idfObject(iddobjectname::PlantLoop);
   m_idfObjects.push_back(idfObject);
 
   BOOST_FOREACH(LifeCycleCost lifeCycleCost, plantLoop.lifeCycleCosts()){
@@ -395,7 +401,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   // Operation Scheme
 
-  IdfObject _operationScheme(IddObjectType::PlantEquipmentOperationSchemes);
+  IdfObject _operationScheme(iddobjectname::PlantEquipmentOperationSchemes);
   m_idfObjects.push_back(_operationScheme);
   _operationScheme.setName(plantLoop.name().get() + " Operation Scheme List");
   _operationScheme.clearExtensibleGroups();
@@ -420,154 +426,140 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     bool autosize = false;
     double flowRate = 0.0;
 
-    switch(it->iddObject().type().value())
+    IddObjectType type = it->iddObjectType();
+    if( type == BoilerHotWater::iddObjectType() )
     {
-      case openstudio::IddObjectType::OS_Boiler_HotWater :
+      sizeAsHotWaterSystem = true;
+      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
       {
-        sizeAsHotWaterSystem = true;
-        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
+        BoilerHotWater boiler = it->cast<BoilerHotWater>();
+        if( boiler.isDesignWaterFlowRateAutosized() )
         {
-          BoilerHotWater boiler = it->cast<BoilerHotWater>();
-          if( boiler.isDesignWaterFlowRateAutosized() )
-          {
-            autosize = true;
-          }
-          else if(boost::optional<double> optionalFlowRate = boiler.designWaterFlowRate())
-          {
-            flowRate = optionalFlowRate.get();
-          }
-          setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,flowRate,autosize,HEATING));
+          autosize = true;
         }
-        else
+        else if(boost::optional<double> optionalFlowRate = boiler.designWaterFlowRate())
         {
-          heatingComponents.push_back(*it);
+          flowRate = optionalFlowRate.get();
         }
-        break;
+        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,flowRate,autosize,HEATING));
       }
-      case openstudio::IddObjectType::OS_WaterHeater_Mixed :
+      else
       {
-        sizeAsHotWaterSystem = true;
-        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
-        {
-          WaterHeaterMixed waterHeater = it->cast<WaterHeaterMixed>();
-          if( waterHeater.isUseSideDesignFlowRateAutosized() )
-          {
-            autosize = true;
-          }
-          else if(boost::optional<double> optionalFlowRate = waterHeater.useSideDesignFlowRate())
-          {
-            flowRate = optionalFlowRate.get();
-          }
-          setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,flowRate,autosize,HEATING));
-        }
-        else
-        {
-          heatingComponents.push_back(*it);
-        }
-        break;
+        heatingComponents.push_back(*it);
       }
-      case openstudio::IddObjectType::OS_DistrictHeating :
+    }
+    else if( type == WaterHeaterMixed::iddObjectType() )
+    {
+      sizeAsHotWaterSystem = true;
+      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
       {
-        sizeAsHotWaterSystem = true;
-        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
+        WaterHeaterMixed waterHeater = it->cast<WaterHeaterMixed>();
+        if( waterHeater.isUseSideDesignFlowRateAutosized() )
         {
-          setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,0.0,true,HEATING));
+          autosize = true;
         }
-        else
+        else if(boost::optional<double> optionalFlowRate = waterHeater.useSideDesignFlowRate())
         {
-          heatingComponents.push_back(*it);
+          flowRate = optionalFlowRate.get();
         }
-        break;
-      }      
-      case openstudio::IddObjectType::OS_Chiller_Electric_EIR :
-      {
-        sizeAsChilledWaterSystem = true;
-        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
-        {
-          ChillerElectricEIR chiller = it->cast<ChillerElectricEIR>();
-          if( chiller.isReferenceChilledWaterFlowRateAutosized() )
-          {
-            autosize = true;
-          }
-          else if(boost::optional<double> optionalFlowRate = chiller.referenceChilledWaterFlowRate())
-          {
-            flowRate = optionalFlowRate.get();
-          }
-          setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,flowRate,autosize,COOLING));
-        }
-        else
-        {
-          coolingComponents.push_back(*it);
-        }
-        break;
+        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,flowRate,autosize,HEATING));
       }
-      case openstudio::IddObjectType::OS_DistrictCooling :
+      else
       {
-        sizeAsChilledWaterSystem = true;
-        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
-        {
-          setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,0.0,true,COOLING));
-        }
-        else
-        {
-          coolingComponents.push_back(*it);
-        }
-        break;
-      }      
-      case openstudio::IddObjectType::OS_CoolingTower_SingleSpeed :
-      {
-        sizeAsCondenserSystem = true;
-        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
-        {
-          CoolingTowerSingleSpeed tower = it->cast<CoolingTowerSingleSpeed>();
-          if( tower.isDesignWaterFlowRateAutosized() )
-          {
-            autosize = true;
-          }
-          else if(boost::optional<double> optionalFlowRate = tower.designWaterFlowRate())
-          {
-            flowRate = optionalFlowRate.get();
-          }
-          setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,0.0,true,COOLING));
-        }
-        else
-        {
-          coolingComponents.push_back(*it);
-        }
-        break;
+        heatingComponents.push_back(*it);
       }
-      case openstudio::IddObjectType::OS_CoolingTower_VariableSpeed :
+    }
+    else if( type == DistrictHeating::iddObjectType() )
+    {
+      sizeAsHotWaterSystem = true;
+      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
       {
-        sizeAsCondenserSystem = true;
-        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
+        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,0.0,true,HEATING));
+      }
+      else
+      {
+        heatingComponents.push_back(*it);
+      }
+    }      
+    else if( type == ChillerElectricEIR::iddObjectType() )
+    {
+      sizeAsChilledWaterSystem = true;
+      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
+      {
+        ChillerElectricEIR chiller = it->cast<ChillerElectricEIR>();
+        if( chiller.isReferenceChilledWaterFlowRateAutosized() )
         {
-          CoolingTowerVariableSpeed tower = it->cast<CoolingTowerVariableSpeed>();
-          if( tower.isDesignWaterFlowRateAutosized() )
-          {
-            autosize = true;
-          }
-          else if(boost::optional<double> optionalFlowRate = tower.designWaterFlowRate())
-          {
-            flowRate = optionalFlowRate.get();
-          }
-          setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,0.0,true,COOLING));
+          autosize = true;
         }
-        else
+        else if(boost::optional<double> optionalFlowRate = chiller.referenceChilledWaterFlowRate())
         {
-          coolingComponents.push_back(*it);
+          flowRate = optionalFlowRate.get();
         }
-        break;
+        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,flowRate,autosize,COOLING));
       }
-      case openstudio::IddObjectType::OS_GroundHeatExchanger_Vertical :
+      else
       {
-        sizeAsCondenserSystem = true;
-        uncontrolledComponents.push_back(*it);
-        break;
+        coolingComponents.push_back(*it);
       }
-      default:
+    }
+    else if( type == DistrictCooling::iddObjectType() )
+    {
+      sizeAsChilledWaterSystem = true;
+      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
       {
-        break;
+        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,0.0,true,COOLING));
       }
+      else
+      {
+        coolingComponents.push_back(*it);
+      }
+    }      
+    else if( type == CoolingTowerSingleSpeed::iddObjectType() )
+    {
+      sizeAsCondenserSystem = true;
+      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
+      {
+        CoolingTowerSingleSpeed tower = it->cast<CoolingTowerSingleSpeed>();
+        if( tower.isDesignWaterFlowRateAutosized() )
+        {
+          autosize = true;
+        }
+        else if(boost::optional<double> optionalFlowRate = tower.designWaterFlowRate())
+        {
+          flowRate = optionalFlowRate.get();
+        }
+        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,0.0,true,COOLING));
+      }
+      else
+      {
+        coolingComponents.push_back(*it);
+      }
+    }
+    else if( type == CoolingTowerVariableSpeed::iddObjectType() )
+    {
+      sizeAsCondenserSystem = true;
+      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
+      {
+        CoolingTowerVariableSpeed tower = it->cast<CoolingTowerVariableSpeed>();
+        if( tower.isDesignWaterFlowRateAutosized() )
+        {
+          autosize = true;
+        }
+        else if(boost::optional<double> optionalFlowRate = tower.designWaterFlowRate())
+        {
+          flowRate = optionalFlowRate.get();
+        }
+        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,0.0,true,COOLING));
+      }
+      else
+      {
+        coolingComponents.push_back(*it);
+      }
+    }
+    else if( type == GroundHeatExchangerVertical::iddObjectType() )
+    {
+      sizeAsCondenserSystem = true;
+      uncontrolledComponents.push_back(*it);
     }
   }
 
@@ -581,7 +573,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     Schedule alwaysOn = plantLoop.model().alwaysOnDiscreteSchedule();
     IdfObject scheduleCompact = translateAndMapModelObject(alwaysOn).get();
 
-    IdfObject _setpointOperation(IddObjectType::PlantEquipmentOperation_ComponentSetpoint);
+    IdfObject _setpointOperation(iddobjectname::PlantEquipmentOperation_ComponentSetpoint);
     _setpointOperation.setName(plantLoop.name().get() + " Setpoint Operation Scheme");
     m_idfObjects.push_back(_setpointOperation);
     _setpointOperation.clearExtensibleGroups();
@@ -598,12 +590,12 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     Schedule alwaysOn = plantLoop.model().alwaysOnDiscreteSchedule();
     IdfObject scheduleCompact = translateAndMapModelObject(alwaysOn).get();
 
-    IdfObject _heatingOperation(IddObjectType::PlantEquipmentOperation_HeatingLoad);
+    IdfObject _heatingOperation(iddobjectname::PlantEquipmentOperation_HeatingLoad);
     _heatingOperation.setName(plantLoop.name().get() + " Heating Operation Scheme");
     m_idfObjects.push_back(_heatingOperation);
     _heatingOperation.clearExtensibleGroups();
 
-    IdfObject _plantEquipmentList(IddObjectType::PlantEquipmentList);
+    IdfObject _plantEquipmentList(iddobjectname::PlantEquipmentList);
     _plantEquipmentList.setName(plantLoop.name().get() + " Heating Equipment List");
     _plantEquipmentList.clearExtensibleGroups();
     m_idfObjects.push_back(_plantEquipmentList);
@@ -625,12 +617,12 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     Schedule alwaysOn2 = plantLoop.model().alwaysOnDiscreteSchedule();
     IdfObject scheduleCompact2 = translateAndMapModelObject(alwaysOn2).get();
     
-    IdfObject _coolingOperation(IddObjectType::PlantEquipmentOperation_CoolingLoad);
+    IdfObject _coolingOperation(iddobjectname::PlantEquipmentOperation_CoolingLoad);
     _coolingOperation.setName(plantLoop.name().get() + " Cooling Operation Scheme");
     m_idfObjects.push_back(_coolingOperation);
     _coolingOperation.clearExtensibleGroups();
 
-    IdfObject _plantEquipmentList(IddObjectType::PlantEquipmentList);
+    IdfObject _plantEquipmentList(iddobjectname::PlantEquipmentList);
     _plantEquipmentList.setName(plantLoop.name().get() + " Cooling Equipment List");
     _plantEquipmentList.clearExtensibleGroups();
     m_idfObjects.push_back(_plantEquipmentList);
@@ -652,12 +644,12 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     Schedule alwaysOn = plantLoop.model().alwaysOnDiscreteSchedule();
     IdfObject _alwaysOn = translateAndMapModelObject(alwaysOn).get();
     
-    IdfObject _uncontrolledOperation(IddObjectType::PlantEquipmentOperation_Uncontrolled);
+    IdfObject _uncontrolledOperation(iddobjectname::PlantEquipmentOperation_Uncontrolled);
     _uncontrolledOperation.setName(plantLoop.name().get() + " Uncontrolled Operation Scheme");
     m_idfObjects.push_back(_uncontrolledOperation);
     _uncontrolledOperation.clearExtensibleGroups();
 
-    IdfObject _plantEquipmentList(IddObjectType::PlantEquipmentList);
+    IdfObject _plantEquipmentList(iddobjectname::PlantEquipmentList);
     _plantEquipmentList.setName(plantLoop.name().get() + " Uncontrolled Equipment List");
     _plantEquipmentList.clearExtensibleGroups();
     m_idfObjects.push_back(_plantEquipmentList);
@@ -699,13 +691,13 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   // Supply Side
 
-  IdfObject _supplyBranchList(IddObjectType::BranchList);
+  IdfObject _supplyBranchList(iddobjectname::BranchList);
   _supplyBranchList.setName(plantLoop.name().get() + " Supply Branches");
   _supplyBranchList.clearExtensibleGroups();
   m_idfObjects.push_back(_supplyBranchList);
   idfObject.setString(PlantLoopFields::PlantSideBranchListName,_supplyBranchList.name().get());
 
-  IdfObject _supplyConnectorList(IddObjectType::ConnectorList);
+  IdfObject _supplyConnectorList(iddobjectname::ConnectorList);
   _supplyConnectorList.setName(plantLoop.name().get() + " Supply Connector List");
   m_idfObjects.push_back(_supplyConnectorList);
   idfObject.setString(PlantLoopFields::PlantSideConnectorListName,_supplyConnectorList.name().get());
@@ -716,7 +708,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   Node supplyInletNode = plantLoop.supplyInletNode();
   Node supplyOutletNode = plantLoop.supplyOutletNode();
 
-  IdfObject _supplySplitter(IddObjectType::Connector_Splitter);
+  IdfObject _supplySplitter(iddobjectname::Connector_Splitter);
   _supplySplitter.clearExtensibleGroups();
   _supplySplitter.setName(plantLoop.name().get() + " Supply Splitter");
   m_idfObjects.push_back(_supplySplitter);
@@ -729,7 +721,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   _supplyConnectorList.setString(_supplyConnectorList.iddObject().index(ei2),
                                  _supplySplitter.name().get());
 
-  IdfObject _supplyMixer(IddObjectType::Connector_Mixer);
+  IdfObject _supplyMixer(iddobjectname::Connector_Mixer);
   _supplyMixer.clearExtensibleGroups();
   _supplyMixer.setName(plantLoop.name().get() + " Supply Mixer");
   m_idfObjects.push_back(_supplyMixer);
@@ -743,7 +735,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   // Supply inlet branch
 
-  IdfObject _supplyInletBranch(IddObjectType::Branch);
+  IdfObject _supplyInletBranch(iddobjectname::Branch);
   _supplyInletBranch.setName(plantLoop.name().get() + " Supply Inlet Branch");
   _supplyInletBranch.clearExtensibleGroups();
   IdfExtensibleGroup eg = _supplyBranchList.pushExtensibleGroup();
@@ -787,7 +779,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   }
   else
   {
-    IdfObject pipe(IddObjectType::Pipe_Adiabatic);
+    IdfObject pipe(iddobjectname::Pipe_Adiabatic);
     pipe.setName(plantLoop.name().get() + " Supply Inlet Pipe");
     m_idfObjects.push_back(pipe);
 
@@ -828,7 +820,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     std::vector<model::ModelObject> allComponents = plantLoop.supplyComponents(comp1,comp2);
     std::vector<model::ModelObject> branchComponents;
 
-    IdfObject _equipmentBranch(IddObjectType::Branch); 
+    IdfObject _equipmentBranch(iddobjectname::Branch); 
     _equipmentBranch.clearExtensibleGroups();
     _equipmentBranch.setName( plantLoop.name().get() + " Supply Branch " + istring );
     m_idfObjects.push_back(_equipmentBranch);
@@ -867,7 +859,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     }
     else
     {
-      IdfObject pipe(IddObjectType::Pipe_Adiabatic);
+      IdfObject pipe(iddobjectname::Pipe_Adiabatic);
       pipe.setName(plantLoop.name().get() + " Supply Branch " + istring + " Pipe");
       m_idfObjects.push_back(pipe);
 
@@ -890,7 +882,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   // Populate supply outlet branch
 
-  IdfObject _supplyOutletBranch(IddObjectType::Branch);
+  IdfObject _supplyOutletBranch(iddobjectname::Branch);
   _supplyOutletBranch.setName(plantLoop.name().get() + " Supply Outlet Branch");
   _supplyOutletBranch.clearExtensibleGroups();
   eg = _supplyBranchList.pushExtensibleGroup();
@@ -934,7 +926,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   }
   else
   {
-    IdfObject pipe(IddObjectType::Pipe_Adiabatic);
+    IdfObject pipe(iddobjectname::Pipe_Adiabatic);
     pipe.setName(plantLoop.name().get() + " Supply Outlet Pipe");
     m_idfObjects.push_back(pipe);
 
@@ -954,13 +946,13 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   // Demand Side
 
-  IdfObject _demandBranchList(IddObjectType::BranchList);
+  IdfObject _demandBranchList(iddobjectname::BranchList);
   _demandBranchList.setName(plantLoop.name().get() + " Demand Branches");
   _demandBranchList.clearExtensibleGroups();
   m_idfObjects.push_back(_demandBranchList);
   idfObject.setString(PlantLoopFields::DemandSideBranchListName,_demandBranchList.name().get());
 
-  IdfObject _demandConnectorList(IddObjectType::ConnectorList);
+  IdfObject _demandConnectorList(iddobjectname::ConnectorList);
   _demandConnectorList.setName(plantLoop.name().get() + " Demand Connector List");
   m_idfObjects.push_back(_demandConnectorList);
   idfObject.setString(PlantLoopFields::DemandSideConnectorListName,_demandConnectorList.name().get());
@@ -971,7 +963,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   Node demandInletNode = plantLoop.demandInletNode();
   Node demandOutletNode = plantLoop.demandOutletNode();
 
-  IdfObject _demandSplitter(IddObjectType::Connector_Splitter);
+  IdfObject _demandSplitter(iddobjectname::Connector_Splitter);
   _demandSplitter.clearExtensibleGroups();
   _demandSplitter.setName(plantLoop.name().get() + " Demand Splitter");
   m_idfObjects.push_back(_demandSplitter);
@@ -984,7 +976,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   _demandConnectorList.setString(_demandConnectorList.iddObject().index(ei),
                                  _demandSplitter.name().get());
 
-  IdfObject _demandMixer(IddObjectType::Connector_Mixer);
+  IdfObject _demandMixer(iddobjectname::Connector_Mixer);
   _demandMixer.clearExtensibleGroups();
   _demandMixer.setName(plantLoop.name().get() + " Demand Mixer");
   m_idfObjects.push_back(_demandMixer);
@@ -998,7 +990,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   // Demand inlet branch
 
-  IdfObject _demandInletBranch(IddObjectType::Branch);
+  IdfObject _demandInletBranch(iddobjectname::Branch);
   _demandInletBranch.setName(plantLoop.name().get() + " Demand Inlet Branch");
   _demandInletBranch.clearExtensibleGroups();
   eg = _demandBranchList.pushExtensibleGroup();
@@ -1042,7 +1034,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   }
   else
   {
-    IdfObject pipe(IddObjectType::Pipe_Adiabatic);
+    IdfObject pipe(iddobjectname::Pipe_Adiabatic);
     pipe.setName(plantLoop.name().get() + " Demand Inlet Pipe");
     m_idfObjects.push_back(pipe);
 
@@ -1083,7 +1075,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     std::vector<model::ModelObject> allComponents = plantLoop.demandComponents(comp1,comp2);
     std::vector<model::ModelObject> branchComponents;
 
-    IdfObject _equipmentBranch(IddObjectType::Branch); 
+    IdfObject _equipmentBranch(iddobjectname::Branch); 
     _equipmentBranch.clearExtensibleGroups();
     _equipmentBranch.setName( plantLoop.name().get() + " Demand Branch " + istring );
     m_idfObjects.push_back(_equipmentBranch);
@@ -1122,7 +1114,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     }
     else
     {
-      IdfObject pipe(IddObjectType::Pipe_Adiabatic);
+      IdfObject pipe(iddobjectname::Pipe_Adiabatic);
       pipe.setName(plantLoop.name().get() + " Demand Branch " + istring + " Pipe");
       m_idfObjects.push_back(pipe);
 
@@ -1147,7 +1139,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   if( splitterOutletObjects.size() > 0 )
   {
-    IdfObject _equipmentBranch(IddObjectType::Branch); 
+    IdfObject _equipmentBranch(iddobjectname::Branch); 
     _equipmentBranch.clearExtensibleGroups();
     _equipmentBranch.setName( plantLoop.name().get() + " Demand Bypass Branch" );
     m_idfObjects.push_back(_equipmentBranch);
@@ -1161,7 +1153,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     eg = _demandBranchList.pushExtensibleGroup();
     eg.setString(BranchListExtensibleFields::BranchName,_equipmentBranch.name().get());
 
-    IdfObject pipe(IddObjectType::Pipe_Adiabatic);
+    IdfObject pipe(iddobjectname::Pipe_Adiabatic);
     pipe.setName(plantLoop.name().get() + " Demand Bypass Pipe");
     m_idfObjects.push_back(pipe);
 
@@ -1181,7 +1173,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   // Populate demand outlet branch
 
-  IdfObject _demandOutletBranch(IddObjectType::Branch);
+  IdfObject _demandOutletBranch(iddobjectname::Branch);
   _demandOutletBranch.setName(plantLoop.name().get() + " Demand Outlet Branch");
   _demandOutletBranch.clearExtensibleGroups();
   eg = _demandBranchList.pushExtensibleGroup();
@@ -1225,7 +1217,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   }
   else
   {
-    IdfObject pipe(IddObjectType::Pipe_Adiabatic);
+    IdfObject pipe(iddobjectname::Pipe_Adiabatic);
     pipe.setName(plantLoop.name().get() + " Demand Outlet Pipe");
     m_idfObjects.push_back(pipe);
 

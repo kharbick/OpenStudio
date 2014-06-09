@@ -35,7 +35,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateStandardOpaqueMaterial( StandardOpaqueMaterial & modelObject )
 {
-  IdfObject idfObject(openstudio::IddObjectType::Material );
+  IdfObject idfObject(openstudio::iddobjectname::Material );
 
   m_idfObjects.push_back(idfObject);
 

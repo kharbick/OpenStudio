@@ -36,6 +36,8 @@
 #include <utilities/idd/AvailabilityManager_Scheduled_FieldEnums.hxx>
 #include <utilities/idd/Controller_OutdoorAir_FieldEnums.hxx>
 #include <utilities/idd/OutdoorAir_Mixer_FieldEnums.hxx>
+#include <utilities/idd/OutdoorAir_NodeList_FieldEnums.hxx>
+#include <utilities/idd/AirLoopHVAC_OutdoorAirSystem_EquipmentList_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 #include <utilities/idd/IddFactory.hxx>
 
@@ -50,7 +52,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACOutdoorAirSystem( AirLoopHVACOutdoorAirSystem & modelObject )
 {
   OptionalString s;
-  IdfObject idfObject(IddObjectType::AirLoopHVAC_OutdoorAirSystem);
+  IdfObject idfObject(iddobjectname::AirLoopHVAC_OutdoorAirSystem);
 
   m_idfObjects.push_back(idfObject);
 
@@ -62,7 +64,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACOutdoorAirSyst
   }
 
   // Controller List
-  IdfObject controllerListIdf(IddObjectType::AirLoopHVAC_ControllerList);
+  IdfObject controllerListIdf(iddobjectname::AirLoopHVAC_ControllerList);
   controllerListIdf.createName();
   controllerListIdf.clearExtensibleGroups();
 
@@ -99,11 +101,11 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACOutdoorAirSyst
   }
 
   // Field: Availability Manager List Name //////////////////////////////////
-  IdfObject availabilityManagerListIdf(IddObjectType::AvailabilityManagerAssignmentList);
+  IdfObject availabilityManagerListIdf(iddobjectname::AvailabilityManagerAssignmentList);
   availabilityManagerListIdf.createName();
   m_idfObjects.push_back(availabilityManagerListIdf);
 
-  IdfObject availabilityManagerScheduledIdf = IdfObject(openstudio::IddObjectType::AvailabilityManager_Scheduled);
+  IdfObject availabilityManagerScheduledIdf = IdfObject(openstudio::iddobjectname::AvailabilityManager_Scheduled);
   availabilityManagerScheduledIdf.createName();
   m_idfObjects.push_back(availabilityManagerScheduledIdf);
 
@@ -124,7 +126,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACOutdoorAirSyst
 
   // OA Node List
   s = modelObject.outboardOANode()->name();
-  IdfObject oaNodeListIdf(openstudio::IddObjectType::OutdoorAir_NodeList);
+  IdfObject oaNodeListIdf(openstudio::iddobjectname::OutdoorAir_NodeList);
   if(s)
   {
     oaNodeListIdf.setString(0,*s);
@@ -133,12 +135,12 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACOutdoorAirSyst
 
   ///////////////////////////////////////////////////////////////////////////
   // Field: Outdoor Air Equipment List Name /////////////////////////////////
-  IdfObject equipmentListIdf(IddObjectType::AirLoopHVAC_OutdoorAirSystem_EquipmentList);
+  IdfObject equipmentListIdf(iddobjectname::AirLoopHVAC_OutdoorAirSystem_EquipmentList);
   equipmentListIdf.createName();
 
   m_idfObjects.push_back(equipmentListIdf);
 
-  IdfObject outdoorAirMixerIdf(IddObjectType::OutdoorAir_Mixer);
+  IdfObject outdoorAirMixerIdf(iddobjectname::OutdoorAir_Mixer);
   outdoorAirMixerIdf.createName();
   m_idfObjects.push_back(outdoorAirMixerIdf);
 

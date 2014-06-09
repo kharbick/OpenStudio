@@ -49,7 +49,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACBaseboardConvecti
 {
   // Makes sure the modelObject gets put in the map, and that the new idfObject gets put in 
   // the final file. Also set's the idfObject's name.
-  IdfObject idfObject = createRegisterAndNameIdfObject(IddObjectType::ZoneHVAC_Baseboard_Convective_Water,modelObject);
+  IdfObject idfObject = createRegisterAndNameIdfObject(iddobjectname::ZoneHVAC_Baseboard_Convective_Water,modelObject);
 
   boost::optional<std::string> s;
   boost::optional<double> value;

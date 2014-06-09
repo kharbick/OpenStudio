@@ -49,7 +49,7 @@ boost::optional<IdfObject> ForwardTranslator::translateCoilWaterHeatingDesuperhe
   boost::optional<double> d;
 
 // Name
-  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::IddObjectType::Coil_WaterHeating_Desuperheater, modelObject);
+  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::iddobjectname::Coil_WaterHeating_Desuperheater, modelObject);
 
 // AvailabilityScheduleName
   boost::optional<Schedule> availabilitySchedule = modelObject.availabilitySchedule();

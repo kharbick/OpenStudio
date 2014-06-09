@@ -110,7 +110,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACEquipmentList( Zo
     priority++;
   }
 
-  IdfObject idfObject(IddObjectType::ZoneHVAC_EquipmentList);
+  IdfObject idfObject(iddobjectname::ZoneHVAC_EquipmentList);
 
   // Name
   std::string name;
@@ -144,7 +144,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACEquipmentList( Zo
   if (!airChillers.empty()) {
     // ZoneHVAC:RefrigerationChillerSet
     // Name
-      IdfObject _chillerSet(IddObjectType::ZoneHVAC_RefrigerationChillerSet);
+      IdfObject _chillerSet(iddobjectname::ZoneHVAC_RefrigerationChillerSet);
 
       m_idfObjects.push_back(_chillerSet);
 

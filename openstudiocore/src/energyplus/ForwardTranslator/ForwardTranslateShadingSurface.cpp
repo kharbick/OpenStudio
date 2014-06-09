@@ -77,7 +77,7 @@ boost::optional<IdfObject> ForwardTranslator::translateShadingSurface( model::Sh
 
     if (istringEqual("Space", shadingSurfaceGroup->shadingSurfaceType())){
 
-      idfObject = IdfObject(openstudio::IddObjectType::Shading_Zone_Detailed);
+      idfObject = IdfObject(openstudio::iddobjectname::Shading_Zone_Detailed);
       idfObject->setString(Shading_Zone_DetailedFields::Name, modelObject.name().get());
 
       boost::optional<Space> space = shadingSurfaceGroup->space();
@@ -117,7 +117,7 @@ boost::optional<IdfObject> ForwardTranslator::translateShadingSurface( model::Sh
 
     }else if (istringEqual("Site", shadingSurfaceGroup->shadingSurfaceType())){
 
-      idfObject = IdfObject(openstudio::IddObjectType::Shading_Site_Detailed);
+      idfObject = IdfObject(openstudio::iddobjectname::Shading_Site_Detailed);
       idfObject->setString(Shading_Site_DetailedFields::Name, modelObject.name().get());
       
       if (transmittanceSchedule){
@@ -130,7 +130,7 @@ boost::optional<IdfObject> ForwardTranslator::translateShadingSurface( model::Sh
         transformation = building->transformation().inverse()*transformation;
       }
 
-      idfObject = IdfObject(openstudio::IddObjectType::Shading_Building_Detailed);
+      idfObject = IdfObject(openstudio::iddobjectname::Shading_Building_Detailed);
       idfObject->setString(Shading_Building_DetailedFields::Name, modelObject.name().get());
       
       if (transmittanceSchedule){
@@ -139,7 +139,7 @@ boost::optional<IdfObject> ForwardTranslator::translateShadingSurface( model::Sh
     }
 
   }else{
-    idfObject = IdfObject(openstudio::IddObjectType::Shading_Building_Detailed);
+    idfObject = IdfObject(openstudio::iddobjectname::Shading_Building_Detailed);
     idfObject->setString(Shading_Building_DetailedFields::Name, modelObject.name().get());
     
     if (transmittanceSchedule){
@@ -162,7 +162,7 @@ boost::optional<IdfObject> ForwardTranslator::translateShadingSurface( model::Sh
   // get reflectance properties from construction if possible
   bool addShadingPropertyObject = false;
 
-  IdfObject shadingPropertyObject = IdfObject(openstudio::IddObjectType::ShadingProperty_Reflectance);
+  IdfObject shadingPropertyObject = IdfObject(openstudio::iddobjectname::ShadingProperty_Reflectance);
   shadingPropertyObject.setString(ShadingProperty_ReflectanceFields::ShadingSurfaceName, modelObject.name().get());
 
   boost::optional<model::ConstructionBase> constructionBase = modelObject.construction();

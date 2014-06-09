@@ -31,7 +31,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateSizingParameters( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Sizing_Parameters )
+  if( workspaceObject.iddObject().type() != iddobjectname::Sizing_Parameters )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: Sizing_Parameters");
      return boost::none;

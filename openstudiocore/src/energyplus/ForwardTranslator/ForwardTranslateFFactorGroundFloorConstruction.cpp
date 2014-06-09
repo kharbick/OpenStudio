@@ -35,7 +35,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateFFactorGroundFloorConstruction( FFactorGroundFloorConstruction & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::Construction_FfactorGroundFloor);
+  IdfObject idfObject( openstudio::iddobjectname::Construction_FfactorGroundFloor);
   m_idfObjects.push_back(idfObject);
 
   BOOST_FOREACH(LifeCycleCost lifeCycleCost, modelObject.lifeCycleCosts()){

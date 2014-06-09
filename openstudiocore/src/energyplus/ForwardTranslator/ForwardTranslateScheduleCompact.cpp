@@ -44,7 +44,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateScheduleCompact( ScheduleCompact & modelObject )
 {
-  IdfObject scheduleCompact = createAndRegisterIdfObject(openstudio::IddObjectType::Schedule_Compact,
+  IdfObject scheduleCompact = createAndRegisterIdfObject(openstudio::iddobjectname::Schedule_Compact,
                                                          modelObject);
 
   OptionalString os;

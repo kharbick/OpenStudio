@@ -53,7 +53,7 @@ boost::optional<IdfObject> ForwardTranslator::translateControllerMechanicalVenti
   OptionalDouble d;
   OptionalModelObject temp;
 
-  IdfObject idfObject(IddObjectType::Controller_MechanicalVentilation);
+  IdfObject idfObject(iddobjectname::Controller_MechanicalVentilation);
 
   // Name
   s = modelObject.name();

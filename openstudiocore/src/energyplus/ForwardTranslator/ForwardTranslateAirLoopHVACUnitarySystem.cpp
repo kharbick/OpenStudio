@@ -56,7 +56,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACUnitarySystem(
   boost::optional<double> d;
 
   // Name
-  IdfObject unitarySystem = createRegisterAndNameIdfObject(openstudio::IddObjectType::AirLoopHVAC_UnitarySystem, modelObject);
+  IdfObject unitarySystem = createRegisterAndNameIdfObject(openstudio::iddobjectname::AirLoopHVAC_UnitarySystem, modelObject);
 
   // Control Type
   unitarySystem.setString(AirLoopHVAC_UnitarySystemFields::ControlType,"Load");
@@ -472,17 +472,17 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACUnitarySystem(
       }
     }
 
-    if( _fan->iddObject().type() == IddObjectType::Fan_ConstantVolume )
+    if( _fan->iddObject().type() == iddobjectname::Fan_ConstantVolume )
     {
       _fan->setString(Fan_ConstantVolumeFields::AirInletNodeName,inletNodeName);
       _fan->setString(Fan_ConstantVolumeFields::AirOutletNodeName,outletNodeName);
     }
-    else if( _fan->iddObject().type() == IddObjectType::Fan_VariableVolume )
+    else if( _fan->iddObject().type() == iddobjectname::Fan_VariableVolume )
     {
       _fan->setString(Fan_VariableVolumeFields::AirInletNodeName,inletNodeName);
       _fan->setString(Fan_VariableVolumeFields::AirOutletNodeName,outletNodeName);
     }
-    else if( _fan->iddObject().type() == IddObjectType::Fan_OnOff )
+    else if( _fan->iddObject().type() == iddobjectname::Fan_OnOff )
     {
       _fan->setString(Fan_OnOffFields::AirInletNodeName,inletNodeName);
       _fan->setString(Fan_OnOffFields::AirOutletNodeName,outletNodeName);
@@ -508,22 +508,22 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACUnitarySystem(
       outletNodeName = airOutletNodeName.get();
     }
 
-    if( _coolingCoil->iddObject().type() == IddObjectType::Coil_Cooling_DX_SingleSpeed )
+    if( _coolingCoil->iddObject().type() == iddobjectname::Coil_Cooling_DX_SingleSpeed )
     {
       _coolingCoil->setString(Coil_Cooling_DX_SingleSpeedFields::AirInletNodeName,inletNodeName);
       _coolingCoil->setString(Coil_Cooling_DX_SingleSpeedFields::AirOutletNodeName,outletNodeName);
     }
-    else if( _coolingCoil->iddObject().type() == IddObjectType::Coil_Cooling_DX_TwoSpeed )
+    else if( _coolingCoil->iddObject().type() == iddobjectname::Coil_Cooling_DX_TwoSpeed )
     {
       _coolingCoil->setString(Coil_Cooling_DX_TwoSpeedFields::AirInletNodeName,inletNodeName);
       _coolingCoil->setString(Coil_Cooling_DX_TwoSpeedFields::AirOutletNodeName,outletNodeName);
     }
-    else if( _coolingCoil->iddObject().type() == IddObjectType::Coil_Cooling_Water )
+    else if( _coolingCoil->iddObject().type() == iddobjectname::Coil_Cooling_Water )
     {
       _coolingCoil->setString(Coil_Cooling_WaterFields::AirInletNodeName,inletNodeName);
       _coolingCoil->setString(Coil_Cooling_WaterFields::AirOutletNodeName,outletNodeName);
     }
-    else if( _coolingCoil->iddObject().type() == IddObjectType::Coil_Cooling_WaterToAirHeatPump_EquationFit )
+    else if( _coolingCoil->iddObject().type() == iddobjectname::Coil_Cooling_WaterToAirHeatPump_EquationFit )
     {
       _coolingCoil->setString(Coil_Cooling_WaterToAirHeatPump_EquationFitFields::AirInletNodeName,inletNodeName);
       _coolingCoil->setString(Coil_Cooling_WaterToAirHeatPump_EquationFitFields::AirOutletNodeName,outletNodeName);
@@ -549,32 +549,32 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACUnitarySystem(
       outletNodeName = airOutletNodeName.get();
     }
 
-    if( _heatingCoil->iddObject().type() == IddObjectType::Coil_Heating_DX_SingleSpeed )
+    if( _heatingCoil->iddObject().type() == iddobjectname::Coil_Heating_DX_SingleSpeed )
     {
       _heatingCoil->setString(Coil_Heating_DX_SingleSpeedFields::AirInletNodeName,inletNodeName);
       _heatingCoil->setString(Coil_Heating_DX_SingleSpeedFields::AirOutletNodeName,outletNodeName);
     }
-    else if( _heatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Electric )
+    else if( _heatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Electric )
     {
       _heatingCoil->setString(Coil_Heating_ElectricFields::AirInletNodeName,inletNodeName);
       _heatingCoil->setString(Coil_Heating_ElectricFields::AirOutletNodeName,outletNodeName);
     }
-    else if( _heatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Gas )
+    else if( _heatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Gas )
     {
       _heatingCoil->setString(Coil_Heating_GasFields::AirInletNodeName,inletNodeName);
       _heatingCoil->setString(Coil_Heating_GasFields::AirOutletNodeName,outletNodeName);
     }
-    else if( _heatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Water )
+    else if( _heatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Water )
     {
       _heatingCoil->setString(Coil_Heating_WaterFields::AirInletNodeName,inletNodeName);
       _heatingCoil->setString(Coil_Heating_WaterFields::AirOutletNodeName,outletNodeName);
     }
-    else if( _heatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Desuperheater )
+    else if( _heatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Desuperheater )
     {
       _heatingCoil->setString(Coil_Heating_DesuperheaterFields::AirInletNodeName,inletNodeName);
       _heatingCoil->setString(Coil_Heating_DesuperheaterFields::AirOutletNodeName,outletNodeName);
     }
-    else if( _heatingCoil->iddObject().type() == IddObjectType::Coil_Heating_WaterToAirHeatPump_EquationFit )
+    else if( _heatingCoil->iddObject().type() == iddobjectname::Coil_Heating_WaterToAirHeatPump_EquationFit )
     {
       _heatingCoil->setString(Coil_Heating_WaterToAirHeatPump_EquationFitFields::AirInletNodeName,inletNodeName);
       _heatingCoil->setString(Coil_Heating_WaterToAirHeatPump_EquationFitFields::AirOutletNodeName,outletNodeName);
@@ -597,22 +597,22 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACUnitarySystem(
       inletNodeName = airInletNodeName.get();
     }
 
-    if( _supplementalHeatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Electric )
+    if( _supplementalHeatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Electric )
     {
       _supplementalHeatingCoil->setString(Coil_Heating_ElectricFields::AirInletNodeName,inletNodeName);
       _supplementalHeatingCoil->setString(Coil_Heating_ElectricFields::AirOutletNodeName,airOutletNodeName.get());
     }
-    else if( _supplementalHeatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Gas )
+    else if( _supplementalHeatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Gas )
     {
       _supplementalHeatingCoil->setString(Coil_Heating_GasFields::AirInletNodeName,inletNodeName);
       _supplementalHeatingCoil->setString(Coil_Heating_GasFields::AirOutletNodeName,airOutletNodeName.get());
     }
-    else if( _supplementalHeatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Water )
+    else if( _supplementalHeatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Water )
     {
       _supplementalHeatingCoil->setString(Coil_Heating_WaterFields::AirInletNodeName,inletNodeName);
       _supplementalHeatingCoil->setString(Coil_Heating_WaterFields::AirOutletNodeName,airOutletNodeName.get());
     }
-    else if( _supplementalHeatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Desuperheater )
+    else if( _supplementalHeatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Desuperheater )
     {
       _supplementalHeatingCoil->setString(Coil_Heating_DesuperheaterFields::AirInletNodeName,inletNodeName);
       _supplementalHeatingCoil->setString(Coil_Heating_DesuperheaterFields::AirOutletNodeName,airOutletNodeName.get());

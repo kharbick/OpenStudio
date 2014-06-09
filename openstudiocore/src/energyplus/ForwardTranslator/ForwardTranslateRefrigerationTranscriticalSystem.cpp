@@ -50,7 +50,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationTranscritica
   std::string name;
 
 // Name
-  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::IddObjectType::Refrigeration_TranscriticalSystem, modelObject);
+  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::iddobjectname::Refrigeration_TranscriticalSystem, modelObject);
 
 //MediumTemperatureRefrigeratedCaseAndWalkInListName
   std::vector<RefrigerationCase> mediumTemperatureCases = modelObject.mediumTemperatureCases();
@@ -62,7 +62,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationTranscritica
   	name = " Medium Temperature Case and Walkin List";
   	idfObject.setString(Refrigeration_TranscriticalSystemFields::MediumTemperatureRefrigeratedCaseorWalkinorCaseAndWalkInListName, idfObject.name().get() + name);
 
-  	IdfObject _caseAndWalkinList(IddObjectType::Refrigeration_CaseAndWalkInList);
+  	IdfObject _caseAndWalkinList(iddobjectname::Refrigeration_CaseAndWalkInList);
 
   	m_idfObjects.push_back(_caseAndWalkinList);
 
@@ -107,7 +107,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationTranscritica
     name = " Low Temperature Case and Walkin List";
     idfObject.setString(Refrigeration_TranscriticalSystemFields::LowTemperatureRefrigeratedCaseorWalkinorCaseAndWalkInListName, idfObject.name().get() + name);
 
-    IdfObject _caseAndWalkinList(IddObjectType::Refrigeration_CaseAndWalkInList);
+    IdfObject _caseAndWalkinList(iddobjectname::Refrigeration_CaseAndWalkInList);
 
     m_idfObjects.push_back(_caseAndWalkinList);
 
@@ -171,7 +171,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationTranscritica
     name = " High Pressure Compressor List";
     idfObject.setString(Refrigeration_TranscriticalSystemFields::HighPressureCompressororCompressorListName, idfObject.name().get() + name);
 
-    IdfObject _compressorList(IddObjectType::Refrigeration_CompressorList);
+    IdfObject _compressorList(iddobjectname::Refrigeration_CompressorList);
 
     m_idfObjects.push_back(_compressorList);
 
@@ -201,7 +201,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationTranscritica
     name = " Low Pressure Compressor List";
     idfObject.setString(Refrigeration_TranscriticalSystemFields::LowPressureCompressororCompressorListName, idfObject.name().get() + name);
 
-    IdfObject _compressorList(IddObjectType::Refrigeration_CompressorList);
+    IdfObject _compressorList(iddobjectname::Refrigeration_CompressorList);
 
     m_idfObjects.push_back(_compressorList);
 

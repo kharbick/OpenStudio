@@ -52,7 +52,7 @@ boost::optional<IdfObject> ForwardTranslator::translateWaterUseEquipment(
 
   model::WaterUseEquipmentDefinition definition = modelObject.waterUseEquipmentDefinition();
 
-  IdfObject idfObject(IddObjectType::WaterUse_Equipment);
+  IdfObject idfObject(iddobjectname::WaterUse_Equipment);
   m_idfObjects.push_back(idfObject);
 
   BOOST_FOREACH(LifeCycleCost lifeCycleCost, modelObject.lifeCycleCosts()){

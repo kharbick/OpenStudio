@@ -40,7 +40,7 @@ boost::optional<IdfObject> ForwardTranslator::translateSizingSystem( SizingSyste
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::Sizing_System);
+  IdfObject idfObject(iddobjectname::Sizing_System);
 
   m_idfObjects.push_back(idfObject);
 

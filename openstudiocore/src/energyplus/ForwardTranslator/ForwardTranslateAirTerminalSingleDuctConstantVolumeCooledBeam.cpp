@@ -50,7 +50,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirTerminalSingleDuctCons
   AirTerminalSingleDuctConstantVolumeCooledBeam & modelObject ){
 
   //Name
-  IdfObject idfObject(openstudio::IddObjectType::AirTerminal_SingleDuct_ConstantVolume_CooledBeam);
+  IdfObject idfObject(openstudio::iddobjectname::AirTerminal_SingleDuct_ConstantVolume_CooledBeam);
   m_idfObjects.push_back(idfObject);
 
   std:: string baseName = modelObject.name().get();
@@ -65,7 +65,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirTerminalSingleDuctCons
   //the map must return the air distribution unit to ensure that the air distribution unit is on the translated
   //equipment list.
 
-  IdfObject _airDistributionUnit(IddObjectType::ZoneHVAC_AirDistributionUnit);
+  IdfObject _airDistributionUnit(iddobjectname::ZoneHVAC_AirDistributionUnit);
   _airDistributionUnit.setName("ADU " + baseName ); //ADU: Air Distribution Unit
   m_idfObjects.push_back(_airDistributionUnit);
 

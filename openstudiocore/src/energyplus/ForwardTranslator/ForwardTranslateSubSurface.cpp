@@ -46,7 +46,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateSubSurface( model::SubSurface & modelObject )
 {
-  IdfObject idfObject(openstudio::IddObjectType::FenestrationSurface_Detailed);
+  IdfObject idfObject(openstudio::iddobjectname::FenestrationSurface_Detailed);
   
   idfObject.setString(FenestrationSurface_DetailedFields::Name, modelObject.name().get());
 

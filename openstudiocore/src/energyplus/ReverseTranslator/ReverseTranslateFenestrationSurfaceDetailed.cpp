@@ -30,6 +30,7 @@
 #include <model/ConstructionBase_Impl.hpp>
 
 #include <utilities/idd/FenestrationSurface_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 
 using namespace openstudio::model;
@@ -40,7 +41,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateFenestrationSurfaceDetailed( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::FenestrationSurface_Detailed ){
+  if( workspaceObject.iddObject().type() != iddobjectname::FenestrationSurface_Detailed ){
     LOG(Error, "WorkspaceObject is not IddObjectType: Site:FenestrationSurface_Detailed");
     return boost::none;
   }
@@ -99,7 +100,7 @@ OptionalModelObject ReverseTranslator::translateFenestrationSurfaceDetailed( con
 
   target = workspaceObject.getTarget(openstudio::FenestrationSurface_DetailedFields::OutsideBoundaryConditionObject);
   if (target){
-    if (target->iddObject().type() == IddObjectType::Zone){
+    if (target->iddObject().type() == iddobjectname::Zone){
       // Zone boundary condition
 
       OptionalModelObject modelObject = translateAndMapWorkspaceObject(*target);
@@ -130,7 +131,7 @@ OptionalModelObject ReverseTranslator::translateFenestrationSurfaceDetailed( con
         }
       }
 
-    }else if (target->iddObject().type() == IddObjectType::FenestrationSurface_Detailed){
+    }else if (target->iddObject().type() == iddobjectname::FenestrationSurface_Detailed){
       // SubSurface boundary condition
 
       // see if we have already mapped other sub surface, don't do it here because that is circular

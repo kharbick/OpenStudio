@@ -49,7 +49,7 @@ boost::optional<IdfObject> ForwardTranslator::translateBuilding( Building & mode
 {
   Model model = modelObject.model();
 
-  IdfObject idfObject(IddObjectType::Building);
+  IdfObject idfObject(iddobjectname::Building);
   m_idfObjects.push_back(idfObject);
 
   BOOST_FOREACH(LifeCycleCost lifeCycleCost, modelObject.lifeCycleCosts()){

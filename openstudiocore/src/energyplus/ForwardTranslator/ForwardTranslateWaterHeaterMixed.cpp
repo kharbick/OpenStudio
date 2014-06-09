@@ -47,7 +47,7 @@ boost::optional<IdfObject> ForwardTranslator::translateWaterHeaterMixed( WaterHe
   boost::optional<double> value;
   boost::optional<Schedule> schedule;
 
-  IdfObject idfObject(IddObjectType::WaterHeater_Mixed);
+  IdfObject idfObject(iddobjectname::WaterHeater_Mixed);
 
   m_idfObjects.push_back(idfObject);
 

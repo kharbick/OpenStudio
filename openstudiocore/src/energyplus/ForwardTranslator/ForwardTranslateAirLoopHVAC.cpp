@@ -170,8 +170,8 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVAC( AirLoopHVAC 
     }
   }
   
-  // Create a new IddObjectType::AirLoopHVAC
-  IdfObject idfObject(IddObjectType::AirLoopHVAC);
+  // Create a new iddobjectname::AirLoopHVAC
+  IdfObject idfObject(iddobjectname::AirLoopHVAC);
   m_idfObjects.push_back(idfObject);
 
   BOOST_FOREACH(LifeCycleCost lifeCycleCost, airLoopHVAC.lifeCycleCosts()){
@@ -207,22 +207,15 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVAC( AirLoopHVAC 
   {
     boost::optional<ControllerWaterCoil> controller;
 
-    switch(it->iddObject().type().value())
+    IddObjectType type = it->iddObjectType();
+
+    if( type == CoilCoolingWater::iddObjectType() )
     {
-      case openstudio::IddObjectType::OS_Coil_Cooling_Water :
-      {
-        controller = it->cast<CoilCoolingWater>().controllerWaterCoil();
-        break;
-      }
-      case openstudio::IddObjectType::OS_Coil_Heating_Water :
-      {
-        controller = it->cast<CoilHeatingWater>().controllerWaterCoil();
-        break;
-      }
-      default:
-      {
-        break;
-      }
+      controller = it->cast<CoilCoolingWater>().controllerWaterCoil();
+    }
+    else if( type == CoilHeatingWater::iddObjectType() )
+    {
+      controller = it->cast<CoilHeatingWater>().controllerWaterCoil();
     }
 
     if( controller )
@@ -233,7 +226,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVAC( AirLoopHVAC 
 
   if( controllers.size() > 0 )
   {
-    IdfObject _controllerList(IddObjectType::AirLoopHVAC_ControllerList);
+    IdfObject _controllerList(iddobjectname::AirLoopHVAC_ControllerList);
     _controllerList.clearExtensibleGroups();
     _controllerList.setName(airLoopHVAC.name().get() + " Controllers");
     m_idfObjects.push_back(_controllerList);
@@ -260,7 +253,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVAC( AirLoopHVAC 
   }
 
   // Availability Manager List Name
-  IdfObject availabilityManagerAssignmentListIdf(openstudio::IddObjectType::AvailabilityManagerAssignmentList);
+  IdfObject availabilityManagerAssignmentListIdf(openstudio::iddobjectname::AvailabilityManagerAssignmentList);
   availabilityManagerAssignmentListIdf.setName(airLoopHVACName + "Availability Manager List");
   m_idfObjects.push_back(availabilityManagerAssignmentListIdf);
 
@@ -272,7 +265,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVAC( AirLoopHVAC 
 
   if( ! istringEqual(airLoopHVAC.nightCycleControlType(),"StayOff") )
   {
-    nightCycleIdf = IdfObject(openstudio::IddObjectType::AvailabilityManager_NightCycle);
+    nightCycleIdf = IdfObject(openstudio::iddobjectname::AvailabilityManager_NightCycle);
     nightCycleIdf->setName(airLoopHVACName + " NightCycle Manager");
     m_idfObjects.push_back(nightCycleIdf.get());
 
@@ -295,7 +288,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVAC( AirLoopHVAC 
   }
   else
   {
-    IdfObject availabilityManagerScheduledIdf = IdfObject(openstudio::IddObjectType::AvailabilityManager_Scheduled);
+    IdfObject availabilityManagerScheduledIdf = IdfObject(openstudio::iddobjectname::AvailabilityManager_Scheduled);
     availabilityManagerScheduledIdf.setName(airLoopHVACName + " Availability Manager");
     m_idfObjects.push_back(availabilityManagerScheduledIdf);
 
@@ -322,11 +315,11 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVAC( AirLoopHVAC 
   }
 
   // Branch List Name
-  IdfObject branchList(openstudio::IddObjectType::BranchList);
+  IdfObject branchList(openstudio::iddobjectname::BranchList);
   branchList.createName();
   m_idfObjects.push_back(branchList);
 
-  IdfObject branch(openstudio::IddObjectType::Branch);
+  IdfObject branch(openstudio::iddobjectname::Branch);
   branch.createName();
   m_idfObjects.push_back(branch);
 

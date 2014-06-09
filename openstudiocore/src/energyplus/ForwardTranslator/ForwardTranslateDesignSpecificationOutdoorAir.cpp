@@ -40,7 +40,7 @@ boost::optional<IdfObject> ForwardTranslator::translateDesignSpecificationOutdoo
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::DesignSpecification_OutdoorAir);
+  IdfObject idfObject(iddobjectname::DesignSpecification_OutdoorAir);
 
   idfObject.setString(DesignSpecification_OutdoorAirFields::Name, modelObject.name().get());
 

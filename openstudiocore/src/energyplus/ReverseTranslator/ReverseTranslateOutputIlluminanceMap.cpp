@@ -35,7 +35,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateOutputIlluminanceMap( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Output_IlluminanceMap ){
+  if( workspaceObject.iddObject().type() != iddobjectname::Output_IlluminanceMap ){
     LOG(Error, "WorkspaceObject is not IddObjectType: Output:IlluminanceMap");
     return boost::none;
   }

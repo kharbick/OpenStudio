@@ -42,7 +42,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateShadingZoneDetailed( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Shading_Zone_Detailed ){
+  if( workspaceObject.iddObject().type() != iddobjectname::Shading_Zone_Detailed ){
     LOG(Error, "WorkspaceObject is not IddObjectType: Shading:Zone:Detailed");
     return boost::none;
   }

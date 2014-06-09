@@ -30,7 +30,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateZoneAirHeatBalanceAlgorithm( ZoneAirHeatBalanceAlgorithm & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::ZoneAirHeatBalanceAlgorithm);
+  IdfObject idfObject( openstudio::iddobjectname::ZoneAirHeatBalanceAlgorithm);
 
   idfObject.setString(ZoneAirHeatBalanceAlgorithmFields::Algorithm,modelObject.algorithm());
 

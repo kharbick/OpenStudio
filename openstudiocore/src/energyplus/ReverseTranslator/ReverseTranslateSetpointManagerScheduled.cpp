@@ -35,7 +35,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateSetpointManagerScheduled( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::SetpointManager_Scheduled )
+  if( workspaceObject.iddObject().type() != iddobjectname::SetpointManager_Scheduled )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: SetpointManager_Scheduled");
      return boost::none;

@@ -32,7 +32,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateRoofVegetation( RoofVegetation & modelObject )
 {
-  IdfObject idfObject(openstudio::IddObjectType::Material_RoofVegetation);
+  IdfObject idfObject(openstudio::iddobjectname::Material_RoofVegetation);
 
   m_idfObjects.push_back(idfObject);
 

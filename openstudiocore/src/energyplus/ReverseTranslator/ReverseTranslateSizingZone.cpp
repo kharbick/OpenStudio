@@ -30,6 +30,8 @@
 #include <utilities/idf/WorkspaceExtensibleGroup.hpp>
 #include <utilities/idd/Sizing_Zone_FieldEnums.hxx>
 #include <utilities/idd/DesignSpecification_ZoneAirDistribution_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
+#include <utilities/idd/ZoneList_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 
 #include <utilities/core/Assert.hpp>
@@ -50,7 +52,7 @@ OptionalModelObject ReverseTranslator::translateSizingZone( const WorkspaceObjec
 
     // just one thermal zone
     boost::optional<ModelObject> mo;
-    if (target->iddObject().type() == IddObjectType::Zone){
+    if (target->iddObject().type() == iddobjectname::Zone){
       mo = translateAndMapWorkspaceObject(target.get());
       if( mo ) {
         if( boost::optional<Space> space = mo->optionalCast<Space>() ) {
@@ -60,7 +62,7 @@ OptionalModelObject ReverseTranslator::translateSizingZone( const WorkspaceObjec
           }
         }
       }
-    }else if (target->iddObject().type() == IddObjectType::ZoneList){
+    }else if (target->iddObject().type() == iddobjectname::ZoneList){
 
       // get all thermal zones in zone list
       BOOST_FOREACH(const IdfExtensibleGroup& idfGroup, target->extensibleGroups()){

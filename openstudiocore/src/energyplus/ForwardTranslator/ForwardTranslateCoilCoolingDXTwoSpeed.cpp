@@ -47,7 +47,7 @@ boost::optional<IdfObject> ForwardTranslator::translateCoilCoolingDXTwoSpeedWith
   boost::optional<double> d;
 
   //create the IdfObject that will be the coil
-  IdfObject idfObject(IddObjectType::Coil_Cooling_DX_TwoSpeed);
+  IdfObject idfObject(iddobjectname::Coil_Cooling_DX_TwoSpeed);
 
   //Name
   m_idfObjects.push_back(idfObject);
@@ -297,7 +297,7 @@ boost::optional<IdfObject> ForwardTranslator::translateCoilCoolingDXTwoSpeedWith
 
 boost::optional<IdfObject> ForwardTranslator::translateCoilCoolingDXTwoSpeed( CoilCoolingDXTwoSpeed& modelObject )
 {
-  IdfObject coilSystemCoolingDXIdf(IddObjectType::CoilSystem_Cooling_DX);
+  IdfObject coilSystemCoolingDXIdf(iddobjectname::CoilSystem_Cooling_DX);
     
   m_idfObjects.push_back(coilSystemCoolingDXIdf);
 

@@ -31,7 +31,7 @@ namespace energyplus {
 boost::optional<ModelObject> ReverseTranslator::translateSurfaceConvectionAlgorithmInside(
     const WorkspaceObject & workspaceObject)
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::SurfaceConvectionAlgorithm_Inside )
+  if( workspaceObject.iddObject().type() != iddobjectname::SurfaceConvectionAlgorithm_Inside )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: SurfaceConvectionAlgorithm_Inside");
      return boost::none;

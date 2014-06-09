@@ -33,7 +33,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateScheduleTypeLimits( ScheduleTypeLimits & modelObject )
 {
-  IdfObject idfObject(openstudio::IddObjectType::ScheduleTypeLimits);
+  IdfObject idfObject(openstudio::iddobjectname::ScheduleTypeLimits);
   m_idfObjects.push_back(idfObject);
 
   idfObject.setString(ScheduleTypeLimitsFields::Name, modelObject.name().get());
@@ -66,7 +66,7 @@ boost::optional<IdfObject> ForwardTranslator::translateScheduleTypeLimits( Sched
       // unit type key is unsupported in EnergyPlus--fall back on 'Any Number'
       m_idfObjects.pop_back();
       if (!m_anyNumberScheduleTypeLimits) {
-        IdfObject anyNumberLimits(IddObjectType::ScheduleTypeLimits);
+        IdfObject anyNumberLimits(iddobjectname::ScheduleTypeLimits);
         m_idfObjects.push_back(anyNumberLimits);
         anyNumberLimits.setName("Any Number");
         m_anyNumberScheduleTypeLimits = anyNumberLimits;

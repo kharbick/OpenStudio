@@ -46,7 +46,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationWalkIn( Refr
   boost::optional<double> d;
 
 // Name
-  IdfObject refrigerationWalkIn = createRegisterAndNameIdfObject(openstudio::IddObjectType::Refrigeration_WalkIn,
+  IdfObject refrigerationWalkIn = createRegisterAndNameIdfObject(openstudio::iddobjectname::Refrigeration_WalkIn,
                                                           modelObject);
 
 //AvailabilityScheduleName

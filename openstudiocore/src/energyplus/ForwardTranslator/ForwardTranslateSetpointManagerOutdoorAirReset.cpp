@@ -38,7 +38,7 @@ boost::optional<IdfObject> ForwardTranslator::translateSetpointManagerOutdoorAir
   boost::optional<std::string> s;
   boost::optional<double> d;
 
-  IdfObject idfObject(IddObjectType::SetpointManager_OutdoorAirReset);
+  IdfObject idfObject(iddobjectname::SetpointManager_OutdoorAirReset);
 
   // Name
   s = modelObject.name();

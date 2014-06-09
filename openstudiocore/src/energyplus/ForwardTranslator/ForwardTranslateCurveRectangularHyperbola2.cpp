@@ -35,7 +35,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateCurveRectangularHyperbola2( 
     CurveRectangularHyperbola2& modelObject)
 {
-  IdfObject idfObject(IddObjectType::Curve_RectangularHyperbola2);
+  IdfObject idfObject(iddobjectname::Curve_RectangularHyperbola2);
 
   m_idfObjects.push_back(idfObject);
 

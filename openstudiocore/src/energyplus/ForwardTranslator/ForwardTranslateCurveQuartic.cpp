@@ -35,7 +35,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateCurveQuartic( 
     CurveQuartic& modelObject)
 {
-  IdfObject idfObject(IddObjectType::Curve_Quartic);
+  IdfObject idfObject(iddobjectname::Curve_Quartic);
 
   m_idfObjects.push_back(idfObject);
 

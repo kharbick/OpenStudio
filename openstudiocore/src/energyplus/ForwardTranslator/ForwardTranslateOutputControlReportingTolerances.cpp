@@ -34,7 +34,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateOutputControlReportingTolerances( OutputControlReportingTolerances& modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::OutputControl_ReportingTolerances );
+  IdfObject idfObject( openstudio::iddobjectname::OutputControl_ReportingTolerances );
 
   m_idfObjects.push_back(idfObject);
 

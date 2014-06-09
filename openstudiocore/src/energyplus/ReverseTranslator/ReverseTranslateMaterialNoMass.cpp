@@ -34,7 +34,7 @@ namespace energyplus {
 OptionalModelObject ReverseTranslator::translateMaterialNoMass( const WorkspaceObject & workspaceObject )
 {
   OptionalModelObject result;
-  if( workspaceObject.iddObject().type() != IddObjectType::Material_NoMass )
+  if( workspaceObject.iddObject().type() != iddobjectname::Material_NoMass )
   {
     LOG(Error, "WorkspaceObject is not IddObjectType: Material:NoMass");
     return result;

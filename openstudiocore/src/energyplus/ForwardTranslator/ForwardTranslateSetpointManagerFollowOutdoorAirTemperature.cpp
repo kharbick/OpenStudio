@@ -37,7 +37,7 @@ boost::optional<IdfObject> ForwardTranslator::translateSetpointManagerFollowOutd
   boost::optional<std::string> s;
   boost::optional<double> d;
 
-  IdfObject idfObject(IddObjectType::SetpointManager_FollowOutdoorAirTemperature);
+  IdfObject idfObject(iddobjectname::SetpointManager_FollowOutdoorAirTemperature);
 
   // Name
   s = modelObject.name();

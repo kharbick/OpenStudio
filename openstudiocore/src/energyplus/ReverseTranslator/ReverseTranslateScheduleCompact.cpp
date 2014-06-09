@@ -38,7 +38,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateScheduleCompact( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Schedule_Compact )
+  if( workspaceObject.iddObject().type() != iddobjectname::Schedule_Compact )
   {
     LOG(Error, "WorkspaceObject is not IddObjectType: Schedule:Compact");
     return boost::none;

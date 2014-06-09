@@ -51,7 +51,7 @@ boost::optional<IdfObject> ForwardTranslator::createAirLoopHVACReturnPath( AirLo
 {
   std::string s;
 
-  IdfObject returnPathIdf(openstudio::IddObjectType::AirLoopHVAC_ReturnPath);
+  IdfObject returnPathIdf(openstudio::iddobjectname::AirLoopHVAC_ReturnPath);
   m_idfObjects.push_back(returnPathIdf);
 
   returnPathIdf.setName(airLoopHVAC.name().get() + " Return Path");

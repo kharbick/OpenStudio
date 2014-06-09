@@ -39,7 +39,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateAirTerminalSingleDuctConstantVolumeReheat( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::AirTerminal_SingleDuct_ConstantVolume_Reheat )
+  if( workspaceObject.iddObject().type() != iddobjectname::AirTerminal_SingleDuct_ConstantVolume_Reheat )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: AirTerminal_SingleDuct_ConstantVolume_Reheat");
      return boost::none;

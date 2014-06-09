@@ -55,7 +55,7 @@ if (_scheduleDay){ \
 
 boost::optional<IdfObject> ForwardTranslator::translateScheduleWeek( ScheduleWeek & modelObject )
 {
-  IdfObject scheduleWeek( openstudio::IddObjectType::Schedule_Week_Daily );
+  IdfObject scheduleWeek( openstudio::iddobjectname::Schedule_Week_Daily );
 
   m_idfObjects.push_back(scheduleWeek);
 

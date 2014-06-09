@@ -38,7 +38,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateAirWallMaterial( AirWallMaterial& modelObject )
 {
-  IdfObject idfObject(IddObjectType::Material);
+  IdfObject idfObject(iddobjectname::Material);
   m_idfObjects.push_back(idfObject);
 
   // convert to a single layer of gypsum

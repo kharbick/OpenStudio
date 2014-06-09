@@ -43,7 +43,7 @@ boost::optional<IdfObject> ForwardTranslator::translateCoolingTowerVariableSpeed
   OptionalDouble d;
   OptionalModelObject temp;
 
-  IdfObject idfObject(IddObjectType::CoolingTower_VariableSpeed);
+  IdfObject idfObject(iddobjectname::CoolingTower_VariableSpeed);
 
   m_idfObjects.push_back(idfObject);
 

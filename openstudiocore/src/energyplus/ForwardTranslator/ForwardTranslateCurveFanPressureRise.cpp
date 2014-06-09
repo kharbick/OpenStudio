@@ -34,7 +34,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateCurveFanPressureRise(CurveFanPressureRise& modelObject)
 {
-  IdfObject idfObject(IddObjectType::Curve_FanPressureRise);
+  IdfObject idfObject(iddobjectname::Curve_FanPressureRise);
 
   m_idfObjects.push_back(idfObject);
 

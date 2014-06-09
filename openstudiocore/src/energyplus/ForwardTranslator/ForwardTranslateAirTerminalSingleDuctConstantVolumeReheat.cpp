@@ -46,10 +46,10 @@ boost::optional<IdfObject> ForwardTranslator::translateAirTerminalSingleDuctCons
   OptionalString optS;
   boost::optional<std::string> s;
 
-  IdfObject _airDistributionUnit(openstudio::IddObjectType::ZoneHVAC_AirDistributionUnit);
+  IdfObject _airDistributionUnit(openstudio::iddobjectname::ZoneHVAC_AirDistributionUnit);
   _airDistributionUnit.createName();
 
-  IdfObject idfObject(openstudio::IddObjectType::AirTerminal_SingleDuct_ConstantVolume_Reheat);
+  IdfObject idfObject(openstudio::iddobjectname::AirTerminal_SingleDuct_ConstantVolume_Reheat);
 
   idfObject.setName(modelObject.name().get());
 
@@ -90,17 +90,17 @@ boost::optional<IdfObject> ForwardTranslator::translateAirTerminalSingleDuctCons
 
     if( outletNodeName && inletNodeName )
     {
-      if( _reheatCoil->iddObject().type() == IddObjectType::Coil_Heating_Gas )
+      if( _reheatCoil->iddObject().type() == iddobjectname::Coil_Heating_Gas )
       {
         _reheatCoil->setString(Coil_Heating_GasFields::AirInletNodeName,inletNodeName.get());
         _reheatCoil->setString(Coil_Heating_GasFields::AirOutletNodeName,outletNodeName.get());
       }
-      else if( _reheatCoil->iddObject().type() == IddObjectType::Coil_Heating_Electric )
+      else if( _reheatCoil->iddObject().type() == iddobjectname::Coil_Heating_Electric )
       {
         _reheatCoil->setString(Coil_Heating_ElectricFields::AirInletNodeName,inletNodeName.get());
         _reheatCoil->setString(Coil_Heating_ElectricFields::AirOutletNodeName,outletNodeName.get());
       }
-      else if( _reheatCoil->iddObject().type() == IddObjectType::Coil_Heating_Water )
+      else if( _reheatCoil->iddObject().type() == iddobjectname::Coil_Heating_Water )
       {
         _reheatCoil->setString(Coil_Heating_WaterFields::AirInletNodeName,inletNodeName.get());
         _reheatCoil->setString(Coil_Heating_WaterFields::AirOutletNodeName,outletNodeName.get());

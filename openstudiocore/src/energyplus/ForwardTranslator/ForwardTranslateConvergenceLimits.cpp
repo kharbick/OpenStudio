@@ -29,7 +29,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateConvergenceLimits( ConvergenceLimits & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::ConvergenceLimits);
+  IdfObject idfObject( openstudio::iddobjectname::ConvergenceLimits);
 
   if (OptionalInt i = modelObject.minimumSystemTimestep()) {
     idfObject.setInt(ConvergenceLimitsFields::MinimumSystemTimestep,*i);

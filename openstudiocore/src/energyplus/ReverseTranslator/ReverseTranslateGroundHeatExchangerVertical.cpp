@@ -35,7 +35,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateGroundHeatExchangerVertical( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::GroundHeatExchanger_Vertical ){
+  if( workspaceObject.iddObject().type() != iddobjectname::GroundHeatExchanger_Vertical ){
     LOG(Error, "WorkspaceObject is not IddObjectType: GroundHeatExchanger:Vertical");
     return boost::none;
   }

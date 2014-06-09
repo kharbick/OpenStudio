@@ -35,7 +35,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACZoneMixer( Air
   OptionalString optS;
   OptionalModelObject temp;
 
-  IdfObject idfObject(openstudio::IddObjectType::AirLoopHVAC_ZoneMixer);
+  IdfObject idfObject(openstudio::iddobjectname::AirLoopHVAC_ZoneMixer);
 
   m_idfObjects.push_back(idfObject);
 

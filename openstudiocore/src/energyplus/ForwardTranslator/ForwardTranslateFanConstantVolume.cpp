@@ -42,8 +42,8 @@ boost::optional<IdfObject> ForwardTranslator::translateFanConstantVolume( FanCon
   OptionalDouble d;
   OptionalModelObject temp;
 
-  // Create a new IddObjectType::Fan_ConstantVolume
-  IdfObject idfObject(IddObjectType::Fan_ConstantVolume);
+  // Create a new iddobjectname::Fan_ConstantVolume
+  IdfObject idfObject(iddobjectname::Fan_ConstantVolume);
 
   ///////////////////////////////////////////////////////////////////////////
   // Field: Name ////////////////////////////////////////////////////////////

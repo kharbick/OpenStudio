@@ -51,7 +51,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationSecondarySys
   std::string name;
 
 // Name
-  IdfObject refrigerationSecondarySystem = createRegisterAndNameIdfObject(openstudio::IddObjectType::Refrigeration_SecondarySystem,
+  IdfObject refrigerationSecondarySystem = createRegisterAndNameIdfObject(openstudio::iddobjectname::Refrigeration_SecondarySystem,
                                                           modelObject);
 
 //RefrigeratedCaseorWalkinorCaseAndWalkInListName
@@ -65,7 +65,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationSecondarySys
     name = " Case and Walkin List";
     refrigerationSecondarySystem.setString(Refrigeration_SecondarySystemFields::RefrigeratedCaseorWalkinorCaseAndWalkInListName, refrigerationSecondarySystem.name().get() + name);
 
-    IdfObject _caseAndWalkinList(IddObjectType::Refrigeration_CaseAndWalkInList);
+    IdfObject _caseAndWalkinList(iddobjectname::Refrigeration_CaseAndWalkInList);
 
     m_idfObjects.push_back(_caseAndWalkinList);
 

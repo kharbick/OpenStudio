@@ -40,7 +40,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationSubcoolerMec
   boost::optional<double> d;
 
   // Name
-  IdfObject subcoolerMechanical = createRegisterAndNameIdfObject(openstudio::IddObjectType::Refrigeration_Subcooler, modelObject);
+  IdfObject subcoolerMechanical = createRegisterAndNameIdfObject(openstudio::iddobjectname::Refrigeration_Subcooler, modelObject);
 
   subcoolerMechanical.setString(Refrigeration_SubcoolerFields::SubcoolerType, "Mechanical");
   

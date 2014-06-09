@@ -37,9 +37,9 @@ namespace energyplus {
 boost::optional<model::ModelObject> ReverseTranslator::translateExteriorLights(
     const WorkspaceObject& workspaceObject)
 {
-  if (workspaceObject.iddObject().type() != IddObjectType::Exterior_Lights) {
+  if (workspaceObject.iddObject().type() != iddobjectname::Exterior_Lights) {
     LOG(Error,"WorkspaceObject " << workspaceObject.briefDescription()
-        << " is not of IddObjectType::Exterior_Lights.");
+        << " is not of iddobjectname::Exterior_Lights.");
     return boost::none;
   }
 

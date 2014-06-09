@@ -44,7 +44,7 @@ boost::optional<IdfObject> ForwardTranslator::translateMeter( Meter & modelObjec
   QString name = toQString(modelObject.name()).replace(QString("FuelOil_"), QString("FuelOil#"));
 
   if (modelObject.meterFileOnly() && modelObject.cumulative()){
-    idfObject = IdfObject (openstudio::IddObjectType::Output_Meter_Cumulative_MeterFileOnly);
+    idfObject = IdfObject (openstudio::iddobjectname::Output_Meter_Cumulative_MeterFileOnly);
     m_idfObjects.push_back(*idfObject);
 
     idfObject->setString(Output_Meter_Cumulative_MeterFileOnlyFields::Name, toString(name));
@@ -54,7 +54,7 @@ boost::optional<IdfObject> ForwardTranslator::translateMeter( Meter & modelObjec
     }
 
   }else if (modelObject.meterFileOnly()){
-    idfObject = IdfObject (openstudio::IddObjectType::Output_Meter_MeterFileOnly);
+    idfObject = IdfObject (openstudio::iddobjectname::Output_Meter_MeterFileOnly);
     m_idfObjects.push_back(*idfObject);
 
     idfObject->setString(Output_Meter_MeterFileOnlyFields::Name, toString(name));
@@ -64,7 +64,7 @@ boost::optional<IdfObject> ForwardTranslator::translateMeter( Meter & modelObjec
     }
 
   }else if (modelObject.cumulative()){
-    idfObject = IdfObject (openstudio::IddObjectType::Output_Meter_Cumulative);
+    idfObject = IdfObject (openstudio::iddobjectname::Output_Meter_Cumulative);
     m_idfObjects.push_back(*idfObject);
 
     idfObject->setString(Output_Meter_CumulativeFields::Name, toString(name));
@@ -74,7 +74,7 @@ boost::optional<IdfObject> ForwardTranslator::translateMeter( Meter & modelObjec
     }
 
   }else{
-    idfObject = IdfObject (openstudio::IddObjectType::Output_Meter);
+    idfObject = IdfObject (openstudio::iddobjectname::Output_Meter);
     m_idfObjects.push_back(*idfObject);
 
     idfObject->setString(Output_MeterFields::Name, toString(name));

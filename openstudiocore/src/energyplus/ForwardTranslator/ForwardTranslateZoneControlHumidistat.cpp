@@ -31,7 +31,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateZoneControlHumidistat( ZoneControlHumidistat& modelObject )
 {
   // Name
-  IdfObject object = createRegisterAndNameIdfObject(openstudio::IddObjectType::ZoneControl_Humidistat, modelObject);
+  IdfObject object = createRegisterAndNameIdfObject(openstudio::iddobjectname::ZoneControl_Humidistat, modelObject);
 
   // Zone Name
   // set by ThermalZone

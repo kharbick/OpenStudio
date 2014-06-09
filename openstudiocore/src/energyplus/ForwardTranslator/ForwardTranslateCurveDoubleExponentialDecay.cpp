@@ -35,7 +35,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateCurveDoubleExponentialDecay( 
     CurveDoubleExponentialDecay& modelObject)
 {
-  IdfObject idfObject(IddObjectType::Curve_DoubleExponentialDecay);
+  IdfObject idfObject(iddobjectname::Curve_DoubleExponentialDecay);
 
   m_idfObjects.push_back(idfObject);
 

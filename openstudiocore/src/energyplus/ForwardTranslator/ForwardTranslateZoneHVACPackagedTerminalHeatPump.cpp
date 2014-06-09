@@ -39,6 +39,7 @@
 #include <utilities/idd/Coil_Heating_Electric_FieldEnums.hxx>
 #include <utilities/idd/Coil_Cooling_DX_SingleSpeed_FieldEnums.hxx>
 #include <utilities/idd/OutdoorAir_Mixer_FieldEnums.hxx>
+#include <utilities/idd/OutdoorAir_NodeList_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 #include <utilities/idd/IddFactory.hxx>
 
@@ -54,7 +55,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACPackagedTerminalH
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::ZoneHVAC_PackagedTerminalHeatPump);
+  IdfObject idfObject(iddobjectname::ZoneHVAC_PackagedTerminalHeatPump);
 
   m_idfObjects.push_back(idfObject);
 
@@ -124,7 +125,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACPackagedTerminalH
 
   idfObject.setString(ZoneHVAC_PackagedTerminalHeatPumpFields::OutdoorAirMixerName,oaMixerName);
 
-  IdfObject _outdoorAirMixer(IddObjectType::OutdoorAir_Mixer);
+  IdfObject _outdoorAirMixer(iddobjectname::OutdoorAir_Mixer);
   _outdoorAirMixer.setName(oaMixerName);
   m_idfObjects.push_back(_outdoorAirMixer);
 
@@ -132,7 +133,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACPackagedTerminalH
 
   _outdoorAirMixer.setString(OutdoorAir_MixerFields::OutdoorAirStreamNodeName,oaNodeName);
 
-  IdfObject _oaNodeList(openstudio::IddObjectType::OutdoorAir_NodeList);
+  IdfObject _oaNodeList(openstudio::iddobjectname::OutdoorAir_NodeList);
   _oaNodeList.setString(0,oaNodeName);
   m_idfObjects.push_back(_oaNodeList);
 
@@ -219,12 +220,12 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACPackagedTerminalH
 
     idfObject.setString(ZoneHVAC_PackagedTerminalHeatPumpFields::SupplyAirFanName,_supplyAirFan->name().get());
 
-    if( _supplyAirFan->iddObject().type() == IddObjectType::Fan_ConstantVolume )
+    if( _supplyAirFan->iddObject().type() == iddobjectname::Fan_ConstantVolume )
     {
       _supplyAirFan->setString(Fan_ConstantVolumeFields::AirInletNodeName,heatingCoilOutletNodeName);
       _supplyAirFan->setString(Fan_ConstantVolumeFields::AirOutletNodeName,fanOutletNodeName);
     }
-    else if( _supplyAirFan->iddObject().type() == IddObjectType::Fan_OnOff )
+    else if( _supplyAirFan->iddObject().type() == iddobjectname::Fan_OnOff )
     {
       _supplyAirFan->setString(Fan_OnOffFields::AirInletNodeName,heatingCoilOutletNodeName);
       _supplyAirFan->setString(Fan_OnOffFields::AirOutletNodeName,fanOutletNodeName);
@@ -243,7 +244,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACPackagedTerminalH
 
       idfObject.setString(ZoneHVAC_PackagedTerminalHeatPumpFields::HeatingCoilName,_heatingCoil->name().get() ); 
 
-      if( _heatingCoil->iddObject().type() == IddObjectType::Coil_Heating_DX_SingleSpeed )
+      if( _heatingCoil->iddObject().type() == iddobjectname::Coil_Heating_DX_SingleSpeed )
       {
         _heatingCoil->setString(Coil_Heating_DX_SingleSpeedFields::AirInletNodeName,coolingCoilOutletNodeName);
 
@@ -289,7 +290,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACPackagedTerminalH
 
     idfObject.setString(ZoneHVAC_PackagedTerminalHeatPumpFields::CoolingCoilName,_coolingCoil->name().get() );
 
-    if( _coolingCoil->iddObject().type() == IddObjectType::Coil_Cooling_DX_SingleSpeed )
+    if( _coolingCoil->iddObject().type() == iddobjectname::Coil_Cooling_DX_SingleSpeed )
     {
       _coolingCoil->setString(Coil_Cooling_DX_SingleSpeedFields::AirInletNodeName,mixedAirNodeName);
 
@@ -316,13 +317,13 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACPackagedTerminalH
 
     if( airOutletNodeName )
     {
-      if( _supplementalHeatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Gas )
+      if( _supplementalHeatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Gas )
       {
         _supplementalHeatingCoil->setString(Coil_Heating_GasFields::AirInletNodeName,fanOutletNodeName);
 
         _supplementalHeatingCoil->setString(Coil_Heating_GasFields::AirOutletNodeName,airOutletNodeName.get());
       }
-      else if( _supplementalHeatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Electric )
+      else if( _supplementalHeatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Electric )
       {
         _supplementalHeatingCoil->setString(Coil_Heating_ElectricFields::AirInletNodeName,fanOutletNodeName);
 

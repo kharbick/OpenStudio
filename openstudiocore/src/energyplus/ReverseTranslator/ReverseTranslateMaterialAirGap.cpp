@@ -34,7 +34,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateMaterialAirGap( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Material_AirGap )
+  if( workspaceObject.iddObject().type() != iddobjectname::Material_AirGap )
   {
     LOG(Error, "WorkspaceObject is not IddObjectType: Material_AirGap");
     return boost::none;

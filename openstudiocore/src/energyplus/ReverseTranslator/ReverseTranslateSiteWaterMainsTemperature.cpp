@@ -33,7 +33,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateSiteWaterMainsTemperature( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Site_WaterMainsTemperature )
+  if( workspaceObject.iddObject().type() != iddobjectname::Site_WaterMainsTemperature )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: Site_WaterMainsTemperature");
      return boost::none;

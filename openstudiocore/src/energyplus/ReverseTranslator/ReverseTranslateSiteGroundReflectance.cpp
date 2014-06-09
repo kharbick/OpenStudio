@@ -31,7 +31,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateSiteGroundReflectance( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Site_GroundReflectance )
+  if( workspaceObject.iddObject().type() != iddobjectname::Site_GroundReflectance )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: Site_GroundReflectance");
      return boost::none;

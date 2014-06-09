@@ -45,7 +45,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translatePeople( const WorkspaceObject & workspaceObject )
 {
- if( workspaceObject.iddObject().type() != IddObjectType::People ){
+ if( workspaceObject.iddObject().type() != iddobjectname::People ){
     LOG(Error, "WorkspaceObject is not IddObjectType: People");
     return boost::none;
   }

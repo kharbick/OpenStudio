@@ -33,7 +33,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateEvaporativeCoolerDirectResearchSpecial( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::EvaporativeCooler_Direct_ResearchSpecial )
+  if( workspaceObject.iddObject().type() != iddobjectname::EvaporativeCooler_Direct_ResearchSpecial )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: EvaporativeCooler_Direct_ResearchSpecial");
      return boost::none;

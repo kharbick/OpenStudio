@@ -38,7 +38,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePortList( PortList & mode
   OptionalDouble d;
   OptionalModelObject temp;
 
-  // Create a new IddObjectType::NodeList
+  // Create a new iddobjectname::NodeList
   // If you don't want a node list based on the port list, don't use this translator
 
   std::vector<ModelObject> modelObjects = modelObject.modelObjects();
@@ -48,7 +48,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePortList( PortList & mode
     return boost::none;
   }
 
-  IdfObject idfObject(IddObjectType::NodeList);
+  IdfObject idfObject(iddobjectname::NodeList);
 
   // Name
   s = modelObject.name();

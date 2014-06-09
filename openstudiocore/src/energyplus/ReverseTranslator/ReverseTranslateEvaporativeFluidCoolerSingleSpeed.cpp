@@ -33,7 +33,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateEvaporativeFluidCoolerSingleSpeed( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::EvaporativeFluidCooler_SingleSpeed )
+  if( workspaceObject.iddObject().type() != iddobjectname::EvaporativeFluidCooler_SingleSpeed )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: EvaporativeFluidCooler_SingleSpeed");
      return boost::none;

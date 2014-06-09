@@ -33,7 +33,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateSizingPeriodDesignDay( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::SizingPeriod_DesignDay )
+  if( workspaceObject.iddObject().type() != iddobjectname::SizingPeriod_DesignDay )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: SizingPeriod_DesignDay");
      return boost::none;

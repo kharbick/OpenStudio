@@ -44,7 +44,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePumpConstantSpeed(
   boost::optional<double> value;
   OptionalSchedule schedule;
 
-  IdfObject idfObject(IddObjectType::Pump_ConstantSpeed);
+  IdfObject idfObject(iddobjectname::Pump_ConstantSpeed);
 
   m_idfObjects.push_back(idfObject);
 

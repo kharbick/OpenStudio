@@ -27,6 +27,8 @@
 #include <model/SimulationControl_Impl.hpp>
 
 #include <utilities/idd/Building_FieldEnums.hxx>
+#include <utilities/idd/Site_Location_FieldEnums.hxx>
+#include <utilities/idd/SimulationControl_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 
 #include <boost/foreach.hpp>
@@ -39,17 +41,17 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateBuilding( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Building ){
+  if( workspaceObject.iddObject().type() != iddobjectname::Building ){
     LOG(Error, "WorkspaceObject is not IddObjectType: Building");
     return boost::none;
   }
 
   // ensure that site and simulation control have been mapped
-  BOOST_FOREACH(const WorkspaceObject& siteObject, m_workspace.getObjectsByType(IddObjectType::Site_Location)){
+  BOOST_FOREACH(const WorkspaceObject& siteObject, m_workspace.getObjectsByType(iddobjectname::Site_Location)){
     translateAndMapWorkspaceObject(siteObject);
   }
 
-  BOOST_FOREACH(const WorkspaceObject& simControlObject, m_workspace.getObjectsByType(IddObjectType::SimulationControl)){
+  BOOST_FOREACH(const WorkspaceObject& simControlObject, m_workspace.getObjectsByType(iddobjectname::SimulationControl)){
     translateAndMapWorkspaceObject(simControlObject);
   }
 

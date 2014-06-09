@@ -32,7 +32,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateZoneAirHeatBalanceAlgorithm( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::ZoneAirHeatBalanceAlgorithm )
+  if( workspaceObject.iddObject().type() != iddobjectname::ZoneAirHeatBalanceAlgorithm )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: ZoneAirHeatBalanceAlgorithm");
      return boost::none;

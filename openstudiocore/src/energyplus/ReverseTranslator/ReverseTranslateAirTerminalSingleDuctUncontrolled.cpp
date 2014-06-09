@@ -33,7 +33,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateAirTerminalSingleDuctUncontrolled( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::AirTerminal_SingleDuct_Uncontrolled )
+  if( workspaceObject.iddObject().type() != iddobjectname::AirTerminal_SingleDuct_Uncontrolled )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: AirTerminal_SingleDuct_Uncontrolled");
      return boost::none;

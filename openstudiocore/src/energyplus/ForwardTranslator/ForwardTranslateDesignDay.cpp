@@ -33,7 +33,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateDesignDay( DesignDay & modelObject )
 {
 
-  IdfObject idfObject( openstudio::IddObjectType::SizingPeriod_DesignDay);
+  IdfObject idfObject( openstudio::iddobjectname::SizingPeriod_DesignDay);
 
   // Name
   idfObject.setName(modelObject.name().get());

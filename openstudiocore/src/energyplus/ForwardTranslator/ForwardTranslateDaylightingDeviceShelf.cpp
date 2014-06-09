@@ -58,7 +58,7 @@ boost::optional<IdfObject> ForwardTranslator::translateDaylightingDeviceShelf( m
     return boost::none;
   }
 
-  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::IddObjectType::DaylightingDevice_Shelf, 
+  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::iddobjectname::DaylightingDevice_Shelf, 
                                                        modelObject);
 
   idfObject.setString(DaylightingDevice_ShelfFields::WindowName, window.name().get());

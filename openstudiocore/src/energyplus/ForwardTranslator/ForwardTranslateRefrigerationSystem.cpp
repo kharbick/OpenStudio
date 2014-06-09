@@ -57,7 +57,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationSystem( Refr
   std::string name;
 
 // Name
-  IdfObject refrigerationSystem = createRegisterAndNameIdfObject(openstudio::IddObjectType::Refrigeration_System,
+  IdfObject refrigerationSystem = createRegisterAndNameIdfObject(openstudio::iddobjectname::Refrigeration_System,
                                                           modelObject);
 
 //Refrigerated Case or Walkin or CaseAndWalkInList Name
@@ -71,7 +71,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationSystem( Refr
   	name = " Case and Walkin List";
   	refrigerationSystem.setString(Refrigeration_SystemFields::RefrigeratedCaseorWalkinorCaseAndWalkInListName, refrigerationSystem.name().get() + name);
 
-  	IdfObject _caseAndWalkinList(IddObjectType::Refrigeration_CaseAndWalkInList);
+  	IdfObject _caseAndWalkinList(iddobjectname::Refrigeration_CaseAndWalkInList);
 
   	m_idfObjects.push_back(_caseAndWalkinList);
 
@@ -130,7 +130,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationSystem( Refr
     name = " Transfer Load List";
     refrigerationSystem.setString(Refrigeration_SystemFields::RefrigerationTransferLoadorTransferLoadListName, refrigerationSystem.name().get() + name);
 
-    IdfObject _transferLoadList(IddObjectType::Refrigeration_TransferLoadList);
+    IdfObject _transferLoadList(iddobjectname::Refrigeration_TransferLoadList);
 
     m_idfObjects.push_back(_transferLoadList);
 
@@ -187,7 +187,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationSystem( Refr
     name = " Compressor List";
     refrigerationSystem.setString(Refrigeration_SystemFields::CompressororCompressorListName, refrigerationSystem.name().get() + name);
 
-    IdfObject _compressorList(IddObjectType::Refrigeration_CompressorList);
+    IdfObject _compressorList(iddobjectname::Refrigeration_CompressorList);
 
     m_idfObjects.push_back(_compressorList);
 
@@ -310,7 +310,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationSystem( Refr
     name = " High Stage Compressor List";
     refrigerationSystem.setString(Refrigeration_SystemFields::HighStageCompressororCompressorListName, refrigerationSystem.name().get() + name);
 
-    IdfObject _highStageCompressorList(IddObjectType::Refrigeration_CompressorList);
+    IdfObject _highStageCompressorList(iddobjectname::Refrigeration_CompressorList);
 
     m_idfObjects.push_back(_highStageCompressorList);
 

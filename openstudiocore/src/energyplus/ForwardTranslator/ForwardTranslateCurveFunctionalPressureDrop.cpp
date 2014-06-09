@@ -34,7 +34,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateCurveFunctionalPressureDrop(CurveFunctionalPressureDrop& modelObject)
 {
-  IdfObject idfObject(IddObjectType::Curve_Functional_PressureDrop);
+  IdfObject idfObject(iddobjectname::Curve_Functional_PressureDrop);
 
   m_idfObjects.push_back(idfObject);
 

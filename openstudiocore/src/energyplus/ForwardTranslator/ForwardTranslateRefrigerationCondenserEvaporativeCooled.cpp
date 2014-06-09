@@ -42,7 +42,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationCondenserEva
   boost::optional<double> d;
 
 // Name
-  IdfObject object = createRegisterAndNameIdfObject(openstudio::IddObjectType::Refrigeration_Condenser_EvaporativeCooled, modelObject);
+  IdfObject object = createRegisterAndNameIdfObject(openstudio::iddobjectname::Refrigeration_Condenser_EvaporativeCooled, modelObject);
 
 //Rated Effective Total Heat Rejection Rate
   d = modelObject.ratedEffectiveTotalHeatRejectionRate();

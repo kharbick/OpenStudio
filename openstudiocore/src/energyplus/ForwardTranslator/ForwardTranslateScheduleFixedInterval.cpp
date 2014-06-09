@@ -61,7 +61,7 @@ static unsigned addUntil(IdfObject &idfObject,unsigned fieldIndex,int hours,int 
 
 boost::optional<IdfObject> ForwardTranslator::translateScheduleFixedInterval( ScheduleFixedInterval & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::Schedule_Compact );
+  IdfObject idfObject( openstudio::iddobjectname::Schedule_Compact );
 
   m_idfObjects.push_back(idfObject);
 

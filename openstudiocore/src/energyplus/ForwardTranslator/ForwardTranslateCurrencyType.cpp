@@ -20,6 +20,7 @@
 #include <energyplus/ForwardTranslator.hpp>
 #include <model/CurrencyType.hpp>
 #include <utilities/idd/IddEnums.hxx>
+#include <utilities/idd/CurrencyType_FieldEnums.hxx>
 
 using namespace openstudio::model;
 
@@ -29,7 +30,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateCurrencyType( CurrencyType & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::CurrencyType);
+  IdfObject idfObject( openstudio::iddobjectname::CurrencyType);
 
   m_idfObjects.push_back(idfObject);
 

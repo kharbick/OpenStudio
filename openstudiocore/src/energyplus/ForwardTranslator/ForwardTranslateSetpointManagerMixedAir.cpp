@@ -35,7 +35,7 @@ boost::optional<IdfObject> ForwardTranslator::translateSetpointManagerMixedAir( 
   boost::optional<Node> node;
   std::string s;
 
-  IdfObject idfObject(IddObjectType::SetpointManager_MixedAir);
+  IdfObject idfObject(iddobjectname::SetpointManager_MixedAir);
 
   // Name
   s = modelObject.name().get();

@@ -57,7 +57,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirConditionerVariableRef
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::AirConditioner_VariableRefrigerantFlow);
+  IdfObject idfObject(iddobjectname::AirConditioner_VariableRefrigerantFlow);
 
   m_idfObjects.push_back(idfObject);
 
@@ -736,7 +736,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirConditionerVariableRef
 
   // Terminal Unit List
   
-  IdfObject _zoneTerminalUnitList(IddObjectType::ZoneTerminalUnitList);
+  IdfObject _zoneTerminalUnitList(iddobjectname::ZoneTerminalUnitList);
 
   std::string terminalUnitListName = modelObject.name().get() + " Terminal List";
 

@@ -36,8 +36,8 @@ boost::optional<IdfObject> ForwardTranslator::translateCoilHeatingGas( CoilHeati
   OptionalString s;
   OptionalModelObject temp;
 
-  // Create a new IddObjectType::Fan_OnOff
-  IdfObject idfObject(IddObjectType::Coil_Heating_Gas);
+  // Create a new iddobjectname::Fan_OnOff
+  IdfObject idfObject(iddobjectname::Coil_Heating_Gas);
 
   ///////////////////////////////////////////////////////////////////////////
   // Field: Name ////////////////////////////////////////////////////////////

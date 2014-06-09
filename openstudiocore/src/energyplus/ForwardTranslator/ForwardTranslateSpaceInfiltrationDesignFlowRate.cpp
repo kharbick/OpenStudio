@@ -45,7 +45,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateSpaceInfiltrationDesignFlowRate( SpaceInfiltrationDesignFlowRate& modelObject )
 {
-  IdfObject idfObject(openstudio::IddObjectType::ZoneInfiltration_DesignFlowRate );
+  IdfObject idfObject(openstudio::iddobjectname::ZoneInfiltration_DesignFlowRate );
   m_idfObjects.push_back(idfObject);
 
   idfObject.setString(ZoneInfiltration_DesignFlowRateFields::Name, modelObject.name().get());

@@ -47,7 +47,7 @@ boost::optional<IdfObject> ForwardTranslator::translateCoilHeatingDXSingleSpeedW
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::Coil_Heating_DX_SingleSpeed);
+  IdfObject idfObject(iddobjectname::Coil_Heating_DX_SingleSpeed);
 
   m_idfObjects.push_back(idfObject);
 
@@ -252,7 +252,7 @@ boost::optional<IdfObject> ForwardTranslator::translateCoilHeatingDXSingleSpeedW
 
 boost::optional<IdfObject> ForwardTranslator::translateCoilHeatingDXSingleSpeed( CoilHeatingDXSingleSpeed & modelObject )
 {
-  IdfObject _coilSystemHeatingDX(IddObjectType::CoilSystem_Heating_DX);
+  IdfObject _coilSystemHeatingDX(iddobjectname::CoilSystem_Heating_DX);
     
   m_idfObjects.push_back(_coilSystemHeatingDX);
 

@@ -37,7 +37,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateSite( Site & modelObject )
 {
-  IdfObject site = createAndRegisterIdfObject(openstudio::IddObjectType::Site_Location,
+  IdfObject site = createAndRegisterIdfObject(openstudio::iddobjectname::Site_Location,
                                               modelObject);
 
   OptionalString optS = modelObject.name();

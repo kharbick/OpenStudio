@@ -33,7 +33,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateVersion( Version& modelObject )
 {
-  IdfObject version(openstudio::IddObjectType::Version);
+  IdfObject version(openstudio::iddobjectname::Version);
   OS_ASSERT(istringEqual(version.iddObject().name(),"Version"));
 
   m_idfObjects.push_back(version);

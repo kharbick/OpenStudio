@@ -34,7 +34,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateExteriorLights(
     model::ExteriorLights& modelObject)
 {
-  IdfObject idfObject(IddObjectType::Exterior_Lights);
+  IdfObject idfObject(iddobjectname::Exterior_Lights);
 
   m_idfObjects.push_back(idfObject);
 

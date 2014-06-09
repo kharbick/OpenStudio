@@ -52,6 +52,7 @@
 
 
 #include <utilities/idd/ZoneHVAC_LowTemperatureRadiant_ConstantFlow_FieldEnums.hxx>
+#include <utilities/idd/ZoneHVAC_LowTemperatureRadiant_SurfaceGroup_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 #include <utilities/idd/IddFactory.hxx>
 
@@ -67,7 +68,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACLowTempRadiantCon
   boost::optional<double> value;
   boost::optional<ModelObject> temp;
 
-  IdfObject idfObject(IddObjectType::ZoneHVAC_LowTemperatureRadiant_ConstantFlow);
+  IdfObject idfObject(iddobjectname::ZoneHVAC_LowTemperatureRadiant_ConstantFlow);
   m_idfObjects.push_back(idfObject);
 
   //Name
@@ -98,7 +99,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACLowTempRadiantCon
   //field Surface Name or Radiant Surface Type
 
   //create a new surface group object
-  IdfObject _surfaceGroup(IddObjectType::ZoneHVAC_LowTemperatureRadiant_SurfaceGroup);
+  IdfObject _surfaceGroup(iddobjectname::ZoneHVAC_LowTemperatureRadiant_SurfaceGroup);
 
   //create a name for the surface group
   std::string sname = baseName + "" + modelObject.radiantSurfaceType().get();

@@ -54,11 +54,11 @@ boost::optional<IdfObject> ForwardTranslator::translateAirTerminalSingleDuctPara
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject _airDistributionUnit(openstudio::IddObjectType::ZoneHVAC_AirDistributionUnit);
+  IdfObject _airDistributionUnit(openstudio::iddobjectname::ZoneHVAC_AirDistributionUnit);
   _airDistributionUnit.setName(modelObject.name().get() + " Air Distribution Unit");
   m_idfObjects.push_back(_airDistributionUnit);
 
-  IdfObject idfObject(openstudio::IddObjectType::AirTerminal_SingleDuct_ParallelPIU_Reheat);
+  IdfObject idfObject(openstudio::iddobjectname::AirTerminal_SingleDuct_ParallelPIU_Reheat);
   idfObject.setName(modelObject.name().get());
   m_idfObjects.push_back(idfObject);
 
@@ -126,7 +126,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirTerminalSingleDuctPara
   _airDistributionUnit.setString(ZoneHVAC_AirDistributionUnitFields::AirTerminalName,idfObject.name().get());
 
   // MixerName
-  IdfObject _mixer(IddObjectType::AirLoopHVAC_ZoneMixer);
+  IdfObject _mixer(iddobjectname::AirLoopHVAC_ZoneMixer);
   _mixer.setName(modelObject.name().get() + " Mixer");
   m_idfObjects.push_back(_mixer);
   _mixer.clearExtensibleGroups();
@@ -170,17 +170,17 @@ boost::optional<IdfObject> ForwardTranslator::translateAirTerminalSingleDuctPara
 
     if( outletNodeName && inletNodeName )
     {
-      if( _reheatCoil->iddObject().type() == IddObjectType::Coil_Heating_Gas )
+      if( _reheatCoil->iddObject().type() == iddobjectname::Coil_Heating_Gas )
       {
         _reheatCoil->setString(Coil_Heating_GasFields::AirInletNodeName,mixerOutletNodeName);
         _reheatCoil->setString(Coil_Heating_GasFields::AirOutletNodeName,outletNodeName.get());
       }
-      else if( _reheatCoil->iddObject().type() == IddObjectType::Coil_Heating_Electric )
+      else if( _reheatCoil->iddObject().type() == iddobjectname::Coil_Heating_Electric )
       {
         _reheatCoil->setString(Coil_Heating_ElectricFields::AirInletNodeName,mixerOutletNodeName);
         _reheatCoil->setString(Coil_Heating_ElectricFields::AirOutletNodeName,outletNodeName.get());
       }
-      else if( _reheatCoil->iddObject().type() == IddObjectType::Coil_Heating_Water )
+      else if( _reheatCoil->iddObject().type() == iddobjectname::Coil_Heating_Water )
       {
         _reheatCoil->setString(Coil_Heating_WaterFields::AirInletNodeName,mixerOutletNodeName);
         _reheatCoil->setString(Coil_Heating_WaterFields::AirOutletNodeName,outletNodeName.get());

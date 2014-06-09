@@ -32,7 +32,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateRefractionExtinctionGlazing( RefractionExtinctionGlazing & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::WindowMaterial_Glazing_RefractionExtinctionMethod);
+  IdfObject idfObject( openstudio::iddobjectname::WindowMaterial_Glazing_RefractionExtinctionMethod);
 
   m_idfObjects.push_back(idfObject);
 

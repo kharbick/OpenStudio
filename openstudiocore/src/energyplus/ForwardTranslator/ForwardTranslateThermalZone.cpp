@@ -127,6 +127,7 @@
 #include <utilities/idd/Sizing_Zone_FieldEnums.hxx>
 #include <utilities/idd/DesignSpecification_OutdoorAir_FieldEnums.hxx>
 #include <utilities/idd/ZoneVentilation_DesignFlowRate_FieldEnums.hxx>
+#include <utilities/idd/ScheduleTypeLimits_FieldEnums.hxx>
 
 #include <utilities/idd/IddEnums.hxx>
 #include <utilities/idd/IddFactory.hxx>
@@ -145,7 +146,7 @@ boost::optional<IdfObject> ForwardTranslator::translateThermalZone( ThermalZone 
   // ThermalZone
 
   // create, register, and name object
-  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::IddObjectType::Zone,
+  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::iddobjectname::Zone,
                                                        modelObject);
 
   BOOST_FOREACH(LifeCycleCost lifeCycleCost, modelObject.lifeCycleCosts()){
@@ -304,7 +305,7 @@ boost::optional<IdfObject> ForwardTranslator::translateThermalZone( ThermalZone 
         numPoints = 2;
       }
 
-      IdfObject daylightingControlObject(openstudio::IddObjectType::Daylighting_Controls);
+      IdfObject daylightingControlObject(openstudio::iddobjectname::Daylighting_Controls);
       m_idfObjects.push_back(daylightingControlObject);
 
       daylightingControlObject.setString(
@@ -442,7 +443,7 @@ boost::optional<IdfObject> ForwardTranslator::translateThermalZone( ThermalZone 
       if (!primaryDaylightingControl){
         LOG(Warn, "Daylighting:Controls object is required to trigger daylighting calculations in EnergyPlus, adding a minimal one to Zone " << modelObject.name().get());
 
-        IdfObject daylightingControlObject(openstudio::IddObjectType::Daylighting_Controls);
+        IdfObject daylightingControlObject(openstudio::iddobjectname::Daylighting_Controls);
         m_idfObjects.push_back(daylightingControlObject);
 
         daylightingControlObject.setString(Daylighting_ControlsFields::ZoneName, modelObject.name().get());
@@ -453,7 +454,7 @@ boost::optional<IdfObject> ForwardTranslator::translateThermalZone( ThermalZone 
       }
 
 
-      IdfObject illuminanceMapObject(openstudio::IddObjectType::Output_IlluminanceMap);
+      IdfObject illuminanceMapObject(openstudio::iddobjectname::Output_IlluminanceMap);
       m_idfObjects.push_back(illuminanceMapObject);
 
       illuminanceMapObject.setString(Output_IlluminanceMapFields::Name, illuminanceMap->name().get());
@@ -505,12 +506,12 @@ boost::optional<IdfObject> ForwardTranslator::translateThermalZone( ThermalZone 
     // Thermostat
     if( boost::optional<ThermostatSetpointDualSetpoint> thermostat = modelObject.thermostatSetpointDualSetpoint() )
     {
-      IdfObject zoneControlThermostat(openstudio::IddObjectType::ZoneControl_Thermostat);
+      IdfObject zoneControlThermostat(openstudio::iddobjectname::ZoneControl_Thermostat);
       zoneControlThermostat.setString(ZoneControl_ThermostatFields::Name,modelObject.name().get() + " Thermostat");
       zoneControlThermostat.setString(ZoneControl_ThermostatFields::ZoneorZoneListName,modelObject.name().get());
       m_idfObjects.push_back(zoneControlThermostat);
 
-      IdfObject scheduleCompact(openstudio::IddObjectType::Schedule_Compact);
+      IdfObject scheduleCompact(openstudio::iddobjectname::Schedule_Compact);
       scheduleCompact.setName(modelObject.name().get() + " Thermostat Schedule");
       m_idfObjects.push_back(scheduleCompact);
       scheduleCompact.setString(1,modelObject.name().get() + " Thermostat Schedule Type Limits");
@@ -519,7 +520,7 @@ boost::optional<IdfObject> ForwardTranslator::translateThermalZone( ThermalZone 
       scheduleCompact.setString(4,"Until: 24:00");
       scheduleCompact.setString(5,"4");
 
-      IdfObject scheduleTypeLimits(openstudio::IddObjectType::ScheduleTypeLimits);
+      IdfObject scheduleTypeLimits(openstudio::iddobjectname::ScheduleTypeLimits);
       scheduleTypeLimits.setName(modelObject.name().get() + " Thermostat Schedule Type Limits");
       m_idfObjects.push_back(scheduleTypeLimits);
       scheduleTypeLimits.setString(1,"0");
@@ -549,7 +550,7 @@ boost::optional<IdfObject> ForwardTranslator::translateThermalZone( ThermalZone 
   // Ideal air loads
   if( modelObject.useIdealAirLoads() )
   {
-    IdfObject idealLoadsAirSystem(IddObjectType::HVACTemplate_Zone_IdealLoadsAirSystem);
+    IdfObject idealLoadsAirSystem(iddobjectname::HVACTemplate_Zone_IdealLoadsAirSystem);
 
     idealLoadsAirSystem.setString(HVACTemplate_Zone_IdealLoadsAirSystemFields::ZoneName,modelObject.name().get());
 
@@ -562,7 +563,7 @@ boost::optional<IdfObject> ForwardTranslator::translateThermalZone( ThermalZone 
   {
     // ZoneHVAC_EquipmentConnections
 
-    IdfObject connectionsObject(openstudio::IddObjectType::ZoneHVAC_EquipmentConnections);
+    IdfObject connectionsObject(openstudio::iddobjectname::ZoneHVAC_EquipmentConnections);
     m_idfObjects.push_back(connectionsObject);
 
     s = modelObject.name().get();
@@ -720,7 +721,7 @@ boost::optional<IdfObject> ForwardTranslator::translateThermalZone( ThermalZone 
             }
 
             if (peopleSchedule){
-              IdfObject zoneVentilation(IddObjectType::ZoneVentilation_DesignFlowRate);
+              IdfObject zoneVentilation(iddobjectname::ZoneVentilation_DesignFlowRate);
               zoneVentilation.setName(modelObject.name().get() + " Ventilation per Person");
               zoneVentilation.setString(ZoneVentilation_DesignFlowRateFields::ZoneorZoneListName, modelObject.name().get());
               zoneVentilation.setString(ZoneVentilation_DesignFlowRateFields::ScheduleName, peopleSchedule->name().get());
@@ -733,7 +734,7 @@ boost::optional<IdfObject> ForwardTranslator::translateThermalZone( ThermalZone 
           }
 
           if (outdoorAirFlowperFloorArea > 0){
-            IdfObject zoneVentilation(IddObjectType::ZoneVentilation_DesignFlowRate);
+            IdfObject zoneVentilation(iddobjectname::ZoneVentilation_DesignFlowRate);
             zoneVentilation.setName(modelObject.name().get() + " Ventilation per Floor Area");
             zoneVentilation.setString(ZoneVentilation_DesignFlowRateFields::ZoneorZoneListName, modelObject.name().get());
             zoneVentilation.setString(ZoneVentilation_DesignFlowRateFields::ScheduleName, this->alwaysOnSchedule().name().get()); 
@@ -743,7 +744,7 @@ boost::optional<IdfObject> ForwardTranslator::translateThermalZone( ThermalZone 
           }
 
           if (outdoorAirFlowRate > 0){
-            IdfObject zoneVentilation(IddObjectType::ZoneVentilation_DesignFlowRate);
+            IdfObject zoneVentilation(iddobjectname::ZoneVentilation_DesignFlowRate);
             zoneVentilation.setName(modelObject.name().get() + " Ventilation Rate");
             zoneVentilation.setString(ZoneVentilation_DesignFlowRateFields::ZoneorZoneListName, modelObject.name().get());
             zoneVentilation.setString(ZoneVentilation_DesignFlowRateFields::ScheduleName, this->alwaysOnSchedule().name().get()); 
@@ -753,7 +754,7 @@ boost::optional<IdfObject> ForwardTranslator::translateThermalZone( ThermalZone 
           }
 
           if (outdoorAirFlowAirChangesperHour > 0){
-            IdfObject zoneVentilation(IddObjectType::ZoneVentilation_DesignFlowRate);
+            IdfObject zoneVentilation(iddobjectname::ZoneVentilation_DesignFlowRate);
             zoneVentilation.setName(modelObject.name().get() + " Ventilation Air Changes per Hour");
             zoneVentilation.setString(ZoneVentilation_DesignFlowRateFields::ZoneorZoneListName, modelObject.name().get());
             zoneVentilation.setString(ZoneVentilation_DesignFlowRateFields::ScheduleName, this->alwaysOnSchedule().name().get()); 

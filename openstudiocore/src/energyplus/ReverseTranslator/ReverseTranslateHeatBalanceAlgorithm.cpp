@@ -36,7 +36,7 @@ namespace energyplus {
 boost::optional<model::ModelObject> ReverseTranslator::translateHeatBalanceAlgorithm(
     const WorkspaceObject& workspaceObject)
 {
-  OS_ASSERT(workspaceObject.iddObject().type() == IddObjectType::HeatBalanceAlgorithm);
+  OS_ASSERT(workspaceObject.iddObject().type() == iddobjectname::HeatBalanceAlgorithm);
 
   HeatBalanceAlgorithm heatBalanceAlgorithm = m_model.getUniqueModelObject<HeatBalanceAlgorithm>();
 

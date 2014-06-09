@@ -40,7 +40,7 @@ namespace openstudio {
 namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateScheduleYear(const WorkspaceObject & workspaceObject){
-  if (workspaceObject.iddObject().type() != IddObjectType::Schedule_Year){
+  if (workspaceObject.iddObject().type() != iddobjectname::Schedule_Year){
     LOG(Error, "WorkspaceObject is not IddObjectType: Schedule:Year");
     return boost::none;
   }

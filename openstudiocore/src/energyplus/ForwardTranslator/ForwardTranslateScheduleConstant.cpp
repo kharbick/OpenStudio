@@ -39,7 +39,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateScheduleConstant( ScheduleConstant & modelObject )
 {
-  IdfObject scheduleConstant = createAndRegisterIdfObject(openstudio::IddObjectType::Schedule_Constant,
+  IdfObject scheduleConstant = createAndRegisterIdfObject(openstudio::iddobjectname::Schedule_Constant,
                                                           modelObject);
 
   scheduleConstant.setName(modelObject.name().get());

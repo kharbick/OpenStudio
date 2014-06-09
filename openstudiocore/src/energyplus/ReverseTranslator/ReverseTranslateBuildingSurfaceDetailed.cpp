@@ -28,6 +28,8 @@
 #include <model/Space_Impl.hpp>
 
 #include <utilities/idd/BuildingSurface_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
+#include <utilities/idd/FenestrationSurface_Detailed_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 
 using namespace openstudio::model;
@@ -38,7 +40,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateBuildingSurfaceDetailed( const WorkspaceObject & workspaceObject )
 {
- if( workspaceObject.iddObject().type() != IddObjectType::BuildingSurface_Detailed ){
+ if( workspaceObject.iddObject().type() != iddobjectname::BuildingSurface_Detailed ){
    LOG(Error, "WorkspaceObject is not IddObjectType: BuildingSurface:Detailed");
     return boost::none;
   }
@@ -105,7 +107,7 @@ OptionalModelObject ReverseTranslator::translateBuildingSurfaceDetailed( const W
   target = workspaceObject.getTarget(openstudio::BuildingSurface_DetailedFields::OutsideBoundaryConditionObject);
   if (target){
 
-    if (target->iddObject().type() == IddObjectType::Zone){
+    if (target->iddObject().type() == iddobjectname::Zone){
       // Zone boundary condition
 
       OptionalModelObject modelObject = translateAndMapWorkspaceObject(*target);
@@ -117,7 +119,7 @@ OptionalModelObject ReverseTranslator::translateBuildingSurfaceDetailed( const W
           m_workspaceToModelMap.insert(std::make_pair(workspaceObject.handle(), surface.get()));
 
           // need to translate all sub surfaces here so they will be in adjacent space
-          BOOST_FOREACH(const WorkspaceObject& workspaceSubSurface, workspaceObject.getSources(IddObjectType::FenestrationSurface_Detailed)){
+          BOOST_FOREACH(const WorkspaceObject& workspaceSubSurface, workspaceObject.getSources(iddobjectname::FenestrationSurface_Detailed)){
             translateAndMapWorkspaceObject(workspaceSubSurface);
           }
 
@@ -127,7 +129,7 @@ OptionalModelObject ReverseTranslator::translateBuildingSurfaceDetailed( const W
         }
       }
 
-    }else if (target->iddObject().type() == IddObjectType::BuildingSurface_Detailed){
+    }else if (target->iddObject().type() == iddobjectname::BuildingSurface_Detailed){
       // Surface boundary condition
 
       // see if we have already mapped other surface, don't do it here because that is circular

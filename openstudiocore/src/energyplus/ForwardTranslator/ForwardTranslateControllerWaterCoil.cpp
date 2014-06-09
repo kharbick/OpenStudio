@@ -42,7 +42,7 @@ boost::optional<IdfObject> ForwardTranslator::translateControllerWaterCoil( Cont
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::Controller_WaterCoil);
+  IdfObject idfObject(iddobjectname::Controller_WaterCoil);
 
   m_idfObjects.push_back(idfObject);
 

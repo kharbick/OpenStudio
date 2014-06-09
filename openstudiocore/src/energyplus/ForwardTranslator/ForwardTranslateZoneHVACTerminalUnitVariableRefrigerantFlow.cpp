@@ -46,6 +46,7 @@
 #include <utilities/idd/OutdoorAir_Mixer_FieldEnums.hxx>
 #include <utilities/idd/Coil_Cooling_DX_VariableRefrigerantFlow_FieldEnums.hxx>
 #include <utilities/idd/Coil_Heating_DX_VariableRefrigerantFlow_FieldEnums.hxx>
+#include <utilities/idd/OutdoorAir_NodeList_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 
 using namespace openstudio::model;
@@ -61,7 +62,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACTerminalUnitVaria
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::ZoneHVAC_TerminalUnit_VariableRefrigerantFlow);
+  IdfObject idfObject(iddobjectname::ZoneHVAC_TerminalUnit_VariableRefrigerantFlow);
 
   m_idfObjects.push_back(idfObject);
 
@@ -235,7 +236,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACTerminalUnitVaria
 
   // OutdoorAirMixer
 
-  IdfObject _outdoorAirMixer(IddObjectType::OutdoorAir_Mixer);
+  IdfObject _outdoorAirMixer(iddobjectname::OutdoorAir_Mixer);
   _outdoorAirMixer.setName(modelObject.name().get() + " OA Mixer");
   m_idfObjects.push_back(_outdoorAirMixer);
 
@@ -243,7 +244,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACTerminalUnitVaria
 
   _outdoorAirMixer.setString(OutdoorAir_MixerFields::ReturnAirStreamNodeName,inletNodeName);
 
-  IdfObject _oaNodeList(openstudio::IddObjectType::OutdoorAir_NodeList);
+  IdfObject _oaNodeList(openstudio::iddobjectname::OutdoorAir_NodeList);
   _oaNodeList.setString(0,oaNodeName);
   m_idfObjects.push_back(_oaNodeList);
 

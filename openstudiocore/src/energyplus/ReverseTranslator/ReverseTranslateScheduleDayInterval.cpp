@@ -40,7 +40,7 @@ namespace openstudio {
 namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateScheduleDayInterval(const WorkspaceObject & workspaceObject){
-  if (workspaceObject.iddObject().type() != IddObjectType::Schedule_Day_Interval){
+  if (workspaceObject.iddObject().type() != iddobjectname::Schedule_Day_Interval){
     LOG(Error, "WorkspaceObject is not IddObjectType: Schedule:Day:Interval");
     return boost::none;
   }

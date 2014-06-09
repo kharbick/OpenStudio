@@ -34,7 +34,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateRunPeriodControlDaylightSavingTime( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::RunPeriodControl_DaylightSavingTime )
+  if( workspaceObject.iddObject().type() != iddobjectname::RunPeriodControl_DaylightSavingTime )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: RunPeriodControl_DaylightSavingTime");
      return boost::none;

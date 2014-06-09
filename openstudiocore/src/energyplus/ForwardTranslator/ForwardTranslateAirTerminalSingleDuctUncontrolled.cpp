@@ -40,7 +40,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirTerminalSingleDuctUnco
   boost::optional<double> value;
   std::string s;
 
-  IdfObject idfObject(openstudio::IddObjectType::AirTerminal_SingleDuct_Uncontrolled);
+  IdfObject idfObject(openstudio::iddobjectname::AirTerminal_SingleDuct_Uncontrolled);
 
   s = modelObject.name().get();
   idfObject.setName(s);

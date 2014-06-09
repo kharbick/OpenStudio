@@ -27,6 +27,7 @@
 #include <model/ThermalZone.hpp>
 #include <model/ThermalZone_Impl.hpp>
 #include <utilities/idd/SetpointManager_SingleZone_Reheat_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 
 using namespace openstudio::model;
@@ -37,7 +38,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateSetpointManagerSingleZoneReheat( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::SetpointManager_SingleZone_Reheat )
+  if( workspaceObject.iddObject().type() != iddobjectname::SetpointManager_SingleZone_Reheat )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: SetpointManager_SingleZone_Reheat");
      return boost::none;
@@ -86,7 +87,7 @@ OptionalModelObject ReverseTranslator::translateSetpointManagerSingleZoneReheat(
     boost::optional<Space> space;
 
     if( boost::optional<WorkspaceObject> _zone = 
-          workspaceObject.workspace().getObjectByTypeAndName(IddObjectType::Zone,s.get()) )
+          workspaceObject.workspace().getObjectByTypeAndName(iddobjectname::Zone,s.get()) )
     {
       modelObject = translateAndMapWorkspaceObject(_zone.get());
     }

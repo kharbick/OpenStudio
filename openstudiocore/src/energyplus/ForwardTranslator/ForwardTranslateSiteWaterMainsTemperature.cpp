@@ -37,7 +37,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateSiteWaterMainsTemperature( SiteWaterMainsTemperature& modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::Site_WaterMainsTemperature );
+  IdfObject idfObject( openstudio::iddobjectname::Site_WaterMainsTemperature );
 
   m_idfObjects.push_back(idfObject);
 

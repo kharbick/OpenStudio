@@ -72,7 +72,7 @@ boost::optional<IdfObject> ForwardTranslator::translateLifeCycleCost( LifeCycleC
     if (lengthOfStudyPeriodInMonths >= 12*yearsFromStart + monthsFromStart){
 
       // convert to LifeCycleCost::NonrecurringCosts
-      IdfObject idfObject(openstudio::IddObjectType::LifeCycleCost_NonrecurringCost);
+      IdfObject idfObject(openstudio::iddobjectname::LifeCycleCost_NonrecurringCost);
       idfObject.setComment(comment);
       m_idfObjects.push_back(idfObject);
 
@@ -111,7 +111,7 @@ boost::optional<IdfObject> ForwardTranslator::translateLifeCycleCost( LifeCycleC
     if (lengthOfStudyPeriodInMonths >= 12*yearsFromStart + monthsFromStart){
 
       // also create a LifeCycleCost::RecurringCosts to capture replacement costs
-      IdfObject idfObject(openstudio::IddObjectType::LifeCycleCost_RecurringCosts);
+      IdfObject idfObject(openstudio::iddobjectname::LifeCycleCost_RecurringCosts);
       idfObject.setComment(comment);
       m_idfObjects.push_back(idfObject);
 

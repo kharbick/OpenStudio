@@ -38,7 +38,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateLights( Lights & modelObject )
 {
   // create, register, and name object
-  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::IddObjectType::Lights,
+  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::iddobjectname::Lights,
                                                        modelObject);
 
   BOOST_FOREACH(LifeCycleCost lifeCycleCost, modelObject.lifeCycleCosts()){

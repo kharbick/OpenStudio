@@ -44,7 +44,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACSupplyPlenum( 
   OptionalString optS;
   std::string s;
 
-  IdfObject idfObject(openstudio::IddObjectType::AirLoopHVAC_SupplyPlenum);
+  IdfObject idfObject(openstudio::iddobjectname::AirLoopHVAC_SupplyPlenum);
 
   m_idfObjects.push_back(idfObject);
 

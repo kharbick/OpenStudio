@@ -39,7 +39,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateZone( const WorkspaceObject & workspaceObject )
 {
- if( workspaceObject.iddObject().type() != IddObjectType::Zone ){
+ if( workspaceObject.iddObject().type() != iddobjectname::Zone ){
     LOG(Error, "WorkspaceObject is not IddObjectType: Zone");
     return boost::none;
   }
@@ -131,7 +131,7 @@ OptionalModelObject ReverseTranslator::translateZone( const WorkspaceObject & wo
     Workspace workspace = workspaceObject.workspace();
     
     std::vector<WorkspaceObject> _zoneControlThermostats;
-    _zoneControlThermostats = workspace.getObjectsByType(IddObjectType::ZoneControl_Thermostat);
+    _zoneControlThermostats = workspace.getObjectsByType(iddobjectname::ZoneControl_Thermostat);
 
     for( std::vector<WorkspaceObject>::iterator it = _zoneControlThermostats.begin();
          it < _zoneControlThermostats.end();
@@ -145,7 +145,7 @@ OptionalModelObject ReverseTranslator::translateZone( const WorkspaceObject & wo
         { 
           zoneControlThermostatfound = true; 
         }
-        else if( boost::optional<WorkspaceObject> _zoneList = workspace.getObjectByTypeAndName(IddObjectType::ZoneList,zoneName.get()) )
+        else if( boost::optional<WorkspaceObject> _zoneList = workspace.getObjectByTypeAndName(iddobjectname::ZoneList,zoneName.get()) )
         {
           std::vector<IdfExtensibleGroup> zoneListGroup = _zoneList->extensibleGroups();
 
@@ -201,7 +201,7 @@ OptionalModelObject ReverseTranslator::translateZone( const WorkspaceObject & wo
   if( idfZoneName )
   {
     std::vector<WorkspaceObject> zoneHVACEquipmentConnections;
-    zoneHVACEquipmentConnections = workspaceObject.workspace().getObjectsByType(IddObjectType::ZoneHVAC_EquipmentConnections);
+    zoneHVACEquipmentConnections = workspaceObject.workspace().getObjectsByType(iddobjectname::ZoneHVAC_EquipmentConnections);
 
     for( std::vector<WorkspaceObject>::iterator it = zoneHVACEquipmentConnections.begin();
          it != zoneHVACEquipmentConnections.end();

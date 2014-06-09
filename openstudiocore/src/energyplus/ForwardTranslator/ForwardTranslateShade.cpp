@@ -32,7 +32,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateShade( Shade & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::WindowMaterial_Shade);
+  IdfObject idfObject( openstudio::iddobjectname::WindowMaterial_Shade);
 
   m_idfObjects.push_back(idfObject);
 

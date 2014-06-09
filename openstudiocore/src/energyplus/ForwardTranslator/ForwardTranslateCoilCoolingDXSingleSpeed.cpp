@@ -43,7 +43,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateCoilCoolingDXSingleSpeedWithoutUnitary( model::CoilCoolingDXSingleSpeed & modelObject )
 {
   OptionalString s;
-  IdfObject idfObject(IddObjectType::Coil_Cooling_DX_SingleSpeed);
+  IdfObject idfObject(iddobjectname::Coil_Cooling_DX_SingleSpeed);
 
   s = modelObject.name();
   if( s )
@@ -245,7 +245,7 @@ boost::optional<IdfObject> ForwardTranslator::translateCoilCoolingDXSingleSpeedW
 
 boost::optional<IdfObject> ForwardTranslator::translateCoilCoolingDXSingleSpeed( CoilCoolingDXSingleSpeed& modelObject )
 {
-  IdfObject coilSystemCoolingDXIdf(IddObjectType::CoilSystem_Cooling_DX);
+  IdfObject coilSystemCoolingDXIdf(iddobjectname::CoilSystem_Cooling_DX);
     
   m_idfObjects.push_back(coilSystemCoolingDXIdf);
 

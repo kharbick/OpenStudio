@@ -34,7 +34,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateDesignSpecificationOutdoorAir( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::DesignSpecification_OutdoorAir ){
+  if( workspaceObject.iddObject().type() != iddobjectname::DesignSpecification_OutdoorAir ){
     LOG(Error, "WorkspaceObject is not IddObjectType: DesignSpecification:OutdoorAir");
     return boost::none;
   }

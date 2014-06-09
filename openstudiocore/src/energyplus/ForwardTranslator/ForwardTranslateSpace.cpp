@@ -45,7 +45,7 @@ boost::optional<IdfObject> ForwardTranslator::translateSpace( model::Space & mod
   return boost::none;
 
   /*
-  IdfObject idfObject(openstudio::IddObjectType::CommentOnly);
+  IdfObject idfObject(openstudio::iddobjectname::CommentOnly);
 
   idfObject.setComment(
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\

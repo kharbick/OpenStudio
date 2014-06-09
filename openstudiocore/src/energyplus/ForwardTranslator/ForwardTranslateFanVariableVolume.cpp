@@ -42,8 +42,8 @@ boost::optional<IdfObject> ForwardTranslator::translateFanVariableVolume( FanVar
   OptionalDouble d;
   OptionalModelObject temp;
 
-  // Create a new IddObjectType::Fan_VariableVolume
-  IdfObject idfObject(IddObjectType::Fan_VariableVolume);
+  // Create a new iddobjectname::Fan_VariableVolume
+  IdfObject idfObject(iddobjectname::Fan_VariableVolume);
 
   m_idfObjects.push_back(idfObject);
 

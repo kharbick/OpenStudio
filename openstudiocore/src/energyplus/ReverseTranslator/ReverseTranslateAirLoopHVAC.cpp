@@ -42,6 +42,9 @@
 #include <utilities/idd/BranchList_FieldEnums.hxx>
 #include <utilities/idd/Branch_FieldEnums.hxx>
 #include <utilities/idd/ZoneHVAC_EquipmentConnections_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
+#include <utilities/idd/ZoneHVAC_EquipmentList_FieldEnums.hxx>
+#include <utilities/idd/AirTerminal_SingleDuct_Uncontrolled_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 #include <utilities/idf/WorkspaceExtensibleGroup.hpp>
 
@@ -53,7 +56,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateAirLoopHVAC( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::AirLoopHVAC )
+  if( workspaceObject.iddObject().type() != iddobjectname::AirLoopHVAC )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: AirLoopHVAC");
      return boost::none;
@@ -192,7 +195,7 @@ OptionalModelObject ReverseTranslator::translateAirLoopHVAC( const WorkspaceObje
   {
     // Find the zone mixer for this air loop
     std::vector<WorkspaceObject> _airLoopHVACZoneMixers;
-    _airLoopHVACZoneMixers = workspaceObject.workspace().getObjectsByType(IddObjectType::AirLoopHVAC_ZoneMixer);
+    _airLoopHVACZoneMixers = workspaceObject.workspace().getObjectsByType(iddobjectname::AirLoopHVAC_ZoneMixer);
 
     boost::optional<WorkspaceObject> _airLoopHVACZoneMixer;
     for( std::vector<WorkspaceObject>::iterator it = _airLoopHVACZoneMixers.begin();
@@ -219,7 +222,7 @@ OptionalModelObject ReverseTranslator::translateAirLoopHVAC( const WorkspaceObje
 
         std::string mixerInletNodeName = _airLoopHVACZoneMixer->getString(i).get();
 
-        _zoneHVACEquipmentConnections = _workspace.getObjectsByType(IddObjectType::ZoneHVAC_EquipmentConnections);
+        _zoneHVACEquipmentConnections = _workspace.getObjectsByType(iddobjectname::ZoneHVAC_EquipmentConnections);
 
         for( std::vector<WorkspaceObject>::iterator it = _zoneHVACEquipmentConnections.begin(),itEnd=_zoneHVACEquipmentConnections.end();
              it !=itEnd ;
@@ -241,9 +244,9 @@ OptionalModelObject ReverseTranslator::translateAirLoopHVAC( const WorkspaceObje
               zoneName &&
               zoneEquipListName )
           {
-            _zone = _workspace.getObjectByTypeAndName(IddObjectType::Zone,*zoneName);
+            _zone = _workspace.getObjectByTypeAndName(iddobjectname::Zone,*zoneName);
 
-            _zoneEquipmentList = _workspace.getObjectByTypeAndName(IddObjectType::ZoneHVAC_EquipmentList,zoneEquipListName.get());
+            _zoneEquipmentList = _workspace.getObjectByTypeAndName(iddobjectname::ZoneHVAC_EquipmentList,zoneEquipListName.get());
 
             if( ! _zone )
             {
@@ -298,14 +301,14 @@ OptionalModelObject ReverseTranslator::translateAirLoopHVAC( const WorkspaceObje
               {
                 if( istringEqual(optionalString.get(),"AirTerminal:SingleDuct:Uncontrolled") )
                 {
-                  _airTerminal = _workspace.getObjectByTypeAndName(IddObjectType::AirTerminal_SingleDuct_Uncontrolled,zoneEquipmentName.get());
+                  _airTerminal = _workspace.getObjectByTypeAndName(iddobjectname::AirTerminal_SingleDuct_Uncontrolled,zoneEquipmentName.get());
 
                   break;
                 }
                 else if( istringEqual(optionalString.get(),"ZoneHVAC:AirDistributionUnit") )
                 {
                   boost::optional<WorkspaceObject> _airDistributionUnit = 
-                    _workspace.getObjectByTypeAndName(IddObjectType::ZoneHVAC_AirDistributionUnit,zoneEquipmentName.get());
+                    _workspace.getObjectByTypeAndName(iddobjectname::ZoneHVAC_AirDistributionUnit,zoneEquipmentName.get());
 
                   if( _airDistributionUnit )
                   {

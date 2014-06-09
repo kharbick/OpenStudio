@@ -38,6 +38,7 @@
 #include <utilities/idd/Coil_Cooling_Water_FieldEnums.hxx>
 #include <utilities/idd/Coil_Heating_Water_FieldEnums.hxx>
 #include <utilities/idd/OutdoorAir_Mixer_FieldEnums.hxx>
+#include <utilities/idd/OutdoorAir_NodeList_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 #include <utilities/idd/IddFactory.hxx>
 
@@ -53,7 +54,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACFourPipeFanCoil(
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::ZoneHVAC_FourPipeFanCoil);
+  IdfObject idfObject(iddobjectname::ZoneHVAC_FourPipeFanCoil);
 
   // Get model object name and define node names for future use
   // Model Name
@@ -105,17 +106,17 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACFourPipeFanCoil(
       // Supply Air Fan Inlet and Outlet Nodes
       if( airOutletNodeName )
       {
-        if( _supplyAirFan->iddObject().type() == IddObjectType::Fan_ConstantVolume )
+        if( _supplyAirFan->iddObject().type() == iddobjectname::Fan_ConstantVolume )
         {
           _supplyAirFan->setString(Fan_ConstantVolumeFields::AirInletNodeName,mixedAirNodeName );
           _supplyAirFan->setString(Fan_ConstantVolumeFields::AirOutletNodeName,fanOutletNodeName );
         }
-        else if( _supplyAirFan->iddObject().type() == IddObjectType::Fan_OnOff )
+        else if( _supplyAirFan->iddObject().type() == iddobjectname::Fan_OnOff )
         {
           _supplyAirFan->setString(Fan_OnOffFields::AirInletNodeName,mixedAirNodeName );
           _supplyAirFan->setString(Fan_OnOffFields::AirOutletNodeName,fanOutletNodeName );
         }
-        else if( _supplyAirFan->iddObject().type() == IddObjectType::Fan_VariableVolume )
+        else if( _supplyAirFan->iddObject().type() == iddobjectname::Fan_VariableVolume )
         {
           _supplyAirFan->setString(Fan_VariableVolumeFields::AirInletNodeName,mixedAirNodeName );
           _supplyAirFan->setString(Fan_VariableVolumeFields::AirOutletNodeName,fanOutletNodeName );
@@ -132,7 +133,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACFourPipeFanCoil(
       // CoolingCoilName
       idfObject.setString(ZoneHVAC_FourPipeFanCoilFields::CoolingCoilName,_coolingCoil->name().get() );
       // Cooling Coil Inlet and Outlet Nodes
-      if( _coolingCoil->iddObject().type() == IddObjectType::Coil_Cooling_Water )
+      if( _coolingCoil->iddObject().type() == iddobjectname::Coil_Cooling_Water )
       {
         _coolingCoil->setString(Coil_Cooling_WaterFields::AirInletNodeName,fanOutletNodeName );
         _coolingCoil->setString(Coil_Cooling_WaterFields::AirOutletNodeName,coolingCoilOutletNodeName );
@@ -148,7 +149,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACFourPipeFanCoil(
       // HeatingCoilName
       idfObject.setString(ZoneHVAC_FourPipeFanCoilFields::HeatingCoilName,_heatingCoil->name().get() );
       // Heating Coil Inlet and Outlet Nodes
-      if( _heatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Water )
+      if( _heatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Water )
       {
         _heatingCoil->setString(Coil_Heating_WaterFields::AirInletNodeName,coolingCoilOutletNodeName );
         _heatingCoil->setString(Coil_Heating_WaterFields::AirOutletNodeName,airOutletNodeName.get() );
@@ -220,7 +221,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACFourPipeFanCoil(
   idfObject.setString(ZoneHVAC_FourPipeFanCoilFields::OutdoorAirMixerName,oaMixerName);
 
   // Create Outdoor Air Mixer
-  IdfObject _outdoorAirMixer(IddObjectType::OutdoorAir_Mixer);
+  IdfObject _outdoorAirMixer(iddobjectname::OutdoorAir_Mixer);
   _outdoorAirMixer.setName(oaMixerName);
   m_idfObjects.push_back(_outdoorAirMixer);
 
@@ -233,7 +234,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACFourPipeFanCoil(
   }
 
   // Create Outdoor Air Node List
-  IdfObject _oaNodeList(openstudio::IddObjectType::OutdoorAir_NodeList);
+  IdfObject _oaNodeList(openstudio::iddobjectname::OutdoorAir_NodeList);
   _oaNodeList.setString(0,oaNodeName);
   m_idfObjects.push_back(_oaNodeList);
 

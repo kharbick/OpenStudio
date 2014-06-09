@@ -41,7 +41,7 @@ boost::optional<IdfObject> ForwardTranslator::translateHeatExchangerFluidToFluid
   OptionalModelObject mo;
   boost::optional<IdfObject> idfo;
 
-  IdfObject idfObject(IddObjectType::HeatExchanger_FluidToFluid);
+  IdfObject idfObject(iddobjectname::HeatExchanger_FluidToFluid);
 
   m_idfObjects.push_back(idfObject);
 

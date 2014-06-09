@@ -32,7 +32,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateScreen( Screen & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::WindowMaterial_Screen);
+  IdfObject idfObject( openstudio::iddobjectname::WindowMaterial_Screen);
 
   m_idfObjects.push_back(idfObject);
 

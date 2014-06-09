@@ -43,7 +43,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateLights( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Lights ){
+  if( workspaceObject.iddObject().type() != iddobjectname::Lights ){
     LOG(Error, "WorkspaceObject " << workspaceObject.briefDescription()
         << " is not IddObjectType: Lights");
     return boost::none;

@@ -35,7 +35,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateCurveSigmoid( 
     CurveSigmoid& modelObject)
 {
-  IdfObject idfObject(IddObjectType::Curve_Sigmoid);
+  IdfObject idfObject(iddobjectname::Curve_Sigmoid);
 
   m_idfObjects.push_back(idfObject);
 

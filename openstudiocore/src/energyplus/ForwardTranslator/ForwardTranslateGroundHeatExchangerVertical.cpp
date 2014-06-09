@@ -45,7 +45,7 @@ boost::optional<IdfObject> ForwardTranslator::translateGroundHeatExchangerVertic
   boost::optional<ModelObject> temp;
 
   // Name
-  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::IddObjectType::GroundHeatExchanger_Vertical, modelObject);
+  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::iddobjectname::GroundHeatExchanger_Vertical, modelObject);
 
   // Inlet Node Name
   if( (temp = modelObject.inletModelObject()) )

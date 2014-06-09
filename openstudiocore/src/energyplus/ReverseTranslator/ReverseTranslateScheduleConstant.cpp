@@ -34,7 +34,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateScheduleConstant( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Schedule_Constant )
+  if( workspaceObject.iddObject().type() != iddobjectname::Schedule_Constant )
   {
     LOG(Error, "WorkspaceObject is not IddObjectType: Schedule:Constant");
     return boost::none;

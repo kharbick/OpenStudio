@@ -40,14 +40,14 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateZoneHVACEquipmentList( const WorkspaceObject & workspaceObject )
 {
-  if(workspaceObject.iddObject().type() != IddObjectType::ZoneHVAC_EquipmentList){
+  if(workspaceObject.iddObject().type() != iddobjectname::ZoneHVAC_EquipmentList){
     LOG(Error, "WorkspaceObject is not IddObjectType: ZoneHVAC:EquipmentList");
      return boost::none;
   }
 
   boost::optional<openstudio::model::ThermalZone> thermalZone;
 
-  std::vector<WorkspaceObject> zoneHVACEquipmentConnections = workspaceObject.getSources(IddObjectType::ZoneHVAC_EquipmentConnections);
+  std::vector<WorkspaceObject> zoneHVACEquipmentConnections = workspaceObject.getSources(iddobjectname::ZoneHVAC_EquipmentConnections);
   if (zoneHVACEquipmentConnections.size() == 0){
     LOG(Error,"No ZoneHVAC:EquipmentConnections object associated with a zone. Check that IDF file is correct.");
     return boost::none;

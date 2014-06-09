@@ -38,8 +38,8 @@ boost::optional<IdfObject> ForwardTranslator::translateControllerOutdoorAir( Con
   OptionalString s;
   OptionalDouble d;
 
-  // Create a new IddObjectType::AirLoopHVAC_OutdoorAirSystem
-  IdfObject idfObject(IddObjectType::Controller_OutdoorAir);
+  // Create a new iddobjectname::AirLoopHVAC_OutdoorAirSystem
+  IdfObject idfObject(iddobjectname::Controller_OutdoorAir);
 
   m_idfObjects.push_back(idfObject);
 

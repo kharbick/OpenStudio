@@ -41,7 +41,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateConstruction( Construction & modelObject )
 {
-  IdfObject construction( openstudio::IddObjectType::Construction );
+  IdfObject construction( openstudio::iddobjectname::Construction );
   m_idfObjects.push_back(construction);
 
   BOOST_FOREACH(LifeCycleCost lifeCycleCost, modelObject.lifeCycleCosts()){

@@ -50,7 +50,7 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACUnitHeater(
   // Make sure the modelObject gets ut into the map, and the new idfObject gets put into the final file.
   // Also sets the idfObjects name
 
-  IdfObject idfObject = createRegisterAndNameIdfObject(IddObjectType::ZoneHVAC_UnitHeater,modelObject);
+  IdfObject idfObject = createRegisterAndNameIdfObject(iddobjectname::ZoneHVAC_UnitHeater,modelObject);
   
   
   boost::optional<std::string> s;
@@ -136,12 +136,12 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACUnitHeater(
     {
       s = node->name();
 
-      if( _supplyAirFan->iddObject().type() == IddObjectType::Fan_ConstantVolume)
+      if( _supplyAirFan->iddObject().type() == iddobjectname::Fan_ConstantVolume)
       {
         _supplyAirFan->setString(Fan_ConstantVolumeFields::AirInletNodeName,*s);
         _supplyAirFan->setString(Fan_ConstantVolumeFields::AirOutletNodeName,fanOutletNodeName);
       }
-      else if( _supplyAirFan->iddObject().type() == IddObjectType::Fan_VariableVolume )
+      else if( _supplyAirFan->iddObject().type() == iddobjectname::Fan_VariableVolume )
       {
         _supplyAirFan->setString(Fan_VariableVolumeFields::AirInletNodeName,*s);
         _supplyAirFan->setString(Fan_VariableVolumeFields::AirOutletNodeName,fanOutletNodeName);
@@ -193,17 +193,17 @@ boost::optional<IdfObject> ForwardTranslator::translateZoneHVACUnitHeater(
     {
       s = node->name();
 
-      if( _heatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Electric)
+      if( _heatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Electric)
       {
         _heatingCoil->setString(Coil_Heating_ElectricFields::AirInletNodeName,fanOutletNodeName);
         _heatingCoil->setString(Coil_Heating_ElectricFields::AirOutletNodeName,*s);
       }
-      else if( _heatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Gas )
+      else if( _heatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Gas )
       {
         _heatingCoil->setString(Coil_Heating_GasFields::AirInletNodeName,fanOutletNodeName);
         _heatingCoil->setString(Coil_Heating_GasFields::AirOutletNodeName,*s);
       }
-      else if( _heatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Water )
+      else if( _heatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Water )
       {
         _heatingCoil->setString(Coil_Heating_WaterFields::AirInletNodeName,fanOutletNodeName);
         _heatingCoil->setString(Coil_Heating_WaterFields::AirOutletNodeName,*s);

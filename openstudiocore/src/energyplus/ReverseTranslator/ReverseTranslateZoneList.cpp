@@ -27,6 +27,7 @@
 #include <utilities/idf/WorkspaceExtensibleGroup.hpp>
 
 #include <utilities/idd/ZoneList_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 
 using namespace openstudio::model;
@@ -37,7 +38,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateZoneList( const WorkspaceObject & workspaceObject )
 {
-   if( workspaceObject.iddObject().type() != IddObjectType::Zone ){
+   if( workspaceObject.iddObject().type() != iddobjectname::Zone ){
     LOG(Error, "WorkspaceObject is not IddObjectType: Zone");
     return boost::none;
   }

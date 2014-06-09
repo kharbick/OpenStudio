@@ -40,7 +40,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateZoneHVACIdealLoadsAirSystem( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::ZoneHVAC_IdealLoadsAirSystem ) {
+  if( workspaceObject.iddObject().type() != iddobjectname::ZoneHVAC_IdealLoadsAirSystem ) {
     LOG(Error, "WorkspaceObject is not IddObjectType: ZoneHVAC:IdealLoadsAirSystem");
      return boost::none;
   }

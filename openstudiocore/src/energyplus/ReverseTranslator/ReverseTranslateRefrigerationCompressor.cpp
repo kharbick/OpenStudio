@@ -33,7 +33,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateRefrigerationCompressor( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Refrigeration_Compressor )
+  if( workspaceObject.iddObject().type() != iddobjectname::Refrigeration_Compressor )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: Refrigeration_Compressor");
      return boost::none;

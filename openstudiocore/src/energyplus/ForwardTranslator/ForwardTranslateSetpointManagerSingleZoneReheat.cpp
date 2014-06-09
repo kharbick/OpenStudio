@@ -40,7 +40,7 @@ boost::optional<IdfObject> ForwardTranslator::translateSetpointManagerSingleZone
   double n;
   boost::optional<Node> node;
 
-  IdfObject idfObject(IddObjectType::SetpointManager_SingleZone_Reheat);
+  IdfObject idfObject(iddobjectname::SetpointManager_SingleZone_Reheat);
 
   m_idfObjects.push_back(idfObject);
 

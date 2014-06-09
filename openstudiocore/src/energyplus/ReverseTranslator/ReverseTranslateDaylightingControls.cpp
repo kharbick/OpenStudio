@@ -39,7 +39,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateDaylightingControls( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Daylighting_Controls ){
+  if( workspaceObject.iddObject().type() != iddobjectname::Daylighting_Controls ){
     LOG(Error, "WorkspaceObject is not IddObjectType: Daylighting:Controls");
     return boost::none;
   }

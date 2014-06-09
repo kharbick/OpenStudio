@@ -48,7 +48,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePumpVariableSpeed(
   boost::optional<double> value;
   OptionalSchedule schedule;
 
-  IdfObject idfObject(IddObjectType::Pump_VariableSpeed);
+  IdfObject idfObject(iddobjectname::Pump_VariableSpeed);
 
   m_idfObjects.push_back(idfObject);
 

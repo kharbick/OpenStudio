@@ -30,7 +30,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateTimestep( Timestep & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::Timestep);
+  IdfObject idfObject( openstudio::iddobjectname::Timestep);
 
   idfObject.setInt(TimestepFields::NumberofTimestepsperHour,modelObject.numberOfTimestepsPerHour());
 

@@ -46,7 +46,7 @@ boost::optional<IdfObject> ForwardTranslator::createAirLoopHVACSupplyPath( AirLo
 {
   std::string s;
 
-  IdfObject supplyPathIdf(openstudio::IddObjectType::AirLoopHVAC_SupplyPath);
+  IdfObject supplyPathIdf(openstudio::iddobjectname::AirLoopHVAC_SupplyPath);
   m_idfObjects.push_back(supplyPathIdf);
 
   supplyPathIdf.setName(airLoopHVAC.name().get() + " Supply Path");

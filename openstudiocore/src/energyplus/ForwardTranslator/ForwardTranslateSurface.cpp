@@ -50,7 +50,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateSurface( model::Surface & modelObject )
 {
-  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::IddObjectType::BuildingSurface_Detailed, 
+  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::iddobjectname::BuildingSurface_Detailed, 
                                                        modelObject);
   
   std::string surfaceType = modelObject.surfaceType();

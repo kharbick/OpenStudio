@@ -38,7 +38,7 @@ boost::optional<IdfObject> ForwardTranslator::translateSetpointManagerWarmest( S
   boost::optional<double> value;
   std::string s;
 
-  IdfObject idfObject(IddObjectType::SetpointManager_Warmest);
+  IdfObject idfObject(iddobjectname::SetpointManager_Warmest);
 
   // Name
   s = modelObject.name().get();

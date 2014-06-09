@@ -48,7 +48,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateHotWaterEquipment(
     HotWaterEquipment& modelObject)
 {
-  IdfObject idfObject(openstudio::IddObjectType::HotWaterEquipment);
+  IdfObject idfObject(openstudio::iddobjectname::HotWaterEquipment);
   m_idfObjects.push_back(idfObject);
 
   BOOST_FOREACH(LifeCycleCost lifeCycleCost, modelObject.lifeCycleCosts()){

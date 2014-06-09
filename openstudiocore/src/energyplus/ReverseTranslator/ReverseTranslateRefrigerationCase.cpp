@@ -37,7 +37,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateRefrigerationCase( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Refrigeration_Case )
+  if( workspaceObject.iddObject().type() != iddobjectname::Refrigeration_Case )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: Refrigeration_Case");
      return boost::none;

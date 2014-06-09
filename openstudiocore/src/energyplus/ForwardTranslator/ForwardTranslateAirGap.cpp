@@ -32,7 +32,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateAirGap( AirGap & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::Material_AirGap);
+  IdfObject idfObject( openstudio::iddobjectname::Material_AirGap);
 
   m_idfObjects.push_back(idfObject);
 

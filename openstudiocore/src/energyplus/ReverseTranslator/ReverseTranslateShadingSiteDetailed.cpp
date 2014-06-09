@@ -38,7 +38,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateShadingSiteDetailed( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Shading_Site_Detailed ){
+  if( workspaceObject.iddObject().type() != iddobjectname::Shading_Site_Detailed ){
     LOG(Error, "WorkspaceObject is not IddObjectType: Shading:Site:Detailed");
     return boost::none;
   }

@@ -39,7 +39,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePipeAdiabatic( PipeAdiaba
   OptionalDouble d;
   OptionalModelObject temp;
 
-  IdfObject idfObject(IddObjectType::Pipe_Adiabatic);
+  IdfObject idfObject(iddobjectname::Pipe_Adiabatic);
 
   m_idfObjects.push_back(idfObject);
 

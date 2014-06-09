@@ -41,7 +41,7 @@ namespace energyplus {
   boost::optional<IdfObject> ForwardTranslator::translateConstructionWithInternalSource( model::ConstructionWithInternalSource & modelObject )
 {
   
-  IdfObject idfObject( openstudio::IddObjectType::Construction_InternalSource );
+  IdfObject idfObject( openstudio::iddobjectname::Construction_InternalSource );
 
   m_idfObjects.push_back(idfObject);
 

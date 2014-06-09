@@ -41,8 +41,8 @@ boost::optional<IdfObject> ForwardTranslator::translateEvaporativeFluidCoolerSin
   OptionalDouble d;
   OptionalModelObject temp;
 
-  // Create a new IddObjectType::Evaporative_FluidCoolerSingleSpeed
-  IdfObject idfObject(IddObjectType::EvaporativeFluidCooler_SingleSpeed);
+  // Create a new iddobjectname::Evaporative_FluidCoolerSingleSpeed
+  IdfObject idfObject(iddobjectname::EvaporativeFluidCooler_SingleSpeed);
 
   m_idfObjects.push_back(idfObject);
  

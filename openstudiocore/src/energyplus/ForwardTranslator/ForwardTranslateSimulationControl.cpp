@@ -39,7 +39,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateSimulationControl( SimulationControl& modelObject )
 {
-  IdfObject simCon( openstudio::IddObjectType::SimulationControl );
+  IdfObject simCon( openstudio::iddobjectname::SimulationControl );
 
   m_idfObjects.push_back(simCon);
 

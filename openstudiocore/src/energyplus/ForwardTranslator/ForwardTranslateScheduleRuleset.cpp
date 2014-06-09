@@ -84,7 +84,7 @@ struct WeekScheduleStruct{
 
   IdfObject toIdfObject()
   {
-    IdfObject weekSchedule(openstudio::IddObjectType::Schedule_Week_Daily);
+    IdfObject weekSchedule(openstudio::iddobjectname::Schedule_Week_Daily);
     weekSchedule.createName();
     this->name = weekSchedule.name().get();
     weekSchedule.setString(Schedule_Week_DailyFields::SundaySchedule_DayName, sundaySchedule);
@@ -108,7 +108,7 @@ struct WeekScheduleStruct{
 boost::optional<IdfObject> ForwardTranslator::translateScheduleRuleset( ScheduleRuleset & modelObject )
 {
 
-  IdfObject scheduleYear( openstudio::IddObjectType::Schedule_Year );
+  IdfObject scheduleYear( openstudio::iddobjectname::Schedule_Year );
 
   scheduleYear.setName(modelObject.name().get());
 

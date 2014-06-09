@@ -36,7 +36,7 @@ namespace energyplus {
 boost::optional<model::ModelObject> ReverseTranslator::translateConvergenceLimits(
     const WorkspaceObject& workspaceObject)
 {
-  OS_ASSERT(workspaceObject.iddObject().type() == IddObjectType::ConvergenceLimits);
+  OS_ASSERT(workspaceObject.iddObject().type() == iddobjectname::ConvergenceLimits);
 
   OptionalInt i;
 

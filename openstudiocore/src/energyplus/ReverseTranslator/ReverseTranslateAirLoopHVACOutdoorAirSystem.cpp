@@ -37,7 +37,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateAirLoopHVACOutdoorAirSystem( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::AirLoopHVAC_OutdoorAirSystem )
+  if( workspaceObject.iddObject().type() != iddobjectname::AirLoopHVAC_OutdoorAirSystem )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: AirLoopHVAC_OutdoorAirSystem");
      return boost::none;
@@ -117,7 +117,7 @@ OptionalModelObject ReverseTranslator::translateAirLoopHVACOutdoorAirSystem( con
           {
             equipmentVector.push_back(wo.get());
 
-            if( wo->iddObject().type() == IddObjectType::OutdoorAir_Mixer )
+            if( wo->iddObject().type() == iddobjectname::OutdoorAir_Mixer )
             {
               _outdoorAirMixer = wo;
             }
@@ -147,7 +147,7 @@ OptionalModelObject ReverseTranslator::translateAirLoopHVACOutdoorAirSystem( con
           {
             switch(it->iddObject().type().value())
             {
-              case openstudio::IddObjectType::EvaporativeCooler_Direct_ResearchSpecial :
+              case openstudio::iddobjectvalue::EvaporativeCooler_Direct_ResearchSpecial :
               {
                 oaStreamOutletNodeName = it->getString(EvaporativeCooler_Direct_ResearchSpecialFields::AirOutletNodeName);
                 if( oaStreamOutletNodeName )

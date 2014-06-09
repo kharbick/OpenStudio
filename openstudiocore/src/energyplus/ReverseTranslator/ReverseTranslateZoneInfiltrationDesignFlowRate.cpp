@@ -41,7 +41,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateZoneInfiltrationDesignFlowRate( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::ZoneInfiltration_DesignFlowRate ){
+  if( workspaceObject.iddObject().type() != iddobjectname::ZoneInfiltration_DesignFlowRate ){
     LOG(Error, "WorkspaceObject is not IddObjectType: ZoneInfiltration:DesignFlowRate");
     return boost::none;
   }

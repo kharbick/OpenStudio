@@ -31,7 +31,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateControllerOutdoorAir( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Controller_OutdoorAir )
+  if( workspaceObject.iddObject().type() != iddobjectname::Controller_OutdoorAir )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: Controller_OutdoorAir");
      return boost::none;

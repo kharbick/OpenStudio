@@ -35,7 +35,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateSiteGroundReflectance( SiteGroundReflectance& modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::Site_GroundReflectance );
+  IdfObject idfObject( openstudio::iddobjectname::Site_GroundReflectance );
 
   m_idfObjects.push_back(idfObject);
 

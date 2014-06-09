@@ -35,7 +35,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateSiteGroundTemperatureBuildingSurface( SiteGroundTemperatureBuildingSurface& modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::Site_GroundTemperature_BuildingSurface );
+  IdfObject idfObject( openstudio::iddobjectname::Site_GroundTemperature_BuildingSurface );
 
   m_idfObjects.push_back(idfObject);
 

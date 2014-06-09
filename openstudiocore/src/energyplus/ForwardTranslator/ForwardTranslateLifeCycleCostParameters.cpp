@@ -45,7 +45,7 @@ void makeUsePriceEscalation(boost::optional<double> rate, const std::string& fue
     return;
   }
 
-  IdfObject idfObject(IddObjectType::LifeCycleCost_UsePriceEscalation);
+  IdfObject idfObject(iddobjectname::LifeCycleCost_UsePriceEscalation);
   idfObject.setName(fuelName + " Use Price Escalation");
   idfObject.setString(LifeCycleCost_UsePriceEscalationFields::Resource, fuelName);
   idfObject.setInt(LifeCycleCost_UsePriceEscalationFields::EscalationStartYear, baseDateYear);
@@ -63,7 +63,7 @@ void makeUsePriceEscalation(boost::optional<double> rate, const std::string& fue
 boost::optional<IdfObject> ForwardTranslator::translateLifeCycleCostParameters( model::LifeCycleCostParameters & modelObject )
 {
   // create, register, and name object
-  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::IddObjectType::LifeCycleCost_Parameters,
+  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::iddobjectname::LifeCycleCost_Parameters,
                                                        modelObject);
 
   idfObject.setString(LifeCycleCost_ParametersFields::DiscountingConvention, modelObject.discountingConvention());

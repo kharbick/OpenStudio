@@ -41,7 +41,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationCondenserAir
   boost::optional<double> d;
 
 // Name
-  IdfObject object = createRegisterAndNameIdfObject(openstudio::IddObjectType::Refrigeration_Condenser_AirCooled, modelObject);
+  IdfObject object = createRegisterAndNameIdfObject(openstudio::iddobjectname::Refrigeration_Condenser_AirCooled, modelObject);
 
 //Rated Effective Total Heat Rejection Rate Curve Name
   boost::optional<CurveLinear> heatRejectCurve = modelObject.ratedEffectiveTotalHeatRejectionRateCurve();

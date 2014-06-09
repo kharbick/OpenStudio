@@ -52,7 +52,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACUnitaryHeatPum
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::AirLoopHVAC_UnitaryHeatPump_AirToAir);
+  IdfObject idfObject(iddobjectname::AirLoopHVAC_UnitaryHeatPump_AirToAir);
 
   m_idfObjects.push_back(idfObject);
 
@@ -265,11 +265,11 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACUnitaryHeatPum
 
   if( airInletNodeName && _fan )
   {
-    if( _fan->iddObject().type() == IddObjectType::Fan_ConstantVolume )
+    if( _fan->iddObject().type() == iddobjectname::Fan_ConstantVolume )
     {
       _fan->setString(Fan_ConstantVolumeFields::AirInletNodeName,airInletNodeName.get());
     }
-    else if( _fan->iddObject().type() == IddObjectType::Fan_OnOff )
+    else if( _fan->iddObject().type() == iddobjectname::Fan_OnOff )
     {
       _fan->setString(Fan_OnOffFields::AirInletNodeName,airInletNodeName.get());
     }
@@ -284,11 +284,11 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACUnitaryHeatPum
   {
     std::string nodeName = modelObject.name().get() + " Fan - Cooling Coil Node";
 
-    if( _fan->iddObject().type() == IddObjectType::Fan_ConstantVolume )
+    if( _fan->iddObject().type() == iddobjectname::Fan_ConstantVolume )
     {
       _fan->setString(Fan_ConstantVolumeFields::AirOutletNodeName,nodeName);
     }
-    else if( _fan->iddObject().type() == IddObjectType::Fan_OnOff )
+    else if( _fan->iddObject().type() == iddobjectname::Fan_OnOff )
     {
       _fan->setString(Fan_OnOffFields::AirOutletNodeName,nodeName);
     }
@@ -314,7 +314,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACUnitaryHeatPum
       _heatingCoil->setString(Coil_Heating_DX_SingleSpeedFields::AirOutletNodeName,nodeName);
     }
 
-    if( _supplementalHeatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Gas )
+    if( _supplementalHeatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Gas )
     {
       if( airOutletNodeName )
       {
@@ -323,7 +323,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACUnitaryHeatPum
         _supplementalHeatingCoil->setString(Coil_Heating_GasFields::AirInletNodeName,nodeName); 
       }
     }
-    else if( _supplementalHeatingCoil->iddObject().type() == IddObjectType::Coil_Heating_Electric )
+    else if( _supplementalHeatingCoil->iddObject().type() == iddobjectname::Coil_Heating_Electric )
     {
       if( airOutletNodeName )
       {

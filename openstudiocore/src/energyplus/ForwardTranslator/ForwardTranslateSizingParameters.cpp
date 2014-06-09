@@ -35,7 +35,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateSizingParameters( SizingParameters& modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::Sizing_Parameters );
+  IdfObject idfObject( openstudio::iddobjectname::Sizing_Parameters );
 
   m_idfObjects.push_back(idfObject);
 

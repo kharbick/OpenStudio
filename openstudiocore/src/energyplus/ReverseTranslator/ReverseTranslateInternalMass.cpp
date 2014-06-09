@@ -41,7 +41,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateInternalMass( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::InternalMass ){
+  if( workspaceObject.iddObject().type() != iddobjectname::InternalMass ){
     LOG(Error, "WorkspaceObject is not IddObjectType: InternalMass");
     return boost::none;
   }

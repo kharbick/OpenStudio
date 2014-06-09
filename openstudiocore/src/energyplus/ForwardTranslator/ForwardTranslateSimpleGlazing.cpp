@@ -35,7 +35,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateSimpleGlazing( SimpleGlazing & modelObject )
 {
-  IdfObject idfObject(openstudio::IddObjectType::WindowMaterial_SimpleGlazingSystem );
+  IdfObject idfObject(openstudio::iddobjectname::WindowMaterial_SimpleGlazingSystem );
 
   m_idfObjects.push_back(idfObject);
 

@@ -40,7 +40,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationCompressor( 
   boost::optional<double> d;
 
 // Name
-  IdfObject object = createRegisterAndNameIdfObject(openstudio::IddObjectType::Refrigeration_Compressor, modelObject);
+  IdfObject object = createRegisterAndNameIdfObject(openstudio::iddobjectname::Refrigeration_Compressor, modelObject);
 
 //Refrigeration Compressor Power Curve Name
   boost::optional<CurveBicubic> powerCurve = modelObject.refrigerationCompressorPowerCurve();

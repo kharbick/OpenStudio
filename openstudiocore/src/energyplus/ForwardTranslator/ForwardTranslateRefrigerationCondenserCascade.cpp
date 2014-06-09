@@ -39,7 +39,7 @@ boost::optional<IdfObject> ForwardTranslator::translateRefrigerationCondenserCas
   boost::optional<double> d;
 
   // Name
-  IdfObject cascade = createRegisterAndNameIdfObject(openstudio::IddObjectType::Refrigeration_Condenser_Cascade, modelObject);
+  IdfObject cascade = createRegisterAndNameIdfObject(openstudio::iddobjectname::Refrigeration_Condenser_Cascade, modelObject);
 
   // Rated Condensing Temperature
   d = modelObject.ratedCondensingTemperature();

@@ -31,7 +31,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateRunPeriodControlSpecialDays( RunPeriodControlSpecialDays & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::RunPeriodControl_SpecialDays);
+  IdfObject idfObject( openstudio::iddobjectname::RunPeriodControl_SpecialDays);
 
   m_idfObjects.push_back(idfObject);
 

@@ -20,6 +20,7 @@
 #include <energyplus/ForwardTranslator.hpp>
 #include <model/SkyTemperature.hpp>
 #include <utilities/idd/IddEnums.hxx>
+#include <utilities/idd/WeatherProperty_SkyTemperature_FieldEnums.hxx>
 
 using namespace openstudio::model;
 
@@ -29,7 +30,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateSkyTemperature( SkyTemperature & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::WeatherProperty_SkyTemperature);
+  IdfObject idfObject( openstudio::iddobjectname::WeatherProperty_SkyTemperature);
 
   m_idfObjects.push_back(idfObject);
 

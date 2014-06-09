@@ -39,7 +39,7 @@ boost::optional<IdfObject> ForwardTranslator::translateCoolingTowerPerformanceYo
   OptionalDouble d;
   OptionalModelObject temp;
 
-  IdfObject idfObject(IddObjectType::CoolingTowerPerformance_YorkCalc);
+  IdfObject idfObject(iddobjectname::CoolingTowerPerformance_YorkCalc);
 
   m_idfObjects.push_back(idfObject);
 

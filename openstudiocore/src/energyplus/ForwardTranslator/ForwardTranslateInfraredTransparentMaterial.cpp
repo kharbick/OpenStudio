@@ -32,7 +32,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateInfraredTransparentMaterial( InfraredTransparentMaterial & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::Material_InfraredTransparent);
+  IdfObject idfObject( openstudio::iddobjectname::Material_InfraredTransparent);
 
   m_idfObjects.push_back(idfObject);
 

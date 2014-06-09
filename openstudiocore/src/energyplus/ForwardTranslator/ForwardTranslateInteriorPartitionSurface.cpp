@@ -61,7 +61,7 @@ boost::optional<IdfObject> ForwardTranslator::translateInteriorPartitionSurface(
     return boost::none;
   }
 
-  IdfObject idfObject(openstudio::IddObjectType::InternalMass);
+  IdfObject idfObject(openstudio::iddobjectname::InternalMass);
 
   m_idfObjects.push_back(idfObject);
 

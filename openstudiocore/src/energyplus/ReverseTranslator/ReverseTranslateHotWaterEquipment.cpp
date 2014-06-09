@@ -43,8 +43,8 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateHotWaterEquipment( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::HotWaterEquipment ){
-    LOG(Error, "WorkspaceObject is not IddObjectType::HotWaterEquipment");
+  if( workspaceObject.iddObject().type() != iddobjectname::HotWaterEquipment ){
+    LOG(Error, "WorkspaceObject is not iddobjectname::HotWaterEquipment");
     return boost::none;
   }
 

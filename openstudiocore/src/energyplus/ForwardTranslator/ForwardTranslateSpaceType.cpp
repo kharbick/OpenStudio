@@ -93,7 +93,7 @@ boost::optional<IdfObject> ForwardTranslator::translateSpaceType( SpaceType & mo
     return boost::none;
   }
 
-  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::IddObjectType::ZoneList, 
+  IdfObject idfObject = createRegisterAndNameIdfObject(openstudio::iddobjectname::ZoneList, 
                                                        modelObject);
 
   std::set<std::string> zoneNames;

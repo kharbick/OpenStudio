@@ -40,8 +40,8 @@ boost::optional<IdfObject> ForwardTranslator::translateTableMultiVariableLookup(
   OptionalModelObject temp;
   OptionalInt n;  
 
-  // Create a new IddObjectType::Table_MultiVariableLookup
-  IdfObject idfObject(IddObjectType::Table_MultiVariableLookup);
+  // Create a new iddobjectname::Table_MultiVariableLookup
+  IdfObject idfObject(iddobjectname::Table_MultiVariableLookup);
 
   m_idfObjects.push_back(idfObject);
 

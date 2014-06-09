@@ -35,7 +35,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateCurveExponentialSkewNormal( 
     CurveExponentialSkewNormal& modelObject)
 {
-  IdfObject idfObject(IddObjectType::Curve_ExponentialSkewNormal);
+  IdfObject idfObject(iddobjectname::Curve_ExponentialSkewNormal);
 
   m_idfObjects.push_back(idfObject);
 

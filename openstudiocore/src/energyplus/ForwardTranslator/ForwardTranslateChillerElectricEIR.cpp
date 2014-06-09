@@ -48,7 +48,7 @@ boost::optional<IdfObject> ForwardTranslator::translateChillerElectricEIR( Chill
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::Chiller_Electric_EIR);
+  IdfObject idfObject(iddobjectname::Chiller_Electric_EIR);
 
   m_idfObjects.push_back(idfObject);
 

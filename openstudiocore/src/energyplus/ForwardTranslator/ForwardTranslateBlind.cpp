@@ -33,7 +33,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateBlind( model::Blind & modelObject )
 {
-  IdfObject idfObject(openstudio::IddObjectType::WindowMaterial_Blind);
+  IdfObject idfObject(openstudio::iddobjectname::WindowMaterial_Blind);
 
   m_idfObjects.push_back(idfObject);
 

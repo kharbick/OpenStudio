@@ -40,7 +40,7 @@ boost::optional<IdfObject> ForwardTranslator::translateSizingPlant( SizingPlant 
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::Sizing_Plant);
+  IdfObject idfObject(iddobjectname::Sizing_Plant);
 
   // PlantorCondenserLoopName
 

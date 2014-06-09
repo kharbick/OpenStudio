@@ -46,7 +46,7 @@ boost::optional<IdfObject> ForwardTranslator::translateWaterUseConnections(
   boost::optional<double> value;
   OptionalSchedule schedule;
 
-  IdfObject idfObject(IddObjectType::WaterUse_Connections);
+  IdfObject idfObject(iddobjectname::WaterUse_Connections);
 
   m_idfObjects.push_back(idfObject);
 

@@ -41,7 +41,7 @@ boost::optional<IdfObject> ForwardTranslator::translateAirLoopHVACZoneSplitter( 
   OptionalString optS;
   std::string s;
 
-  IdfObject idfObject(openstudio::IddObjectType::AirLoopHVAC_ZoneSplitter);
+  IdfObject idfObject(openstudio::iddobjectname::AirLoopHVAC_ZoneSplitter);
 
   m_idfObjects.push_back(idfObject);
 

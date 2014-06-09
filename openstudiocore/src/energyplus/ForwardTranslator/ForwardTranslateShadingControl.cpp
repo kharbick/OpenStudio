@@ -35,7 +35,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateShadingControl( model::ShadingControl & modelObject )
 {
-  IdfObject idfObject(openstudio::IddObjectType::WindowProperty_ShadingControl);
+  IdfObject idfObject(openstudio::iddobjectname::WindowProperty_ShadingControl);
 
   m_idfObjects.push_back(idfObject);
 

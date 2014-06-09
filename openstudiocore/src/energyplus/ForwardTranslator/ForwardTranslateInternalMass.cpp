@@ -67,7 +67,7 @@ boost::optional<IdfObject> ForwardTranslator::translateInternalMass( model::Inte
   if (spaces.empty()){
 
     // translate detached internal mass object
-    IdfObject idfObject(openstudio::IddObjectType::InternalMass);
+    IdfObject idfObject(openstudio::iddobjectname::InternalMass);
 
     m_idfObjects.push_back(idfObject);
 
@@ -102,7 +102,7 @@ boost::optional<IdfObject> ForwardTranslator::translateInternalMass( model::Inte
     // create InternalMass object for each zone
     BOOST_FOREACH(Space space, spaces){
 
-      IdfObject idfObject(openstudio::IddObjectType::InternalMass);
+      IdfObject idfObject(openstudio::iddobjectname::InternalMass);
 
       m_idfObjects.push_back(idfObject);
 

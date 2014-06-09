@@ -34,7 +34,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateRunPeriod( RunPeriod& modelObject )
 {
-  IdfObject runPeriod( openstudio::IddObjectType::RunPeriod );
+  IdfObject runPeriod( openstudio::iddobjectname::RunPeriod );
 
   m_idfObjects.push_back(runPeriod);
 

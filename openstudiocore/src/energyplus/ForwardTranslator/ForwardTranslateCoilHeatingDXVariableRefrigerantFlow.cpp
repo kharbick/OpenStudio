@@ -51,7 +51,7 @@ boost::optional<IdfObject> ForwardTranslator::translateCoilHeatingDXVariableRefr
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::Coil_Heating_DX_VariableRefrigerantFlow);
+  IdfObject idfObject(iddobjectname::Coil_Heating_DX_VariableRefrigerantFlow);
 
   m_idfObjects.push_back(idfObject);
 

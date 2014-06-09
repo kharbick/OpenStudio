@@ -47,7 +47,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateLuminaire( Luminaire & modelObject )
 {
-  IdfObject idfObject(openstudio::IddObjectType::Lights);
+  IdfObject idfObject(openstudio::iddobjectname::Lights);
   m_idfObjects.push_back(idfObject);
 
   BOOST_FOREACH(LifeCycleCost lifeCycleCost, modelObject.lifeCycleCosts()){

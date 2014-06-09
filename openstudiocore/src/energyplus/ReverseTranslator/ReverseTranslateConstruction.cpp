@@ -45,7 +45,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateConstruction( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::Construction ){
+  if( workspaceObject.iddObject().type() != iddobjectname::Construction ){
     LOG(Error, "WorkspaceObject is not IddObjectType: Construction");
     return boost::none;
   }

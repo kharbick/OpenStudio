@@ -35,7 +35,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateCurveExponent( 
     CurveExponent& modelObject)
 {
-  IdfObject idfObject(IddObjectType::Curve_Exponent);
+  IdfObject idfObject(iddobjectname::Curve_Exponent);
 
   m_idfObjects.push_back(idfObject);
 

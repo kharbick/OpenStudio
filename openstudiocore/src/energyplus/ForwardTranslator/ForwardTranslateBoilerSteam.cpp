@@ -46,7 +46,7 @@ boost::optional<IdfObject> ForwardTranslator::translateBoilerSteam( BoilerSteam 
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::Boiler_Steam);
+  IdfObject idfObject(iddobjectname::Boiler_Steam);
 
   m_idfObjects.push_back(idfObject);
 

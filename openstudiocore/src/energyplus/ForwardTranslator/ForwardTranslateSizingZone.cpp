@@ -53,7 +53,7 @@ boost::optional<IdfObject> ForwardTranslator::translateSizingZone( SizingZone & 
   boost::optional<std::string> s;
   boost::optional<double> value;
 
-  IdfObject idfObject(IddObjectType::Sizing_Zone);
+  IdfObject idfObject(iddobjectname::Sizing_Zone);
 
   m_idfObjects.push_back(idfObject);
 
@@ -230,7 +230,7 @@ boost::optional<IdfObject> ForwardTranslator::translateSizingZone( SizingZone & 
   if( designZoneAirDistributionEffectivenessinCoolingMode ||
       designZoneAirDistributionEffectivenessinHeatingMode )
   {
-    IdfObject _designSpecification_ZoneAirDistribution(IddObjectType::DesignSpecification_ZoneAirDistribution);
+    IdfObject _designSpecification_ZoneAirDistribution(iddobjectname::DesignSpecification_ZoneAirDistribution);
 
     if( name )
     {

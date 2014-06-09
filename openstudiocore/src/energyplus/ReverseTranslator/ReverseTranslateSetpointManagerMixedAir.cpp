@@ -33,7 +33,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateSetpointManagerMixedAir( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::SetpointManager_MixedAir )
+  if( workspaceObject.iddObject().type() != iddobjectname::SetpointManager_MixedAir )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: SetpointManager_MixedAir");
      return boost::none;

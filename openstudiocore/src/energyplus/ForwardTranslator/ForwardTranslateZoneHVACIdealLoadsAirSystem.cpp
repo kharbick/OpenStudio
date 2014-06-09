@@ -48,7 +48,7 @@ namespace energyplus {
 boost::optional<IdfObject> ForwardTranslator::translateZoneHVACIdealLoadsAirSystem(ZoneHVACIdealLoadsAirSystem & modelObject)
 {
   
-  IdfObject zoneHVACIdealLoadsAirSystem = createRegisterAndNameIdfObject(openstudio::IddObjectType::ZoneHVAC_IdealLoadsAirSystem,modelObject);
+  IdfObject zoneHVACIdealLoadsAirSystem = createRegisterAndNameIdfObject(openstudio::iddobjectname::ZoneHVAC_IdealLoadsAirSystem,modelObject);
   
   // availability schedule name
   boost::optional<Schedule> schedule = modelObject.availabilitySchedule();

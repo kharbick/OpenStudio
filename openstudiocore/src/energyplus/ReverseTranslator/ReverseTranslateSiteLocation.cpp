@@ -33,7 +33,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateSiteLocation( const WorkspaceObject & workspaceObject )
 {
- if( workspaceObject.iddObject().type() != IddObjectType::Site_Location ){
+ if( workspaceObject.iddObject().type() != iddobjectname::Site_Location ){
    LOG(Error, "WorkspaceObject is not IddObjectType: Site:Location");
     return boost::none;
   }

@@ -53,7 +53,7 @@ boost::optional<IdfObject> ForwardTranslator::translateFanOnOff( FanOnOff & mode
   // Make sure the modelObject gets ut into the map, and the new idfObject gets put into the final file.
   // Also sets the idfObjects name
 
-  IdfObject idfObject = createRegisterAndNameIdfObject(IddObjectType::Fan_OnOff,modelObject);
+  IdfObject idfObject = createRegisterAndNameIdfObject(iddobjectname::Fan_OnOff,modelObject);
   
   // Model Name
   //std::string baseName = modelObject.name().get();

@@ -27,6 +27,7 @@
 #include <utilities/idf/WorkspaceObject.hpp>
 #include <utilities/idf/ValidityReport.hpp>
 #include <utilities/idd/IddEnums.hxx>
+#include <utilities/idd/IddFieldEnums.hxx>
 
 #include <utilities/core/Assert.hpp>
 #include <utilities/plot/ProgressBar.hpp>
@@ -130,7 +131,7 @@ Model ReverseTranslator::translateWorkspace(const Workspace & workspace, Progres
   m_logSink.resetStringStream();
 
   // if multiple runperiod objects in idf, remove them all
-  vector<WorkspaceObject> runPeriods = m_workspace.getObjectsByType(IddObjectType::RunPeriod);
+  vector<WorkspaceObject> runPeriods = m_workspace.getObjectsByType(iddobjectname::RunPeriod);
   if (runPeriods.size() > 1){
     for(vector<WorkspaceObject>::iterator i = runPeriods.begin(),iend=runPeriods.end();i!=iend;++i)
     {
@@ -155,7 +156,7 @@ Model ReverseTranslator::translateWorkspace(const Workspace & workspace, Progres
 
   // look for site object in workspace and translate if found
   LOG(Trace,"Translating Site:Location object.");
-  vector<WorkspaceObject> site = m_workspace.getObjectsByType(IddObjectType::Site_Location);
+  vector<WorkspaceObject> site = m_workspace.getObjectsByType(iddobjectname::Site_Location);
   for(vector<WorkspaceObject>::iterator i = site.begin(),iend=site.end();i!=iend;++i)
   {
     translateAndMapWorkspaceObject(*i);
@@ -163,7 +164,7 @@ Model ReverseTranslator::translateWorkspace(const Workspace & workspace, Progres
 
   // look for simulation control object in workspace and translate if found
   LOG(Trace,"Translating SimulationControl object.");
-  vector<WorkspaceObject> simulationControl = m_workspace.getObjectsByType(IddObjectType::SimulationControl);
+  vector<WorkspaceObject> simulationControl = m_workspace.getObjectsByType(iddobjectname::SimulationControl);
   for(vector<WorkspaceObject>::iterator i = simulationControl.begin(),iend=simulationControl.end();i!=iend;++i)
   {
     translateAndMapWorkspaceObject(*i);
@@ -171,7 +172,7 @@ Model ReverseTranslator::translateWorkspace(const Workspace & workspace, Progres
 
   // loop over all of the air loops
   LOG(Trace,"Translating AirLoops.");
-  vector<WorkspaceObject> airLoops = m_workspace.getObjectsByType(IddObjectType::AirLoopHVAC);
+  vector<WorkspaceObject> airLoops = m_workspace.getObjectsByType(iddobjectname::AirLoopHVAC);
   for(vector<WorkspaceObject>::iterator it = airLoops.begin(),iend=airLoops.end();it!=iend;++it)
   {
     LOG(Trace,"Translating AirLoop '" << it->name().get() << "'.");
@@ -258,603 +259,599 @@ boost::optional<ModelObject> ReverseTranslator::translateAndMapWorkspaceObject(c
 
   switch(workspaceObject.iddObject().type().value())
   {
-  case openstudio::IddObjectType::AirLoopHVAC :
+  case openstudio::iddobjectvalue::AirLoopHVAC :
     {
       //modelObject = translateAirLoopHVAC(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::AirLoopHVAC_ControllerList :
+  case openstudio::iddobjectvalue::AirLoopHVAC_ControllerList :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::AirLoopHVAC_OutdoorAirSystem :
+  case openstudio::iddobjectvalue::AirLoopHVAC_OutdoorAirSystem :
     {
       //modelObject = translateAirLoopHVACOutdoorAirSystem(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::AirLoopHVAC_OutdoorAirSystem_EquipmentList :
+  case openstudio::iddobjectvalue::AirLoopHVAC_OutdoorAirSystem_EquipmentList :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::AirLoopHVAC_ReturnPath :
+  case openstudio::iddobjectvalue::AirLoopHVAC_ReturnPath :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::CoilSystem_Cooling_DX :
+  case openstudio::iddobjectvalue::CoilSystem_Cooling_DX :
     {
       //modelObject = translateCoilSystemCoolingDX(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::AirLoopHVAC_ZoneSplitter :
+  case openstudio::iddobjectvalue::AirLoopHVAC_ZoneSplitter :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::AirTerminal_SingleDuct_ConstantVolume_Reheat :
+  case openstudio::iddobjectvalue::AirTerminal_SingleDuct_ConstantVolume_Reheat :
     {
       modelObject = translateAirTerminalSingleDuctConstantVolumeReheat(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::AirTerminal_SingleDuct_Uncontrolled :
+  case openstudio::iddobjectvalue::AirTerminal_SingleDuct_Uncontrolled :
     {
       //modelObject = translateAirTerminalSingleDuctUncontrolled(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::AirTerminal_SingleDuct_VAV_NoReheat :
+  case openstudio::iddobjectvalue::AirTerminal_SingleDuct_VAV_NoReheat :
     {
       modelObject = translateAirTerminalSingleDuctVAVNoReheat(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::AirTerminal_SingleDuct_VAV_Reheat :
+  case openstudio::iddobjectvalue::AirTerminal_SingleDuct_VAV_Reheat :
     {
       //modelObject = translateAirTerminalSingleDuctVAVReheat(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::AvailabilityManagerAssignmentList :
+  case openstudio::iddobjectvalue::AvailabilityManagerAssignmentList :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::Branch :
+  case openstudio::iddobjectvalue::Branch :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::BranchList :
+  case openstudio::iddobjectvalue::BranchList :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::BuildingSurface_Detailed :
+  case openstudio::iddobjectvalue::BuildingSurface_Detailed :
     {
       modelObject = translateBuildingSurfaceDetailed(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::Building :
+  case openstudio::iddobjectvalue::Building :
     {
       modelObject = translateBuilding(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::Coil_Heating_Gas :
+  case openstudio::iddobjectvalue::Coil_Heating_Gas :
     {
       //modelObject = translateCoilHeatingGas(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::Coil_Cooling_DX_SingleSpeed :
+  case openstudio::iddobjectvalue::Coil_Cooling_DX_SingleSpeed :
     {
       //modelObject = translateCoilCoolingDXSingleSpeed(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::CommentOnly :
+  case openstudio::iddobjectvalue::ComponentCost_LineItem :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::ComponentCost_LineItem :
+  case openstudio::iddobjectvalue::Connector_Mixer :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::Connector_Mixer :
+  case openstudio::iddobjectvalue::Connector_Splitter :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::Connector_Splitter :
+  case openstudio::iddobjectvalue::ConnectorList :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::ConnectorList :
-    {
-      break; // no-op
-    }
-  case openstudio::IddObjectType::Construction :
+  case openstudio::iddobjectvalue::Construction :
     {
       modelObject = translateConstruction(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Controller_OutdoorAir :
+  case openstudio::iddobjectvalue::Controller_OutdoorAir :
     {
       //modelObject = translateControllerOutdoorAir(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::ConvergenceLimits :
+  case openstudio::iddobjectvalue::ConvergenceLimits :
     {
       modelObject = translateConvergenceLimits(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_Bicubic :
+  case openstudio::iddobjectvalue::Curve_Bicubic :
     {
       modelObject = translateCurveBicubic(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_Biquadratic :
+  case openstudio::iddobjectvalue::Curve_Biquadratic :
     {
       modelObject = translateCurveBiquadratic(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_Cubic :
+  case openstudio::iddobjectvalue::Curve_Cubic :
     {
       modelObject = translateCurveCubic(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_DoubleExponentialDecay :
+  case openstudio::iddobjectvalue::Curve_DoubleExponentialDecay :
     {
       modelObject = translateCurveDoubleExponentialDecay(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_ExponentialSkewNormal :
+  case openstudio::iddobjectvalue::Curve_ExponentialSkewNormal :
     {
       modelObject = translateCurveExponentialSkewNormal(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_FanPressureRise :
+  case openstudio::iddobjectvalue::Curve_FanPressureRise :
     {
       modelObject = translateCurveFanPressureRise(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_Functional_PressureDrop :
+  case openstudio::iddobjectvalue::Curve_Functional_PressureDrop :
     {
       modelObject = translateCurveFunctionalPressureDrop(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_Linear :
+  case openstudio::iddobjectvalue::Curve_Linear :
     {
       modelObject = translateCurveLinear(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_Quadratic :
+  case openstudio::iddobjectvalue::Curve_Quadratic :
     {
       modelObject = translateCurveQuadratic(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_QuadraticLinear :
+  case openstudio::iddobjectvalue::Curve_QuadraticLinear :
     {
       modelObject = translateCurveQuadraticLinear(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_Quartic :
+  case openstudio::iddobjectvalue::Curve_Quartic :
     {
       modelObject = translateCurveQuartic(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_RectangularHyperbola1 :
+  case openstudio::iddobjectvalue::Curve_RectangularHyperbola1 :
     {
       modelObject = translateCurveRectangularHyperbola1(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_RectangularHyperbola2 :
+  case openstudio::iddobjectvalue::Curve_RectangularHyperbola2 :
     {
       modelObject = translateCurveRectangularHyperbola2(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_Sigmoid :
+  case openstudio::iddobjectvalue::Curve_Sigmoid :
     {
       modelObject = translateCurveSigmoid(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Curve_Triquadratic :
+  case openstudio::iddobjectvalue::Curve_Triquadratic :
     {
       modelObject = translateCurveTriquadratic(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Daylighting_Controls :
+  case openstudio::iddobjectvalue::Daylighting_Controls :
     {
       modelObject = translateDaylightingControls(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::DesignSpecification_OutdoorAir :
+  case openstudio::iddobjectvalue::DesignSpecification_OutdoorAir :
     {
       modelObject = translateDesignSpecificationOutdoorAir(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::ElectricEquipment :
+  case openstudio::iddobjectvalue::ElectricEquipment :
     {
       modelObject = translateElectricEquipment(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::Exterior_Lights :
+  case openstudio::iddobjectvalue::Exterior_Lights :
     {
       //modelObject = translateExteriorLights(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::EvaporativeCooler_Direct_ResearchSpecial :
+  case openstudio::iddobjectvalue::EvaporativeCooler_Direct_ResearchSpecial :
     {
       //modelObject = translateEvaporativeCoolerDirectResearchSpecial(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::EvaporativeFluidCooler_SingleSpeed :
+  case openstudio::iddobjectvalue::EvaporativeFluidCooler_SingleSpeed :
     {
       modelObject = translateEvaporativeFluidCoolerSingleSpeed(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Fan_ConstantVolume :
+  case openstudio::iddobjectvalue::Fan_ConstantVolume :
     {
       //modelObject = translateFanConstantVolume(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::FenestrationSurface_Detailed :
+  case openstudio::iddobjectvalue::FenestrationSurface_Detailed :
     {
       modelObject = translateFenestrationSurfaceDetailed(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::GlobalGeometryRules :
+  case openstudio::iddobjectvalue::GlobalGeometryRules :
     {
       // added by geometry translator, do not add to untranslated objects
       addToUntranslated = false;
       break; // no-op
     }
-  case openstudio::IddObjectType::GasEquipment :
+  case openstudio::iddobjectvalue::GasEquipment :
     {
       modelObject = translateGasEquipment(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::GroundHeatExchanger_Vertical :
+  case openstudio::iddobjectvalue::GroundHeatExchanger_Vertical :
     {
       //modelObject = translateGroundHeatExchangerVertical(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::HeatBalanceAlgorithm :
+  case openstudio::iddobjectvalue::HeatBalanceAlgorithm :
     {
       modelObject = translateHeatBalanceAlgorithm(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::HotWaterEquipment :
+  case openstudio::iddobjectvalue::HotWaterEquipment :
     {
       modelObject = translateHotWaterEquipment(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::HVACTemplate_Thermostat :
+  case openstudio::iddobjectvalue::HVACTemplate_Thermostat :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::InternalMass :
+  case openstudio::iddobjectvalue::InternalMass :
     {
       modelObject = translateInternalMass(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::Lights :
+  case openstudio::iddobjectvalue::Lights :
     {
       modelObject = translateLights(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::Material :
+  case openstudio::iddobjectvalue::Material :
     {
       modelObject = translateMaterial(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Material_AirGap :
+  case openstudio::iddobjectvalue::Material_AirGap :
     {
       modelObject = translateMaterialAirGap(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Material_NoMass :
+  case openstudio::iddobjectvalue::Material_NoMass :
     {
       modelObject = translateMaterialNoMass(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Meter_Custom :
+  case openstudio::iddobjectvalue::Meter_Custom :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::Meter_CustomDecrement :
+  case openstudio::iddobjectvalue::Meter_CustomDecrement :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::OtherEquipment :
+  case openstudio::iddobjectvalue::OtherEquipment :
     {
       modelObject = translateOtherEquipment(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::OutdoorAir_Mixer :
+  case openstudio::iddobjectvalue::OutdoorAir_Mixer :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::OutdoorAir_Node :
+  case openstudio::iddobjectvalue::OutdoorAir_Node :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::OutdoorAir_NodeList :
+  case openstudio::iddobjectvalue::OutdoorAir_NodeList :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::Output_IlluminanceMap :
+  case openstudio::iddobjectvalue::Output_IlluminanceMap :
     {
       modelObject = translateOutputIlluminanceMap(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Output_Meter :
+  case openstudio::iddobjectvalue::Output_Meter :
     {
       modelObject = translateOutputMeter(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Output_Meter_Cumulative :
+  case openstudio::iddobjectvalue::Output_Meter_Cumulative :
     {
       modelObject = translateOutputMeterCumulative(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Output_Meter_Cumulative_MeterFileOnly :
+  case openstudio::iddobjectvalue::Output_Meter_Cumulative_MeterFileOnly :
     {
       modelObject = translateOutputMeterCumulativeMeterFileOnly(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Output_Meter_MeterFileOnly :
+  case openstudio::iddobjectvalue::Output_Meter_MeterFileOnly :
     {
       modelObject = translateOutputMeterMeterFileOnly(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Output_SQLite :
+  case openstudio::iddobjectvalue::Output_SQLite :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::Output_Table_Monthly :
+  case openstudio::iddobjectvalue::Output_Table_Monthly :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::Output_Table_SummaryReports :
+  case openstudio::iddobjectvalue::Output_Table_SummaryReports :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::Output_Variable :
+  case openstudio::iddobjectvalue::Output_Variable :
     {
       modelObject = translateOutputVariable(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::OutputControl_Table_Style :
+  case openstudio::iddobjectvalue::OutputControl_Table_Style :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::People :
+  case openstudio::iddobjectvalue::People :
     {
       modelObject = translatePeople(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Refrigeration_Case :
+  case openstudio::iddobjectvalue::Refrigeration_Case :
     {
       // modelObject = translateRefrigerationCase(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Refrigeration_Compressor :
+  case openstudio::iddobjectvalue::Refrigeration_Compressor :
     {
       // modelObject = translateRefrigerationCompressor(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::RunPeriod :
+  case openstudio::iddobjectvalue::RunPeriod :
     {
       modelObject = translateRunPeriod(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::RunPeriodControl_DaylightSavingTime :
+  case openstudio::iddobjectvalue::RunPeriodControl_DaylightSavingTime :
     {
       //modelObject = translateRunPeriodControlDaylightSavingTime(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::RunPeriodControl_SpecialDays :
+  case openstudio::iddobjectvalue::RunPeriodControl_SpecialDays :
     {
       //modelObject = translateRunPeriodControlSpecialDays(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Schedule_Compact :
+  case openstudio::iddobjectvalue::Schedule_Compact :
     {
       modelObject = translateScheduleCompact(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Schedule_Constant :
+  case openstudio::iddobjectvalue::Schedule_Constant :
     {
       modelObject = translateScheduleConstant(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Schedule_Day_Hourly :
+  case openstudio::iddobjectvalue::Schedule_Day_Hourly :
     {
       modelObject = translateScheduleDayHourly(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Schedule_Day_Interval :
+  case openstudio::iddobjectvalue::Schedule_Day_Interval :
     {
       modelObject = translateScheduleDayInterval(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::ScheduleTypeLimits :
+  case openstudio::iddobjectvalue::ScheduleTypeLimits :
     {
       modelObject = translateScheduleTypeLimits(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Schedule_Week_Daily :
+  case openstudio::iddobjectvalue::Schedule_Week_Daily :
     {
       modelObject = translateScheduleWeekDaily(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Schedule_Year :
+  case openstudio::iddobjectvalue::Schedule_Year :
     {
       modelObject = translateScheduleYear(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::SetpointManager_MixedAir :
+  case openstudio::iddobjectvalue::SetpointManager_MixedAir :
     {
       //modelObject = translateSetpointManagerMixedAir(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::SetpointManager_Scheduled :
+  case openstudio::iddobjectvalue::SetpointManager_Scheduled :
     {
       //modelObject = translateSetpointManagerScheduled(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::SetpointManager_SingleZone_Reheat :
+  case openstudio::iddobjectvalue::SetpointManager_SingleZone_Reheat :
     {
       //modelObject = translateSetpointManagerSingleZoneReheat(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Shading_Building_Detailed :
+  case openstudio::iddobjectvalue::Shading_Building_Detailed :
     {
       modelObject = translateShadingBuildingDetailed(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Shading_Site_Detailed :
+  case openstudio::iddobjectvalue::Shading_Site_Detailed :
     {
       modelObject = translateShadingSiteDetailed(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Shading_Zone_Detailed :
+  case openstudio::iddobjectvalue::Shading_Zone_Detailed :
     {
       modelObject = translateShadingZoneDetailed(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::ShadowCalculation :
+  case openstudio::iddobjectvalue::ShadowCalculation :
     {
       modelObject = translateShadowCalculation(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::SimulationControl :
+  case openstudio::iddobjectvalue::SimulationControl :
     {
       modelObject = translateSimulationControl(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::Site_Location :
+  case openstudio::iddobjectvalue::Site_Location :
     {
       modelObject = translateSiteLocation(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Site_GroundReflectance :
+  case openstudio::iddobjectvalue::Site_GroundReflectance :
     {
       //modelObject = translateSiteGroundReflectance(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Site_GroundTemperature_BuildingSurface :
+  case openstudio::iddobjectvalue::Site_GroundTemperature_BuildingSurface :
     {
       //modelObject = translateSiteGroundTemperatureBuildingSurface(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Site_WaterMainsTemperature :
+  case openstudio::iddobjectvalue::Site_WaterMainsTemperature :
     {
       //modelObject = translateSiteWaterMainsTemperature(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Sizing_Parameters :
+  case openstudio::iddobjectvalue::Sizing_Parameters :
     {
       modelObject = translateSizingParameters(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::SizingPeriod_DesignDay :
+  case openstudio::iddobjectvalue::SizingPeriod_DesignDay :
     {
       modelObject = translateSizingPeriodDesignDay(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::Sizing_System :
+  case openstudio::iddobjectvalue::Sizing_System :
     {
       //modelObject = translateSizingSystem(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::Sizing_Zone :
+  case openstudio::iddobjectvalue::Sizing_Zone :
     {
       //modelObject = translateSizingZone(workspaceObject );
       break;
     }
-  case openstudio::IddObjectType::SteamEquipment :
+  case openstudio::iddobjectvalue::SteamEquipment :
     {
       modelObject = translateSteamEquipment(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::SurfaceConvectionAlgorithm_Inside :
+  case openstudio::iddobjectvalue::SurfaceConvectionAlgorithm_Inside :
     {
       //modelObject = translateSurfaceConvectionAlgorithmInside(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::SurfaceConvectionAlgorithm_Outside :
+  case openstudio::iddobjectvalue::SurfaceConvectionAlgorithm_Outside :
     {
       //modelObject = translateSurfaceConvectionAlgorithmOutside(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::ThermostatSetpoint_DualSetpoint :
+  case openstudio::iddobjectvalue::ThermostatSetpoint_DualSetpoint :
     {
       modelObject = translateThermostatSetpointDualSetpoint(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Timestep :
+  case openstudio::iddobjectvalue::Timestep :
     {
       modelObject = translateTimestep(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::UtilityCost_Charge_Simple :
+  case openstudio::iddobjectvalue::UtilityCost_Charge_Simple :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::UtilityCost_Qualify :
+  case openstudio::iddobjectvalue::UtilityCost_Qualify :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::Version :
+  case openstudio::iddobjectvalue::Version :
    {
      modelObject = translateVersion(workspaceObject );
      break;
    }
-  case openstudio::IddObjectType::WindowMaterial_Gas:
+  case openstudio::iddobjectvalue::WindowMaterial_Gas:
     {
       modelObject = translateWindowMaterialGas(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::WindowMaterial_Glazing:
+  case openstudio::iddobjectvalue::WindowMaterial_Glazing:
     {
       modelObject = translateWindowMaterialGlazing(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::WindowMaterial_SimpleGlazingSystem:
+  case openstudio::iddobjectvalue::WindowMaterial_SimpleGlazingSystem:
     {
       modelObject = translateWindowMaterialSimpleGlazingSystem(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::Zone:
+  case openstudio::iddobjectvalue::Zone:
     {
       modelObject = translateZone(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::ZoneAirHeatBalanceAlgorithm:
+  case openstudio::iddobjectvalue::ZoneAirHeatBalanceAlgorithm:
     {
       //modelObject = translateZoneAirHeatBalanceAlgorithm(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::ZoneControl_Thermostat :
+  case openstudio::iddobjectvalue::ZoneControl_Thermostat :
     {
       break; // no-op
     }
-  case openstudio::IddObjectType::ZoneHVAC_EquipmentList :
+  case openstudio::iddobjectvalue::ZoneHVAC_EquipmentList :
     {
       //modelObject = translateZoneHVACEquipmentList(workspaceObject);
       break; 
     }
-  case openstudio::IddObjectType::ZoneHVAC_IdealLoadsAirSystem :
+  case openstudio::iddobjectvalue::ZoneHVAC_IdealLoadsAirSystem :
     {
       //modelObject = translateZoneHVACIdealLoadsAirSystem(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::ZoneInfiltration_DesignFlowRate :
+  case openstudio::iddobjectvalue::ZoneInfiltration_DesignFlowRate :
     {
       modelObject = translateZoneInfiltrationDesignFlowRate(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::ZoneInfiltration_EffectiveLeakageArea :
+  case openstudio::iddobjectvalue::ZoneInfiltration_EffectiveLeakageArea :
   {
       modelObject = translateZoneInfiltrationEffectiveLeakageArea(workspaceObject);
       break;
   }
-  case openstudio::IddObjectType::ZoneList:
+  case openstudio::iddobjectvalue::ZoneList:
     {
       modelObject = translateZone(workspaceObject);
       break;
     }
-  case openstudio::IddObjectType::ZoneVentilation_DesignFlowRate :
+  case openstudio::iddobjectvalue::ZoneVentilation_DesignFlowRate :
     {
       modelObject = translateZoneVentilationDesignFlowRate(workspaceObject);
       break;

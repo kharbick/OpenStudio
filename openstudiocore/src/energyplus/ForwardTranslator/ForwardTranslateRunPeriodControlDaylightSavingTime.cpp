@@ -32,7 +32,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateRunPeriodControlDaylightSavingTime( RunPeriodControlDaylightSavingTime & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::RunPeriodControl_DaylightSavingTime);
+  IdfObject idfObject( openstudio::iddobjectname::RunPeriodControl_DaylightSavingTime);
   
   boost::optional<std::string> s;
 

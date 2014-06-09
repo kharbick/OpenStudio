@@ -41,8 +41,8 @@ boost::optional<IdfObject> ForwardTranslator::translateCoolingTowerSingleSpeed( 
   OptionalDouble d;
   OptionalModelObject temp;
 
-  // Create a new IddObjectType::Fan_ConstantVolume
-  IdfObject idfObject(IddObjectType::CoolingTower_SingleSpeed);
+  // Create a new iddobjectname::Fan_ConstantVolume
+  IdfObject idfObject(iddobjectname::CoolingTower_SingleSpeed);
 
   m_idfObjects.push_back(idfObject);
 

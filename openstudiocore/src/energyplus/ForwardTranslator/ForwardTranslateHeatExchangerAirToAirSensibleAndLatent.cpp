@@ -40,7 +40,7 @@ boost::optional<IdfObject> ForwardTranslator::translateHeatExchangerAirToAirSens
   OptionalDouble d;
   OptionalModelObject temp;
 
-  IdfObject idfObject(IddObjectType::HeatExchanger_AirToAir_SensibleAndLatent);
+  IdfObject idfObject(iddobjectname::HeatExchanger_AirToAir_SensibleAndLatent);
 
   m_idfObjects.push_back(idfObject);
 

@@ -32,7 +32,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateThermostatSetpointDualSetpoint( ThermostatSetpointDualSetpoint& modelObject )
 {
-  IdfObject tsds(openstudio::IddObjectType::ThermostatSetpoint_DualSetpoint);
+  IdfObject tsds(openstudio::iddobjectname::ThermostatSetpoint_DualSetpoint);
 
   m_idfObjects.push_back(tsds);
 

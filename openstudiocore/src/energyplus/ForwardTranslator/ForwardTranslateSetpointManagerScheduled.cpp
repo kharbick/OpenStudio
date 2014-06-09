@@ -37,7 +37,7 @@ boost::optional<IdfObject> ForwardTranslator::translateSetpointManagerScheduled(
   boost::optional<Node> node;
   std::string s;
 
-  IdfObject idfObject(IddObjectType::SetpointManager_Scheduled);
+  IdfObject idfObject(iddobjectname::SetpointManager_Scheduled);
 
   // Name
   s = modelObject.name().get();

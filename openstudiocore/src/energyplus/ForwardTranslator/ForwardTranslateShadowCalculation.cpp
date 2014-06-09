@@ -30,7 +30,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateShadowCalculation( ShadowCalculation & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::ShadowCalculation);
+  IdfObject idfObject( openstudio::iddobjectname::ShadowCalculation);
 
   idfObject.setString(ShadowCalculationFields::CalculationMethod,"AverageOverDaysInFrequency");
 

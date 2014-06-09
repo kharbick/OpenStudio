@@ -30,7 +30,7 @@ namespace energyplus {
 
 boost::optional<IdfObject> ForwardTranslator::translateInsideSurfaceConvectionAlgorithm( InsideSurfaceConvectionAlgorithm & modelObject )
 {
-  IdfObject idfObject( openstudio::IddObjectType::SurfaceConvectionAlgorithm_Inside);
+  IdfObject idfObject( openstudio::iddobjectname::SurfaceConvectionAlgorithm_Inside);
 
   idfObject.setString(SurfaceConvectionAlgorithm_InsideFields::Algorithm,modelObject.algorithm());
 

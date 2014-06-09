@@ -37,7 +37,7 @@ namespace energyplus {
 
 OptionalModelObject ReverseTranslator::translateCoilSystemCoolingDX( const WorkspaceObject & workspaceObject )
 {
-  if( workspaceObject.iddObject().type() != IddObjectType::CoilSystem_Cooling_DX )
+  if( workspaceObject.iddObject().type() != iddobjectname::CoilSystem_Cooling_DX )
   {
      LOG(Error, "WorkspaceObject is not IddObjectType: CoilSystem:Cooling:DX");
      return boost::none;

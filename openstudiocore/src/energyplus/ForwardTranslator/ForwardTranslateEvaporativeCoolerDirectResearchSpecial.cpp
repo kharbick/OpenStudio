@@ -41,7 +41,7 @@ boost::optional<IdfObject> ForwardTranslator::translateEvaporativeCoolerDirectRe
   OptionalModelObject temp;
   double value;
 
-  IdfObject idfObject(IddObjectType::EvaporativeCooler_Direct_ResearchSpecial);
+  IdfObject idfObject(iddobjectname::EvaporativeCooler_Direct_ResearchSpecial);
 
   m_idfObjects.push_back(idfObject);
 
