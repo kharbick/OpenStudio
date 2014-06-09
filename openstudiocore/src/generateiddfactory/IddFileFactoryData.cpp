@@ -302,7 +302,8 @@ void IddFileFactoryData::parseFile(const path& outPath,
           //  << "} // openstudio" << std::endl
           //  << std::endl
           //  << "#endif // UTILITIES_IDD_" << upperObjectName << "_FIELDENUMS_HXX" << std::endl;
-          ////outFiles.finalizeIddFactoryOutFile(*fieldEnumHxx);
+          //outFiles.finalizeIddFactoryOutFile(*fieldEnumHxx);
+          fieldEnumHxx->tempFile.close();
 
           // add to aggregate headers
           outFiles.iddFieldEnumsHxx.tempFile

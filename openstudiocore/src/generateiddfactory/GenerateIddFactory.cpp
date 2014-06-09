@@ -319,6 +319,7 @@ void completeOutFiles(const IddFileFactoryDataVector& iddFiles,
       boost::shared_ptr<IddFactoryOutFile> fieldEnumHxx = idd.fieldEnumhxxFile(objectName.first);
       if( fieldEnumHxx )
       {
+        fieldEnumHxx->tempFile.open(fieldEnumHxx->tempPath,std::ios_base::app);
         fieldEnumHxx->tempFile
           << std::endl
           << "namespace iddobjectname {" << std::endl
