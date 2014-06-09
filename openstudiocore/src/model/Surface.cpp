@@ -124,7 +124,7 @@ namespace detail {
   std::vector<IddObjectType> Surface_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_SubSurface);
+    result.push_back(SubSurface::iddObjectType());
 
     return result;
   }
@@ -505,7 +505,7 @@ namespace detail {
   {
     SubSurfaceVector result;
     ModelObject object = getObject<ModelObject>();
-    WorkspaceObjectVector idfSubSurfaces = object.getSources(IddObjectType(iddobjectname::OS_SubSurface));
+    WorkspaceObjectVector idfSubSurfaces = object.getSources(SubSurface::iddObjectType());
     BOOST_FOREACH(const WorkspaceObject& idfSubSurface, idfSubSurfaces){
       OptionalSubSurface subSurface = this->model().getModelObject<SubSurface>(idfSubSurface.handle());
       if (subSurface){
@@ -690,7 +690,7 @@ namespace detail {
     if (test){
 
       // clean all other surfaces pointing to this (unless it is surface)
-      BOOST_FOREACH(WorkspaceObject wo, this->getSources(IddObjectType::OS_Surface)){
+      BOOST_FOREACH(WorkspaceObject wo, this->getSources(Surface::iddObjectType())){
         if (wo.handle() == surface.handle()){
           continue;
         }
@@ -709,7 +709,7 @@ namespace detail {
 
       if (!isSameSurface){
         // clean all other surfaces pointing to surface (unless it is this)
-        BOOST_FOREACH(WorkspaceObject wo, surface.getSources(IddObjectType::OS_Surface)){
+        BOOST_FOREACH(WorkspaceObject wo, surface.getSources(Surface::iddObjectType())){
           if (wo.handle() == this->handle()){
             continue;
           }
@@ -780,7 +780,7 @@ namespace detail {
     }
 
     // clean all other surfaces pointing to this
-    BOOST_FOREACH(WorkspaceObject wo, this->getSources(IddObjectType::OS_Surface)){
+    BOOST_FOREACH(WorkspaceObject wo, this->getSources(Surface::iddObjectType())){
 
       Surface otherSurface = wo.cast<Surface>();
       test = otherSurface.setString(OS_SurfaceFields::OutsideBoundaryConditionObject, "");

@@ -37,6 +37,8 @@
 #include <model/CoilHeatingGas_Impl.hpp>
 #include <model/CoilHeatingWater.hpp>
 #include <model/CoilHeatingWater_Impl.hpp>
+#include <model/FanOnOff.hpp>
+#include <model/FanOnOff_Impl.hpp>
 #include <model/Model.hpp>
 #include <model/Model_Impl.hpp>
 
@@ -507,7 +509,7 @@ namespace detail {
 
   bool ZoneHVACWaterToAirHeatPump_Impl::setSupplyAirFan(HVACComponent& fansOnOff) {
     bool isAllowedType = false;
-    if( fansOnOff.iddObjectType() == IddObjectType::OS_Fan_OnOff)
+    if( fansOnOff.iddObjectType() == FanOnOff::iddObjectType())
     {
       isAllowedType = true;
     }
@@ -523,7 +525,7 @@ namespace detail {
   {
     bool isAllowedType = false;
 
-    if( heatingCoilsWaterToAirHP.iddObjectType() == IddObjectType::OS_Coil_Heating_WaterToAirHeatPump_EquationFit )
+    if( heatingCoilsWaterToAirHP.iddObjectType() == CoilHeatingWaterToAirHeatPumpEquationFit::iddObjectType() )
     {
       isAllowedType = true;
     }
@@ -538,7 +540,7 @@ namespace detail {
   bool ZoneHVACWaterToAirHeatPump_Impl::setCoolingCoil(HVACComponent& coolingCoilsWaterToAirHP) {
     bool isAllowedType = false;
 
-    if( coolingCoilsWaterToAirHP.iddObjectType() == IddObjectType::OS_Coil_Cooling_WaterToAirHeatPump_EquationFit )
+    if( coolingCoilsWaterToAirHP.iddObjectType() == CoilCoolingWaterToAirHeatPumpEquationFit::iddObjectType() )
     {
       isAllowedType = true;
     }

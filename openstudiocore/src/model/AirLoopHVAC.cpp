@@ -275,7 +275,7 @@ namespace detail {
     ModelObjectVector modelObjects;
     modelObjects = supplyComponents( this->supplyInletNode(),
                                      this->supplyOutletNodes().front(),
-                                     openstudio::IddObjectType::OS_AirLoopHVAC_OutdoorAirSystem );
+                                     AirLoopHVACOutdoorAirSystem::iddObjectType() );
     if( modelObjects.size() == 1 )
     {
       if( OptionalAirLoopHVACOutdoorAirSystem oaSystem
@@ -551,14 +551,14 @@ namespace detail {
 
   AirLoopHVACZoneMixer AirLoopHVAC_Impl::zoneMixer()
   {
-    std::vector<AirLoopHVACZoneMixer> mixers = subsetCastVector<AirLoopHVACZoneMixer>(demandComponents( IddObjectType::OS_AirLoopHVAC_ZoneMixer ));
+    std::vector<AirLoopHVACZoneMixer> mixers = subsetCastVector<AirLoopHVACZoneMixer>(demandComponents( AirLoopHVACZoneMixer::iddObjectType() ));
     OS_ASSERT(! mixers.empty());
     return mixers.front();
   }
 
   AirLoopHVACZoneSplitter AirLoopHVAC_Impl::zoneSplitter()
   {
-    std::vector<AirLoopHVACZoneSplitter> splitters = subsetCastVector<AirLoopHVACZoneSplitter>(demandComponents( IddObjectType::OS_AirLoopHVAC_ZoneSplitter ));
+    std::vector<AirLoopHVACZoneSplitter> splitters = subsetCastVector<AirLoopHVACZoneSplitter>(demandComponents( AirLoopHVACZoneSplitter::iddObjectType() ));
     OS_ASSERT(! splitters.empty());
     return splitters.front();
   }
@@ -805,7 +805,7 @@ namespace detail {
 
   std::vector<ThermalZone> AirLoopHVAC_Impl::thermalZones()
   {
-    std::vector<ModelObject> objects = demandComponents(IddObjectType::OS_ThermalZone);
+    std::vector<ModelObject> objects = demandComponents(ThermalZone::iddObjectType());
     //std::vector<ModelObject> v = this->demandComponents( IddObjectType::OS_AirLoopHVAC_ZoneSplitter );
 
     std::vector<ThermalZone> result;

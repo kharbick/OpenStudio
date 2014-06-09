@@ -21,6 +21,7 @@
 #include <model/WeatherFileConditionType_Impl.hpp>
 #include <model/Site.hpp>
 #include <model/Site_Impl.hpp>
+#include <utilities/idd/OS_SizingPeriod_WeatherFileConditionType_FieldEnums.hxx>
 
 #include <utilities/core/Assert.hpp>
 

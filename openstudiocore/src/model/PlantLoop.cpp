@@ -437,22 +437,22 @@ bool PlantLoop_Impl::isDemandBranchEmpty()
 
 Mixer PlantLoop_Impl::supplyMixer()
 {
-  return supplyComponents( IddObjectType::OS_Connector_Mixer ).front().cast<Mixer>();
+  return supplyComponents( ConnectorMixer::iddObjectType() ).front().cast<Mixer>();
 }
 
 Splitter PlantLoop_Impl::supplySplitter()
 {
-  return supplyComponents( IddObjectType::OS_Connector_Splitter ).front().cast<Splitter>();
+  return supplyComponents( ConnectorSplitter::iddObjectType() ).front().cast<Splitter>();
 }
 
 Mixer PlantLoop_Impl::demandMixer()
 {
-  return demandComponents( IddObjectType::OS_Connector_Mixer ).front().cast<ConnectorMixer>();
+  return demandComponents( ConnectorMixer::iddObjectType() ).front().cast<ConnectorMixer>();
 }
 
 Splitter PlantLoop_Impl::demandSplitter()
 {
-  return demandComponents( IddObjectType::OS_Connector_Splitter ).front().cast<ConnectorSplitter>();
+  return demandComponents( ConnectorSplitter::iddObjectType() ).front().cast<ConnectorSplitter>();
 }
 
 double PlantLoop_Impl::maximumLoopTemperature()

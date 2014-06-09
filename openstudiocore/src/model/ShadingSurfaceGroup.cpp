@@ -113,7 +113,7 @@ namespace detail {
   std::vector<IddObjectType> ShadingSurfaceGroup_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_ShadingSurface);
+    result.push_back(ShadingSurface::iddObjectType());
     return result;
   }
 

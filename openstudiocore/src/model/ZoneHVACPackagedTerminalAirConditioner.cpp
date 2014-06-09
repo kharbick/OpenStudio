@@ -26,6 +26,16 @@
 #include <model/HVACComponent_Impl.hpp>
 #include <model/CoilHeatingWater.hpp>
 #include <model/CoilHeatingWater_Impl.hpp>
+#include <model/CoilHeatingGas.hpp>
+#include <model/CoilHeatingGas_Impl.hpp>
+#include <model/CoilHeatingElectric.hpp>
+#include <model/CoilHeatingElectric_Impl.hpp>
+#include <model/CoilCoolingDXSingleSpeed.hpp>
+#include <model/CoilCoolingDXSingleSpeed_Impl.hpp>
+#include <model/FanConstantVolume.hpp>
+#include <model/FanConstantVolume_Impl.hpp>
+#include <model/FanOnOff.hpp>
+#include <model/FanOnOff_Impl.hpp>
 #include <model/Model.hpp>
 #include <model/Model_Impl.hpp>
 #include <utilities/idd/IddFactory.hxx>
@@ -412,11 +422,11 @@ namespace detail {
   {
     bool isAllowedType = false;
 
-    if( fan.iddObjectType() == IddObjectType::OS_Fan_ConstantVolume )
+    if( fan.iddObjectType() == FanConstantVolume::iddObjectType() )
     {
       isAllowedType = true;
     }
-    else if( fan.iddObjectType() == IddObjectType::OS_Fan_OnOff )
+    else if( fan.iddObjectType() == FanOnOff::iddObjectType() )
     {
       isAllowedType = true;
     }
@@ -431,15 +441,15 @@ namespace detail {
   {
     bool isAllowedType = false;
 
-    if( heatingCoil.iddObjectType() == IddObjectType::OS_Coil_Heating_Gas )
+    if( heatingCoil.iddObjectType() == CoilHeatingGas::iddObjectType() )
     {
       isAllowedType = true;
     }
-    else if( heatingCoil.iddObjectType() == IddObjectType::OS_Coil_Heating_Electric )
+    else if( heatingCoil.iddObjectType() == CoilHeatingElectric::iddObjectType() )
     {
       isAllowedType = true;
     }
-    else if( heatingCoil.iddObjectType() == IddObjectType::OS_Coil_Heating_Water )
+    else if( heatingCoil.iddObjectType() == CoilHeatingWater::iddObjectType() )
     {
       isAllowedType = true;
     }
@@ -454,7 +464,7 @@ namespace detail {
   {
     bool isAllowedType = false;
 
-    if( coolingCoil.iddObjectType() == IddObjectType::OS_Coil_Cooling_DX_SingleSpeed )
+    if( coolingCoil.iddObjectType() == CoilCoolingDXSingleSpeed::iddObjectType() )
     {
       isAllowedType = true;
     }

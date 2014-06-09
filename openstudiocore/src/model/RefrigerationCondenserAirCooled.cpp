@@ -90,7 +90,7 @@ namespace detail {
   std::vector<IddObjectType> RefrigerationCondenserAirCooled_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_Curve_Linear);
+    result.push_back(CurveLinear::iddObjectType());
     return result;
   }
 

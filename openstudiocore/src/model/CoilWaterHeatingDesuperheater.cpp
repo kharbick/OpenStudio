@@ -123,7 +123,7 @@ namespace detail {
   std::vector<IddObjectType> CoilWaterHeatingDesuperheater_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_Curve_Biquadratic);
+    result.push_back(CurveBiquadratic::iddObjectType());
     return result;
   }
 
@@ -181,7 +181,7 @@ namespace detail {
   bool CoilWaterHeatingDesuperheater_Impl::addToHeatRejectionTarget(const ModelObject& heatRejectionTarget)
   {
     bool validChoice = false;
-    if( heatRejectionTarget.iddObjectType() == openstudio::IddObjectType::OS_WaterHeater_Mixed )
+    if( heatRejectionTarget.iddObjectType() == WaterHeaterMixed::iddObjectType() )
     {
       validChoice = true;
     }

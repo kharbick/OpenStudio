@@ -673,7 +673,7 @@ namespace detail {
     bool test = setString(OS_SubSurfaceFields::OutsideBoundaryConditionObject, "");
     OS_ASSERT(test);
 
-    BOOST_FOREACH(WorkspaceObject wo, this->getSources(IddObjectType::OS_SubSurface)){
+    BOOST_FOREACH(WorkspaceObject wo, this->getSources(SubSurface::iddObjectType())){
       test = wo.setString(OS_SubSurfaceFields::OutsideBoundaryConditionObject, "");
       OS_ASSERT(test);
     }

@@ -27,10 +27,18 @@
 #include <model/ScheduleTypeRegistry.hpp>
 #include <model/HVACComponent.hpp>
 #include <model/HVACComponent_Impl.hpp>
+#include <model/FanOnOff.hpp>
+#include <model/FanOnOff_Impl.hpp>
+#include <model/FanConstantVolume.hpp>
+#include <model/FanConstantVolume_Impl.hpp>
+#include <model/FanVariableVolume.hpp>
+#include <model/FanVariableVolume_Impl.hpp>
 #include <model/CoilHeatingWater.hpp>
 #include <model/CoilHeatingWater_Impl.hpp>
 #include <model/CoilCoolingWater.hpp>
 #include <model/CoilCoolingWater_Impl.hpp>
+#include <model/FanVariableVolume.hpp>
+#include <model/FanVariableVolume_Impl.hpp>
 #include <model/Model.hpp>
 #include <model/Model_Impl.hpp>
 #include <utilities/idd/IddFactory.hxx>
@@ -533,21 +541,21 @@ namespace detail {
 
     if( istringEqual(capacityControlMethod(),"ConstantFanVariableFlow"))
     {
-      if( fan.iddObjectType() == IddObjectType::OS_Fan_ConstantVolume || fan.iddObjectType() == IddObjectType::OS_Fan_OnOff)
+      if( fan.iddObjectType() == FanConstantVolume::iddObjectType() || fan.iddObjectType() == FanOnOff::iddObjectType())
       {
         isAllowedType = true;
       }
     }
     else if( istringEqual(capacityControlMethod(),"CyclingFan"))
     {
-      if( fan.iddObjectType() == IddObjectType::OS_Fan_OnOff)
+      if( fan.iddObjectType() == FanOnOff::iddObjectType())
       {
         isAllowedType = true;
       }
     }
     else if( istringEqual(capacityControlMethod(),"VariableFanVariableFlow") || istringEqual(capacityControlMethod(),"VariableFanConstantFlow"))
     {
-      if( fan.iddObjectType() == IddObjectType::OS_Fan_VariableVolume)
+      if( fan.iddObjectType() == FanVariableVolume::iddObjectType())
       {
         isAllowedType = true;
       }
@@ -565,7 +573,7 @@ namespace detail {
   {
     bool isAllowedType = false;
 
-    if( coolingCoil.iddObjectType() == IddObjectType::OS_Coil_Cooling_Water )
+    if( coolingCoil.iddObjectType() == CoilCoolingWater::iddObjectType() )
     {
       isAllowedType = true;
     }
@@ -649,7 +657,7 @@ namespace detail {
   {
     bool isAllowedType = false;
 
-    if( heatingCoil.iddObjectType() == IddObjectType::OS_Coil_Heating_Water )
+    if( heatingCoil.iddObjectType() == CoilHeatingWater::iddObjectType() )
     {
       isAllowedType = true;
     }
@@ -947,17 +955,17 @@ ZoneHVACFourPipeFanCoil::ZoneHVACFourPipeFanCoil(const Model& model,
                   << availabilitySchedule.briefDescription() << ".");
   }
 
-  if ( supplyAirFan.iddObjectType() == IddObjectType::OS_Fan_ConstantVolume)
+  if ( supplyAirFan.iddObjectType() == FanConstantVolume::iddObjectType())
   {
     setCapacityControlMethod("ConstantFanVariableFlow");
   }
 
-  else if ( supplyAirFan.iddObjectType() == IddObjectType::OS_Fan_OnOff)
+  else if ( supplyAirFan.iddObjectType() == FanOnOff::iddObjectType())
   {
     setCapacityControlMethod("CyclingFan");
   }
 
-  else if ( supplyAirFan.iddObjectType() == IddObjectType::OS_Fan_VariableVolume)
+  else if ( supplyAirFan.iddObjectType() == FanVariableVolume::iddObjectType())
   {
     setCapacityControlMethod("VariableFanVariableFlow");
   }

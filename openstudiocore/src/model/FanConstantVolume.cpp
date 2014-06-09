@@ -19,6 +19,8 @@
 
 #include <model/FanConstantVolume.hpp>
 #include <model/FanConstantVolume_Impl.hpp>
+#include <model/FanVariableVolume.hpp>
+#include <model/FanVariableVolume_Impl.hpp>
 #include <model/AirLoopHVAC.hpp>
 #include <model/AirLoopHVAC_Impl.hpp>
 #include <model/ZoneHVACComponent.hpp>
@@ -195,8 +197,8 @@ namespace detail {
       if( airLoop->supplyComponent(node.handle()) )
       {
         std::vector<ModelObject> allFans;
-        std::vector<ModelObject> constantFans = airLoop->supplyComponents(IddObjectType::OS_Fan_ConstantVolume);
-        std::vector<ModelObject> variableFans = airLoop->supplyComponents(IddObjectType::OS_Fan_VariableVolume);
+        std::vector<ModelObject> constantFans = airLoop->supplyComponents(FanConstantVolume::iddObjectType());
+        std::vector<ModelObject> variableFans = airLoop->supplyComponents(FanVariableVolume::iddObjectType());
         allFans = constantFans;
         allFans.insert(allFans.begin(),variableFans.begin(),variableFans.end());
 

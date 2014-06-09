@@ -129,9 +129,9 @@ namespace detail {
   std::vector<IddObjectType> Building_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_Space);
-    result.push_back(IddObjectType::OS_ShadingSurfaceGroup);
-    result.push_back(IddObjectType::OS_ThermalZone);
+    result.push_back(Space::iddObjectType());
+    result.push_back(ShadingSurfaceGroup::iddObjectType());
+    result.push_back(ThermalZone::iddObjectType());
     return result;
   }
 

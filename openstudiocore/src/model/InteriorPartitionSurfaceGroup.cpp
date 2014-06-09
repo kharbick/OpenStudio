@@ -90,7 +90,7 @@ namespace detail {
   std::vector<IddObjectType> InteriorPartitionSurfaceGroup_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_InteriorPartitionSurface);
+    result.push_back(InteriorPartitionSurface::iddObjectType());
     return result;
   }
 

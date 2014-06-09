@@ -245,19 +245,19 @@ namespace detail {
   std::vector<IddObjectType> Space_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_ShadingSurfaceGroup);
-    result.push_back(IddObjectType::OS_InteriorPartitionSurfaceGroup);
-    result.push_back(IddObjectType::OS_Surface);
-    result.push_back(IddObjectType::OS_Lights);
-    result.push_back(IddObjectType::OS_Luminaire);
-    result.push_back(IddObjectType::OS_People);
-    result.push_back(IddObjectType::OS_ElectricEquipment);
-    result.push_back(IddObjectType::OS_GasEquipment);
-    result.push_back(IddObjectType::OS_HotWaterEquipment);
-    result.push_back(IddObjectType::OS_Daylighting_Control);
-    result.push_back(IddObjectType::OS_IlluminanceMap);
-    result.push_back(IddObjectType::OS_SpaceInfiltration_DesignFlowRate);
-    result.push_back(IddObjectType::OS_SpaceInfiltration_EffectiveLeakageArea);
+    result.push_back(ShadingSurfaceGroup::iddObjectType());
+    result.push_back(InteriorPartitionSurfaceGroup::iddObjectType());
+    result.push_back(Surface::iddObjectType());
+    result.push_back(Lights::iddObjectType());
+    result.push_back(Luminaire::iddObjectType());
+    result.push_back(People::iddObjectType());
+    result.push_back(ElectricEquipment::iddObjectType());
+    result.push_back(GasEquipment::iddObjectType());
+    result.push_back(HotWaterEquipment::iddObjectType());
+    result.push_back(DaylightingControl::iddObjectType());
+    result.push_back(IlluminanceMap::iddObjectType());
+    result.push_back(SpaceInfiltrationDesignFlowRate::iddObjectType());
+    result.push_back(SpaceInfiltrationEffectiveLeakageArea::iddObjectType());
     return result;
   }
 

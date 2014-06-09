@@ -21,6 +21,12 @@
 #include <model/AirTerminalSingleDuctVAVReheat_Impl.hpp>
 #include <model/AirLoopHVAC.hpp>
 #include <model/AirLoopHVAC_Impl.hpp>
+#include <model/CoilHeatingGas.hpp>
+#include <model/CoilHeatingGas_Impl.hpp>
+#include <model/CoilHeatingElectric.hpp>
+#include <model/CoilHeatingElectric_Impl.hpp>
+#include <model/CoilHeatingWater.hpp>
+#include <model/CoilHeatingWater_Impl.hpp>
 #include <model/Node.hpp>
 #include <model/Node_Impl.hpp>
 #include <model/PortList.hpp>
@@ -532,32 +538,24 @@ namespace detail{
   {
     bool result = false;
 
-    switch(coil.iddObject().type().value())
+    IddObjectType type = coil.iddObjectType();
+    if( type == CoilHeatingGas::iddObjectType() )
     {
-    case openstudio::IddObjectType::OS_Coil_Heating_Gas :
-      {
-        result = true;
+      result = true;
+    }
+    else if( type == CoilHeatingWater::iddObjectType() )
+    {
+      result = true;
+    }
+    else if( type == CoilHeatingElectric::iddObjectType() )
+    {
+      result = true;
+    }
+    else
+    {
+      LOG(Warn, "Unsupported or invalid IddObjectType: '" << coil.iddObject().name() << "'");
 
-        break;
-      }
-    case openstudio::IddObjectType::OS_Coil_Heating_Water :
-      {
-        result = true;
-
-        break;
-      }
-    case openstudio::IddObjectType::OS_Coil_Heating_Electric :
-      {
-        result = true;
-
-        break;
-      }
-    default:
-      {
-        LOG(Warn, "Unsupported or invalid IddObjectType: '" << coil.iddObject().name() << "'");
-
-        result = false;
-      }
+      result = false;
     }
 
     if( result )

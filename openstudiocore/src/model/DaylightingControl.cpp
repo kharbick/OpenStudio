@@ -371,7 +371,7 @@ namespace detail {
   bool DaylightingControl_Impl::isPrimaryDaylightingControl() const
   {
     bool result = false;
-    std::vector<WorkspaceObject> workspaceObjects = this->getSources(IddObjectType::OS_ThermalZone);
+    std::vector<WorkspaceObject> workspaceObjects = this->getSources(ThermalZone::iddObjectType());
     if (!workspaceObjects.empty()){
       OS_ASSERT(workspaceObjects.size() == 1);
       boost::optional<DaylightingControl> control = workspaceObjects[0].cast<ThermalZone>().primaryDaylightingControl();
@@ -385,7 +385,7 @@ namespace detail {
   bool DaylightingControl_Impl::isSecondaryDaylightingControl() const
   {
     bool result = false;
-    std::vector<WorkspaceObject> workspaceObjects = this->getSources(IddObjectType::OS_ThermalZone);
+    std::vector<WorkspaceObject> workspaceObjects = this->getSources(ThermalZone::iddObjectType());
     if (!workspaceObjects.empty()){
       OS_ASSERT(workspaceObjects.size() == 1);
       boost::optional<DaylightingControl> control = workspaceObjects[0].cast<ThermalZone>().secondaryDaylightingControl();

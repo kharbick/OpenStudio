@@ -153,7 +153,7 @@ namespace detail {
   std::vector<IddObjectType> ThermalZone_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_ThermostatSetpoint_DualSetpoint);
+    result.push_back(ThermostatSetpointDualSetpoint::iddObjectType());
     return result;
   }
 

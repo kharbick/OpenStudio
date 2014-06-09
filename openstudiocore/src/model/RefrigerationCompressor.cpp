@@ -95,7 +95,7 @@ namespace detail {
   std::vector<IddObjectType> RefrigerationCompressor_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_Curve_Bicubic);
+    result.push_back(CurveBicubic::iddObjectType());
     return result;
   }
 

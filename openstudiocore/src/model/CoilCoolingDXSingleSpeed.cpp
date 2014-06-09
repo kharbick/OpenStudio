@@ -101,9 +101,9 @@ namespace detail{
   std::vector<IddObjectType> CoilCoolingDXSingleSpeed_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_Curve_Biquadratic);
-    result.push_back(IddObjectType::OS_Curve_Quadratic);
-    result.push_back(IddObjectType::OS_Curve_Cubic);
+    result.push_back(CurveBiquadratic::iddObjectType());
+    result.push_back(CurveQuadratic::iddObjectType());
+    result.push_back(CurveCubic::iddObjectType());
     return result;
   }
 

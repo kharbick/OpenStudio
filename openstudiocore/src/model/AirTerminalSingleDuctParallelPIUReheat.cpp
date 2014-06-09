@@ -21,6 +21,14 @@
 #include <model/AirTerminalSingleDuctParallelPIUReheat_Impl.hpp>
 #include <model/Schedule.hpp>
 #include <model/Schedule_Impl.hpp>
+#include <model/CoilHeatingElectric.hpp>
+#include <model/CoilHeatingElectric_Impl.hpp>
+#include <model/CoilHeatingGas.hpp>
+#include <model/CoilHeatingGas_Impl.hpp>
+#include <model/CoilHeatingWater.hpp>
+#include <model/CoilHeatingWater_Impl.hpp>
+#include <model/FanConstantVolume.hpp>
+#include <model/FanConstantVolume_Impl.hpp>
 #include <model/Node.hpp>
 #include <model/Node_Impl.hpp>
 #include <model/PortList.hpp>
@@ -318,15 +326,15 @@ namespace detail {
   {
     bool isTypeCorrect = false;
 
-    if( hvacComponent.iddObjectType() == IddObjectType::OS_Coil_Heating_Electric )
+    if( hvacComponent.iddObjectType() == CoilHeatingElectric::iddObjectType() )
     {
       isTypeCorrect = true;
     }
-    else if( hvacComponent.iddObjectType() == IddObjectType::OS_Coil_Heating_Gas )
+    else if( hvacComponent.iddObjectType() == CoilHeatingGas::iddObjectType() )
     {
       isTypeCorrect = true;
     }
-    else if( hvacComponent.iddObjectType() == IddObjectType::OS_Coil_Heating_Water )
+    else if( hvacComponent.iddObjectType() == CoilHeatingWater::iddObjectType() )
     {
       isTypeCorrect = true;
     }
@@ -341,7 +349,7 @@ namespace detail {
   {
     bool isTypeCorrect = false;
 
-    if( hvacComponent.iddObjectType() == IddObjectType::OS_Fan_ConstantVolume )
+    if( hvacComponent.iddObjectType() == FanConstantVolume::iddObjectType() )
     {
       isTypeCorrect = true;
     }

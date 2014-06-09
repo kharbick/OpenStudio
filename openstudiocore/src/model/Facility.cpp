@@ -49,6 +49,8 @@
 #include <utilities/economics/Economics.hpp>
 #include <utilities/sql/SqlFile.hpp>
 
+#include <utilities/idd/OS_Facility_FieldEnums.hxx>
+
 #include <boost/foreach.hpp>
 
 using openstudio::Handle;
@@ -114,7 +116,7 @@ namespace detail {
   std::vector<IddObjectType> Facility_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_Building);
+    result.push_back(Building::iddObjectType());
     return result;
   }
 

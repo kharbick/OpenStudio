@@ -30,6 +30,10 @@
 #include <model/CurveCubic_Impl.hpp>
 #include <model/ScheduleTypeLimits.hpp>
 #include <model/ScheduleTypeRegistry.hpp>
+#include <model/CoolingTowerPerformanceCoolTools.hpp>
+#include <model/CoolingTowerPerformanceCoolTools_Impl.hpp>
+#include <model/CoolingTowerPerformanceYorkCalc.hpp>
+#include <model/CoolingTowerPerformanceYorkCalc_Impl.hpp>
 #include <utilities/idd/IddFactory.hxx>
 #include <utilities/idd/OS_CoolingTower_VariableSpeed_FieldEnums.hxx>
 #include <utilities/units/Unit.hpp>
@@ -94,9 +98,9 @@ namespace detail {
   std::vector<IddObjectType> CoolingTowerVariableSpeed_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_CoolingTowerPerformance_YorkCalc);
-    result.push_back(IddObjectType::OS_CoolingTowerPerformance_CoolTools);
-    result.push_back(IddObjectType::OS_Curve_Cubic);
+    result.push_back(CoolingTowerPerformanceYorkCalc::iddObjectType());
+    result.push_back(CoolingTowerPerformanceCoolTools::iddObjectType());
+    result.push_back(CurveCubic::iddObjectType());
     return result;
   }
 

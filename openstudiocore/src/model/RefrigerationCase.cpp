@@ -147,7 +147,7 @@ namespace detail {
   std::vector<IddObjectType> RefrigerationCase_Impl::allowableChildTypes() const
   {
     std::vector<IddObjectType> result;
-    result.push_back(IddObjectType::OS_Curve_Cubic);
+    result.push_back(CurveCubic::iddObjectType());
     return result;
   }
 

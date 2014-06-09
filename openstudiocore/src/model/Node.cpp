@@ -170,7 +170,7 @@ namespace detail{
     {
       ModelObjectVector modelObjectVector;
 
-      modelObjectVector = _airLoop->demandComponents(openstudio::IddObjectType::OS_ThermalZone);
+      modelObjectVector = _airLoop->demandComponents(ThermalZone::iddObjectType());
       if(modelObjectVector.size() > 0)
       {
         ModelObject mo = modelObjectVector.front();
@@ -254,7 +254,7 @@ namespace detail{
       ModelObjectVector modelObjectVector;
 
       // Get any OS_Fan_ConstantVolume fans
-      modelObjectVector = _airLoop->supplyComponents(openstudio::IddObjectType::OS_Fan_ConstantVolume);
+      modelObjectVector = _airLoop->supplyComponents(FanConstantVolume::iddObjectType());
 
       if(modelObjectVector.size() > 0)
       {
@@ -271,7 +271,7 @@ namespace detail{
       }
 
       // Get any OS_Fan_VairableVolume fans
-      modelObjectVector = _airLoop->supplyComponents(openstudio::IddObjectType::OS_Fan_VariableVolume);
+      modelObjectVector = _airLoop->supplyComponents(FanVariableVolume::iddObjectType());
 
       if(modelObjectVector.size() > 0)
       {

@@ -26,6 +26,18 @@
 #include <model/Model_Impl.hpp>
 #include <model/HVACComponent.hpp>
 #include <model/HVACComponent_Impl.hpp>
+#include <model/FanOnOff.hpp>
+#include <model/FanOnOff_Impl.hpp>
+#include <model/FanConstantVolume.hpp>
+#include <model/FanConstantVolume_Impl.hpp>
+#include <model/CoilCoolingDXSingleSpeed.hpp>
+#include <model/CoilCoolingDXSingleSpeed_Impl.hpp>
+#include <model/CoilHeatingDXSingleSpeed.hpp>
+#include <model/CoilHeatingDXSingleSpeed_Impl.hpp>
+#include <model/CoilHeatingGas.hpp>
+#include <model/CoilHeatingGas_Impl.hpp>
+#include <model/CoilHeatingElectric.hpp>
+#include <model/CoilHeatingElectric_Impl.hpp>
 
 #include <utilities/idd/IddFactory.hxx>
 #include <utilities/idd/OS_ZoneHVAC_PackagedTerminalHeatPump_FieldEnums.hxx>
@@ -467,11 +479,11 @@ namespace detail {
   {
     bool isAllowedType = false;
 
-    if( hvacComponent.iddObjectType() == IddObjectType::OS_Fan_ConstantVolume )
+    if( hvacComponent.iddObjectType() == FanConstantVolume::iddObjectType() )
     {
       isAllowedType = true;
     }
-    else if( hvacComponent.iddObjectType() == IddObjectType::OS_Fan_OnOff )
+    else if( hvacComponent.iddObjectType() == FanOnOff::iddObjectType() )
     {
       isAllowedType = true;
     }
@@ -486,7 +498,7 @@ namespace detail {
   {
     bool isAllowedType = false;
 
-    if( hvacComponent.iddObjectType() == IddObjectType::OS_Coil_Heating_DX_SingleSpeed )
+    if( hvacComponent.iddObjectType() == CoilHeatingDXSingleSpeed::iddObjectType() )
     {
       isAllowedType = true;
     }
@@ -521,7 +533,7 @@ namespace detail {
   {
     bool isAllowedType = false;
 
-    if( hvacComponent.iddObjectType() == IddObjectType::OS_Coil_Cooling_DX_SingleSpeed )
+    if( hvacComponent.iddObjectType() == CoilCoolingDXSingleSpeed::iddObjectType() )
     {
       isAllowedType = true;
     }
@@ -546,11 +558,11 @@ namespace detail {
   {
     bool isAllowedType = false;
 
-    if( hvacComponent.iddObjectType() == IddObjectType::OS_Coil_Heating_Gas )
+    if( hvacComponent.iddObjectType() == CoilHeatingGas::iddObjectType() )
     {
       isAllowedType = true;
     }
-    else if( hvacComponent.iddObjectType() == IddObjectType::OS_Coil_Heating_Electric )
+    else if( hvacComponent.iddObjectType() == CoilHeatingElectric::iddObjectType() )
     {
       isAllowedType = true;
     }
