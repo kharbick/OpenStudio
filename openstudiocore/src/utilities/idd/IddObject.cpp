@@ -858,4 +858,11 @@ std::vector<std::string> getIddKeyNames(const IddObject& object,unsigned index) 
   return result;
 }
 
+std::ostream &operator<<(std::ostream &stream, const IddObjectType & type)
+{
+  stream << type.valueName();
+
+  return stream;
+}
+
 } // openstudio
