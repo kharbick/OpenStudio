@@ -65,11 +65,11 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Building)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Building).size());
-  ASSERT_EQ(0u, workspace.getObjectsByType(IddObjectType::Site_Location).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::SimulationControl).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Building).size());
+  ASSERT_EQ(0u, workspace.getObjectsByType(iddobjectname::Site_Location).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::SimulationControl).size());
 
-  WorkspaceObject object = workspace.getObjectsByType(IddObjectType::Building)[0];
+  WorkspaceObject object = workspace.getObjectsByType(iddobjectname::Building)[0];
   ASSERT_TRUE(object.getString(BuildingFields::Name));
   EXPECT_EQ("Building", object.getString(BuildingFields::Name).get());
   EXPECT_TRUE(object.isEmpty(BuildingFields::NorthAxis));
@@ -91,11 +91,11 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Building2)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Building).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Site_Location).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::SimulationControl).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Building).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Site_Location).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::SimulationControl).size());
 
-  WorkspaceObject object = workspace.getObjectsByType(IddObjectType::Building)[0];
+  WorkspaceObject object = workspace.getObjectsByType(iddobjectname::Building)[0];
   ASSERT_TRUE(object.getString(BuildingFields::Name));
   EXPECT_EQ("Building", object.getString(BuildingFields::Name).get());
   EXPECT_TRUE(object.isEmpty(BuildingFields::NorthAxis));
@@ -127,11 +127,11 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Building3)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Building).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Site_Location).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::SimulationControl).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Building).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Site_Location).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::SimulationControl).size());
 
-  WorkspaceObject object = workspace.getObjectsByType(IddObjectType::Building)[0];
+  WorkspaceObject object = workspace.getObjectsByType(iddobjectname::Building)[0];
   ASSERT_TRUE(object.getString(BuildingFields::Name));
   EXPECT_EQ("Building", object.getString(BuildingFields::Name).get());
   ASSERT_TRUE(object.getDouble(BuildingFields::NorthAxis));

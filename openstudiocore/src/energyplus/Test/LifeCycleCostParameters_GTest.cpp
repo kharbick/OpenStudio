@@ -28,6 +28,7 @@
 #include <model/LifeCycleCostParameters_Impl.hpp>
 
 #include <utilities/idd/LifeCycleCost_Parameters_FieldEnums.hxx>
+#include <utilities/idd/LifeCycleCost_UsePriceEscalation_FieldEnums.hxx>
 
 #include <resources.hxx>
 
@@ -45,8 +46,8 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCostParameters)
 
   ForwardTranslator ft;
   Workspace workspace = ft.translateModelObject(lifeCycleCostParameters);
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::LifeCycleCost_Parameters).size());
-  EXPECT_EQ(5u, workspace.getObjectsByType(IddObjectType::LifeCycleCost_UsePriceEscalation).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::LifeCycleCost_Parameters).size());
+  EXPECT_EQ(5u, workspace.getObjectsByType(iddobjectname::LifeCycleCost_UsePriceEscalation).size());
 
   const char *c_regions[] = {"U.S. Avg", "NorthEast", "MidWest", "South", "West"};
   const char *c_sectors[] = {"Commercial", "Residential", "Industrial"};
@@ -69,20 +70,20 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCostParameters)
       }
 
       workspace = ft.translateModelObject(lifeCycleCostParameters);
-      EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::LifeCycleCost_Parameters).size());
-      EXPECT_EQ(numExpected, workspace.getObjectsByType(IddObjectType::LifeCycleCost_UsePriceEscalation).size()) << region << " " << sector;
+      EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::LifeCycleCost_Parameters).size());
+      EXPECT_EQ(numExpected, workspace.getObjectsByType(iddobjectname::LifeCycleCost_UsePriceEscalation).size()) << region << " " << sector;
     }
   }
 
   EXPECT_TRUE(lifeCycleCostParameters.setUseNISTFuelEscalationRates(false));
 
   workspace = ft.translateModelObject(lifeCycleCostParameters);
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::LifeCycleCost_Parameters).size());
-  EXPECT_EQ(0u, workspace.getObjectsByType(IddObjectType::LifeCycleCost_UsePriceEscalation).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::LifeCycleCost_Parameters).size());
+  EXPECT_EQ(0u, workspace.getObjectsByType(iddobjectname::LifeCycleCost_UsePriceEscalation).size());
 
   EXPECT_TRUE(lifeCycleCostParameters.setElectricityInflation(0.01));
 
   workspace = ft.translateModelObject(lifeCycleCostParameters);
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::LifeCycleCost_Parameters).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::LifeCycleCost_UsePriceEscalation).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::LifeCycleCost_Parameters).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::LifeCycleCost_UsePriceEscalation).size());
 }

@@ -65,6 +65,12 @@
 #include <utilities/idd/Version_FieldEnums.hxx>
 #include <utilities/idd/Lights_FieldEnums.hxx>
 #include <utilities/idd/Site_Location_FieldEnums.hxx>
+#include <utilities/idd/Building_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
+#include <utilities/idd/Schedule_Compact_FieldEnums.hxx>
+#include <utilities/idd/Schedule_Day_Interval_FieldEnums.hxx>
+#include <utilities/idd/Material_NoMass_FieldEnums.hxx>
+#include <utilities/idd/Material_FieldEnums.hxx>
 #include <utilities/time/Time.hpp>
 
 #include <resources.hxx>
@@ -81,7 +87,7 @@ TEST_F(EnergyPlusFixture,ReverseTranslator_EmptyIdfFile)
   ReverseTranslator reverseTranslator;
   Model model = reverseTranslator.translateWorkspace(inWorkspace);
 
-  OptionalWorkspaceObject w = inWorkspace.addObject(IdfObject(IddObjectType::Version));
+  OptionalWorkspaceObject w = inWorkspace.addObject(IdfObject(iddobjectname::Version));
   ASSERT_TRUE(w);
   EXPECT_TRUE(w->setString(VersionFields::VersionIdentifier, "7.0"));
 
@@ -161,7 +167,7 @@ TEST_F(EnergyPlusFixture,ReverseTranslator_SimpleRelativeTest)
 TEST_F(EnergyPlusFixture,ReverseTranslator_Building)
 {
   Workspace inWorkspace(StrictnessLevel::None, IddFileType::EnergyPlus);
-  inWorkspace.addObject(IdfObject(IddObjectType::Building));
+  inWorkspace.addObject(IdfObject(iddobjectname::Building));
   ReverseTranslator reverseTranslator;
   Model model = reverseTranslator.translateWorkspace(inWorkspace);
   EXPECT_TRUE(model.getOptionalUniqueModelObject<openstudio::model::Building>());
@@ -170,9 +176,9 @@ TEST_F(EnergyPlusFixture,ReverseTranslator_Building)
 TEST_F(EnergyPlusFixture,ReverseTranslator_Zone)
 {
   Workspace inWorkspace(StrictnessLevel::None, IddFileType::EnergyPlus);
-  OptionalWorkspaceObject zoneObject = inWorkspace.addObject(IdfObject(IddObjectType::Zone));
+  OptionalWorkspaceObject zoneObject = inWorkspace.addObject(IdfObject(iddobjectname::Zone));
   ASSERT_TRUE(zoneObject);
-  OptionalWorkspaceObject lightsObject = inWorkspace.addObject(IdfObject(IddObjectType::Lights));
+  OptionalWorkspaceObject lightsObject = inWorkspace.addObject(IdfObject(iddobjectname::Lights));
   ASSERT_TRUE(lightsObject);
   EXPECT_TRUE(lightsObject->setPointer(openstudio::LightsFields::ZoneorZoneListName, zoneObject->handle()));
 
@@ -195,7 +201,7 @@ TEST_F(EnergyPlusFixture,ReverseTranslator_Zone)
 TEST_F(EnergyPlusFixture,ReverseTranslatorTest_TranslateScheduleCompact) {
   openstudio::Workspace workspace(openstudio::StrictnessLevel::None,openstudio::IddFileType::EnergyPlus);
 
-  openstudio::IdfObject idfObject( openstudio::IddObjectType::Schedule_Compact );
+  openstudio::IdfObject idfObject( openstudio::iddobjectname::Schedule_Compact );
   idfObject.setString(1,"Fraction");
   idfObject.setString(2,"Through: 12/31");
   idfObject.setString(3,"For: Weekdays SummerDesignDay");
@@ -252,7 +258,7 @@ TEST_F(EnergyPlusFixture,ReverseTranslatorTest_TranslateMasselessOpaqueMaterial)
   openstudio::Workspace ws(openstudio::StrictnessLevel::None, openstudio::IddFileType::EnergyPlus);
 
   // Create the Material:NoMaxx idfObject
-  IdfObject idfObject( openstudio::IddObjectType::Material_NoMass );
+  IdfObject idfObject( openstudio::iddobjectname::Material_NoMass );
   idfObject.setString( 0, "Test Mat 1");
   idfObject.setString( 1, "Rough" );
   idfObject.setString( 2, "3.05" );
@@ -280,7 +286,7 @@ TEST_F(EnergyPlusFixture,ReverseTranslatorTest_TranslateStandardOpaqueMaterial)
 {
   openstudio::Workspace workspace(openstudio::StrictnessLevel::None,openstudio::IddFileType::EnergyPlus);
 
-  openstudio::IdfObject idfObject( openstudio::IddObjectType::Material );
+  openstudio::IdfObject idfObject( openstudio::iddobjectname::Material );
   idfObject.setString(0, "Test Material"); // Name
   idfObject.setString(1, "Smooth"); // Roughness
   idfObject.setString(2, "0.012");  // Thickness
@@ -339,7 +345,7 @@ TEST_F(EnergyPlusFixture,ReverseTranslatorTest_TranslateSite)
 {
   openstudio::Workspace workspace(openstudio::StrictnessLevel::None,openstudio::IddFileType::EnergyPlus);
 
-  openstudio::IdfObject idfObject( openstudio::IddObjectType::Site_Location );
+  openstudio::IdfObject idfObject( openstudio::iddobjectname::Site_Location );
   idfObject.setString(Site_LocationFields::Name, "Test Site");
   idfObject.setDouble(Site_LocationFields::Latitude, 39.6);
   idfObject.setDouble(Site_LocationFields::Longitude, 105.2);
@@ -414,7 +420,7 @@ TEST_F(EnergyPlusFixture,ReverseTranslator_ScheduleDayInterval) {
   // stripped off before constructing a Time object. We are also more lenient in
   // making this optional.
   Workspace ws(StrictnessLevel::Draft,IddFileType(IddFileType::EnergyPlus));
-  OptionalWorkspaceObject owo = ws.addObject(IdfObject(IddObjectType::Schedule_Day_Interval));
+  OptionalWorkspaceObject owo = ws.addObject(IdfObject(iddobjectname::Schedule_Day_Interval));
   ASSERT_TRUE(owo);
   WorkspaceObject object = *owo;
   object.setName("Heating Setpoint Design Day");

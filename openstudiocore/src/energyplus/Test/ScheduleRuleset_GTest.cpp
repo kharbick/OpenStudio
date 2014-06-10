@@ -68,7 +68,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ScheduleRuleset_Simple)
   ForwardTranslator ft;
   Workspace workspace = ft.translateModel(model);
 
-  std::vector<WorkspaceObject> scheduleYears = workspace.getObjectsByType(IddObjectType::Schedule_Year);
+  std::vector<WorkspaceObject> scheduleYears = workspace.getObjectsByType(iddobjectname::Schedule_Year);
   ASSERT_EQ(1u, scheduleYears.size());
   std::vector<IdfExtensibleGroup> extensibleGroups = scheduleYears[0].extensibleGroups();
   ASSERT_EQ(2u, extensibleGroups.size());
@@ -148,7 +148,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ScheduleRuleset_Bug804)
   ForwardTranslator ft;
   Workspace workspace = ft.translateModel(model);
 
-  std::vector<WorkspaceObject> scheduleYears = workspace.getObjectsByType(IddObjectType::Schedule_Year);
+  std::vector<WorkspaceObject> scheduleYears = workspace.getObjectsByType(iddobjectname::Schedule_Year);
   ASSERT_EQ(1u, scheduleYears.size());
   std::vector<IdfExtensibleGroup> extensibleGroups = scheduleYears[0].extensibleGroups();
   ASSERT_EQ(6u, extensibleGroups.size());

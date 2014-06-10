@@ -43,6 +43,9 @@
 
 #include <utilities/geometry/Point3d.hpp>
 #include <utilities/idd/DaylightingDevice_Shelf_FieldEnums.hxx>
+#include <utilities/idd/BuildingSurface_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Shading_Zone_Detailed_FieldEnums.hxx>
+#include <utilities/idd/InternalMass_FieldEnums.hxx>
 
 using namespace openstudio::energyplus;
 using namespace openstudio::model;
@@ -93,20 +96,20 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_DaylightingDeviceShelf)
   {
     ForwardTranslator ft;
     Workspace workspace = ft.translateModel(model);
-    std::vector<WorkspaceObject> wos = workspace.getObjectsByType(IddObjectType::DaylightingDevice_Shelf);
+    std::vector<WorkspaceObject> wos = workspace.getObjectsByType(iddobjectname::DaylightingDevice_Shelf);
     ASSERT_EQ(1u, wos.size());
     EXPECT_TRUE(wos[0].getTarget(DaylightingDevice_ShelfFields::WindowName));
     EXPECT_TRUE(wos[0].getTarget(DaylightingDevice_ShelfFields::InsideShelfName));
     EXPECT_FALSE(wos[0].getTarget(DaylightingDevice_ShelfFields::OutsideShelfName));
 
     // interior partition surface becomes building surface detailed
-    wos = workspace.getObjectsByType(IddObjectType::BuildingSurface_Detailed);
+    wos = workspace.getObjectsByType(iddobjectname::BuildingSurface_Detailed);
     EXPECT_EQ(2u, wos.size());
 
-    wos = workspace.getObjectsByType(IddObjectType::Shading_Zone_Detailed);
+    wos = workspace.getObjectsByType(iddobjectname::Shading_Zone_Detailed);
     EXPECT_EQ(1u, wos.size());
 
-    wos = workspace.getObjectsByType(IddObjectType::InternalMass);
+    wos = workspace.getObjectsByType(iddobjectname::InternalMass);
     EXPECT_EQ(0, wos.size());
   }
 
@@ -122,17 +125,17 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_DaylightingDeviceShelf)
   {
     ForwardTranslator ft;
     Workspace workspace = ft.translateModel(model);
-    std::vector<WorkspaceObject> wos = workspace.getObjectsByType(IddObjectType::DaylightingDevice_Shelf);
+    std::vector<WorkspaceObject> wos = workspace.getObjectsByType(iddobjectname::DaylightingDevice_Shelf);
     EXPECT_EQ(0, wos.size());
 
-    wos = workspace.getObjectsByType(IddObjectType::BuildingSurface_Detailed);
+    wos = workspace.getObjectsByType(iddobjectname::BuildingSurface_Detailed);
     EXPECT_EQ(1u, wos.size());
 
-    wos = workspace.getObjectsByType(IddObjectType::Shading_Zone_Detailed);
+    wos = workspace.getObjectsByType(iddobjectname::Shading_Zone_Detailed);
     EXPECT_EQ(1u, wos.size());
 
     // DLM: this will still be zero because the light shelf has no construction attached
-    wos = workspace.getObjectsByType(IddObjectType::InternalMass);
+    wos = workspace.getObjectsByType(iddobjectname::InternalMass);
     EXPECT_EQ(0, wos.size());
   }
 }

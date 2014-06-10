@@ -55,7 +55,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_SpaceInfiltrationDesignFlowRate)
   ForwardTranslator ft;
   Workspace workspace = ft.translateModel(model);
 
-  std::vector<WorkspaceObject> objects = workspace.getObjectsByType(IddObjectType::ZoneInfiltration_DesignFlowRate);
+  std::vector<WorkspaceObject> objects = workspace.getObjectsByType(iddobjectname::ZoneInfiltration_DesignFlowRate);
   ASSERT_EQ(1u, objects.size());
 
   ASSERT_TRUE(objects[0].getString(ZoneInfiltration_DesignFlowRateFields::DesignFlowRateCalculationMethod));

@@ -37,10 +37,37 @@
 #include <utilities/idf/IdfFile.hpp>
 #include <utilities/idf/IdfExtensibleGroup.hpp>
 
-#include <utilities/idd/Wall_Exterior_FieldEnums.hxx>
 #include <utilities/idd/BuildingSurface_Detailed_FieldEnums.hxx>
-#include <utilities/idd/FenestrationSurface_Detailed_FieldEnums.hxx>
 #include <utilities/idd/Shading_Zone_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Shading_Site_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Shading_Building_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Wall_Detailed_FieldEnums.hxx>
+#include <utilities/idd/RoofCeiling_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Floor_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Wall_Exterior_FieldEnums.hxx>
+#include <utilities/idd/Wall_Adiabatic_FieldEnums.hxx>
+#include <utilities/idd/Wall_Underground_FieldEnums.hxx>
+#include <utilities/idd/Wall_Interzone_FieldEnums.hxx>
+#include <utilities/idd/Roof_FieldEnums.hxx>
+#include <utilities/idd/Ceiling_Adiabatic_FieldEnums.hxx>
+#include <utilities/idd/Ceiling_Interzone_FieldEnums.hxx>
+#include <utilities/idd/Floor_GroundContact_FieldEnums.hxx>
+#include <utilities/idd/Floor_Adiabatic_FieldEnums.hxx>
+#include <utilities/idd/Floor_Interzone_FieldEnums.hxx>
+#include <utilities/idd/Window_FieldEnums.hxx>
+#include <utilities/idd/Door_FieldEnums.hxx>
+#include <utilities/idd/GlazedDoor_FieldEnums.hxx>
+#include <utilities/idd/Window_Interzone_FieldEnums.hxx>
+#include <utilities/idd/Door_Interzone_FieldEnums.hxx>
+#include <utilities/idd/GlazedDoor_Interzone_FieldEnums.hxx>
+#include <utilities/idd/Shading_Site_FieldEnums.hxx>
+#include <utilities/idd/Shading_Building_FieldEnums.hxx>
+#include <utilities/idd/Shading_Overhang_FieldEnums.hxx>
+#include <utilities/idd/Shading_Overhang_Projection_FieldEnums.hxx>
+#include <utilities/idd/Shading_Fin_FieldEnums.hxx>
+#include <utilities/idd/Shading_Fin_Projection_FieldEnums.hxx>
+#include <utilities/idd/FenestrationSurface_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
 
 #include <boost/foreach.hpp>
 #include <resources.hxx>
@@ -376,23 +403,23 @@ void compareSurfaces(const WorkspaceObject& refObject, const WorkspaceObject& te
 
   ASSERT_EQ(refObject.iddObject().type().value(), testObject.iddObject().type().value());
   switch(refObject.iddObject().type().value()){
-    case IddObjectType::BuildingSurface_Detailed:
+    case iddobjectvalue::BuildingSurface_Detailed:
       ASSERT_TRUE(refObject.getTarget(BuildingSurface_DetailedFields::ZoneName));
       ASSERT_TRUE(testObject.getTarget(BuildingSurface_DetailedFields::ZoneName));
       EXPECT_TRUE(refObject.getTarget(BuildingSurface_DetailedFields::ZoneName)->name().get() == 
                   testObject.getTarget(BuildingSurface_DetailedFields::ZoneName)->name().get());
       break;
-    case IddObjectType::FenestrationSurface_Detailed:
+    case iddobjectvalue::FenestrationSurface_Detailed:
       ASSERT_TRUE(refObject.getTarget(FenestrationSurface_DetailedFields::BuildingSurfaceName));
       ASSERT_TRUE(testObject.getTarget(FenestrationSurface_DetailedFields::BuildingSurfaceName));
       EXPECT_TRUE(refObject.getTarget(FenestrationSurface_DetailedFields::BuildingSurfaceName)->name().get() == 
                   testObject.getTarget(FenestrationSurface_DetailedFields::BuildingSurfaceName)->name().get());
       break;
-    case IddObjectType::Shading_Site_Detailed:
+    case iddobjectvalue::Shading_Site_Detailed:
       break;
-    case IddObjectType::Shading_Building_Detailed:
+    case iddobjectvalue::Shading_Building_Detailed:
       break;
-    case IddObjectType::Shading_Zone_Detailed:
+    case iddobjectvalue::Shading_Zone_Detailed:
       ASSERT_TRUE(refObject.getTarget(Shading_Zone_DetailedFields::BaseSurfaceName));
       ASSERT_TRUE(testObject.getTarget(Shading_Zone_DetailedFields::BaseSurfaceName));
       // might not be the same since we have to look for surface, would be good to fix eventually
@@ -460,42 +487,42 @@ TEST_F(EnergyPlusFixture,GeometryTranslator_SimpleRelativeTest)
   EXPECT_TRUE(geometryTranslator.convert(CoordinateSystem::Relative, CoordinateSystem::Relative));
 
   // should not be any of the following types
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Wall_Detailed).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::RoofCeiling_Detailed).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Floor_Detailed).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Wall_Exterior).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Wall_Adiabatic).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Wall_Underground).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Wall_Interzone).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Roof).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Ceiling_Adiabatic).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Ceiling_Interzone).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Floor_GroundContact).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Floor_Adiabatic).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Floor_Interzone).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Window).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Door).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::GlazedDoor).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Window_Interzone).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Door_Interzone).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::GlazedDoor_Interzone).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Shading_Site).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Shading_Building).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Shading_Overhang).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Shading_Overhang_Projection).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Shading_Fin).empty());
-  EXPECT_TRUE(relWorkspace.getObjectsByType(IddObjectType::Shading_Fin_Projection).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Wall_Detailed).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::RoofCeiling_Detailed).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Floor_Detailed).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Wall_Exterior).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Wall_Adiabatic).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Wall_Underground).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Wall_Interzone).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Roof).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Ceiling_Adiabatic).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Ceiling_Interzone).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Floor_GroundContact).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Floor_Adiabatic).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Floor_Interzone).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Window).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Door).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::GlazedDoor).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Window_Interzone).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Door_Interzone).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::GlazedDoor_Interzone).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Shading_Site).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Shading_Building).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Shading_Overhang).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Shading_Overhang_Projection).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Shading_Fin).empty());
+  EXPECT_TRUE(relWorkspace.getObjectsByType(iddobjectname::Shading_Fin_Projection).empty());
 
   // types to check 
-  std::vector<unsigned> iddTypes;
-  iddTypes.push_back(IddObjectType::BuildingSurface_Detailed);
-  iddTypes.push_back(IddObjectType::FenestrationSurface_Detailed);
-  iddTypes.push_back(IddObjectType::Shading_Site_Detailed);
-  iddTypes.push_back(IddObjectType::Shading_Building_Detailed);
-  iddTypes.push_back(IddObjectType::Shading_Zone_Detailed);
+  std::vector<std::string> iddTypes;
+  iddTypes.push_back(iddobjectname::BuildingSurface_Detailed);
+  iddTypes.push_back(iddobjectname::FenestrationSurface_Detailed);
+  iddTypes.push_back(iddobjectname::Shading_Site_Detailed);
+  iddTypes.push_back(iddobjectname::Shading_Building_Detailed);
+  iddTypes.push_back(iddobjectname::Shading_Zone_Detailed);
 
   // check all types in both files
-  BOOST_FOREACH(unsigned iddType, iddTypes){
+  BOOST_FOREACH(std::string iddType, iddTypes){
     // for debugging
     IddObjectType debugIddType(iddType);
     // check sizes
@@ -568,30 +595,30 @@ TEST_F(EnergyPlusFixture,GeometryTranslator_VerticesForAzimuthTiltXYZLengthWidth
 TEST_F(EnergyPlusFixture,GeometryTranslator_Swap){
 
   Workspace workspace(StrictnessLevel::Draft, IddFileType::EnergyPlus);
-  OptionalWorkspaceObject zoneObject = workspace.addObject(IdfObject(IddObjectType::Zone));
+  OptionalWorkspaceObject zoneObject = workspace.addObject(IdfObject(iddobjectname::Zone));
   ASSERT_TRUE(zoneObject);
   EXPECT_TRUE(zoneObject->setName("Zone"));
   ASSERT_TRUE(zoneObject->name());
   EXPECT_EQ("Zone", zoneObject->name().get());
   EXPECT_EQ(static_cast<unsigned>(1), workspace.objects().size());
-  OptionalWorkspaceObject oldObject = workspace.addObject(IdfObject(IddObjectType::Wall_Exterior));
+  OptionalWorkspaceObject oldObject = workspace.addObject(IdfObject(iddobjectname::Wall_Exterior));
   EXPECT_TRUE(oldObject->setName("Wall"));
   ASSERT_TRUE(oldObject);
   EXPECT_EQ(static_cast<unsigned>(2), workspace.objects().size());
-  ASSERT_EQ(static_cast<unsigned>(1), workspace.getObjectsByType(IddObjectType::Wall_Exterior).size());
+  ASSERT_EQ(static_cast<unsigned>(1), workspace.getObjectsByType(iddobjectname::Wall_Exterior).size());
   EXPECT_TRUE(oldObject->setPointer(Wall_ExteriorFields::ZoneName, zoneObject->handle()));
   ASSERT_TRUE(oldObject->getTarget(Wall_ExteriorFields::ZoneName));
   EXPECT_TRUE(zoneObject->handle() == oldObject->getTarget(Wall_ExteriorFields::ZoneName)->handle());
 
-  IdfObject newObject(IddObjectType::BuildingSurface_Detailed);
+  IdfObject newObject(iddobjectname::BuildingSurface_Detailed);
   EXPECT_TRUE(newObject.setName("Wall"));
   EXPECT_TRUE(newObject.setString(BuildingSurface_DetailedFields::ZoneName, "Zone"));
   EXPECT_TRUE(workspace.swap(*oldObject, newObject));
   EXPECT_EQ(static_cast<unsigned>(2), workspace.objects().size());
-  EXPECT_EQ(static_cast<unsigned>(0), workspace.getObjectsByType(IddObjectType::Wall_Exterior).size());
-  ASSERT_EQ(static_cast<unsigned>(1), workspace.getObjectsByType(IddObjectType::BuildingSurface_Detailed).size());
-  ASSERT_TRUE(workspace.getObjectsByType(IddObjectType::BuildingSurface_Detailed)[0].getTarget(BuildingSurface_DetailedFields::ZoneName));
-  EXPECT_TRUE(zoneObject->handle() == workspace.getObjectsByType(IddObjectType::BuildingSurface_Detailed)[0].getTarget(BuildingSurface_DetailedFields::ZoneName)->handle());
+  EXPECT_EQ(static_cast<unsigned>(0), workspace.getObjectsByType(iddobjectname::Wall_Exterior).size());
+  ASSERT_EQ(static_cast<unsigned>(1), workspace.getObjectsByType(iddobjectname::BuildingSurface_Detailed).size());
+  ASSERT_TRUE(workspace.getObjectsByType(iddobjectname::BuildingSurface_Detailed)[0].getTarget(BuildingSurface_DetailedFields::ZoneName));
+  EXPECT_TRUE(zoneObject->handle() == workspace.getObjectsByType(iddobjectname::BuildingSurface_Detailed)[0].getTarget(BuildingSurface_DetailedFields::ZoneName)->handle());
 }
 
 TEST_F(EnergyPlusFixture,GeometryTranslator_4ZoneWithShading_Simple_2)

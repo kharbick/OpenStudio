@@ -62,11 +62,11 @@ TEST_F(EnergyPlusFixture,ReverseTranslator_WindowConstruction)
   IddFileType iddFileType(IddFileType::EnergyPlus);
   Workspace workspace(level,iddFileType);
 
-  IdfObject glazing(IddObjectType::WindowMaterial_Glazing);
-  IdfObject gas(IddObjectType::WindowMaterial_Gas);
+  IdfObject glazing(iddobjectname::WindowMaterial_Glazing);
+  IdfObject gas(iddobjectname::WindowMaterial_Gas);
   glazing.setName("Glazing Material");
   gas.setName("Gas Material");
-  IdfObject construction(IddObjectType::Construction);
+  IdfObject construction(iddobjectname::Construction);
   ASSERT_EQ(0u,construction.numExtensibleGroups());
   EXPECT_FALSE(construction.pushExtensibleGroup(StringVector(1u,glazing.name().get())).empty());
   EXPECT_FALSE(construction.pushExtensibleGroup(StringVector(1u,gas.name().get())).empty());

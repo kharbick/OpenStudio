@@ -36,6 +36,7 @@
 #include <utilities/idd/Shading_Site_Detailed_FieldEnums.hxx>
 #include <utilities/idd/Shading_Building_Detailed_FieldEnums.hxx>
 #include <utilities/idd/Shading_Zone_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
 
 #include <resources.hxx>
 
@@ -63,7 +64,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ShadingSurface_Site)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
   
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Shading_Site_Detailed).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Shading_Site_Detailed).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_ShadingSurface_Building)
@@ -84,7 +85,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ShadingSurface_Building)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
   
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Shading_Building_Detailed).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Shading_Building_Detailed).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_ShadingSurface_Space)
@@ -112,11 +113,11 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ShadingSurface_Space)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
   
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Shading_Zone_Detailed).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Shading_Zone_Detailed).size());
 
-  WorkspaceObject zoneObject = workspace.getObjectsByType(IddObjectType::Zone)[0];
-  WorkspaceObject shadingSurfaceObject = workspace.getObjectsByType(IddObjectType::Shading_Zone_Detailed)[0];
+  WorkspaceObject zoneObject = workspace.getObjectsByType(iddobjectname::Zone)[0];
+  WorkspaceObject shadingSurfaceObject = workspace.getObjectsByType(iddobjectname::Shading_Zone_Detailed)[0];
 
   EXPECT_TRUE(shadingSurfaceObject.getTarget(Shading_Zone_DetailedFields::BaseSurfaceName));
 }

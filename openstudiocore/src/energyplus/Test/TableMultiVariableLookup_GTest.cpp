@@ -52,7 +52,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_TableMultiVariableLookup)
     ForwardTranslator ft;
     Workspace workspace = ft.translateModel(m);
 
-    std::vector<WorkspaceObject> tableObjects = workspace.getObjectsByType(IddObjectType::Table_MultiVariableLookup);
+    std::vector<WorkspaceObject> tableObjects = workspace.getObjectsByType(iddobjectname::Table_MultiVariableLookup);
     ASSERT_EQ(1u, tableObjects.size());
 
     WorkspaceObject idfTable = tableObjects.front();
@@ -125,7 +125,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_TableMultiVariableLookup)
     ForwardTranslator ft;
     Workspace workspace = ft.translateModel(m);
 
-    std::vector<WorkspaceObject> tableObjects = workspace.getObjectsByType(IddObjectType::Table_MultiVariableLookup);
+    std::vector<WorkspaceObject> tableObjects = workspace.getObjectsByType(iddobjectname::Table_MultiVariableLookup);
     ASSERT_EQ(1u, tableObjects.size());
 
     WorkspaceObject idfTable = tableObjects.front();
@@ -265,7 +265,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_TableMultiVariableLookup)
     ForwardTranslator ft;
     Workspace workspace = ft.translateModel(m);
 
-    std::vector<WorkspaceObject> tableObjects = workspace.getObjectsByType(IddObjectType::Table_MultiVariableLookup);
+    std::vector<WorkspaceObject> tableObjects = workspace.getObjectsByType(iddobjectname::Table_MultiVariableLookup);
     ASSERT_EQ(1u, tableObjects.size());
 
     WorkspaceObject idfTable = tableObjects.front();

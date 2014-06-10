@@ -44,6 +44,10 @@
 #include <model/StandardOpaqueMaterial_Impl.hpp>
 
 #include <utilities/idd/InternalMass_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
+#include <utilities/idd/BuildingSurface_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Construction_FieldEnums.hxx>
+#include <utilities/idd/Shading_Site_Detailed_FieldEnums.hxx>
 
 #include <resources.hxx>
 
@@ -106,20 +110,20 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_InteriorPartitionSurface)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
   
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(10u, workspace.getObjectsByType(IddObjectType::BuildingSurface_Detailed).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::InternalMass).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Construction).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(10u, workspace.getObjectsByType(iddobjectname::BuildingSurface_Detailed).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::InternalMass).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Construction).size());
 
-  WorkspaceObject internalMassObject = workspace.getObjectsByType(IddObjectType::InternalMass)[0];
+  WorkspaceObject internalMassObject = workspace.getObjectsByType(iddobjectname::InternalMass)[0];
   ASSERT_TRUE(internalMassObject.getDouble(InternalMassFields::SurfaceArea));
   EXPECT_EQ(1.0, internalMassObject.getDouble(InternalMassFields::SurfaceArea).get());
 
-  WorkspaceObject constructionObject = workspace.getObjectsByType(IddObjectType::Construction)[0];
+  WorkspaceObject constructionObject = workspace.getObjectsByType(iddobjectname::Construction)[0];
   ASSERT_TRUE(internalMassObject.getTarget(InternalMassFields::ConstructionName));
   EXPECT_EQ(constructionObject.handle(), internalMassObject.getTarget(InternalMassFields::ConstructionName)->handle());
 
-  WorkspaceObject zoneObject = workspace.getObjectsByType(IddObjectType::Zone)[0];
+  WorkspaceObject zoneObject = workspace.getObjectsByType(iddobjectname::Zone)[0];
   ASSERT_TRUE(internalMassObject.getTarget(InternalMassFields::ZoneName));
   EXPECT_EQ(zoneObject.handle(), internalMassObject.getTarget(InternalMassFields::ZoneName)->handle());
 }

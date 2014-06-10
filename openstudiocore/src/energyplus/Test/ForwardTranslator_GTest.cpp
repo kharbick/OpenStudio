@@ -61,6 +61,16 @@
 #include <utilities/idd/Lights_FieldEnums.hxx>
 #include <utilities/idd/OS_Schedule_Compact_FieldEnums.hxx>
 #include <utilities/idd/Schedule_Compact_FieldEnums.hxx>
+#include <utilities/idd/Version_FieldEnums.hxx>
+#include <utilities/idd/Coil_Cooling_DX_SingleSpeed_FieldEnums.hxx>
+#include <utilities/idd/Curve_Biquadratic_FieldEnums.hxx>
+#include <utilities/idd/Curve_Quadratic_FieldEnums.hxx>
+#include <utilities/idd/Material_FieldEnums.hxx>
+#include <utilities/idd/Construction_FieldEnums.hxx>
+#include <utilities/idd/Site_Location_FieldEnums.hxx>
+#include <utilities/idd/Site_GroundReflectance_FieldEnums.hxx>
+#include <utilities/idd/Site_GroundTemperature_BuildingSurface_FieldEnums.hxx>
+#include <utilities/idd/Site_WaterMainsTemperature_FieldEnums.hxx>
 #include <utilities/idd/IddFactory.hxx>
 
 #include <boost/algorithm/string/predicate.hpp>
@@ -88,7 +98,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Building)
   ForwardTranslator forwardTranslator(model);
   OptionalWorkspace outWorkspace = forwardTranslator.convert();
   ASSERT_TRUE(outWorkspace);
-  EXPECT_EQ(static_cast<unsigned>(1), outWorkspace->getObjectsByType(IddObjectType::Building).size());
+  EXPECT_EQ(static_cast<unsigned>(1), outWorkspace->getObjectsByType(iddobjectname::Building).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_Zone)
@@ -101,10 +111,10 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Zone)
   ForwardTranslator forwardTranslator(model);
   OptionalWorkspace outWorkspace = forwardTranslator.convert();
   ASSERT_TRUE(outWorkspace);
-  ASSERT_EQ(static_cast<unsigned>(1), outWorkspace->getObjectsByType(IddObjectType::Zone).size());
-  Handle zoneHandle = outWorkspace->getObjectsByType(IddObjectType::Zone)[0].handle();
-  ASSERT_EQ(static_cast<unsigned>(1), outWorkspace->getObjectsByType(IddObjectType::Lights).size());
-  WorkspaceObject lightsObject = outWorkspace->getObjectsByType(IddObjectType::Lights)[0];
+  ASSERT_EQ(static_cast<unsigned>(1), outWorkspace->getObjectsByType(iddobjectname::Zone).size());
+  Handle zoneHandle = outWorkspace->getObjectsByType(iddobjectname::Zone)[0].handle();
+  ASSERT_EQ(static_cast<unsigned>(1), outWorkspace->getObjectsByType(iddobjectname::Lights).size());
+  WorkspaceObject lightsObject = outWorkspace->getObjectsByType(iddobjectname::Lights)[0];
   ASSERT_TRUE(lightsObject.getTarget(openstudio::LightsFields::ZoneorZoneListName));
   EXPECT_TRUE(zoneHandle == lightsObject.getTarget(openstudio::LightsFields::ZoneorZoneListName)->handle());
 }
@@ -115,7 +125,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ExampleModel) {
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
   EXPECT_EQ(0u, forwardTranslator.errors().size());
-  EXPECT_EQ(1u,workspace.getObjectsByType(IddObjectType::Version).size());
+  EXPECT_EQ(1u,workspace.getObjectsByType(iddobjectname::Version).size());
 
   model.save(toPath("./example.osm"), true);
   workspace.save(toPath("./example.idf"), true);
@@ -138,7 +148,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslatorTest_TranslateAirLoopHVAC) {
   ForwardTranslator trans;
 
   openstudio::Workspace workspace = trans.translateModel(model);
-  EXPECT_EQ(1u,workspace.getObjectsByType(IddObjectType::Version).size());
+  EXPECT_EQ(1u,workspace.getObjectsByType(iddobjectname::Version).size());
 
   ASSERT_NE(unsigned(0),workspace.objects().size());
 
@@ -217,11 +227,11 @@ TEST_F(EnergyPlusFixture,ForwardTranslatorTest_TranslateCoolingCoil)
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(1u,workspace.getObjectsByType(IddObjectType::Version).size());
-  EXPECT_EQ(1u,workspace.getObjectsByType(IddObjectType::Coil_Cooling_DX_SingleSpeed).size());
-  EXPECT_EQ(1u,workspace.getObjectsByType(IddObjectType::Schedule_Compact).size());
-  EXPECT_EQ(2u,workspace.getObjectsByType(IddObjectType::Curve_Biquadratic).size());
-  EXPECT_EQ(3u,workspace.getObjectsByType(IddObjectType::Curve_Quadratic).size());
+  EXPECT_EQ(1u,workspace.getObjectsByType(iddobjectname::Version).size());
+  EXPECT_EQ(1u,workspace.getObjectsByType(iddobjectname::Coil_Cooling_DX_SingleSpeed).size());
+  EXPECT_EQ(1u,workspace.getObjectsByType(iddobjectname::Schedule_Compact).size());
+  EXPECT_EQ(2u,workspace.getObjectsByType(iddobjectname::Curve_Biquadratic).size());
+  EXPECT_EQ(3u,workspace.getObjectsByType(iddobjectname::Curve_Quadratic).size());
 
   path outDir = resourcesPath() / openstudio::toPath("CoolingCoilDXSingleSpeed.idf");
   boost::filesystem::ofstream ofs(outDir);
@@ -269,9 +279,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslatorTest_TranslateScheduleCompact) {
 
   ForwardTranslator trans;
   Workspace workspace = trans.translateModelObject(scheduleCompact);
-  ASSERT_EQ(1u, workspace.numObjectsOfType(IddObjectType::Schedule_Compact));
+  ASSERT_EQ(1u, workspace.numObjectsOfType(iddobjectname::Schedule_Compact));
 
-  openstudio::IdfObject scheduleCompactIdf = workspace.getObjectsByType(IddObjectType::Schedule_Compact)[0];
+  openstudio::IdfObject scheduleCompactIdf = workspace.getObjectsByType(iddobjectname::Schedule_Compact)[0];
 
   EXPECT_EQ(20u,scheduleCompactIdf.numFields());
   EXPECT_EQ(21u,scheduleCompact.numFields());
@@ -312,9 +322,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslatorTest_TranslateStandardOpaqueMaterial) 
   ForwardTranslator trans;
   Workspace workspace = trans.translateModelObject(mat);
 
-  ASSERT_EQ(1u, workspace.numObjectsOfType(IddObjectType::Material));
+  ASSERT_EQ(1u, workspace.numObjectsOfType(iddobjectname::Material));
 
-  openstudio::IdfObject matIdf = workspace.getObjectsByType(IddObjectType::Material)[0];
+  openstudio::IdfObject matIdf = workspace.getObjectsByType(iddobjectname::Material)[0];
 
   EXPECT_EQ(unsigned(9), matIdf.numFields());
 
@@ -355,9 +365,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslatorTest_TranslateConstruction) {
 
   ForwardTranslator trans;
   Workspace workspace = trans.translateModelObject(construction);
-  ASSERT_EQ(1u, workspace.numObjectsOfType(IddObjectType::Construction));
+  ASSERT_EQ(1u, workspace.numObjectsOfType(iddobjectname::Construction));
 
-  IdfObject constructionIdf = workspace.getObjectsByType(IddObjectType::Construction)[0];
+  IdfObject constructionIdf = workspace.getObjectsByType(iddobjectname::Construction)[0];
 
   EXPECT_EQ(unsigned(3), constructionIdf.numFields());
   EXPECT_EQ("test construction", *(constructionIdf.name()) );
@@ -377,9 +387,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslatorTest_TranslateSite) {
 
   ForwardTranslator trans;
   Workspace workspace = trans.translateModelObject(site);
-  ASSERT_EQ(1u, workspace.numObjectsOfType(IddObjectType::Site_Location));
+  ASSERT_EQ(1u, workspace.numObjectsOfType(iddobjectname::Site_Location));
     
-  IdfObject siteIdf = workspace.getObjectsByType(IddObjectType::Site_Location)[0];
+  IdfObject siteIdf = workspace.getObjectsByType(iddobjectname::Site_Location)[0];
   EXPECT_EQ(unsigned(5), siteIdf.numFields());
 
   EXPECT_EQ( "Test Site", *(siteIdf.name()) );
@@ -408,9 +418,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslatorTest_TranslateSiteGroundReflectance) {
 
   ForwardTranslator trans;
   Workspace workspace = trans.translateModelObject(groundreflect);
-  ASSERT_EQ(1u, workspace.numObjectsOfType(IddObjectType::Site_GroundReflectance));
+  ASSERT_EQ(1u, workspace.numObjectsOfType(iddobjectname::Site_GroundReflectance));
     
-  IdfObject groundreflectIdf = workspace.getObjectsByType(IddObjectType::Site_GroundReflectance)[0];
+  IdfObject groundreflectIdf = workspace.getObjectsByType(iddobjectname::Site_GroundReflectance)[0];
   EXPECT_EQ(unsigned(12), groundreflectIdf.numFields());
 
   EXPECT_EQ( 0.11, *(groundreflectIdf.getDouble(0)) );
@@ -446,9 +456,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslatorTest_TranslateSiteGroundTemperatureBui
 
   ForwardTranslator trans;
   Workspace workspace = trans.translateModelObject(groundtemp);
-  ASSERT_EQ(1u, workspace.numObjectsOfType(IddObjectType::Site_GroundTemperature_BuildingSurface));
+  ASSERT_EQ(1u, workspace.numObjectsOfType(iddobjectname::Site_GroundTemperature_BuildingSurface));
     
-  IdfObject groundtempIdf = workspace.getObjectsByType(IddObjectType::Site_GroundTemperature_BuildingSurface)[0];
+  IdfObject groundtempIdf = workspace.getObjectsByType(iddobjectname::Site_GroundTemperature_BuildingSurface)[0];
   EXPECT_EQ(unsigned(12), groundtempIdf.numFields());
 
   EXPECT_EQ( 19.527, *(groundtempIdf.getDouble(0)) );
@@ -474,9 +484,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslatorTest_TranslateSiteWaterMainsTemperatur
 
   ForwardTranslator trans;
   Workspace workspace = trans.translateModelObject(watertemp);
-  ASSERT_EQ(1u, workspace.numObjectsOfType(IddObjectType::Site_WaterMainsTemperature));
+  ASSERT_EQ(1u, workspace.numObjectsOfType(iddobjectname::Site_WaterMainsTemperature));
     
-  IdfObject watertempIdf = workspace.getObjectsByType(IddObjectType::Site_WaterMainsTemperature)[0];
+  IdfObject watertempIdf = workspace.getObjectsByType(iddobjectname::Site_WaterMainsTemperature)[0];
   EXPECT_EQ(unsigned(4), watertempIdf.numFields());
 
   EXPECT_EQ( "Correlation", *(watertempIdf.getString(0)) );

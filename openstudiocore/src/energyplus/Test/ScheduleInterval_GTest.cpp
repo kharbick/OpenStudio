@@ -26,6 +26,9 @@
 #include <utilities/data/TimeSeries.hpp>
 #include <utilities/time/Date.hpp>
 #include <utilities/time/Time.hpp>
+#include <utilities/idd/Schedule_Compact_FieldEnums.hxx>
+#include <utilities/idd/Schedule_Year_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
 
 #include <model/Model.hpp>
 #include <model/ScheduleInterval.hpp>
@@ -61,7 +64,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ScheduleFixedInterval_Hourly)
 
   Workspace workspace = ft.translateModel(model);
 
-  std::vector<WorkspaceObject> objects = workspace.getObjectsByType(IddObjectType::Schedule_Compact);
+  std::vector<WorkspaceObject> objects = workspace.getObjectsByType(iddobjectname::Schedule_Compact);
   ASSERT_EQ(1u, objects.size());
 
   boost::regex throughRegex("^Through:\\s*(.*)/\\s*(.*)\\s*");
@@ -159,7 +162,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ScheduleFixedInterval_20hours)
 
   Workspace workspace = ft.translateModel(model);
 
-  std::vector<WorkspaceObject> objects = workspace.getObjectsByType(IddObjectType::Schedule_Compact);
+  std::vector<WorkspaceObject> objects = workspace.getObjectsByType(iddobjectname::Schedule_Compact);
   ASSERT_EQ(1u, objects.size());
 
   boost::regex throughRegex("^Through:\\s*(.*)/\\s*(.*)\\s*");
@@ -281,7 +284,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ScheduleFixedInterval_TwoPoint)
 
   Workspace workspace = ft.translateModel(model);
 
-  std::vector<WorkspaceObject> objects = workspace.getObjectsByType(IddObjectType::Schedule_Compact);
+  std::vector<WorkspaceObject> objects = workspace.getObjectsByType(iddobjectname::Schedule_Compact);
   ASSERT_EQ(1u, objects.size());
 
   boost::regex throughRegex("^Through:\\s*(.*)/\\s*(.*)\\s*");
@@ -383,7 +386,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ScheduleVariableInterval_Hourly)
 
   Workspace workspace = ft.translateModel(model);
 
-  std::vector<WorkspaceObject> objects = workspace.getObjectsByType(IddObjectType::Schedule_Compact);
+  std::vector<WorkspaceObject> objects = workspace.getObjectsByType(iddobjectname::Schedule_Compact);
   ASSERT_EQ(1u, objects.size());
 
   boost::regex throughRegex("^Through:\\s*(.*)/\\s*(.*)\\s*");
@@ -522,7 +525,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ScheduleVariableInterval_500)
 
   Workspace workspace = ft.translateModel(model);
 
-  std::vector<WorkspaceObject> objects = workspace.getObjectsByType(IddObjectType::Schedule_Compact);
+  std::vector<WorkspaceObject> objects = workspace.getObjectsByType(iddobjectname::Schedule_Compact);
   ASSERT_EQ(1u, objects.size());
 
   boost::regex throughRegex("^Through:\\s*(.*)/\\s*(.*)\\s*");

@@ -106,7 +106,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_Construction)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_NonrecurringCost);
+  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_NonrecurringCost);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name));
   EXPECT_EQ("Construction", idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name).get());
@@ -119,7 +119,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_Construction)
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::YearsfromStart));
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::MonthsfromStart));
 
-  idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_RecurringCosts);
+  idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_RecurringCosts);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name));
   EXPECT_EQ("Maintenance", idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name).get());
@@ -167,7 +167,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_Construction2)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_NonrecurringCost);
+  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_NonrecurringCost);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name));
   EXPECT_EQ("Material", idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name).get());
@@ -181,7 +181,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_Construction2)
   EXPECT_EQ(5, idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::YearsfromStart).get());
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::MonthsfromStart));
 
-  idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_RecurringCosts);
+  idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_RecurringCosts);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name));
   EXPECT_EQ("Material Replacement", idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name).get());
@@ -232,7 +232,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_Construction3)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_NonrecurringCost);
+  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_NonrecurringCost);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name));
   EXPECT_EQ("Demolition", idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name).get());
@@ -246,7 +246,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_Construction3)
   EXPECT_EQ(20, idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::YearsfromStart).get());
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::MonthsfromStart));
 
-  idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_RecurringCosts);
+  idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_RecurringCosts);
   EXPECT_EQ(0u, idfObjects.size());
 }
 
@@ -283,7 +283,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_Lights)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_NonrecurringCost);
+  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_NonrecurringCost);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name));
   EXPECT_EQ("Installation", idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name).get());
@@ -296,7 +296,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_Lights)
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::YearsfromStart));
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::MonthsfromStart));
 
-  idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_RecurringCosts);
+  idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_RecurringCosts);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name));
   EXPECT_EQ("Maintenance", idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name).get());
@@ -348,7 +348,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_Lights_Multiplier)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_NonrecurringCost);
+  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_NonrecurringCost);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name));
   EXPECT_EQ("Installation", idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name).get());
@@ -361,7 +361,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_Lights_Multiplier)
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::YearsfromStart));
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::MonthsfromStart));
 
-  idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_RecurringCosts);
+  idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_RecurringCosts);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name));
   EXPECT_EQ("Maintenance", idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name).get());
@@ -410,7 +410,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_Building)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_NonrecurringCost);
+  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_NonrecurringCost);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name));
   EXPECT_EQ("Installation", idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name).get());
@@ -423,7 +423,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_Building)
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::YearsfromStart));
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::MonthsfromStart));
 
-  idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_RecurringCosts);
+  idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_RecurringCosts);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name));
   EXPECT_EQ("Maintenance", idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name).get());
@@ -477,7 +477,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_HVACComponent)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_NonrecurringCost);
+  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_NonrecurringCost);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name));
   EXPECT_EQ("Installation", idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name).get());
@@ -490,7 +490,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_HVACComponent)
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::YearsfromStart));
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::MonthsfromStart));
 
-  idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_RecurringCosts);
+  idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_RecurringCosts);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name));
   EXPECT_EQ("Maintenance", idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name).get());
@@ -526,7 +526,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_ZoneHVACComponent)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_NonrecurringCost);
+  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_NonrecurringCost);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name));
   EXPECT_EQ("Installation", idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name).get());
@@ -539,7 +539,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LifeCycleCost_ZoneHVACComponent)
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::YearsfromStart));
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::MonthsfromStart));
 
-  idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_RecurringCosts);
+  idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_RecurringCosts);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name));
   EXPECT_EQ("Maintenance", idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name).get());

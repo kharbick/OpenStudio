@@ -53,7 +53,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_DaylightingControl_NoZone)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  EXPECT_EQ(0u, workspace.getObjectsByType(IddObjectType::Daylighting_Controls).size());
+  EXPECT_EQ(0u, workspace.getObjectsByType(iddobjectname::Daylighting_Controls).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_DaylightingControl_OneControl)
@@ -70,7 +70,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_DaylightingControl_OneControl)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Daylighting_Controls).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Daylighting_Controls).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_DaylightingControl_TwoControl)
@@ -90,5 +90,5 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_DaylightingControl_TwoControl)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Daylighting_Controls).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Daylighting_Controls).size());
 }

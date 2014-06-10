@@ -43,6 +43,7 @@
 
 #include <utilities/idd/Lights_FieldEnums.hxx>
 #include <utilities/idd/Zone_FieldEnums.hxx>
+#include <utilities/idd/ZoneList_FieldEnums.hxx>
 
 #include <resources.hxx>
 
@@ -89,9 +90,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_TwoSpaces_SameSpa
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_TwoSpaces_Building_SameSpaceType)
@@ -133,9 +134,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_TwoSpaces_Buildin
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_TwoZone_TwoSpaces_SameSpaceType)
@@ -176,9 +177,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_TwoZone_TwoSpaces_SameSpa
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(2u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(2u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_TwoZone_TwoSpaces_Building_SameSpaceType)
@@ -221,9 +222,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_TwoZone_TwoSpaces_Buildin
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(2u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(2u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_TwoSpaces_DifferentSpaceType)
@@ -266,9 +267,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_TwoSpaces_Differe
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(0u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(2u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(0u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(2u, workspace.getObjectsByType(iddobjectname::Lights).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_TwoSpaces_Building_DifferentSpaceType)
@@ -317,9 +318,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_TwoSpaces_Buildin
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(0u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(2u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(0u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(2u, workspace.getObjectsByType(iddobjectname::Lights).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_TwoSpaces_Building_DifferentSpaceType_2)
@@ -364,9 +365,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_TwoSpaces_Buildin
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(0u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(2u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(0u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(2u, workspace.getObjectsByType(iddobjectname::Lights).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_OneSpace_Building_DifferentSpaceType)
@@ -403,9 +404,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_OneSpace_Building
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
 }
 
 
@@ -440,9 +441,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_OneSpace_Building
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_OneSpace_Building)
@@ -475,9 +476,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_OneZone_OneSpace_Building
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_3Zone_2Spaces)
@@ -535,9 +536,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_3Zone_2Spaces)
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(2u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(3u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(2u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(3u, workspace.getObjectsByType(iddobjectname::Lights).size());
 }
 
 
@@ -611,11 +612,11 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_1Zone_2Spaces_HardSchedul
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(0u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(4u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(0u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(4u, workspace.getObjectsByType(iddobjectname::Lights).size());
 
-  BOOST_FOREACH(const WorkspaceObject& workspaceObject, workspace.getObjectsByType(IddObjectType::Lights)){
+  BOOST_FOREACH(const WorkspaceObject& workspaceObject, workspace.getObjectsByType(iddobjectname::Lights)){
     EXPECT_TRUE(workspaceObject.getTarget(LightsFields::ScheduleName));
   }
 }
@@ -687,11 +688,11 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_ThermalZone_1Zone_2Spaces_InheritSche
   ForwardTranslator trans;
   Workspace workspace = trans.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(0u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
-  EXPECT_EQ(4u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(0u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
+  EXPECT_EQ(4u, workspace.getObjectsByType(iddobjectname::Lights).size());
 
-  BOOST_FOREACH(const WorkspaceObject& workspaceObject, workspace.getObjectsByType(IddObjectType::Lights)){
+  BOOST_FOREACH(const WorkspaceObject& workspaceObject, workspace.getObjectsByType(iddobjectname::Lights)){
     EXPECT_TRUE(workspaceObject.getTarget(LightsFields::ScheduleName)) << workspaceObject;
   }
 }

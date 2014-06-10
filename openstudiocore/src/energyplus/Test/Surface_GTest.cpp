@@ -42,6 +42,8 @@
 #include <model/Building_Impl.hpp>
 
 #include <utilities/idd/BuildingSurface_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
+#include <utilities/idd/Construction_FieldEnums.hxx>
 
 #include <resources.hxx>
 
@@ -67,7 +69,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Surface)
   EXPECT_EQ(0u, forwardTranslator.errors().size());
   EXPECT_EQ(0u, forwardTranslator.warnings().size());
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::BuildingSurface_Detailed).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::BuildingSurface_Detailed).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_Surface_Zone)
@@ -92,11 +94,11 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Surface_Zone)
   EXPECT_EQ(0u, forwardTranslator.errors().size());
   EXPECT_EQ(0u, forwardTranslator.warnings().size());
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::BuildingSurface_Detailed).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::BuildingSurface_Detailed).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
 
-  WorkspaceObject surfaceObject = workspace.getObjectsByType(IddObjectType::BuildingSurface_Detailed)[0];
-  WorkspaceObject zoneObject = workspace.getObjectsByType(IddObjectType::Zone)[0];
+  WorkspaceObject surfaceObject = workspace.getObjectsByType(iddobjectname::BuildingSurface_Detailed)[0];
+  WorkspaceObject zoneObject = workspace.getObjectsByType(iddobjectname::Zone)[0];
 
   ASSERT_TRUE(surfaceObject.getTarget(BuildingSurface_DetailedFields::ZoneName));
   EXPECT_EQ(zoneObject.handle(), surfaceObject.getTarget(BuildingSurface_DetailedFields::ZoneName)->handle());
@@ -142,11 +144,11 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Surface_DefaultConstruction)
   EXPECT_EQ(0u, forwardTranslator.errors().size());
   EXPECT_EQ(0u, forwardTranslator.warnings().size());
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::BuildingSurface_Detailed).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Construction).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::BuildingSurface_Detailed).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Construction).size());
 
-  WorkspaceObject surfaceObject = workspace.getObjectsByType(IddObjectType::BuildingSurface_Detailed)[0];
-  WorkspaceObject constructionObject = workspace.getObjectsByType(IddObjectType::Construction)[0];
+  WorkspaceObject surfaceObject = workspace.getObjectsByType(iddobjectname::BuildingSurface_Detailed)[0];
+  WorkspaceObject constructionObject = workspace.getObjectsByType(iddobjectname::Construction)[0];
 
   ASSERT_TRUE(surfaceObject.getTarget(BuildingSurface_DetailedFields::ConstructionName));
   EXPECT_EQ(constructionObject.handle(), surfaceObject.getTarget(BuildingSurface_DetailedFields::ConstructionName)->handle());

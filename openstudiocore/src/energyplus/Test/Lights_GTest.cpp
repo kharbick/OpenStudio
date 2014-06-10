@@ -83,7 +83,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_LightsDefinition)
   }
   EXPECT_EQ(0u, forwardTranslator.warnings().size()) << warnings;
 
-  EXPECT_EQ(0u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  EXPECT_EQ(0u, workspace.getObjectsByType(iddobjectname::Lights).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_Lights_NoSpace)
@@ -95,9 +95,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Lights_NoSpace)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
 
-  WorkspaceObject object = workspace.getObjectsByType(IddObjectType::Lights)[0];
+  WorkspaceObject object = workspace.getObjectsByType(iddobjectname::Lights)[0];
   EXPECT_TRUE(object.isEmpty(LightsFields::ZoneorZoneListName));
 }
 
@@ -116,11 +116,11 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Lights_Space)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
 
-  WorkspaceObject lightsObject = workspace.getObjectsByType(IddObjectType::Lights)[0];
-  WorkspaceObject zoneObject = workspace.getObjectsByType(IddObjectType::Zone)[0];
+  WorkspaceObject lightsObject = workspace.getObjectsByType(iddobjectname::Lights)[0];
+  WorkspaceObject zoneObject = workspace.getObjectsByType(iddobjectname::Zone)[0];
   
   ASSERT_TRUE(lightsObject.getTarget(LightsFields::ZoneorZoneListName));
   EXPECT_EQ(zoneObject.handle(), lightsObject.getTarget(LightsFields::ZoneorZoneListName)->handle());
@@ -144,13 +144,13 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Lights_SpaceType)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
 
-  WorkspaceObject lightsObject = workspace.getObjectsByType(IddObjectType::Lights)[0];
-  WorkspaceObject zoneObject = workspace.getObjectsByType(IddObjectType::Zone)[0];
-  WorkspaceObject zoneListObject = workspace.getObjectsByType(IddObjectType::ZoneList)[0];
+  WorkspaceObject lightsObject = workspace.getObjectsByType(iddobjectname::Lights)[0];
+  WorkspaceObject zoneObject = workspace.getObjectsByType(iddobjectname::Zone)[0];
+  WorkspaceObject zoneListObject = workspace.getObjectsByType(iddobjectname::ZoneList)[0];
   
   ASSERT_TRUE(lightsObject.getTarget(LightsFields::ZoneorZoneListName));
   EXPECT_EQ(zoneListObject.handle(), lightsObject.getTarget(LightsFields::ZoneorZoneListName)->handle());
@@ -199,13 +199,13 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Lights_OneSpaceType_OneThermalZone)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
 
-  WorkspaceObject lightsObject = workspace.getObjectsByType(IddObjectType::Lights)[0];
-  WorkspaceObject zoneObject = workspace.getObjectsByType(IddObjectType::Zone)[0];
-  WorkspaceObject zoneListObject = workspace.getObjectsByType(IddObjectType::ZoneList)[0];
+  WorkspaceObject lightsObject = workspace.getObjectsByType(iddobjectname::Lights)[0];
+  WorkspaceObject zoneObject = workspace.getObjectsByType(iddobjectname::Zone)[0];
+  WorkspaceObject zoneListObject = workspace.getObjectsByType(iddobjectname::ZoneList)[0];
      
   ASSERT_TRUE(lightsObject.getString(LightsFields::DesignLevelCalculationMethod, false));
   EXPECT_EQ("Watts/Area", lightsObject.getString(LightsFields::DesignLevelCalculationMethod, false).get());
@@ -267,18 +267,18 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Lights_TwoSpaceTypes_OneThermalZone)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  ASSERT_EQ(2u, workspace.getObjectsByType(IddObjectType::Lights).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(0u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
+  ASSERT_EQ(2u, workspace.getObjectsByType(iddobjectname::Lights).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(0u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
 
   bool foundLightingPower100 = false;
   bool foundLightingPower200 = false;
   for (int i = 0; i < 2; ++i){
-    ASSERT_TRUE(workspace.getObjectsByType(IddObjectType::Lights)[i].getString(LightsFields::DesignLevelCalculationMethod, false));
-    EXPECT_EQ("LightingLevel", workspace.getObjectsByType(IddObjectType::Lights)[i].getString(LightsFields::DesignLevelCalculationMethod, false).get());
+    ASSERT_TRUE(workspace.getObjectsByType(iddobjectname::Lights)[i].getString(LightsFields::DesignLevelCalculationMethod, false));
+    EXPECT_EQ("LightingLevel", workspace.getObjectsByType(iddobjectname::Lights)[i].getString(LightsFields::DesignLevelCalculationMethod, false).get());
 
-    ASSERT_TRUE(workspace.getObjectsByType(IddObjectType::Lights)[i].getDouble(LightsFields::LightingLevel, false));
-    double lightingLevel = workspace.getObjectsByType(IddObjectType::Lights)[i].getDouble(LightsFields::LightingLevel, false).get();
+    ASSERT_TRUE(workspace.getObjectsByType(iddobjectname::Lights)[i].getDouble(LightsFields::LightingLevel, false));
+    double lightingLevel = workspace.getObjectsByType(iddobjectname::Lights)[i].getDouble(LightsFields::LightingLevel, false).get();
 
     if (lightingLevel == 100.0){
       foundLightingPower100 = true;
@@ -340,18 +340,18 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Lights_TwoSpaceTypes_OneThermalZone_B
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  ASSERT_EQ(2u, workspace.getObjectsByType(IddObjectType::Lights).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
-  EXPECT_EQ(0u, workspace.getObjectsByType(IddObjectType::ZoneList).size());
+  ASSERT_EQ(2u, workspace.getObjectsByType(iddobjectname::Lights).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
+  EXPECT_EQ(0u, workspace.getObjectsByType(iddobjectname::ZoneList).size());
 
   bool foundLightingPower100 = false;
   bool foundLightingPower200 = false;
   for (int i = 0; i < 2; ++i){
-    ASSERT_TRUE(workspace.getObjectsByType(IddObjectType::Lights)[i].getString(LightsFields::DesignLevelCalculationMethod, false));
-    EXPECT_EQ("LightingLevel", workspace.getObjectsByType(IddObjectType::Lights)[i].getString(LightsFields::DesignLevelCalculationMethod, false).get());
+    ASSERT_TRUE(workspace.getObjectsByType(iddobjectname::Lights)[i].getString(LightsFields::DesignLevelCalculationMethod, false));
+    EXPECT_EQ("LightingLevel", workspace.getObjectsByType(iddobjectname::Lights)[i].getString(LightsFields::DesignLevelCalculationMethod, false).get());
 
-    ASSERT_TRUE(workspace.getObjectsByType(IddObjectType::Lights)[i].getDouble(LightsFields::LightingLevel, false));
-    double lightingLevel = workspace.getObjectsByType(IddObjectType::Lights)[i].getDouble(LightsFields::LightingLevel, false).get();
+    ASSERT_TRUE(workspace.getObjectsByType(iddobjectname::Lights)[i].getDouble(LightsFields::LightingLevel, false));
+    double lightingLevel = workspace.getObjectsByType(iddobjectname::Lights)[i].getDouble(LightsFields::LightingLevel, false).get();
 
     if (lightingLevel == 100.0){
       foundLightingPower100 = true;
@@ -391,8 +391,8 @@ TEST_F(EnergyPlusFixture, ForwardTranslator_ExampleModel_Lights) {
   Workspace workspace = forwardTranslator.translateModel(model);
   EXPECT_EQ(0u, forwardTranslator.errors().size());
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Zone).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Zone).size());
 
 }
 
@@ -429,9 +429,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Lights_Building_Schedule)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::Lights).size());
-  ASSERT_TRUE(workspace.getObjectsByType(IddObjectType::Lights)[0].getString(LightsFields::ScheduleName, false));
-  EXPECT_EQ(schedule2.name().get(), workspace.getObjectsByType(IddObjectType::Lights)[0].getString(LightsFields::ScheduleName, false).get());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::Lights).size());
+  ASSERT_TRUE(workspace.getObjectsByType(iddobjectname::Lights)[0].getString(LightsFields::ScheduleName, false));
+  EXPECT_EQ(schedule2.name().get(), workspace.getObjectsByType(iddobjectname::Lights)[0].getString(LightsFields::ScheduleName, false).get());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_Lights_Bug983)
@@ -488,7 +488,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Lights_Bug983)
   Workspace workspace = forwardTranslator.translateModel(model);
   EXPECT_EQ(0u, forwardTranslator.errors().size());
 
-  std::vector<WorkspaceObject> idfLights = workspace.getObjectsByType(IddObjectType::Lights);
+  std::vector<WorkspaceObject> idfLights = workspace.getObjectsByType(iddobjectname::Lights);
   ASSERT_EQ(2u, idfLights.size());
 
   ASSERT_TRUE(idfLights[0].getString(LightsFields::DesignLevelCalculationMethod));
@@ -547,10 +547,10 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Lights_Costs)
   Workspace workspace = forwardTranslator.translateModel(model);
   EXPECT_EQ(0u, forwardTranslator.errors().size());
 
-  std::vector<WorkspaceObject> idfLights = workspace.getObjectsByType(IddObjectType::Lights);
+  std::vector<WorkspaceObject> idfLights = workspace.getObjectsByType(iddobjectname::Lights);
   ASSERT_EQ(2u, idfLights.size());
 
-  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_NonrecurringCost);
+  WorkspaceObjectVector idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_NonrecurringCost);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name));
   EXPECT_EQ("Installation", idfObjects[0].getString(LifeCycleCost_NonrecurringCostFields::Name).get());
@@ -563,7 +563,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_Lights_Costs)
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::YearsfromStart));
   EXPECT_FALSE(idfObjects[0].getInt(LifeCycleCost_NonrecurringCostFields::MonthsfromStart));
 
-  idfObjects = workspace.getObjectsByType(IddObjectType::LifeCycleCost_RecurringCosts);
+  idfObjects = workspace.getObjectsByType(iddobjectname::LifeCycleCost_RecurringCosts);
   ASSERT_EQ(1u, idfObjects.size());
   ASSERT_TRUE(idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name));
   EXPECT_EQ("Light Bulbs", idfObjects[0].getString(LifeCycleCost_RecurringCostsFields::Name).get());

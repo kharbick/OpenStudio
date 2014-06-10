@@ -60,8 +60,8 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_SpaceInfiltrationEffectiveLeakageArea
   EXPECT_EQ(0u, forwardTranslator.errors().size());
   EXPECT_EQ(0u, forwardTranslator.warnings().size());
 
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::ZoneInfiltration_EffectiveLeakageArea).size());
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::ZoneInfiltration_EffectiveLeakageArea).size());
 
-  WorkspaceObject object = workspace.getObjectsByType(IddObjectType::ZoneInfiltration_EffectiveLeakageArea)[0];
+  WorkspaceObject object = workspace.getObjectsByType(iddobjectname::ZoneInfiltration_EffectiveLeakageArea)[0];
   EXPECT_TRUE(object.isEmpty(ZoneInfiltration_EffectiveLeakageAreaFields::ZoneName));
 }

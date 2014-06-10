@@ -32,6 +32,7 @@
 #include <model/ThermalZone_Impl.hpp>
 
 #include <utilities/idd/Output_IlluminanceMap_FieldEnums.hxx>
+#include <utilities/idd/Daylighting_Controls_FieldEnums.hxx>
 
 #include <resources.hxx>
 
@@ -53,7 +54,7 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_IlluminanceMap_NoZone)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  EXPECT_EQ(0u, workspace.getObjectsByType(IddObjectType::Output_IlluminanceMap).size());
+  EXPECT_EQ(0u, workspace.getObjectsByType(iddobjectname::Output_IlluminanceMap).size());
 }
 
 TEST_F(EnergyPlusFixture,ForwardTranslator_IlluminanceMap)
@@ -70,9 +71,9 @@ TEST_F(EnergyPlusFixture,ForwardTranslator_IlluminanceMap)
   ForwardTranslator forwardTranslator;
   Workspace workspace = forwardTranslator.translateModel(model);
 
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Output_IlluminanceMap).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Output_IlluminanceMap).size());
 
   // automatically added
-  EXPECT_EQ(1u, workspace.getObjectsByType(IddObjectType::Daylighting_Controls).size());
+  EXPECT_EQ(1u, workspace.getObjectsByType(iddobjectname::Daylighting_Controls).size());
 }
 
