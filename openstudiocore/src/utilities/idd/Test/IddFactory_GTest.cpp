@@ -23,12 +23,21 @@
 #include <utilities/idd/IddFactory.hxx>
 #include <utilities/idd/IddFieldProperties.hpp>
 #include <utilities/idd/IddKey.hpp>
+#include <utilities/idd/OS_ClimateZones_FieldEnums.hxx>
+#include <utilities/idd/IddEnums.hxx>
+#include <utilities/idd/Building_FieldEnums.hxx>
+#include <utilities/idd/OS_Material_AirWall_FieldEnums.hxx>
+#include <utilities/idd/GlobalGeometryRules_FieldEnums.hxx>
+#include <utilities/idd/Lights_FieldEnums.hxx>
+#include <utilities/idd/RoomAir_TemperaturePattern_TwoGradient_FieldEnums.hxx>
+#include <utilities/idd/OS_AirTerminal_SingleDuct_ParallelPIU_Reheat_FieldEnums.hxx>
 
 #include <utilities/units/QuantityConverter.hpp>
 #include <utilities/units/Quantity.hpp>
 
 #include <utilities/core/Containers.hpp>
 #include <utilities/core/Compare.hpp>
+
 
 #include <OpenStudio.hxx>
 
@@ -66,8 +75,8 @@ TEST_F(IddFixture,IddFactory_IddFile)
 {
   IddFile file = IddFactory::instance().getIddFile(IddFileType::OpenStudio);
   EXPECT_TRUE(file.getObject("OS:Building"));
-  EXPECT_TRUE(file.getObject(IddObjectType::CommentOnly));
-  EXPECT_TRUE(file.getObject(IddObjectType::OS_ClimateZones));
+  EXPECT_TRUE(file.getObject(iddobjectname::CommentOnly));
+  EXPECT_TRUE(file.getObject(iddobjectname::OS_ClimateZones));
   // print out for visual inspection
   path outPath = resourcesPath()/toPath("utilities/RoundTrip_OpenStudio.idd");
   file.save(outPath,true);
@@ -87,8 +96,8 @@ TEST_F(IddFixture,IddFactory_IddFile)
 
   file = IddFactory::instance().getIddFile(IddFileType::EnergyPlus);
   EXPECT_TRUE(file.getObject("Building"));
-  EXPECT_TRUE(file.getObject(IddObjectType::CommentOnly));
-  EXPECT_FALSE(file.getObject(IddObjectType::OS_ClimateZones));
+  EXPECT_TRUE(file.getObject(iddobjectname::CommentOnly));
+  EXPECT_FALSE(file.getObject(iddobjectname::OS_ClimateZones));
   // print out for visual inspection
   outPath = resourcesPath()/toPath("energyplus/RoundTrip_ProposedEnergy+.idd");
   file.save(outPath,true);
@@ -99,40 +108,40 @@ TEST_F(IddFixture,IddFactory_IddFile)
 
 TEST_F(IddFixture,IddFactory_isInFile)
 {
-  EXPECT_TRUE(IddFactory::instance().isInFile(IddObjectType::Building,IddFileType::EnergyPlus));
-  EXPECT_FALSE(IddFactory::instance().isInFile(IddObjectType::Building,IddFileType::OpenStudio));
-  EXPECT_FALSE(IddFactory::instance().isInFile(IddObjectType::OS_Material_AirWall,IddFileType::EnergyPlus));
-  EXPECT_TRUE(IddFactory::instance().isInFile(IddObjectType::OS_Material_AirWall,IddFileType::OpenStudio));
-  EXPECT_TRUE(IddFactory::instance().isInFile(IddObjectType::GlobalGeometryRules,IddFileType::EnergyPlus));
-  EXPECT_FALSE(IddFactory::instance().isInFile(IddObjectType::GlobalGeometryRules,IddFileType::OpenStudio));
-  EXPECT_TRUE(IddFactory::instance().isInFile(IddObjectType::CommentOnly,IddFileType::EnergyPlus));
-  EXPECT_TRUE(IddFactory::instance().isInFile(IddObjectType::CommentOnly,IddFileType::OpenStudio));
-  EXPECT_FALSE(IddFactory::instance().isInFile(IddObjectType::Catchall,IddFileType::EnergyPlus));
-  EXPECT_FALSE(IddFactory::instance().isInFile(IddObjectType::Catchall,IddFileType::OpenStudio));
+  EXPECT_TRUE(IddFactory::instance().isInFile(iddobjectname::Building,IddFileType::EnergyPlus));
+  EXPECT_FALSE(IddFactory::instance().isInFile(iddobjectname::Building,IddFileType::OpenStudio));
+  EXPECT_FALSE(IddFactory::instance().isInFile(iddobjectname::OS_Material_AirWall,IddFileType::EnergyPlus));
+  EXPECT_TRUE(IddFactory::instance().isInFile(iddobjectname::OS_Material_AirWall,IddFileType::OpenStudio));
+  EXPECT_TRUE(IddFactory::instance().isInFile(iddobjectname::GlobalGeometryRules,IddFileType::EnergyPlus));
+  EXPECT_FALSE(IddFactory::instance().isInFile(iddobjectname::GlobalGeometryRules,IddFileType::OpenStudio));
+  EXPECT_TRUE(IddFactory::instance().isInFile(iddobjectname::CommentOnly,IddFileType::EnergyPlus));
+  EXPECT_TRUE(IddFactory::instance().isInFile(iddobjectname::CommentOnly,IddFileType::OpenStudio));
+  EXPECT_FALSE(IddFactory::instance().isInFile(iddobjectname::Catchall,IddFileType::EnergyPlus));
+  EXPECT_FALSE(IddFactory::instance().isInFile(iddobjectname::Catchall,IddFileType::OpenStudio));
 }
 
 TEST_F(IddFixture,IddFactory_IddObjects)
 {
   IddObject object;
 
-  OptionalIddObject candidate = IddFactory::instance().getObject(IddObjectType::UserCustom);
+  OptionalIddObject candidate = IddFactory::instance().getObject(iddobjectname::UserCustom);
   EXPECT_FALSE(candidate);
 
-  candidate = IddFactory::instance().getObject(IddObjectType::Catchall);
+  candidate = IddFactory::instance().getObject(iddobjectname::Catchall);
   ASSERT_TRUE(candidate);
   object = *candidate;
   candidate = IddFactory::instance().getObject("catchall");
   ASSERT_TRUE(candidate);
   EXPECT_TRUE(object == *candidate);
 
-  candidate = IddFactory::instance().getObject(IddObjectType::CommentOnly);
+  candidate = IddFactory::instance().getObject(iddobjectname::CommentOnly);
   ASSERT_TRUE(candidate);
   object = *candidate;
   candidate = IddFactory::instance().getObject("coMmentonLy");
   ASSERT_TRUE(candidate);
   EXPECT_TRUE(object == *candidate);
 
-  candidate = IddFactory::instance().getObject(IddObjectType::Lights);
+  candidate = IddFactory::instance().getObject(iddobjectname::Lights);
   ASSERT_TRUE(candidate);
   object = *candidate;
   candidate = IddFactory::instance().getObject("lights");
@@ -203,7 +212,7 @@ TEST_F(IddFixture,IddFactory_RoomAir_TemperaturePattern_TwoGradient) {
   // there seems to be a problem with this object
   OptionalIddObject object = IddFactory::instance().getObject("RoomAir:TemperaturePattern:TwoGradient");
   ASSERT_TRUE(object);
-  ASSERT_TRUE(object->type() == IddObjectType::RoomAir_TemperaturePattern_TwoGradient);
+  ASSERT_TRUE(object->type() == iddobjectname::RoomAir_TemperaturePattern_TwoGradient);
 }
 
 TEST_F(IddFixture,IddFactory_Units) {
@@ -382,7 +391,7 @@ TEST_F(IddFixture,IddFactory_OpenStudioUnits_SubTest3) {
     BOOST_FOREACH(const IddField& field,fields) {
       if (OptionalString iddUnits = field.properties().ipUnits) {
         if (*iddUnits == "gal/min") {
-          if (object.type() == IddObjectType::OS_AirTerminal_SingleDuct_ParallelPIU_Reheat) {
+          if (object.type() == iddobjectname::OS_AirTerminal_SingleDuct_ParallelPIU_Reheat) {
             LOG(Debug,"Gal/min field: " << field.name());
           }
           found = true;

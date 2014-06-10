@@ -27,6 +27,7 @@
 #include <utilities/idf/WorkspaceWatcher.hpp>
 
 #include <utilities/idd/OS_Rendering_Color_FieldEnums.hxx>
+#include <utilities/idd/IddEnums.hxx>
 
 using namespace openstudio;
 using namespace openstudio::model;
@@ -48,7 +49,7 @@ TEST_F(ModelFixture, RenderingColor) {
 TEST_F(ModelFixture, RenderingColor2) {
 
   Model model;
-  model.addObject(IdfObject(IddObjectType::OS_Rendering_Color));
+  model.addObject(IdfObject(iddobjectname::OS_Rendering_Color));
 
   ASSERT_EQ(1u, model.getModelObjects<RenderingColor>().size());
 
@@ -65,7 +66,7 @@ TEST_F(ModelFixture, RenderingColor2) {
 
 TEST_F(ModelFixture, RenderingColor3) {
 
-  IdfObject idfObject(IddObjectType::OS_Rendering_Color);
+  IdfObject idfObject(iddobjectname::OS_Rendering_Color);
   EXPECT_TRUE(idfObject.setInt(OS_Rendering_ColorFields::RenderingRedValue, 42));
   EXPECT_TRUE(idfObject.setInt(OS_Rendering_ColorFields::RenderingGreenValue, 42));
   EXPECT_TRUE(idfObject.setInt(OS_Rendering_ColorFields::RenderingBlueValue, 42));
@@ -126,7 +127,7 @@ class RenderingColorWorkspaceWatcher : public openstudio::WorkspaceWatcher {
   {
     WorkspaceWatcher::onObjectAdd(addedObject);
 
-    EXPECT_EQ(IddObjectType::OS_Rendering_Color, addedObject.iddObject().type().value());
+    EXPECT_EQ(RenderingColor::iddObjectType(), addedObject.iddObject().type());
     boost::optional<RenderingColor> color = addedObject.optionalCast<RenderingColor>();
     ASSERT_TRUE(color);
     ASSERT_NO_THROW(color->renderingRedValue());
@@ -164,7 +165,7 @@ TEST_F(ModelFixture, RenderingColor_Initializer2)
   RenderingColorWorkspaceWatcher watcher(model);
   EXPECT_FALSE(watcher.objectAdded());
   
-  IdfObject idfObject(IddObjectType::OS_Rendering_Color);
+  IdfObject idfObject(iddobjectname::OS_Rendering_Color);
   model.addObject(idfObject);
   EXPECT_TRUE(watcher.objectAdded());
   

@@ -261,7 +261,7 @@ TEST_F(ModelFixture, ComponentWatcher_ComponentData_Interactions) {
 
 TEST_F(ModelFixture, ComponentWatcher_BadComponentDataFromWorkspace) {
   Workspace ws;
-  OptionalWorkspaceObject owo = ws.addObject(IdfObject(IddObjectType::OS_ComponentData));
+  OptionalWorkspaceObject owo = ws.addObject(IdfObject(iddobjectname::OS_ComponentData));
   ASSERT_TRUE(owo);
   // make component data ok except points to non-existent object
   WorkspaceObject cd = *owo;

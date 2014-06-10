@@ -23,6 +23,7 @@
 
 #include <model/RefrigerationCondenserCascade.hpp>
 #include <model/RefrigerationCondenserCascade_Impl.hpp>
+#include <utilities/idd/OS_Refrigeration_Condenser_Cascade_FieldEnums.hxx>
 
 using namespace openstudio;
 using namespace openstudio::model;
@@ -47,7 +48,7 @@ TEST_F(ModelFixture,RefrigerationCondenserCascade_iddObjectType)
 	Model m; 
 	RefrigerationCondenserCascade refrigerationCondenserCascade = RefrigerationCondenserCascade(m);
 
-	EXPECT_EQ( refrigerationCondenserCascade.iddObjectType(), IddObjectType::OS_Refrigeration_Condenser_Cascade);
+	EXPECT_EQ( refrigerationCondenserCascade.iddObjectType(), iddobjectname::OS_Refrigeration_Condenser_Cascade);
 }
 
 

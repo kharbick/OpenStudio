@@ -33,6 +33,10 @@
 #include <utilities/units/OSOptionalQuantity.hpp>
 
 #include <utilities/idd/OS_Building_FieldEnums.hxx>
+#include <utilities/idd/Building_FieldEnums.hxx>
+#include <utilities/idd/BuildingSurface_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
+#include <utilities/idd/Lights_FieldEnums.hxx>
 
 #include <resources.hxx>
 
@@ -91,42 +95,42 @@ TEST_F(IdfFixture, IdfObject_ConstructFromText_Comments)
   // single line comment above object
   std::string text = singleLineComment + idfRegex::newLinestring() + iddRegex::commentOnlyObjectName() + ";";
   IdfObject object = IdfObject::load(text).get();
-  EXPECT_TRUE(object.iddObject().type() == IddObjectType::CommentOnly);
+  EXPECT_TRUE(object.iddObject().type() == iddobjectname::CommentOnly);
   EXPECT_TRUE(object.isValid(StrictnessLevel::Final));
   EXPECT_EQ(singleLineComment, object.comment());
 
   // single line comment after object
   text = iddRegex::commentOnlyObjectName() + ";" + singleLineComment;
   object = IdfObject::load(text).get();
-  EXPECT_TRUE(object.iddObject().type() == IddObjectType::CommentOnly);
+  EXPECT_TRUE(object.iddObject().type() == iddobjectname::CommentOnly);
   EXPECT_TRUE(object.isValid(StrictnessLevel::Final));
   EXPECT_EQ(singleLineComment, object.comment());
 
   // single line comment below object
   text = iddRegex::commentOnlyObjectName() + ";" + idfRegex::newLinestring() + singleLineComment;
   object = IdfObject::load(text).get();
-  EXPECT_TRUE(object.iddObject().type() == IddObjectType::CommentOnly);
+  EXPECT_TRUE(object.iddObject().type() == iddobjectname::CommentOnly);
   EXPECT_TRUE(object.isValid(StrictnessLevel::Final));
   EXPECT_EQ(singleLineComment, object.comment());
 
   // multi line comment above object
   text = multiLineComment + idfRegex::newLinestring() + iddRegex::commentOnlyObjectName() + ";";
   object = IdfObject::load(text).get();
-  EXPECT_TRUE(object.iddObject().type() == IddObjectType::CommentOnly);
+  EXPECT_TRUE(object.iddObject().type() == iddobjectname::CommentOnly);
   EXPECT_TRUE(object.isValid(StrictnessLevel::Final));
   EXPECT_EQ(multiLineComment, object.comment());
 
   // multi line comment after object
   text = iddRegex::commentOnlyObjectName() + ";" + multiLineComment;
   object = IdfObject::load(text).get();
-  EXPECT_TRUE(object.iddObject().type() == IddObjectType::CommentOnly);
+  EXPECT_TRUE(object.iddObject().type() == iddobjectname::CommentOnly);
   EXPECT_TRUE(object.isValid(StrictnessLevel::Final));
   EXPECT_EQ(multiLineComment, object.comment());
 
   // multi line comment below object
   text = iddRegex::commentOnlyObjectName() + ";" + idfRegex::newLinestring() + multiLineComment;
   object = IdfObject::load(text).get();
-  EXPECT_TRUE(object.iddObject().type() == IddObjectType::CommentOnly);
+  EXPECT_TRUE(object.iddObject().type() == iddobjectname::CommentOnly);
   EXPECT_TRUE(object.isValid(StrictnessLevel::Final));
   EXPECT_EQ(multiLineComment, object.comment());
 }
@@ -170,7 +174,7 @@ TEST_F(IdfFixture, IdfObject_CopyConstructor)
   OptionalIdfObject oObj = IdfObject::load(text);
   ASSERT_TRUE(oObj);
   IdfObject building = *oObj;
-  EXPECT_TRUE(building.iddObject().type() == IddObjectType::Building);
+  EXPECT_TRUE(building.iddObject().type() == iddobjectname::Building);
   EXPECT_TRUE(building.isValid(StrictnessLevel::Final));
   ASSERT_TRUE(building.name());
   EXPECT_EQ("Building", *(building.name()));
@@ -195,7 +199,7 @@ TEST_F(IdfFixture, IdfObject_CopyConstructor)
 
 TEST_F(IdfFixture, IdfObject_CommentGettersAndSetters) {
   // DEFAULT OBJECT COMMENTS
-  IdfObject object(IddObjectType::Zone);
+  IdfObject object(iddobjectname::Zone);
   // exist? if so, are comments according to regex?
   std::string str = object.comment();
   if (!str.empty()) { EXPECT_EQ(str,makeComment(str)); }
@@ -377,7 +381,7 @@ TEST_F(IdfFixture, IdfObject_NameGetterWithReturnDefaultOption) {
 }
 
 TEST_F(IdfFixture, IdfObject_IddObjectTypeInitialization) {
-  IdfObject idfObject(IddObjectType::OS_Building);
+  IdfObject idfObject(iddobjectname::OS_Building);
   
   // get string should not return empty, initialized optional string
   EXPECT_FALSE(idfObject.getString(OS_BuildingFields::BuildingSectorType, false, true));
@@ -678,11 +682,11 @@ TEST_F(IdfFixture, IdfObject_GetQuantity)
 
 TEST_F(IdfFixture, IdfObject_GroupPushingAndPopping) {
   // NON-EXTENSIBLE OBJECT
-  IdfObject object(IddObjectType::Lights);
+  IdfObject object(iddobjectname::Lights);
   EXPECT_TRUE(object.pushExtensibleGroup().empty());
 
   // MINFIELDS INCLUDES AN EXTENSIBLE GROUP, BUT EXTENSIBLE GROUPS STILL INITIALIZED AS EMPTY
-  object = IdfObject(IddObjectType::BuildingSurface_Detailed);
+  object = IdfObject(iddobjectname::BuildingSurface_Detailed);
   EXPECT_EQ(static_cast<unsigned>(10),object.numFields());
   // push empty strings
   EXPECT_FALSE(object.pushExtensibleGroup().empty());

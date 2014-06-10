@@ -27,6 +27,11 @@
 
 #include <utilities/idd/BuildingSurface_Detailed_FieldEnums.hxx>
 #include <utilities/idd/Construction_FieldEnums.hxx>
+#include <utilities/idd/PlantEquipmentOperation_HeatingLoad_FieldEnums.hxx>
+#include <utilities/idd/ZoneHVAC_EquipmentList_FieldEnums.hxx>
+#include <utilities/idd/AvailabilityManagerAssignmentList_FieldEnums.hxx>
+#include <utilities/idd/Material_FieldEnums.hxx>
+#include <utilities/idd/OutputControl_SurfaceColorScheme_FieldEnums.hxx>
 
 #include <resources.hxx>
 
@@ -55,7 +60,7 @@ TEST_F(IdfFixture,IdfExtensibleGroup_Getters) {
   Workspace ws(epIdfFile);
 
   LOG(Debug,"Getting all BuildingSurface:Detailed objects.");
-  IddObjectType objType(IddObjectType::BuildingSurface_Detailed);
+  IddObjectType objType(iddobjectname::BuildingSurface_Detailed);
   WorkspaceObjectVector bldgSurfaces = ws.getObjectsByType(objType);
   ASSERT_TRUE(bldgSurfaces.size() > 0);
 
@@ -96,7 +101,7 @@ TEST_F(IdfFixture,IdfExtensibleGroup_Setters) {
 
   Workspace ws(epIdfFile);
 
-  IddObjectType objType(IddObjectType::PlantEquipmentOperation_HeatingLoad);
+  IddObjectType objType(iddobjectname::PlantEquipmentOperation_HeatingLoad);
   WorkspaceObjectVector objs = ws.getObjectsByType(objType);
   ASSERT_TRUE(objs.size() > 0);
   WorkspaceObject obj = objs[0];
@@ -125,7 +130,7 @@ TEST_F(IdfFixture,IdfExtensibleGroup_Setters) {
   ASSERT_TRUE(od);
   EXPECT_DOUBLE_EQ(32.161,*od);
 
-  objType = IddObjectType(IddObjectType::ZoneHVAC_EquipmentList);
+  objType = IddObjectType(iddobjectname::ZoneHVAC_EquipmentList);
   objs = ws.getObjectsByType(objType);
   ASSERT_TRUE(objs.size() > 0);
 
@@ -165,7 +170,7 @@ TEST_F(IdfFixture,IdfExtensibleGroup_Queries) {
   
   Workspace ws(epIdfFile);
 
-  IddObjectType objType(IddObjectType::AvailabilityManagerAssignmentList);
+  IddObjectType objType(iddobjectname::AvailabilityManagerAssignmentList);
   WorkspaceObjectVector objs = ws.getObjectsByType(objType);
   ASSERT_TRUE(objs.size() > 0);
   
@@ -216,7 +221,7 @@ TEST_F(IdfFixture,WorkspaceExtensibleGroup_Getters) {
   Workspace ws(epIdfFile);
 
   // extensible group with no targets
-  IddObjectType objType(IddObjectType::BuildingSurface_Detailed);
+  IddObjectType objType(iddobjectname::BuildingSurface_Detailed);
   WorkspaceObjectVector bldgSurfaces = ws.getObjectsByType(objType);
   ASSERT_FALSE(bldgSurfaces.empty());
   IdfExtensibleGroup group = bldgSurfaces[0].getExtensibleGroup(0);
@@ -224,7 +229,7 @@ TEST_F(IdfFixture,WorkspaceExtensibleGroup_Getters) {
   WorkspaceExtensibleGroup vertex = group.cast<WorkspaceExtensibleGroup>();
 
   // extensible group with targets
-  objType = IddObjectType(IddObjectType::Construction);
+  objType = IddObjectType(iddobjectname::Construction);
   WorkspaceObjectVector constructions = ws.getObjectsByType(objType);
   ASSERT_FALSE(constructions.empty());
   group = constructions[0].getExtensibleGroup(0);
@@ -259,7 +264,7 @@ TEST_F(IdfFixture,WorkspaceExtensibleGroup_Setters) {
   Workspace ws(epIdfFile);
 
   // extensible group with no targets
-  IddObjectType objType(IddObjectType::BuildingSurface_Detailed);
+  IddObjectType objType(iddobjectname::BuildingSurface_Detailed);
   WorkspaceObjectVector bldgSurfaces = ws.getObjectsByType(objType);
   ASSERT_FALSE(bldgSurfaces.empty());
   IdfExtensibleGroup group = bldgSurfaces[0].getExtensibleGroup(0);
@@ -267,7 +272,7 @@ TEST_F(IdfFixture,WorkspaceExtensibleGroup_Setters) {
   WorkspaceExtensibleGroup vertex = group.cast<WorkspaceExtensibleGroup>();
 
   // extensible group with targets
-  objType = IddObjectType(IddObjectType::Construction);
+  objType = IddObjectType(iddobjectname::Construction);
   WorkspaceObjectVector constructions = ws.getObjectsByType(objType);
   ASSERT_FALSE(constructions.empty());
   group = constructions[0].getExtensibleGroup(0);
@@ -279,7 +284,7 @@ TEST_F(IdfFixture,WorkspaceExtensibleGroup_Setters) {
   ok = vertex.setPointer(BuildingSurface_DetailedExtensibleFields::VertexYcoordinate,
                          constructions[0].handle());
   EXPECT_FALSE(ok);
-  objType = IddObjectType(IddObjectType::Material);
+  objType = IddObjectType(iddobjectname::Material);
   WorkspaceObjectVector materials = ws.getObjectsByType(objType);
   BOOST_FOREACH(WorkspaceObject& material,materials) {
     ok = layer.setPointer(ConstructionExtensibleFields::Layer,material.handle());
@@ -294,7 +299,7 @@ TEST_F(IdfFixture,WorkspaceExtensibleGroup_Queries) {
   Workspace ws(epIdfFile);
 
   // extensible group with no targets
-  IddObjectType objType(IddObjectType::BuildingSurface_Detailed);
+  IddObjectType objType(iddobjectname::BuildingSurface_Detailed);
   WorkspaceObjectVector bldgSurfaces = ws.getObjectsByType(objType);
   ASSERT_FALSE(bldgSurfaces.empty());
   IdfExtensibleGroup group = bldgSurfaces[0].getExtensibleGroup(0);
@@ -302,7 +307,7 @@ TEST_F(IdfFixture,WorkspaceExtensibleGroup_Queries) {
   WorkspaceExtensibleGroup vertex = group.cast<WorkspaceExtensibleGroup>();
 
   // extensible group with targets
-  objType = IddObjectType(IddObjectType::Construction);
+  objType = IddObjectType(iddobjectname::Construction);
   WorkspaceObjectVector constructions = ws.getObjectsByType(objType);
   ASSERT_FALSE(constructions.empty());
   group = constructions[0].getExtensibleGroup(0);
@@ -320,7 +325,7 @@ TEST_F(IdfFixture,WorkspaceExtensibleGroup_Queries) {
 }
 TEST_F(IdfFixture,ExtensibleGroup_Insert) {
   // IdfObject
-  IdfObject idfConstruction(IddObjectType::Construction);
+  IdfObject idfConstruction(iddobjectname::Construction);
 
   IdfExtensibleGroup eg = idfConstruction.insertExtensibleGroup(1);
   EXPECT_TRUE(eg.empty());
@@ -356,16 +361,16 @@ TEST_F(IdfFixture,ExtensibleGroup_Insert) {
 
   // add some objects
   IdfObjectVector objects;
-  objects.push_back(IdfObject(IddObjectType::Construction));
-  objects.push_back(IdfObject(IddObjectType::Material));
+  objects.push_back(IdfObject(iddobjectname::Construction));
+  objects.push_back(IdfObject(iddobjectname::Material));
   objects[1].setName("Brick");
-  objects.push_back(IdfObject(IddObjectType::Material));
+  objects.push_back(IdfObject(iddobjectname::Material));
   objects[2].setName("Insulation");
-  objects.push_back(IdfObject(IddObjectType::Material));
+  objects.push_back(IdfObject(iddobjectname::Material));
   objects[3].setName("Gypsum");
   WorkspaceObjectVector temp = ws.addObjects(objects);
   ASSERT_EQ(static_cast<unsigned>(4),temp.size());
-  ASSERT_TRUE(temp[0].iddObject().type() == IddObjectType::Construction);
+  ASSERT_TRUE(temp[0].iddObject().type() == iddobjectname::Construction);
   ASSERT_TRUE(temp[1].name().get() == "Brick");
   ASSERT_TRUE(temp[2].name().get() == "Insulation");
   ASSERT_TRUE(temp[3].name().get() == "Gypsum");
@@ -418,7 +423,7 @@ TEST_F(IdfFixture,ExtensibleGroup_Insert) {
 
 TEST_F(IdfFixture,ExtensibleGroup_Erase) {
   // IdfObject
-  IdfObject idfConstruction(IddObjectType::Construction);  
+  IdfObject idfConstruction(iddobjectname::Construction);  
   StringVector values(1,"Brick");
   IdfExtensibleGroup eg = idfConstruction.pushExtensibleGroup(values);
   ASSERT_FALSE(eg.empty());
@@ -465,16 +470,16 @@ TEST_F(IdfFixture,ExtensibleGroup_Erase) {
   
   // add some objects
   IdfObjectVector objects;
-  objects.push_back(IdfObject(IddObjectType::Construction));
-  objects.push_back(IdfObject(IddObjectType::Material));
+  objects.push_back(IdfObject(iddobjectname::Construction));
+  objects.push_back(IdfObject(iddobjectname::Material));
   objects[1].setName("Brick");
-  objects.push_back(IdfObject(IddObjectType::Material));
+  objects.push_back(IdfObject(iddobjectname::Material));
   objects[2].setName("Insulation");
-  objects.push_back(IdfObject(IddObjectType::Material));
+  objects.push_back(IdfObject(iddobjectname::Material));
   objects[3].setName("Gypsum");
   WorkspaceObjectVector temp = ws.addObjects(objects);
   ASSERT_EQ(static_cast<unsigned>(4),temp.size());
-  ASSERT_TRUE(temp[0].iddObject().type() == IddObjectType::Construction);
+  ASSERT_TRUE(temp[0].iddObject().type() == iddobjectname::Construction);
   ASSERT_TRUE(temp[1].name().get() == "Brick");
   ASSERT_TRUE(temp[2].name().get() == "Insulation");
   ASSERT_TRUE(temp[3].name().get() == "Gypsum");
@@ -511,7 +516,7 @@ TEST_F(IdfFixture,ExtensibleGroup_Erase) {
 
 TEST_F(IdfFixture,ExtensibleGroup_Clone) {
   // IdfObject
-  IdfObject surfaceColorScheme(IddObjectType::OutputControl_SurfaceColorScheme);
+  IdfObject surfaceColorScheme(iddobjectname::OutputControl_SurfaceColorScheme);
   StringVector values;
   values.push_back("Windows");
   values.push_back("126");
@@ -548,9 +553,9 @@ TEST_F(IdfFixture,ExtensibleGroup_Clone) {
   
   // add some objects
   IdfObjectVector objects;
-  objects.push_back(IdfObject(IddObjectType::Construction));
+  objects.push_back(IdfObject(iddobjectname::Construction));
   objects[0].setName("Mega-Brick Wall");
-  objects.push_back(IdfObject(IddObjectType::Material));
+  objects.push_back(IdfObject(iddobjectname::Material));
   objects[1].setName("Brick");
   WorkspaceObjectVector wsObjects = ws.addObjects(objects);
   ASSERT_EQ(static_cast<unsigned>(2),wsObjects.size());

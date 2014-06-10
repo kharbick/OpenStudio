@@ -29,6 +29,7 @@
 #include <model/RefrigerationCase_Impl.hpp>
 #include <model/RefrigerationDefrostCycleParameters.hpp>
 #include <model/RefrigerationDefrostCycleParameters_Impl.hpp>
+#include <utilities/idd/OS_Refrigeration_Case_FieldEnums.hxx>
 
 using namespace openstudio;
 using namespace openstudio::model;
@@ -55,7 +56,7 @@ TEST_F(ModelFixture,RefrigerationCase_iddObjectType)
     ScheduleCompact cds(m);
     RefrigerationCase testRefrigerationCase = RefrigerationCase(m, cds);
 
-	EXPECT_EQ( testRefrigerationCase.iddObjectType(), IddObjectType::OS_Refrigeration_Case);
+	EXPECT_EQ( testRefrigerationCase.iddObjectType(), iddobjectname::OS_Refrigeration_Case);
 }
 
 TEST_F(ModelFixture,RefrigerationCase_RatedAmbientTemperature)

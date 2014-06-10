@@ -25,6 +25,15 @@
 
 #include <utilities/time/Time.hpp>
 
+#include <utilities/idd/Building_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
+#include <utilities/idd/SizingPeriod_WeatherFileDays_FieldEnums.hxx>
+#include <utilities/idd/Construction_FieldEnums.hxx>
+#include <utilities/idd/Material_FieldEnums.hxx>
+#include <utilities/idd/Timestep_FieldEnums.hxx>
+#include <utilities/idd/SimulationControl_FieldEnums.hxx>
+#include <utilities/idd/RunPeriod_FieldEnums.hxx>
+
 #include <resources.hxx>
 
 #include <boost/filesystem/fstream.hpp>
@@ -41,18 +50,18 @@ TEST_F(IdfFixture, IdfFile_BasicTests_FromScratch) {
   IdfFile idfFile(IddFileType::EnergyPlus); // automatically adds version
   EXPECT_TRUE(idfFile.empty());
 
-  idfFile.addObject(IdfObject(IddObjectType::Building));
-  idfFile.addObject(IdfObject(IddObjectType::Zone));
-  idfFile.insertObjectByIddObjectType(IdfObject(IddObjectType::Construction));
-  idfFile.addObject(IdfObject(IddObjectType::Material));
+  idfFile.addObject(IdfObject(iddobjectname::Building));
+  idfFile.addObject(IdfObject(iddobjectname::Zone));
+  idfFile.insertObjectByIddObjectType(IdfObject(iddobjectname::Construction));
+  idfFile.addObject(IdfObject(iddobjectname::Material));
   EXPECT_FALSE(idfFile.empty());
   EXPECT_EQ(static_cast<unsigned>(4),idfFile.numObjects()); // version not reported out
   IdfObjectVector objs = idfFile.objects();
   ASSERT_EQ(static_cast<unsigned>(4),objs.size());
-  EXPECT_TRUE(objs[0].iddObject().type() == IddObjectType::Building);
-  EXPECT_TRUE(objs[1].iddObject().type() == IddObjectType::Construction);
-  EXPECT_TRUE(objs[2].iddObject().type() == IddObjectType::Zone);
-  EXPECT_TRUE(objs[3].iddObject().type() == IddObjectType::Material);
+  EXPECT_TRUE(objs[0].iddObject().type() == iddobjectname::Building);
+  EXPECT_TRUE(objs[1].iddObject().type() == iddobjectname::Construction);
+  EXPECT_TRUE(objs[2].iddObject().type() == iddobjectname::Zone);
+  EXPECT_TRUE(objs[3].iddObject().type() == iddobjectname::Material);
 }
 
 TEST_F(IdfFixture, IdfFile_BasicTests_LoadedFile)
@@ -100,21 +109,21 @@ TEST_F(IdfFixture, IdfFile_UnixLineEndings) {
   OptionalIdfFile oFile = IdfFile::load(resourcesPath()/toPath("utilities/Idf/UnixLineEndingTest.idf"));
   ASSERT_TRUE(oFile);
   EXPECT_EQ(static_cast<unsigned>(5),oFile->objects().size());
-  EXPECT_EQ(static_cast<unsigned>(0),oFile->getObjectsByType(IddObjectType::Catchall).size());
+  EXPECT_EQ(static_cast<unsigned>(0),oFile->getObjectsByType(iddobjectname::Catchall).size());
 }
 
 TEST_F(IdfFixture, IdfFile_MixedLineEndings) {
   OptionalIdfFile oFile = IdfFile::load(resourcesPath()/toPath("utilities/Idf/MixedLineEndingTest.idf"));
   ASSERT_TRUE(oFile);
   EXPECT_EQ(static_cast<unsigned>(5),oFile->objects().size());
-  EXPECT_EQ(static_cast<unsigned>(0),oFile->getObjectsByType(IddObjectType::Catchall).size());
+  EXPECT_EQ(static_cast<unsigned>(0),oFile->getObjectsByType(iddobjectname::Catchall).size());
 }
 
 TEST_F(IdfFixture, IdfFile_DosLineEndings) {
   OptionalIdfFile oFile = IdfFile::load(resourcesPath()/toPath("utilities/Idf/DosLineEndingTest.idf"));
   ASSERT_TRUE(oFile);
   EXPECT_EQ(static_cast<unsigned>(5),oFile->objects().size());
-  EXPECT_EQ(static_cast<unsigned>(0),oFile->getObjectsByType(IddObjectType::Catchall).size());
+  EXPECT_EQ(static_cast<unsigned>(0),oFile->getObjectsByType(iddobjectname::Catchall).size());
 }
  
 TEST_F(IdfFixture, IdfFile_ObjectComments) {
@@ -138,13 +147,13 @@ TEST_F(IdfFixture, IdfFile_ObjectComments) {
   IdfObjectVector objects = oFile->objects();
   EXPECT_EQ(static_cast<unsigned>(5),objects.size());
   ASSERT_TRUE(objects.size() >= 5);
-  EXPECT_TRUE(objects[0].iddObject().type() == IddObjectType::CommentOnly);
-  EXPECT_TRUE(objects[1].iddObject().type() == IddObjectType::Timestep);
+  EXPECT_TRUE(objects[0].iddObject().type() == iddobjectname::CommentOnly);
+  EXPECT_TRUE(objects[1].iddObject().type() == iddobjectname::Timestep);
   EXPECT_EQ("! Timestep should be > 1.",objects[1].comment());
-  EXPECT_TRUE(objects[2].iddObject().type() == IddObjectType::SimulationControl);
-  EXPECT_TRUE(objects[3].iddObject().type() == IddObjectType::RunPeriod);
+  EXPECT_TRUE(objects[2].iddObject().type() == iddobjectname::SimulationControl);
+  EXPECT_TRUE(objects[3].iddObject().type() == iddobjectname::RunPeriod);
   EXPECT_EQ("! When to start, when to stop, when to trust the weather file.",objects[3].comment());
-  EXPECT_TRUE(objects[4].iddObject().type() == IddObjectType::Building);
+  EXPECT_TRUE(objects[4].iddObject().type() == iddobjectname::Building);
   EXPECT_EQ("! This building has no surfaces, no volume, no nothing.",objects[4].comment());
 
   // print out result for debugging purposes

@@ -41,7 +41,7 @@ TEST_F(ModelFixture,AirTerminalSingleDuctConstantVolumeCooledBeam_Test_Construct
   AirTerminalSingleDuctConstantVolumeCooledBeam cooledBeam(model,schedule,coilCoolingCooledBeam);
   
   // Test constructor
-  EXPECT_EQ(openstudio::IddObjectType::OS_AirTerminal_SingleDuct_ConstantVolume_CooledBeam,cooledBeam.iddObjectType().value());
+  EXPECT_EQ(AirTerminalSingleDuctConstantVolumeCooledBeam::iddObjectType(),cooledBeam.iddObjectType());
   
   // Test cloning the Cooled Beam
   AirTerminalSingleDuctConstantVolumeCooledBeam cloneBeam = cooledBeam.clone(model).cast<model::AirTerminalSingleDuctConstantVolumeCooledBeam>();

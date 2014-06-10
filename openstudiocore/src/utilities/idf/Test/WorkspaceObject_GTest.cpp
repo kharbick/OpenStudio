@@ -24,6 +24,11 @@
 #include <utilities/idd/Lights_FieldEnums.hxx>
 #include <utilities/idd/Schedule_Compact_FieldEnums.hxx>
 #include <utilities/idd/OS_DaylightingDevice_Shelf_FieldEnums.hxx>
+#include <utilities/idd/Building_FieldEnums.hxx>
+#include <utilities/idd/SurfaceProperty_ConvectionCoefficients_FieldEnums.hxx>
+#include <utilities/idd/BuildingSurface_Detailed_FieldEnums.hxx>
+#include <utilities/idd/OS_InteriorPartitionSurface_FieldEnums.hxx>
+#include <utilities/idd/OS_Surface_FieldEnums.hxx>
 
 #include <utilities/idf/WorkspaceExtensibleGroup.hpp>
 #include <utilities/idf/IdfFile.hpp>
@@ -51,7 +56,7 @@ TEST_F(IdfFixture,WorkspaceObject_Construction) {
   ASSERT_TRUE(w); // should return OptionalHandle instead
   OptionalWorkspaceObject object = ws.getObject(w->handle());
   ASSERT_TRUE(object);
-  EXPECT_TRUE(object->iddObject().type() == openstudio::IddObjectType::Building);
+  EXPECT_TRUE(object->iddObject().type() == openstudio::iddobjectname::Building);
   
   // add object with pointer, and do not include pointed to object. should be successful, but
   // pointer should be null. object.canBeSource() should be true.
@@ -70,7 +75,7 @@ TEST_F(IdfFixture, WorkspaceObject_GetStringAfterSetStringAddsFields)
   Workspace ws(level,fileType);
 
   OptionalWorkspaceObject w;
-  IdfObject idfObj(IddObjectType::SurfaceProperty_ConvectionCoefficients);
+  IdfObject idfObj(iddobjectname::SurfaceProperty_ConvectionCoefficients);
   w = ws.addObject(idfObj);
   
   EXPECT_TRUE(w->numNonextensibleFields()==3);
@@ -85,7 +90,7 @@ TEST_F(IdfFixture, WorkspaceObject_GetStringAfterSetStringAddsFields)
 TEST_F(IdfFixture, WorkspaceObject_Building) {
 
   Workspace workspace(epIdfFile, StrictnessLevel::Draft);
-  WorkspaceObjectVector buildings = workspace.getObjectsByType(IddObjectType::Building);
+  WorkspaceObjectVector buildings = workspace.getObjectsByType(iddobjectname::Building);
   ASSERT_EQ(static_cast<size_t>(1), buildings.size());
   WorkspaceObject building = buildings[0];
 
@@ -125,7 +130,7 @@ TEST_F(IdfFixture, WorkspaceObject_Building) {
 TEST_F(IdfFixture, WorkspaceObject_Lights) {
 
   Workspace workspace(epIdfFile, StrictnessLevel::Draft);
-  OptionalWorkspaceObject light = workspace.getObjectByTypeAndName(IddObjectType::Lights, "SPACE1-1 Lights 1");
+  OptionalWorkspaceObject light = workspace.getObjectByTypeAndName(iddobjectname::Lights, "SPACE1-1 Lights 1");
   ASSERT_TRUE(light);
 
   OptionalString lightsZoneName = light->getString(LightsFields::ZoneorZoneListName);
@@ -143,7 +148,7 @@ TEST_F(IdfFixture, WorkspaceObject_Lights) {
 
   OptionalWorkspaceObject schedule = light->getTarget(LightsFields::ScheduleName);
   ASSERT_TRUE(schedule);
-  EXPECT_EQ(IddObjectType::Schedule_Compact, schedule->iddObject().type().value());
+  EXPECT_EQ(iddobjectvalue::Schedule_Compact, schedule->iddObject().type().value());
 
   OptionalString scheduleName = schedule->getString(Schedule_CompactFields::Name);
   ASSERT_TRUE(scheduleName);
@@ -185,7 +190,7 @@ TEST_F(IdfFixture, WorkspaceObject_Lights_Strictness_None) {
   Workspace workspace(StrictnessLevel::None,IddFileType::EnergyPlus);
   EXPECT_TRUE(workspace.isValid());
 
-  OptionalWorkspaceObject w = workspace.addObject(IdfObject(IddObjectType::Lights));
+  OptionalWorkspaceObject w = workspace.addObject(IdfObject(iddobjectname::Lights));
   ASSERT_TRUE(w);
 
   OptionalWorkspaceObject light = workspace.getObject(w->handle());
@@ -219,7 +224,7 @@ TEST_F(IdfFixture, WorkspaceObject_Lights_Strictness_Draft) {
   Workspace workspace(StrictnessLevel::Draft,IddFileType::EnergyPlus);
   EXPECT_TRUE(workspace.isValid());
 
-  OptionalWorkspaceObject w = workspace.addObject(IdfObject(IddObjectType::Lights));
+  OptionalWorkspaceObject w = workspace.addObject(IdfObject(iddobjectname::Lights));
   ASSERT_TRUE(w);
 
   OptionalWorkspaceObject light = workspace.getObject(w->handle());
@@ -286,7 +291,7 @@ TEST_F(IdfFixture, WorkspaceObject_FieldSettingWithHiddenPushes) {
   oObj = IdfObject::load(text.str());
   ASSERT_TRUE(oObj);
   idfObject = *oObj;
-  ASSERT_TRUE(idfObject.iddObject().type() == IddObjectType::Schedule_Compact);
+  ASSERT_TRUE(idfObject.iddObject().type() == iddobjectname::Schedule_Compact);
   OptionalWorkspaceObject w2 = scratch.addObject(idfObject);
   ASSERT_TRUE(w2);
   EXPECT_TRUE(object.setPointer(11,w2->handle ()));
@@ -360,7 +365,7 @@ TEST_F(IdfFixture,WorkspaceObject_ClearGroups) {
   // always works in None or Draft strictness
   Workspace ws(epIdfFile);
   EXPECT_TRUE(ws.strictnessLevel() == StrictnessLevel::None);
-  WorkspaceObjectVector surfaces = ws.getObjectsByType(IddObjectType::BuildingSurface_Detailed);
+  WorkspaceObjectVector surfaces = ws.getObjectsByType(iddobjectname::BuildingSurface_Detailed);
   ASSERT_TRUE(surfaces.size() > 0);
   unsigned n = surfaces[0].numFields();
   surfaces[0].clearExtensibleGroups();
@@ -369,7 +374,7 @@ TEST_F(IdfFixture,WorkspaceObject_ClearGroups) {
   // doesn't allow drops below minFields() in Final strictness
   ws = Workspace(epIdfFile);
   ws.setStrictnessLevel(StrictnessLevel::Final);
-  surfaces = ws.getObjectsByType(IddObjectType::BuildingSurface_Detailed);
+  surfaces = ws.getObjectsByType(iddobjectname::BuildingSurface_Detailed);
   ASSERT_TRUE(surfaces.size() > 0);
   n = surfaces[0].numFields();
   surfaces[0].clearExtensibleGroups();
@@ -381,8 +386,8 @@ TEST_F(IdfFixture, WorkspaceObject_OS_DaylightingDevice_Shelf)
 {
   // defaults to IddFileType::OpenStudio
   Workspace ws;
-  OptionalWorkspaceObject w1 = ws.addObject(IdfObject(IddObjectType::OS_DaylightingDevice_Shelf));
-  OptionalWorkspaceObject w2 = ws.addObject(IdfObject(IddObjectType::OS_InteriorPartitionSurface));
+  OptionalWorkspaceObject w1 = ws.addObject(IdfObject(iddobjectname::OS_DaylightingDevice_Shelf));
+  OptionalWorkspaceObject w2 = ws.addObject(IdfObject(iddobjectname::OS_InteriorPartitionSurface));
   ASSERT_TRUE(w1);
   ASSERT_TRUE(w2);
   OptionalWorkspaceObject obj1 = ws.getObject(w1->handle());
@@ -393,15 +398,15 @@ TEST_F(IdfFixture, WorkspaceObject_OS_DaylightingDevice_Shelf)
 //TEST_F(IdfFixture, WorkspaceObject_OS_AirLoopHVAC_ZoneSplitter) 
 //{
 //  //Workspace ws();
-//  //OptionalHandle h1 = ws.addObject(IdfObject(IddObjectType::OS_AirLoopHVAC_ZoneSplitter));
-//  //OptionalHandle h2 = ws.addObject(IdfObject(IddObjectType::OS_Connection));
+//  //OptionalHandle h1 = ws.addObject(IdfObject(iddobjectname::OS_AirLoopHVAC_ZoneSplitter));
+//  //OptionalHandle h2 = ws.addObject(IdfObject(iddobjectname::OS_Connection));
 //}
 
 TEST_F(IdfFixture, WorkspaceObject_RestoreHandleInAddObjects) 
 {
   // defaults to IddFileType::OpenStudio
   Workspace ws1;
-  OptionalWorkspaceObject w1 = ws1.addObject(IdfObject(IddObjectType::OS_Surface));
+  OptionalWorkspaceObject w1 = ws1.addObject(IdfObject(iddobjectname::OS_Surface));
   ASSERT_TRUE(w1);
   EXPECT_EQ(1u, ws1.objects().size());
   OptionalString h1String = w1->getString(0);
@@ -425,7 +430,7 @@ TEST_F(IdfFixture, WorkspaceObject_RestoreHandleInAddObjects2)
 {
   // defaults to IddFileType::OpenStudio
   Workspace ws1;
-  OptionalWorkspaceObject w1 = ws1.addObject(IdfObject(IddObjectType::OS_Surface));
+  OptionalWorkspaceObject w1 = ws1.addObject(IdfObject(iddobjectname::OS_Surface));
   ASSERT_TRUE(w1);
   EXPECT_EQ(1u, ws1.objects().size());
   OptionalString h1String = w1->getString(0);

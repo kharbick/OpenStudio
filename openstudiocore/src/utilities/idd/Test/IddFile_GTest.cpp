@@ -22,6 +22,7 @@
 
 #include <utilities/idd/IddFieldProperties.hpp>
 #include <utilities/idd/IddKey.hpp>
+#include <utilities/idd/IddEnums.hxx>
 
 #include <utilities/time/Time.hpp>
 

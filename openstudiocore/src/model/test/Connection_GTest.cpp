@@ -43,15 +43,15 @@ using namespace openstudio::model;
 
 TEST(Connection, Name)
 {
-  openstudio::IdfObject airLoopIdfObject(openstudio::IddObjectType::OS_AirLoopHVAC);
+  openstudio::IdfObject airLoopIdfObject(AirLoopHVAC::iddObjectType());
   ASSERT_TRUE(airLoopIdfObject.name());
   EXPECT_EQ(airLoopIdfObject.name().get(),"");
 
-  openstudio::IdfObject nodeIdfObject(openstudio::IddObjectType::OS_Node);
+  openstudio::IdfObject nodeIdfObject(Node::iddObjectType());
   ASSERT_TRUE(nodeIdfObject.name());
   EXPECT_EQ(nodeIdfObject.name().get(),"");
 
-  openstudio::IdfObject connectionIdfObject(openstudio::IddObjectType::OS_Connection);
+  openstudio::IdfObject connectionIdfObject(Connection::iddObjectType());
   ASSERT_TRUE(connectionIdfObject.name());
   EXPECT_EQ(connectionIdfObject.name().get(),"");
 

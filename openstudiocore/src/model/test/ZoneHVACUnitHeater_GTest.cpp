@@ -35,6 +35,8 @@
 #include <utilities/units/Quantity.hpp>
 #include <utilities/units/Unit.hpp>
 #include <model/LifeCycleCost.hpp>
+#include <utilities/idd/OS_ZoneHVAC_UnitHeater_FieldEnums.hxx>
+#include <utilities/idd/IddEnums.hxx>
 
 using namespace openstudio;
 using namespace openstudio::model;
@@ -51,7 +53,7 @@ TEST_F(ModelFixture,ZoneHVACUnitHeater_Check_Constructor) {
 
   // Testing .idd object type
     
-  EXPECT_EQ(openstudio::IddObjectType::OS_ZoneHVAC_UnitHeater,zoneHVACUnitHeater.iddObjectType().value());
+  EXPECT_EQ(zoneHVACUnitHeater.iddObjectType(),openstudio::iddobjectname::OS_ZoneHVAC_UnitHeater);
   
   // Test set and get availability schedule
   

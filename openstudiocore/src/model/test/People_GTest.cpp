@@ -126,7 +126,7 @@ TEST_F(ModelFixture, People_Remove)
   EXPECT_EQ(static_cast<unsigned>(1), model.getModelObjects<PeopleDefinition>().size());
   std::vector<IdfObject> removed = person.remove();
   ASSERT_EQ(static_cast<unsigned>(1), removed.size());
-  EXPECT_EQ(IddObjectType::OS_People, removed[0].iddObject().type().value());
+  EXPECT_EQ(People::iddObjectType(), removed[0].iddObject().type());
   EXPECT_EQ(static_cast<unsigned>(0), model.getModelObjects<People>().size());
   EXPECT_EQ(static_cast<unsigned>(1), model.getModelObjects<PeopleDefinition>().size());
   EXPECT_EQ(1u, model.numObjects());
@@ -145,7 +145,7 @@ TEST_F(ModelFixture, People_Remove2)
   EXPECT_EQ(static_cast<unsigned>(1), model.getModelObjects<PeopleDefinition>().size());
   std::vector<IdfObject> removed = person1.remove();
   ASSERT_EQ(static_cast<unsigned>(1), removed.size());
-  EXPECT_EQ(IddObjectType::OS_People, removed[0].iddObject().type().value());
+  EXPECT_EQ(People::iddObjectType(), removed[0].iddObject().type());
   EXPECT_EQ(static_cast<unsigned>(1), model.getModelObjects<People>().size());
   EXPECT_EQ(static_cast<unsigned>(1), model.getModelObjects<PeopleDefinition>().size());
   EXPECT_EQ(2u, model.numObjects());
@@ -163,8 +163,8 @@ TEST_F(ModelFixture, People_RemoveDefinition)
   EXPECT_EQ(static_cast<unsigned>(1), model.getModelObjects<PeopleDefinition>().size());
   std::vector<IdfObject> removed = definition.remove();
   ASSERT_EQ(static_cast<unsigned>(2), removed.size());
-  EXPECT_EQ(IddObjectType::OS_People_Definition, removed[0].iddObject().type().value());
-  EXPECT_EQ(IddObjectType::OS_People, removed[1].iddObject().type().value());
+  EXPECT_EQ(PeopleDefinition::iddObjectType(), removed[0].iddObject().type());
+  EXPECT_EQ(People::iddObjectType(), removed[1].iddObject().type());
   EXPECT_EQ(static_cast<unsigned>(0), model.getModelObjects<People>().size());
   EXPECT_EQ(static_cast<unsigned>(0), model.getModelObjects<PeopleDefinition>().size());
   EXPECT_EQ(0u, model.numObjects());
@@ -183,9 +183,9 @@ TEST_F(ModelFixture, People_RemoveDefinition2)
   EXPECT_EQ(static_cast<unsigned>(1), model.getModelObjects<PeopleDefinition>().size());
   std::vector<IdfObject> removed = definition.remove();
   ASSERT_EQ(static_cast<unsigned>(3), removed.size());
-  EXPECT_EQ(IddObjectType::OS_People_Definition, removed[0].iddObject().type().value());
-  EXPECT_EQ(IddObjectType::OS_People, removed[1].iddObject().type().value());
-  EXPECT_EQ(IddObjectType::OS_People, removed[2].iddObject().type().value());
+  EXPECT_EQ(PeopleDefinition::iddObjectType(), removed[0].iddObject().type());
+  EXPECT_EQ(People::iddObjectType(), removed[1].iddObject().type());
+  EXPECT_EQ(People::iddObjectType(), removed[2].iddObject().type());
   EXPECT_EQ(static_cast<unsigned>(0), model.getModelObjects<People>().size());
   EXPECT_EQ(static_cast<unsigned>(0), model.getModelObjects<PeopleDefinition>().size());
   EXPECT_EQ(0u, model.numObjects());

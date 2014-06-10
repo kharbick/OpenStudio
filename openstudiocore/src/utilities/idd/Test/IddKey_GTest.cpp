@@ -29,7 +29,7 @@
 using namespace openstudio;
 
 TEST_F(IddFixture,IddKey_Getters) {
-  OptionalIddObject optObject = IddFactory::instance().getObject(IddObjectType::Controller_OutdoorAir);
+  OptionalIddObject optObject = IddFactory::instance().getObject(iddobjectname::Controller_OutdoorAir);
   ASSERT_TRUE(optObject);
   IddObject obj = *optObject;
   OptionalIddField f = obj.getField(Controller_OutdoorAirFields::EconomizerControlType);

@@ -25,6 +25,7 @@
 #include <utilities/idf/WorkspaceObject.hpp>
 #include <utilities/idf/IdfObject.hpp>
 #include <utilities/idd/IddEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
 
 using namespace openstudio;
 
@@ -90,7 +91,7 @@ TEST(ProgressBar, WorkspaceTest)
   workspace.connectProgressBar(pb);
 
   IdfObjectVector objects;
-  objects.push_back(IdfObject(IddObjectType::Zone));
+  objects.push_back(IdfObject(iddobjectname::Zone));
   workspace.addObjects(objects);
 
   System::msleep(10);

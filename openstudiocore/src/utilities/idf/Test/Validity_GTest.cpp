@@ -23,6 +23,7 @@
 #include <utilities/idf/WorkspaceObject.hpp>
 
 #include <utilities/idf/ValidityReport.hpp>
+#include <utilities/idd/OS_Building_FieldEnums.hxx>
 
 #include <iostream>
 #include <sstream>
@@ -42,7 +43,7 @@ TEST_F(IdfFixture,ValidityReport_WithCustomIdd)
   Workspace workspace;
   EXPECT_EQ(IddFileType::OpenStudio, workspace.iddFileType().value());
   EXPECT_TRUE(workspace.isValid(StrictnessLevel::Draft));
-  workspace.addObject(IdfObject(IddObjectType::OS_Building));
+  workspace.addObject(IdfObject(openstudio::iddobjectname::OS_Building));
   EXPECT_TRUE(workspace.isValid(StrictnessLevel::Draft));
 
   std::stringstream ss;

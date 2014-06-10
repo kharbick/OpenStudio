@@ -98,7 +98,7 @@ TEST_F(ModelFixture, Construction_Layers)
   construction = constructions[0];
   EXPECT_FALSE(construction.model() == model);
   EXPECT_TRUE(construction.iddObject().type() ==
-              IddObjectType::OS_Construction);
+              Construction::iddObjectType());
 }
 
 TEST_F(ModelFixture, Construction_SetLayers)
@@ -191,7 +191,7 @@ TEST_F(ModelFixture,CFactorUndergroundWallConstruction)
   ASSERT_EQ(static_cast<unsigned>(1),constructions.size());
   EXPECT_TRUE(construction == constructions[0]);
   EXPECT_TRUE(construction.iddObject().type() ==
-              IddObjectType::OS_Construction_CfactorUndergroundWall);
+              CFactorUndergroundWallConstruction::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -201,7 +201,7 @@ TEST_F(ModelFixture,CFactorUndergroundWallConstruction)
   construction = constructions[0];
   EXPECT_FALSE(construction.model() == model);
   EXPECT_TRUE(construction.iddObject().type() ==
-              IddObjectType::OS_Construction_CfactorUndergroundWall);
+              CFactorUndergroundWallConstruction::iddObjectType());
 }
 
 TEST_F(ModelFixture,FFactorGroundFloorConstruction)
@@ -215,7 +215,7 @@ TEST_F(ModelFixture,FFactorGroundFloorConstruction)
   ASSERT_EQ(static_cast<unsigned>(1),constructions.size());
   EXPECT_TRUE(construction == constructions[0]);
   EXPECT_TRUE(construction.iddObject().type() ==
-              IddObjectType::OS_Construction_FfactorGroundFloor);
+              FFactorGroundFloorConstruction::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -225,7 +225,7 @@ TEST_F(ModelFixture,FFactorGroundFloorConstruction)
   construction = constructions[0];
   EXPECT_FALSE(construction.model() == model);
   EXPECT_TRUE(construction.iddObject().type() ==
-              IddObjectType::OS_Construction_FfactorGroundFloor);
+              FFactorGroundFloorConstruction::iddObjectType());
 }
 
 TEST_F(ModelFixture,WindowDataFile)
@@ -238,7 +238,7 @@ TEST_F(ModelFixture,WindowDataFile)
       model.getModelObjects<WindowDataFile>();
   ASSERT_EQ(static_cast<unsigned>(1),constructions.size());
   EXPECT_TRUE(construction == constructions[0]);
-  EXPECT_TRUE(construction.iddObject().type() == IddObjectType::OS_Construction_WindowDataFile);
+  EXPECT_TRUE(construction.iddObject().type() == WindowDataFile::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -247,7 +247,7 @@ TEST_F(ModelFixture,WindowDataFile)
   ASSERT_EQ(static_cast<unsigned>(1),constructions.size());
   construction = constructions[0];
   EXPECT_FALSE(construction.model() == model);
-  EXPECT_TRUE(construction.iddObject().type() == IddObjectType::OS_Construction_WindowDataFile);
+  EXPECT_TRUE(construction.iddObject().type() == WindowDataFile::iddObjectType());
 }
 
 TEST_F(ModelFixture, Construction_AddObjects) {
@@ -255,7 +255,7 @@ TEST_F(ModelFixture, Construction_AddObjects) {
 
   // Can still use name references directly in IdfObjects. Will get turned into pointer/by handle
   // references on import into Workspace.
-  IdfObject object(IddObjectType::OS_Construction);
+  IdfObject object(iddobjectname::OS_Construction);
   object.setName("Exterior Wall");
   unsigned index = OS_ConstructionFields::SurfaceRenderingName + 1;
   object.setString(index,"M01 100mm brick"); ++index;
@@ -265,7 +265,7 @@ TEST_F(ModelFixture, Construction_AddObjects) {
   object.setString(index,"G01a 19mm gypsum board"); ++index;
   idfFile.addObject(object);
 
-  object = IdfObject(IddObjectType::OS_Material);
+  object = IdfObject(iddobjectname::OS_Material);
   object.setName("M01 100mm brick");
   object.setString(OS_MaterialFields::Roughness,"MediumRough");
   object.setDouble(OS_MaterialFields::Thickness,0.1016);
@@ -274,7 +274,7 @@ TEST_F(ModelFixture, Construction_AddObjects) {
   object.setDouble(OS_MaterialFields::SpecificHeat,790.0);
   idfFile.addObject(object);
 
-  object = IdfObject(IddObjectType::OS_Material);
+  object = IdfObject(iddobjectname::OS_Material);
   object.setName("M15 200mm heavyweight concrete");
   object.setString(OS_MaterialFields::Roughness,"MediumRough");
   object.setDouble(OS_MaterialFields::Thickness,0.2032);
@@ -283,7 +283,7 @@ TEST_F(ModelFixture, Construction_AddObjects) {
   object.setDouble(OS_MaterialFields::SpecificHeat,900.0);
   idfFile.addObject(object);
 
-  object = IdfObject(IddObjectType::OS_Material);
+  object = IdfObject(iddobjectname::OS_Material);
   object.setName("I02 50mm insulation board");
   object.setString(OS_MaterialFields::Roughness,"MediumRough");
   object.setDouble(OS_MaterialFields::Thickness,0.0508);
@@ -292,12 +292,12 @@ TEST_F(ModelFixture, Construction_AddObjects) {
   object.setDouble(OS_MaterialFields::SpecificHeat,1210.0);
   idfFile.addObject(object);
 
-  object = IdfObject(IddObjectType::OS_Material_AirGap);
+  object = IdfObject(iddobjectname::OS_Material_AirGap);
   object.setName("F04 Wall air space resistance");
   object.setDouble(OS_Material_AirGapFields::ThermalResistance,0.15);
   idfFile.addObject(object);
 
-  object = IdfObject(IddObjectType::OS_Material);
+  object = IdfObject(iddobjectname::OS_Material);
   object.setName("G01a 19mm gypsum board");
   object.setString(OS_MaterialFields::Roughness,"MediumSmooth");
   object.setDouble(OS_MaterialFields::Thickness,0.019);
@@ -310,8 +310,8 @@ TEST_F(ModelFixture, Construction_AddObjects) {
   Workspace workspace(StrictnessLevel::Draft, IddFileType::OpenStudio);
   workspace.addObjects(idfFile.objects());
   EXPECT_EQ(workspace.numObjects(), idfFile.numObjects());
-  ASSERT_EQ(1u, workspace.getObjectsByType(IddObjectType::OS_Construction).size());
-  WorkspaceObject workspaceObject = workspace.getObjectsByType(IddObjectType::OS_Construction)[0];
+  ASSERT_EQ(1u, workspace.getObjectsByType(iddobjectname::OS_Construction).size());
+  WorkspaceObject workspaceObject = workspace.getObjectsByType(iddobjectname::OS_Construction)[0];
   ASSERT_EQ(8u, workspaceObject.numFields());
   for (int i = 3; i < 8; ++i){
     EXPECT_FALSE(workspaceObject.isEmpty(i)) << "Index " << i << " is empty for:" << std::endl << workspaceObject;

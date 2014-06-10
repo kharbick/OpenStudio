@@ -23,6 +23,11 @@
 #include <utilities/idd/IddField.hpp>
 #include <utilities/idd/IddFieldProperties.hpp>
 #include <utilities/idd/IddKey.hpp>
+#include <utilities/idd/Zone_FieldEnums.hxx>
+#include <utilities/idd/ZoneList_FieldEnums.hxx>
+#include <utilities/idd/SizingPeriod_DesignDay_FieldEnums.hxx>
+#include <utilities/idd/SizingPeriod_WeatherFileDays_FieldEnums.hxx>
+#include <utilities/idd/Lights_FieldEnums.hxx>
 
 #include <boost/foreach.hpp>
 
@@ -32,10 +37,10 @@ using namespace openstudio;
 
 TEST_F(IddFixture, IddField_Properties) {
   
-  OptionalIddObject candidate = IddFactory::instance().getObject(IddObjectType::Zone);
+  OptionalIddObject candidate = IddFactory::instance().getObject(iddobjectname::Zone);
   ASSERT_TRUE(candidate);
   IddObject iddZone = *candidate;
-  candidate = IddFactory::instance().getObject(IddObjectType::ZoneList);
+  candidate = IddFactory::instance().getObject(iddobjectname::ZoneList);
   ASSERT_TRUE(candidate);
   IddObject iddZoneList = *candidate;
 
@@ -49,12 +54,12 @@ TEST_F(IddFixture, IddField_Properties) {
   EXPECT_TRUE(iddZone.nonextensibleFields()[2].properties() != iddZoneList.nonextensibleFields()[0].properties());
 
   // referencesEqual
-  candidate = IddFactory::instance().getObject(IddObjectType::SizingPeriod_DesignDay);
+  candidate = IddFactory::instance().getObject(iddobjectname::SizingPeriod_DesignDay);
   ASSERT_TRUE(candidate);
   ASSERT_TRUE(candidate->nonextensibleFields().size() > 0);
   IddField designDayName = candidate->getField(0).get();
   EXPECT_FALSE(referencesEqual(designDayName,iddZone.getField(0).get()));
-  candidate = IddFactory::instance().getObject(IddObjectType::SizingPeriod_WeatherFileDays);
+  candidate = IddFactory::instance().getObject(iddobjectname::SizingPeriod_WeatherFileDays);
   ASSERT_TRUE(candidate);
   ASSERT_TRUE(candidate->nonextensibleFields().size() > 1);
   IddField weatherFileDaysName = candidate->getField(0).get();
@@ -66,7 +71,7 @@ TEST_F(IddFixture, IddField_Properties) {
 
 TEST_F(IddFixture, IddField_Keys)
 {
-  OptionalIddObject candidate = IddFactory::instance().getObject(IddObjectType::Lights);
+  OptionalIddObject candidate = IddFactory::instance().getObject(iddobjectname::Lights);
   ASSERT_TRUE(candidate);
   IddObject iddLights = *candidate;
   IddFieldVector fields = iddLights.nonextensibleFields();
@@ -86,7 +91,7 @@ TEST_F(IddFixture, IddField_Keys)
 }
 
 TEST_F(IddFixture, IddField) {
-  OptionalIddObject candidate = IddFactory::instance().getObject(IddObjectType::Lights);
+  OptionalIddObject candidate = IddFactory::instance().getObject(iddobjectname::Lights);
   ASSERT_TRUE(candidate);
   IddObject iddLights = *candidate;
   IddFieldVector fields = iddLights.nonextensibleFields();

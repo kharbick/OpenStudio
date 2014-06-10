@@ -25,6 +25,8 @@
 #include <utilities/idf/IdfExtensibleGroup.hpp>
 
 #include <utilities/idd/Lights_FieldEnums.hxx>
+#include <utilities/idd/DaylightingDevice_Tubular_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
 
 
 #include <resources.hxx>
@@ -37,7 +39,7 @@ using namespace openstudio;
 
 TEST_F(IdfFixture,WorkspaceObjectWatcher_CommentChanges)
 {
-  IdfObject object(IddObjectType::Lights);
+  IdfObject object(iddobjectname::Lights);
   Workspace workspace(StrictnessLevel::Draft, IddFileType::EnergyPlus);
 
   OptionalWorkspaceObject owo = workspace.addObject(object);
@@ -70,7 +72,7 @@ TEST_F(IdfFixture,WorkspaceObjectWatcher_CommentChanges)
 
 TEST_F(IdfFixture,WorkspaceObjectWatcher_DataFieldChanges)
 {
-  IdfObject object(IddObjectType::Lights);
+  IdfObject object(iddobjectname::Lights);
   Workspace workspace(StrictnessLevel::Draft, IddFileType::EnergyPlus);
 
   OptionalWorkspaceObject owo = workspace.addObject(object);
@@ -112,7 +114,7 @@ TEST_F(IdfFixture,WorkspaceObjectWatcher_DataFieldChanges)
 
 TEST_F(IdfFixture,WorkspaceObjectWatcher_RelationshipFieldChanges)
 {
-  IdfObject object(IddObjectType::DaylightingDevice_Tubular);
+  IdfObject object(iddobjectname::DaylightingDevice_Tubular);
   Workspace workspace(StrictnessLevel::Draft, IddFileType::EnergyPlus);
 
   OptionalWorkspaceObject owo = workspace.addObject(object);
@@ -122,7 +124,7 @@ TEST_F(IdfFixture,WorkspaceObjectWatcher_RelationshipFieldChanges)
   EXPECT_FALSE(watcher.dirty());
 
   // add zone objects
-  object = IdfObject(IddObjectType::Zone);
+  object = IdfObject(iddobjectname::Zone);
   owo = workspace.addObject(object);
   ASSERT_TRUE(owo);
   EXPECT_EQ("Zone 1",owo->name().get());
@@ -175,7 +177,7 @@ TEST_F(IdfFixture,WorkspaceObjectWatcher_RelationshipFieldChanges)
 
 TEST_F(IdfFixture,WorkspaceObjectWatcher_RelationshipFieldChanges_TargetDeleted)
 {
-  IdfObject object(IddObjectType::Lights);
+  IdfObject object(iddobjectname::Lights);
   Workspace workspace(StrictnessLevel::Draft, IddFileType::EnergyPlus);
 
   OptionalWorkspaceObject owo = workspace.addObject(object);
@@ -184,7 +186,7 @@ TEST_F(IdfFixture,WorkspaceObjectWatcher_RelationshipFieldChanges_TargetDeleted)
   WorkspaceObjectWatcher watcher(workspaceObject);
   EXPECT_FALSE(watcher.dirty());
 
-  OptionalWorkspaceObject oZone = workspace.addObject(IdfObject(IddObjectType::Zone));
+  OptionalWorkspaceObject oZone = workspace.addObject(IdfObject(iddobjectname::Zone));
   ASSERT_TRUE(oZone);
 
   EXPECT_TRUE(workspaceObject.setPointer(LightsFields::ZoneorZoneListName, oZone->handle()));

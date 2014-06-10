@@ -25,6 +25,7 @@
 #include <model/RefrigerationSystem_Impl.hpp>
 #include <model/RefrigerationSubcoolerMechanical.hpp>
 #include <model/RefrigerationSubcoolerMechanical_Impl.hpp>
+#include <utilities/idd/OS_Refrigeration_Subcooler_Mechanical_FieldEnums.hxx>
 
 using namespace openstudio;
 using namespace openstudio::model;
@@ -48,7 +49,7 @@ TEST_F(ModelFixture,RefrigerationSubcoolerMechanical_iddObjectType)
 	Model m; 
 	RefrigerationSubcoolerMechanical refrigerationSubcoolerMechanical = RefrigerationSubcoolerMechanical(m);
 
-	EXPECT_EQ( refrigerationSubcoolerMechanical.iddObjectType(), IddObjectType::OS_Refrigeration_Subcooler_Mechanical);
+	EXPECT_EQ( refrigerationSubcoolerMechanical.iddObjectType(), iddobjectname::OS_Refrigeration_Subcooler_Mechanical);
 }
 
 TEST_F(ModelFixture,RefrigerationSubcoolerMechanical_CapacityProvidingSystem)

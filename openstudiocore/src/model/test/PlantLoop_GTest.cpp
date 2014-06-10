@@ -66,17 +66,17 @@ TEST_F(ModelFixture,PlantLoop_supplyComponents)
   boost::optional<ModelObject> comp;
   comp = plantLoop.supplyComponents()[1];
   ASSERT_TRUE(comp);
-  ASSERT_EQ(openstudio::IddObjectType::OS_Connector_Splitter,comp->iddObjectType().value());
+  ASSERT_EQ(ConnectorSplitter::iddObjectType(),comp->iddObjectType());
 
   ConnectorSplitter splitter = comp->cast<ConnectorSplitter>();
   comp = splitter.lastOutletModelObject();
   ASSERT_TRUE(comp);
-  ASSERT_EQ(openstudio::IddObjectType::OS_Node,comp->iddObjectType().value());
+  ASSERT_EQ(Node::iddObjectType(),comp->iddObjectType());
 
   Node connectorNode = comp->cast<Node>();
   comp = connectorNode.outletModelObject();
   ASSERT_TRUE(comp);
-  ASSERT_EQ(openstudio::IddObjectType::OS_Connector_Mixer,comp->iddObjectType().value());
+  ASSERT_EQ(ConnectorMixer::iddObjectType(),comp->iddObjectType());
 
   ConnectorMixer mixer = comp->cast<ConnectorMixer>();
   comp = mixer.outletModelObject();

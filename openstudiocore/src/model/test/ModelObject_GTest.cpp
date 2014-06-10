@@ -36,6 +36,8 @@
 #include <utilities/data/Attribute.hpp>
 #include <utilities/core/Containers.hpp>
 
+#include <utilities/idd/OS_Version_FieldEnums.hxx>
+
 using namespace openstudio;
 using namespace openstudio::model;
 
@@ -43,7 +45,7 @@ TEST_F(ModelFixture, ModelObject_Attributes)
 {
   Model model;
 
-  OptionalWorkspaceObject oObject = model.addObject(IdfObject(IddObjectType::OS_Version));
+  OptionalWorkspaceObject oObject = model.addObject(IdfObject(iddobjectname::OS_Version));
   ASSERT_TRUE(oObject);
   ModelObject version = oObject->cast<ModelObject>();
   StringVector versionAttributeNames = version.attributeNames();

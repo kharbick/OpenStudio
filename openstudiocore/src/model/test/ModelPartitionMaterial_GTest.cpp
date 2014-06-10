@@ -60,7 +60,7 @@ TEST_F(ModelFixture, ModelPartitionMaterial_AirWallMaterial_Constructors)
   AirWallMaterialVector airWallMaterials = model.getModelObjects<AirWallMaterial>();
   ASSERT_EQ(static_cast<unsigned>(1),airWallMaterials.size());
   EXPECT_TRUE(airWallMaterial == airWallMaterials[0]);
-  EXPECT_TRUE(airWallMaterial.iddObject().type() == IddObjectType::OS_Material_AirWall);
+  EXPECT_TRUE(airWallMaterial.iddObject().type() == AirWallMaterial::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -69,7 +69,7 @@ TEST_F(ModelFixture, ModelPartitionMaterial_AirWallMaterial_Constructors)
   ASSERT_EQ(static_cast<unsigned>(1),airWallMaterials.size());
   airWallMaterial = airWallMaterials[0];
   EXPECT_FALSE(airWallMaterial.model() == model);
-  EXPECT_TRUE(airWallMaterial.iddObject().type() == IddObjectType::OS_Material_AirWall);
+  EXPECT_TRUE(airWallMaterial.iddObject().type() == AirWallMaterial::iddObjectType());
 }
 
 TEST_F(ModelFixture, ModelPartitionMaterial_AirWallMaterial_Attributes)
@@ -103,7 +103,7 @@ TEST_F(ModelFixture, ModelPartitionMaterial_InfraredTransparentMaterial_Construc
   ASSERT_EQ(static_cast<unsigned>(1),infraredTransparentMaterials.size());
   EXPECT_TRUE(infraredTransparentMaterial == infraredTransparentMaterials[0]);
   EXPECT_TRUE(infraredTransparentMaterial.iddObject().type() ==
-              IddObjectType::OS_Material_InfraredTransparent);
+              InfraredTransparentMaterial::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -113,7 +113,7 @@ TEST_F(ModelFixture, ModelPartitionMaterial_InfraredTransparentMaterial_Construc
   infraredTransparentMaterial = infraredTransparentMaterials[0];
   EXPECT_FALSE(infraredTransparentMaterial.model() == model);
   EXPECT_TRUE(infraredTransparentMaterial.iddObject().type() ==
-              IddObjectType::OS_Material_InfraredTransparent);
+              InfraredTransparentMaterial::iddObjectType());
 }
 
 TEST_F(ModelFixture, ModelPartitionMaterial_InfraredTransparentMaterial_Attributes)

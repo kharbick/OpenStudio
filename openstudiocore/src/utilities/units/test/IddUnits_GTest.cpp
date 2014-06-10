@@ -52,7 +52,7 @@ TEST_F(UnitsFixture,IddUnits_Grams) {
 }
 
 TEST_F(UnitsFixture,IddUnits_DefaultValue) {
-  IdfObject idfObject(IddObjectType::OS_Building);
+  IdfObject idfObject(iddobjectname::OS_Building);
   // IdfObject::getQuantity(unsigned index, bool returnDefault=false, bool returnIP=false) const;
 
   // this field is empty but has a default value of 3 m

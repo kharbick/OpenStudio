@@ -23,6 +23,7 @@
 
 #include <model/RefrigerationSubcoolerLiquidSuction.hpp>
 #include <model/RefrigerationSubcoolerLiquidSuction_Impl.hpp>
+#include <utilities/idd/OS_Refrigeration_Subcooler_LiquidSuction_FieldEnums.hxx>
 
 using namespace openstudio;
 using namespace openstudio::model;
@@ -47,7 +48,7 @@ TEST_F(ModelFixture,RefrigerationSubcoolerLiquidSuction_iddObjectType)
 	Model m; 
 	RefrigerationSubcoolerLiquidSuction refrigerationSubcoolerLiquidSuction = RefrigerationSubcoolerLiquidSuction(m);
 
-	EXPECT_EQ( refrigerationSubcoolerLiquidSuction.iddObjectType(), IddObjectType::OS_Refrigeration_Subcooler_LiquidSuction);
+	EXPECT_EQ( refrigerationSubcoolerLiquidSuction.iddObjectType(), iddobjectname::OS_Refrigeration_Subcooler_LiquidSuction);
 }
 
 

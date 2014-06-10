@@ -23,6 +23,8 @@
 #include <utilities/idf/IdfExtensibleGroup.hpp>
 #include <utilities/idd/Comments.hpp>
 #include <utilities/core/Optional.hpp>
+#include <utilities/idd/Lights_FieldEnums.hxx>
+#include <utilities/idd/DaylightingDevice_Tubular_FieldEnums.hxx>
 
 #include <resources.hxx>
 
@@ -34,7 +36,7 @@ using namespace openstudio;
 
 TEST_F(IdfFixture,IdfObjectWatcher_NonExtensible)
 {
-  IdfObject object(IddObjectType::Lights);
+  IdfObject object(iddobjectname::Lights);
   IdfObjectWatcher watcher(object);
   EXPECT_FALSE(watcher.dirty());
 
@@ -85,7 +87,7 @@ TEST_F(IdfFixture,IdfObjectWatcher_NonExtensible)
 
 TEST_F(IdfFixture,IdfObjectWatcher_Extensible)
 {
-  IdfObject object(IddObjectType::DaylightingDevice_Tubular);
+  IdfObject object(iddobjectname::DaylightingDevice_Tubular);
   IdfObjectWatcher watcher(object);
   EXPECT_FALSE(watcher.dirty());
 

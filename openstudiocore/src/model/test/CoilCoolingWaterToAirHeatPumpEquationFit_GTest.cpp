@@ -42,7 +42,7 @@ TEST_F(ModelFixture,CoilCoolingWaterToAirHeatPumpEquationFit_Check_Constructor) 
 
   // Testing .idd object type
 
-  EXPECT_EQ(openstudio::IddObjectType::OS_Coil_Cooling_WaterToAirHeatPump_EquationFit,testCoilCoolingWaterToAirHeatPumpEquationFit.iddObjectType().value());
+  EXPECT_EQ(CoilCoolingWaterToAirHeatPumpEquationFit::iddObjectType(),testCoilCoolingWaterToAirHeatPumpEquationFit.iddObjectType());
 
 }
 

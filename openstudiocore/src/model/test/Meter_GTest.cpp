@@ -250,24 +250,24 @@ TEST_F(ModelFixture, MeterFromModel)
 
   IdfObjectVector idfObjects;
 
-  idfObjects.push_back(IdfObject(IddObjectType::OS_Meter));
+  idfObjects.push_back(IdfObject(iddobjectname::OS_Meter));
   idfObjects.back().setString(OS_MeterFields::Name,"Electricity:Facility");
   idfObjects.back().setString(OS_MeterFields::ReportingFrequency,"monthly");
   idfObjects.back().setString(OS_MeterFields::MeterFileOnly,"false");
 
   LOG(Debug,"Meter text: " << std::endl << idfObjects.back());
 
-  idfObjects.push_back(IdfObject(IddObjectType::OS_Meter));
+  idfObjects.push_back(IdfObject(iddobjectname::OS_Meter));
   idfObjects.back().setString(OS_MeterFields::Name,"Gas:Building");
   idfObjects.back().setString(OS_MeterFields::ReportingFrequency,"hourly");
 
-  idfObjects.push_back(IdfObject(IddObjectType::OS_Meter));
+  idfObjects.push_back(IdfObject(iddobjectname::OS_Meter));
   idfObjects.back().setString(OS_MeterFields::Name,"InteriorLights:Electricity");
   idfObjects.back().setString(OS_MeterFields::ReportingFrequency,"runperiod");
   idfObjects.back().setString(OS_MeterFields::MeterFileOnly,"false");
   idfObjects.back().setString(OS_MeterFields::Cumulative,"true");
 
-  idfObjects.push_back(IdfObject(IddObjectType::OS_Meter));
+  idfObjects.push_back(IdfObject(iddobjectname::OS_Meter));
   idfObjects.back().setString(OS_MeterFields::Name,"General:InteriorLights:Electricity:Zone:North Zone");
   idfObjects.back().setString(OS_MeterFields::ReportingFrequency,"daily");
   idfObjects.back().setString(OS_MeterFields::Cumulative,"true");

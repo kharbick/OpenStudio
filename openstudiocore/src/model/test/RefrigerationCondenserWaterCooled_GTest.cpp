@@ -28,6 +28,7 @@
 #include <model/Node.hpp>
 #include <model/Node_Impl.hpp>
 #include <model/AirLoopHVACZoneSplitter.hpp>
+#include <utilities/idd/OS_Refrigeration_Condenser_WaterCooled_FieldEnums.hxx>
 
 using namespace openstudio;
 using namespace openstudio::model;
@@ -52,7 +53,7 @@ TEST_F(ModelFixture,RefrigerationCondenserWaterCooled_iddObjectType)
 	Model m; 
 	RefrigerationCondenserWaterCooled refrigerationCondenserWaterCooled = RefrigerationCondenserWaterCooled(m);
 
-	EXPECT_EQ( refrigerationCondenserWaterCooled.iddObjectType(), IddObjectType::OS_Refrigeration_Condenser_WaterCooled);
+	EXPECT_EQ( refrigerationCondenserWaterCooled.iddObjectType(), iddobjectname::OS_Refrigeration_Condenser_WaterCooled);
 }
 
 TEST_F(ModelFixture,RefrigerationCondenserWaterCooled_addToNode) {

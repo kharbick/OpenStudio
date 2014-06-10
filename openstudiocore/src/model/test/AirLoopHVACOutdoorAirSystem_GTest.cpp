@@ -41,7 +41,7 @@ TEST_F(ModelFixture,AirLoopHVACOutdoorAirSystem_AirLoopHVACOutdoorAirSystem)
   ControllerOutdoorAir controller(model);
   AirLoopHVACOutdoorAirSystem oaSystem = AirLoopHVACOutdoorAirSystem(model,controller);
 
-  ASSERT_EQ( openstudio::IddObjectType::OS_AirLoopHVAC_OutdoorAirSystem, oaSystem.iddObjectType().value() );
+  ASSERT_EQ( AirLoopHVACOutdoorAirSystem::iddObjectType(), oaSystem.iddObjectType() );
 }
 
 TEST_F(ModelFixture,AirLoopHVACOutdoorAirSystem_controllerOutdoorAir)
@@ -52,7 +52,7 @@ TEST_F(ModelFixture,AirLoopHVACOutdoorAirSystem_controllerOutdoorAir)
   ControllerOutdoorAir controller(model);
   AirLoopHVACOutdoorAirSystem oaSystem = AirLoopHVACOutdoorAirSystem(model,controller);
 
-  ASSERT_EQ( openstudio::IddObjectType::OS_Controller_OutdoorAir, oaSystem.getControllerOutdoorAir().iddObjectType().value() );
+  ASSERT_EQ( ControllerOutdoorAir::iddObjectType(), oaSystem.getControllerOutdoorAir().iddObjectType() );
 }
 
 TEST_F(ModelFixture,AirLoopHVACOutdoorAirSystem_clone)
@@ -64,11 +64,11 @@ TEST_F(ModelFixture,AirLoopHVACOutdoorAirSystem_clone)
   ControllerOutdoorAir controller(model);
   AirLoopHVACOutdoorAirSystem oaSystem = AirLoopHVACOutdoorAirSystem(model,controller);
 
-  ASSERT_EQ( openstudio::IddObjectType::OS_Controller_OutdoorAir, oaSystem.getControllerOutdoorAir().iddObjectType().value() );
+  ASSERT_EQ( ControllerOutdoorAir::iddObjectType(), oaSystem.getControllerOutdoorAir().iddObjectType() );
 
   AirLoopHVACOutdoorAirSystem oaSystem2 = oaSystem.clone(model2).cast<AirLoopHVACOutdoorAirSystem>();
 
-  ASSERT_EQ( openstudio::IddObjectType::OS_Controller_OutdoorAir, oaSystem2.getControllerOutdoorAir().iddObjectType().value() );
+  ASSERT_EQ( ControllerOutdoorAir::iddObjectType(), oaSystem2.getControllerOutdoorAir().iddObjectType() );
 }
 
 TEST_F(ModelFixture,AirLoopHVACOutdoorAirSystem_edges)

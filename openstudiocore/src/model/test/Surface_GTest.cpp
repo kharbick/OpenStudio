@@ -1100,7 +1100,7 @@ class SurfaceWorkspaceWatcher : public openstudio::WorkspaceWatcher {
   {
     WorkspaceWatcher::onObjectAdd(addedObject);
 
-    EXPECT_EQ(IddObjectType::OS_Surface, addedObject.iddObject().type().value());
+    EXPECT_EQ(Surface::iddObjectType(), addedObject.iddObject().type());
     boost::optional<Surface> surface = addedObject.optionalCast<Surface>();
     ASSERT_TRUE(surface);
     ASSERT_NO_THROW(surface->vertices());
@@ -1130,7 +1130,7 @@ TEST_F(ModelFixture, Surface_Initializer2)
   SurfaceWorkspaceWatcher watcher(model);
   EXPECT_FALSE(watcher.objectAdded());
   
-  IdfObject idfObject(IddObjectType::OS_Surface);
+  IdfObject idfObject(iddobjectname::OS_Surface);
   model.addObject(idfObject);
   EXPECT_TRUE(watcher.objectAdded());
   

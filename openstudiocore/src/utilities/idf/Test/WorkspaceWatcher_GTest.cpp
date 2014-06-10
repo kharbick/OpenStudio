@@ -23,6 +23,8 @@
 #include <utilities/idf/Workspace.hpp>
 #include <utilities/idf/WorkspaceObject.hpp>
 #include <utilities/idf/IdfExtensibleGroup.hpp>
+#include <utilities/idd/BuildingSurface_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Lights_FieldEnums.hxx>
 
 #include <resources.hxx>
 
@@ -40,7 +42,7 @@ TEST_F(IdfFixture,WorkspaceWatcher_ObjectChanges)
   WorkspaceObjectVector result = workspace.getObjectsByName("C5-1");
   ASSERT_TRUE(result.size() > 0);
   EXPECT_EQ(static_cast<unsigned>(1),result.size());
-  EXPECT_TRUE(result[0].iddObject().type() == IddObjectType::BuildingSurface_Detailed);
+  EXPECT_TRUE(result[0].iddObject().type() == iddobjectname::BuildingSurface_Detailed);
   EXPECT_FALSE(watcher.dirty());
 
   IdfExtensibleGroup eg = result[0].pushExtensibleGroup();
@@ -65,7 +67,7 @@ TEST_F(IdfFixture,WorkspaceWatcher_AddObjects)
   WorkspaceWatcher watcher(workspace);
 
   EXPECT_FALSE(watcher.dirty());
-  OptionalWorkspaceObject owo = workspace.addObject(IdfObject(IddObjectType::Lights));
+  OptionalWorkspaceObject owo = workspace.addObject(IdfObject(iddobjectname::Lights));
   EXPECT_TRUE(owo);
   EXPECT_TRUE(watcher.dirty());
   EXPECT_TRUE(watcher.objectAdded());

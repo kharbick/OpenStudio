@@ -21,6 +21,8 @@
 #include <utilities/idf/Test/IdfFixture.hpp>
 #include <utilities/idf/WorkspaceObject.hpp>
 #include <utilities/idf/WorkspaceObjectOrder.hpp>
+#include <utilities/idd/Material_FieldEnums.hxx>
+#include <utilities/idd/Construction_FieldEnums.hxx>
 
 using namespace openstudio;
 
@@ -74,8 +76,8 @@ TEST_F(IdfFixture,WorkspaceObjectOrder_ByIddObjectType) {
 
   WorkspaceObjectOrder wsOrder = workspace.order();
   IddObjectTypeVector orderByType;
-  IntSet enumValues = IddObjectType::getValues();
-  BOOST_FOREACH(int val,enumValues) {
+  StringSet enumValues = IddObjectType::getStringValues();
+  BOOST_FOREACH(std::string val,enumValues) {
     orderByType.push_back(IddObjectType(val));
   }
   wsOrder.setIddOrder(orderByType);
@@ -87,28 +89,28 @@ TEST_F(IdfFixture,WorkspaceObjectOrder_ByIddObjectType) {
   OptionalWorkspaceObject oMaterial;
   OptionalWorkspaceObject oConstruction;
   BOOST_FOREACH(const WorkspaceObject& object,objectsInNewOrder) {
-    if (!oMaterial && (object.iddObject().type() == IddObjectType::Material)) {
+    if (!oMaterial && (object.iddObject().type() == iddobjectname::Material)) {
       oMaterial = object;
       EXPECT_FALSE(oConstruction);
       OptionalUnsigned oIndex = wsOrder.indexInOrder(object.handle());
       EXPECT_FALSE(oIndex);
     }
-    if (!oConstruction && (object.iddObject().type() == IddObjectType::Construction)) {
+    if (!oConstruction && (object.iddObject().type() == iddobjectname::Construction)) {
       oConstruction = object;
     }
     if (oMaterial && oConstruction) { break; }
   }
 
   // change to Constructions before Materials
-  wsOrder.move(IddObjectType::Construction,IddObjectType::Material);
+  wsOrder.move(iddobjectname::Construction,iddobjectname::Material);
   objectsInNewOrder = workspace.objects(true);
   oMaterial = boost::none;
   oConstruction = boost::none;
   BOOST_FOREACH(const WorkspaceObject& object,objectsInNewOrder) {
-    if (!oMaterial && (object.iddObject().type() == IddObjectType::Material)) {
+    if (!oMaterial && (object.iddObject().type() == iddobjectname::Material)) {
       oMaterial = object;
     }
-    if (!oConstruction && (object.iddObject().type() == IddObjectType::Construction)) {
+    if (!oConstruction && (object.iddObject().type() == iddobjectname::Construction)) {
       oConstruction = object;
       EXPECT_FALSE(oMaterial);
     }

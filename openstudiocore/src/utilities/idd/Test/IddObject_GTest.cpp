@@ -22,6 +22,12 @@
 #include <utilities/idd/IddObject.hpp>
 #include <utilities/idd/IddFactory.hxx>
 #include <utilities/idd/ExtensibleIndex.hpp>
+#include <utilities/idd/Schedule_File_FieldEnums.hxx>
+#include <utilities/idd/WindowMaterial_Blind_FieldEnums.hxx>
+#include <utilities/idd/SurfaceProperty_ConvectionCoefficients_FieldEnums.hxx>
+#include <utilities/idd/BuildingSurface_Detailed_FieldEnums.hxx>
+#include <utilities/idd/Zone_FieldEnums.hxx>
+#include <utilities/idd/HeatBalanceAlgorithm_FieldEnums.hxx>
 #include <utilities/core/Containers.hpp>
 
 #include <sstream>
@@ -37,7 +43,7 @@ using namespace openstudio;
 TEST_F(IddFixture,IddObject_URL)
 {
 OptionalIddObject object1 = 
-  IddFactory::instance().getObject(IddObjectType::Schedule_File);
+  IddFactory::instance().getObject(iddobjectname::Schedule_File);
  ASSERT_TRUE(object1);
  EXPECT_TRUE(object1->hasURL());
  UnsignedVector vec  = object1->urlFields();
@@ -48,11 +54,11 @@ OptionalIddObject object1 =
 TEST_F(IddFixture,IddObject_EqualityOperators) {
   // IddObjectProperties
   // == because same
-  OptionalIddObject object1 = IddFactory::instance().getObject(IddObjectType::WindowMaterial_Blind);
+  OptionalIddObject object1 = IddFactory::instance().getObject(iddobjectname::WindowMaterial_Blind);
   ASSERT_TRUE(object1);
   EXPECT_TRUE(object1->properties() == object1->properties());
   // != by comparison
-  OptionalIddObject object2 = IddFactory::instance().getObject(IddObjectType::SurfaceProperty_ConvectionCoefficients);
+  OptionalIddObject object2 = IddFactory::instance().getObject(iddobjectname::SurfaceProperty_ConvectionCoefficients);
   ASSERT_TRUE(object2);
   EXPECT_TRUE(object1->properties() != object2->properties());
   // deep == 
@@ -73,7 +79,7 @@ TEST_F(IddFixture,IddObject_EqualityOperators) {
 }
 
 TEST_F(IddFixture,IddObject_ExtensibleIndex) {
-  OptionalIddObject oio = IddFactory::instance().getObject(IddObjectType::BuildingSurface_Detailed);
+  OptionalIddObject oio = IddFactory::instance().getObject(iddobjectname::BuildingSurface_Detailed);
   ASSERT_TRUE(oio);
   IddObject iddObj = *oio;
 
@@ -118,7 +124,7 @@ TEST_F(IddFixture,IddObjectVector_GetTypes) {
 
 TEST_F(IddFixture,IddObjectType_QVariant)
 {
-  IddObjectType type(IddObjectType::Zone);
+  IddObjectType type(iddobjectname::Zone);
   QVariant variant = QVariant::fromValue(type);
   EXPECT_EQ("openstudio::IddObjectType", std::string(variant.typeName()));
   ASSERT_TRUE(variant.canConvert<IddObjectType>());
@@ -129,7 +135,7 @@ TEST_F(IddFixture,IddObjectType_QVariant)
 TEST_F(IddFixture,IddObject_InsertHandleField) {
   // Test on EnergyPlus IDD object since no handles there
   // Use object with mix of A's and N's
-  IddObjectType type(IddObjectType::HeatBalanceAlgorithm);
+  IddObjectType type(iddobjectname::HeatBalanceAlgorithm);
   IddObject temp = IddFactory::instance().getObject(type).get();
   std::stringstream ss;
   temp.print(ss);

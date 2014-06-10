@@ -94,7 +94,7 @@ TEST_F(ModelFixture, FenestrationMaterial_Blind_Constructors)
   BlindVector blinds = model.getModelObjects<Blind>();
   ASSERT_EQ(static_cast<unsigned>(1),blinds.size());
   EXPECT_TRUE(blind == blinds[0]);
-  EXPECT_TRUE(blind.iddObject().type() == IddObjectType::OS_WindowMaterial_Blind);
+  EXPECT_TRUE(blind.iddObject().type() == Blind::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -103,7 +103,7 @@ TEST_F(ModelFixture, FenestrationMaterial_Blind_Constructors)
   ASSERT_EQ(static_cast<unsigned>(1),blinds.size());
   blind = blinds[0];
   EXPECT_FALSE(blind.model() == model);
-  EXPECT_TRUE(blind.iddObject().type() == IddObjectType::OS_WindowMaterial_Blind);
+  EXPECT_TRUE(blind.iddObject().type() == Blind::iddObjectType());
 }
 
 TEST_F(ModelFixture, FenestrationMaterial_Blind_Attributes)
@@ -138,7 +138,7 @@ TEST_F(ModelFixture, FenestrationMaterial_Gas_Constructors)
   GasVector gases = model.getModelObjects<Gas>();
   ASSERT_EQ(static_cast<unsigned>(1),gases.size());
   EXPECT_TRUE(gas == gases[0]);
-  EXPECT_TRUE(gas.iddObject().type() == IddObjectType::OS_WindowMaterial_Gas);
+  EXPECT_TRUE(gas.iddObject().type() == Gas::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -147,7 +147,7 @@ TEST_F(ModelFixture, FenestrationMaterial_Gas_Constructors)
   ASSERT_EQ(static_cast<unsigned>(1),gases.size());
   gas = gases[0];
   EXPECT_FALSE(gas.model() == model);
-  EXPECT_TRUE(gas.iddObject().type() == IddObjectType::OS_WindowMaterial_Gas);
+  EXPECT_TRUE(gas.iddObject().type() == Gas::iddObjectType());
 }
 
 // written to fail if Gas object's Gas Type field changes
@@ -239,7 +239,7 @@ TEST_F(ModelFixture, FenestrationMaterial_GasMixture_Constructors)
   GasMixtureVector gasMixtures = model.getModelObjects<GasMixture>();
   ASSERT_EQ(static_cast<unsigned>(1),gasMixtures.size());
   EXPECT_TRUE(gasMixture == gasMixtures[0]);
-  EXPECT_TRUE(gasMixture.iddObject().type() == IddObjectType::OS_WindowMaterial_GasMixture);
+  EXPECT_TRUE(gasMixture.iddObject().type() == GasMixture::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -248,7 +248,7 @@ TEST_F(ModelFixture, FenestrationMaterial_GasMixture_Constructors)
   ASSERT_EQ(static_cast<unsigned>(1),gasMixtures.size());
   gasMixture = gasMixtures[0];
   EXPECT_FALSE(gasMixture.model() == model);
-  EXPECT_TRUE(gasMixture.iddObject().type() == IddObjectType::OS_WindowMaterial_GasMixture);
+  EXPECT_TRUE(gasMixture.iddObject().type() == GasMixture::iddObjectType());
 }
 
 // written to fail if GasMixture's IddObject changes in ways that will break the ModelObject
@@ -301,7 +301,7 @@ TEST_F(ModelFixture, FenestrationMaterial_RefractionExtinctionGlazing_Constructo
   ASSERT_EQ(static_cast<unsigned>(1),glazings.size());
   EXPECT_TRUE(glazing == glazings[0]);
   EXPECT_TRUE(glazing.iddObject().type() ==
-              IddObjectType::OS_WindowMaterial_Glazing_RefractionExtinctionMethod);
+              RefractionExtinctionGlazing::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -311,7 +311,7 @@ TEST_F(ModelFixture, FenestrationMaterial_RefractionExtinctionGlazing_Constructo
   glazing = glazings[0];
   EXPECT_FALSE(glazing.model() == model);
   EXPECT_TRUE(glazing.iddObject().type() ==
-              IddObjectType::OS_WindowMaterial_Glazing_RefractionExtinctionMethod);
+              RefractionExtinctionGlazing::iddObjectType());
 }
 
 TEST_F(ModelFixture, FenestrationMaterial_RefractionExtinctionGlazing_Attributes)
@@ -347,7 +347,7 @@ TEST_F(ModelFixture, FenestrationMaterial_Screen_Constructors)
   ScreenVector screens = model.getModelObjects<Screen>();
   ASSERT_EQ(static_cast<unsigned>(1),screens.size());
   EXPECT_TRUE(screen == screens[0]);
-  EXPECT_TRUE(screen.iddObject().type() == IddObjectType::OS_WindowMaterial_Screen);
+  EXPECT_TRUE(screen.iddObject().type() == Screen::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -356,7 +356,7 @@ TEST_F(ModelFixture, FenestrationMaterial_Screen_Constructors)
   ASSERT_EQ(static_cast<unsigned>(1),screens.size());
   screen = screens[0];
   EXPECT_FALSE(screen.model() == model);
-  EXPECT_TRUE(screen.iddObject().type() == IddObjectType::OS_WindowMaterial_Screen);
+  EXPECT_TRUE(screen.iddObject().type() == Screen::iddObjectType());
 }
 
 TEST_F(ModelFixture, FenestrationMaterial_Screen_Attributes)
@@ -390,7 +390,7 @@ TEST_F(ModelFixture, FenestrationMaterial_Shade_Constructors)
   ShadeVector shades = model.getModelObjects<Shade>();
   ASSERT_EQ(static_cast<unsigned>(1),shades.size());
   EXPECT_TRUE(shade == shades[0]);
-  EXPECT_TRUE(shade.iddObject().type() == IddObjectType::OS_WindowMaterial_Shade);
+  EXPECT_TRUE(shade.iddObject().type() == Shade::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -399,7 +399,7 @@ TEST_F(ModelFixture, FenestrationMaterial_Shade_Constructors)
   ASSERT_EQ(static_cast<unsigned>(1),shades.size());
   shade = shades[0];
   EXPECT_FALSE(shade.model() == model);
-  EXPECT_TRUE(shade.iddObject().type() == IddObjectType::OS_WindowMaterial_Shade);
+  EXPECT_TRUE(shade.iddObject().type() == Shade::iddObjectType());
 }
 
 TEST_F(ModelFixture, FenestrationMaterial_Shade_Attributes)
@@ -433,7 +433,7 @@ TEST_F(ModelFixture, FenestrationMaterial_SimpleGlazing_Constructors)
   SimpleGlazingVector glazings = model.getModelObjects<SimpleGlazing>();
   ASSERT_EQ(static_cast<unsigned>(1),glazings.size());
   EXPECT_TRUE(glazing == glazings[0]);
-  EXPECT_TRUE(glazing.iddObject().type() == IddObjectType::OS_WindowMaterial_SimpleGlazingSystem);
+  EXPECT_TRUE(glazing.iddObject().type() == SimpleGlazing::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -442,7 +442,7 @@ TEST_F(ModelFixture, FenestrationMaterial_SimpleGlazing_Constructors)
   ASSERT_EQ(static_cast<unsigned>(1),glazings.size());
   glazing = glazings[0];
   EXPECT_FALSE(glazing.model() == model);
-  EXPECT_TRUE(glazing.iddObject().type() == IddObjectType::OS_WindowMaterial_SimpleGlazingSystem);
+  EXPECT_TRUE(glazing.iddObject().type() == SimpleGlazing::iddObjectType());
 }
 
 TEST_F(ModelFixture, FenestrationMaterial_SimpleGlazing_Attributes)
@@ -475,7 +475,7 @@ TEST_F(ModelFixture, FenestrationMaterial_StandardGlazing_Constructors)
   StandardGlazingVector glazings = model.getModelObjects<StandardGlazing>();
   ASSERT_EQ(static_cast<unsigned>(1),glazings.size());
   EXPECT_TRUE(glazing == glazings[0]);
-  EXPECT_TRUE(glazing.iddObject().type() == IddObjectType::OS_WindowMaterial_Glazing);
+  EXPECT_TRUE(glazing.iddObject().type() == StandardGlazing::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -484,7 +484,7 @@ TEST_F(ModelFixture, FenestrationMaterial_StandardGlazing_Constructors)
   ASSERT_EQ(static_cast<unsigned>(1),glazings.size());
   glazing = glazings[0];
   EXPECT_FALSE(glazing.model() == model);
-  EXPECT_TRUE(glazing.iddObject().type() == IddObjectType::OS_WindowMaterial_Glazing);
+  EXPECT_TRUE(glazing.iddObject().type() == StandardGlazing::iddObjectType());
 }
 
 TEST_F(ModelFixture, FenestrationMaterial_StandardGlazing_Attributes)
@@ -519,7 +519,7 @@ TEST_F(ModelFixture, FenestrationMaterial_ThermochromicGlazing_Constructors)
   ASSERT_EQ(static_cast<unsigned>(1),glazings.size());
   EXPECT_TRUE(glazing == glazings[0]);
   EXPECT_TRUE(glazing.iddObject().type() ==
-              IddObjectType::OS_WindowMaterial_GlazingGroup_Thermochromic);
+              ThermochromicGlazing::iddObjectType());
 
   // construct by clone
   Model modelClone = model.clone().cast<Model>();
@@ -529,7 +529,7 @@ TEST_F(ModelFixture, FenestrationMaterial_ThermochromicGlazing_Constructors)
   glazing = glazings[0];
   EXPECT_FALSE(glazing.model() == model);
   EXPECT_TRUE(glazing.iddObject().type() ==
-              IddObjectType::OS_WindowMaterial_GlazingGroup_Thermochromic);
+              ThermochromicGlazing::iddObjectType());
 }
 
 TEST_F(ModelFixture, FenestrationMaterial_ThermochromicGlazing_Attributes)
