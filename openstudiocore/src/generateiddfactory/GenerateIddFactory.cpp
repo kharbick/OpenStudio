@@ -490,7 +490,7 @@ void completeOutFiles(const IddFileFactoryDataVector& iddFiles,
     << "    return (m_name < other);" << std::endl
     << "  }" << std::endl
     << std::endl
-    << "  std::vector<unsigned> getValues() const" << std::endl
+    << "  static std::vector<unsigned> getValues()" << std::endl
     << "  {" << std::endl
     << "    std::vector<unsigned> result;" << std::endl
     << std::endl
