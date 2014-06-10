@@ -490,6 +490,20 @@ void completeOutFiles(const IddFileFactoryDataVector& iddFiles,
     << "    return (m_name < other);" << std::endl
     << "  }" << std::endl
     << std::endl
+    << "  std::vector<unsigned> getValues() const" << std::endl
+    << "  {" << std::endl
+    << "    std::vector<unsigned> result;" << std::endl
+    << std::endl
+    << "    for(std::map<std::string,unsigned>::const_iterator it = m_valueMap.begin();" << std::endl
+    << "        it != m_valueMap.end();" << std::endl
+    << "        ++it )" << std::endl
+    << "    {" << std::endl
+    << "      result.push_back(it->second);" << std::endl
+    << "    }" << std::endl
+    << std::endl
+    << "    return result;" << std::endl
+    << "  }" << std::endl
+    << std::endl
     << tempSS.str()
     << std::endl
     << "  private:" << std::endl
