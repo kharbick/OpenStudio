@@ -346,14 +346,14 @@ void completeOutFiles(const IddFileFactoryDataVector& iddFiles,
     }
   }
   outFiles.iddEnumsCxx.tempFile 
-    << "std::map<std::string,unsigned> initializeMap()" << std::endl
+    << "std::map<std::string,int> initializeMap()" << std::endl
     << "{" << std::endl
-    << "  std::map<std::string,unsigned> result;" << std::endl
+    << "  std::map<std::string,int> result;" << std::endl
     << tempSS.str()
     << "  return result;" << std::endl
     << "}" << std::endl
     << std::endl
-    << "std::map<std::string,unsigned> IddObjectType::m_valueMap = initializeMap();" << std::endl
+    << "std::map<std::string,int> IddObjectType::m_valueMap = initializeMap();" << std::endl
     << std::endl
     << "const IddObjectType  IddObjectType::UserCustom = IddObjectType(\"UserCustom\");" << std::endl
     << "const IddObjectType  IddObjectType::Catchall = IddObjectType(\"CatchAll\");" << std::endl
@@ -490,15 +490,25 @@ void completeOutFiles(const IddFileFactoryDataVector& iddFiles,
     << "    return (m_name < other);" << std::endl
     << "  }" << std::endl
     << std::endl
-    << "  static std::vector<unsigned> getValues()" << std::endl
+    << "  bool operator<=(const IddObjectType &other) const" << std::endl
     << "  {" << std::endl
-    << "    std::vector<unsigned> result;" << std::endl
+    << "    return (m_name <= other.m_name);" << std::endl
+    << "  }" << std::endl
     << std::endl
-    << "    for(std::map<std::string,unsigned>::const_iterator it = m_valueMap.begin();" << std::endl
+    << "  bool operator<=(const std::string &other) const" << std::endl
+    << "  {" << std::endl
+    << "    return (m_name <= other);" << std::endl
+    << "  }" << std::endl
+    << std::endl
+    << "  static std::set<int> getValues()" << std::endl
+    << "  {" << std::endl
+    << "    std::set<int> result;" << std::endl
+    << std::endl
+    << "    for(std::map<std::string,int>::const_iterator it = m_valueMap.begin();" << std::endl
     << "        it != m_valueMap.end();" << std::endl
     << "        ++it )" << std::endl
     << "    {" << std::endl
-    << "      result.push_back(it->second);" << std::endl
+    << "      result.insert(it->second);" << std::endl
     << "    }" << std::endl
     << std::endl
     << "    return result;" << std::endl
@@ -508,7 +518,7 @@ void completeOutFiles(const IddFileFactoryDataVector& iddFiles,
     << std::endl
     << "  private:" << std::endl
     << std::endl
-    << "  static std::map<std::string,unsigned> m_valueMap;" << std::endl
+    << "  static std::map<std::string,int> m_valueMap;" << std::endl
     << "  std::string m_name;" << std::endl
     << "};" << std::endl
     << std::endl
