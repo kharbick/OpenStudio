@@ -514,6 +514,20 @@ void completeOutFiles(const IddFileFactoryDataVector& iddFiles,
     << "    return result;" << std::endl
     << "  }" << std::endl
     << std::endl
+    << "  static std::set<std::string> getStringValues()" << std::endl
+    << "  {" << std::endl
+    << "    std::set<std::string> result;" << std::endl
+    << std::endl
+    << "    for(std::map<std::string,int>::const_iterator it = m_valueMap.begin();" << std::endl
+    << "        it != m_valueMap.end();" << std::endl
+    << "        ++it )" << std::endl
+    << "    {" << std::endl
+    << "      result.insert(it->first);" << std::endl
+    << "    }" << std::endl
+    << std::endl
+    << "    return result;" << std::endl
+    << "  }" << std::endl
+    << std::endl
     << tempSS.str()
     << std::endl
     << "  private:" << std::endl
