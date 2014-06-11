@@ -44,6 +44,8 @@
 #include <utilities/idf/Workspace.hpp>
 #include <utilities/sql/SqlFile.hpp>
 
+#include <utilities/idd/Output_SQLite_FieldEnums.hxx>
+
 #include <QDir>
 #include <QDateTime>
 
@@ -153,13 +155,13 @@ namespace detail {
           LOG_AND_THROW("Unable to load idf into workspace");
         }
 
-        std::vector<openstudio::WorkspaceObject> sqliteobjs = ws->getObjectsByType(IddObjectType::Output_SQLite);
+        std::vector<openstudio::WorkspaceObject> sqliteobjs = ws->getObjectsByType(iddobjectname::Output_SQLite);
 
         if (sqliteobjs.empty())
         {
-          //          ws->addObject(IdfObject(IddObjectType::Output_SQLite));
+          //          ws->addObject(IdfObject(iddobjectname::Output_SQLite));
           needssqlobj = true;
-          //          sqliteobjs = ws->getObjectsByType(IddObjectType::Output_SQLite);
+          //          sqliteobjs = ws->getObjectsByType(iddobjectname::Output_SQLite);
         }
 
         if (ws->getObjectsByName("Building Energy Performance - Natural Gas").empty()

@@ -17,7 +17,7 @@ namespace runmanager {
       boost::optional<std::string> &t_filelocationname,
       boost::optional<std::string> &t_weatherfilename)
   {
-    IdfObjectVector versionObjects = t_idffile.getObjectsByType(IddObjectType::Version);
+    IdfObjectVector versionObjects = t_idffile.getObjectsByType(iddobjectname::Version);
     if(versionObjects.size() == 1){
       OptionalString version = versionObjects[0].getString(VersionFields::VersionIdentifier, true);
       if (version){
@@ -42,7 +42,7 @@ namespace runmanager {
       }
     }
 
-    IdfObjectVector locationObjects = t_idffile.getObjectsByType(IddObjectType::Site_Location);
+    IdfObjectVector locationObjects = t_idffile.getObjectsByType(iddobjectname::Site_Location);
     if(locationObjects.size() == 1){
       OptionalString locationname = locationObjects[0].getString(Site_LocationFields::Name, true);
       if (locationname && !locationname->empty()){

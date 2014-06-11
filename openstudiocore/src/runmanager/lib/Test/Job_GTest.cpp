@@ -47,7 +47,7 @@ TEST_F(RunManagerTestFixture, URLTestRelative)
   openstudio::path weatherdir = resourcesPath() / openstudio::toPath("runmanager"); 
   openstudio::model::Model m = openstudio::model::exampleModel();
 
-  openstudio::IdfObject schedule(openstudio::IddObjectType::OS_TimeDependentValuation);
+  openstudio::IdfObject schedule(openstudio::iddobjectname::OS_TimeDependentValuation);
   schedule.setString(OS_TimeDependentValuationFields::Url, "./ScheduleFile.csv");
   m.addObject(schedule);
 
@@ -143,7 +143,7 @@ TEST_F(RunManagerTestFixture, URLTestAbsolute)
   openstudio::path weatherdir = resourcesPath() / openstudio::toPath("runmanager"); 
   openstudio::model::Model m = openstudio::model::exampleModel();
 
-  openstudio::IdfObject schedule(openstudio::IddObjectType::OS_TimeDependentValuation);
+  openstudio::IdfObject schedule(openstudio::iddobjectname::OS_TimeDependentValuation);
   schedule.setString(OS_TimeDependentValuationFields::Url,
                      openstudio::toString(resourcesPath() / openstudio::toPath("runmanager") / openstudio::toPath("ScheduleFile.csv")) );
   m.addObject(schedule);

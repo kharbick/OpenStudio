@@ -20,6 +20,8 @@
 #include <utilities/idf/IdfFile.hpp>
 #include <utilities/idf/IdfObject.hpp>
 #include <utilities/idd/RunPeriod_FieldEnums.hxx>
+#include <utilities/idd/Output_Meter_FieldEnums.hxx>
+#include <utilities/idd/Output_SQLite_FieldEnums.hxx>
 
 #include <energyplus/ReverseTranslator.hpp>
 
@@ -42,7 +44,7 @@ std::pair<openstudio::Workspace, openstudio::WorkspaceObject> ParallelEnergyPlus
   if (idfFile)
   {
     openstudio::Workspace workspace(*idfFile);
-    std::vector<openstudio::WorkspaceObject> runPeriods = workspace.getObjectsByType(openstudio::IddObjectType::RunPeriod);
+    std::vector<openstudio::WorkspaceObject> runPeriods = workspace.getObjectsByType(openstudio::iddobjectname::RunPeriod);
 
     if (runPeriods.size() != 1){
       throw std::runtime_error("Exactly one runperiod is required, " + boost::lexical_cast<std::string>(runPeriods.size()) + " found");
@@ -186,7 +188,7 @@ void ParallelEnergyPlus::writePartition(int t_partition, const openstudio::path 
   wo.setString(openstudio::RunPeriodFields::DayofWeekforStartDay, wd.as_long_string());
 
   // make sure at least some meters exist
-  if (ws.getObjectsByType(openstudio::IddObjectType::Output_Meter).size() == 0)
+  if (ws.getObjectsByType(openstudio::iddobjectname::Output_Meter).size() == 0)
   {
     ws.insertObject(*openstudio::IdfObject::load("Output:Meter,Electricity:Facility,HOURLY"));
     ws.insertObject(*openstudio::IdfObject::load("Output:Meter,Gas:Facility,HOURLY"));
@@ -203,7 +205,7 @@ void ParallelEnergyPlus::writePartition(int t_partition, const openstudio::path 
   } 
 
   // and that sqlite output is enabled
-  if (ws.getObjectsByType(openstudio::IddObjectType::Output_SQLite).size() == 0)
+  if (ws.getObjectsByType(openstudio::iddobjectname::Output_SQLite).size() == 0)
   {
     ws.insertObject(*openstudio::IdfObject::load("Output:SQLite, Simple;"));
   }
