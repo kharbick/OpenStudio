@@ -19,6 +19,7 @@
 
 #include <shared_gui_components/TIDItemModel.hpp>
 #include <utilities/core/Compare.hpp>
+#include <model/Construction.hpp>
 
 namespace openstudio {
 
@@ -261,7 +262,7 @@ const std::map<int,std::vector<IddObjectType> > TIDItemModel::createTidToOSTypeM
 
   // 127 Construction Assembly
   std::vector<IddObjectType> tid127_types;
-  tid127_types.push_back(IddObjectType::OS_Construction); 
+  tid127_types.push_back(model::Construction::iddObjectType()); 
   map[127] = tid127_types;
 
   // KSB: Should we have lower tids in the map like these?
@@ -269,17 +270,17 @@ const std::map<int,std::vector<IddObjectType> > TIDItemModel::createTidToOSTypeM
 
   // 152 Floor
   std::vector<IddObjectType> tid152_types;
-  tid152_types.push_back(IddObjectType::OS_Construction); 
+  tid152_types.push_back(model::Construction::iddObjectType()); 
   map[152] = tid152_types;
 
   // 134 Roof
   std::vector<IddObjectType> tid134_types;
-  tid134_types.push_back(IddObjectType::OS_Construction); 
+  tid134_types.push_back(model::Construction::iddObjectType()); 
   map[134] = tid134_types;
 
   // 129 Wall
   std::vector<IddObjectType> tid129_types;
-  tid129_types.push_back(IddObjectType::OS_Construction); 
+  tid129_types.push_back(model::Construction::iddObjectType()); 
   map[129] = tid129_types;
 
   return map;

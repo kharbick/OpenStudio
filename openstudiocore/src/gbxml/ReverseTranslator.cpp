@@ -555,7 +555,7 @@ namespace gbxml {
       QString spaceId = adjacentSpaceElements.at(0).toElement().attribute("spaceIdRef");
       std::string spaceName = toString(spaceId);
 
-      boost::optional<openstudio::WorkspaceObject> workspaceObject = model.getObjectByTypeAndName(IddObjectType::OS_Space, spaceName);
+      boost::optional<openstudio::WorkspaceObject> workspaceObject = model.getObjectByTypeAndName(model::Space::iddObjectType(), spaceName);
       if (workspaceObject && workspaceObject->optionalCast<openstudio::model::Space>()){
         surface.setSpace(workspaceObject->cast<openstudio::model::Space>());
       }
@@ -570,7 +570,7 @@ namespace gbxml {
         QString spaceId = adjacentSpaceElements.at(1).toElement().attribute("spaceIdRef");
         std::string spaceName = toString(spaceId);
 
-        boost::optional<openstudio::WorkspaceObject> workspaceObject = model.getObjectByTypeAndName(IddObjectType::OS_Space, spaceName);
+        boost::optional<openstudio::WorkspaceObject> workspaceObject = model.getObjectByTypeAndName(model::Space::iddObjectType(), spaceName);
         if (workspaceObject && workspaceObject->optionalCast<openstudio::model::Space>()){
         // clone the surface and sub surfaces and reverse vertices
           model::Space adjacentSpace = workspaceObject->cast<openstudio::model::Space>();

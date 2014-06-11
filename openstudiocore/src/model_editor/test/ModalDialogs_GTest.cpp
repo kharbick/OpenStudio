@@ -36,6 +36,7 @@
 #include <model/LightsDefinition_Impl.hpp>
 
 #include <utilities/idd/OS_Lights_FieldEnums.hxx>
+#include <utilities/idd/OS_Lights_Definition_FieldEnums.hxx>
 
 #include <QObject>
 
@@ -148,7 +149,7 @@ TEST_F(ModelEditorFixture, ModalDialogs_Ok)
 TEST_F(ModelEditorFixture, ModalDialogs_EnsureSpaceLoadDefinition_EmptyModel)
 {
   Model model;
-  EXPECT_TRUE(model.addObject(IdfObject(IddObjectType::OS_Lights)));
+  EXPECT_TRUE(model.addObject(IdfObject(iddobjectname::OS_Lights)));
 
   ASSERT_EQ(1u, model.getModelObjects<Lights>().size());
   Lights light = model.getModelObjects<Lights>()[0];
@@ -170,7 +171,7 @@ TEST_F(ModelEditorFixture, ModalDialogs_EnsureSpaceLoadDefinition)
   Model model;
   LightsDefinition definition1(model);
   LightsDefinition definition2(model);
-  EXPECT_TRUE(model.addObject(IdfObject(IddObjectType::OS_Lights)));
+  EXPECT_TRUE(model.addObject(IdfObject(iddobjectname::OS_Lights)));
 
   ASSERT_EQ(1u, model.getModelObjects<Lights>().size());
   Lights light = model.getModelObjects<Lights>()[0];

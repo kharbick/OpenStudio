@@ -158,7 +158,7 @@ class TestModelUserScript2 : public ModelUserScript {
 
     OSArgument arg = makeChoiceArgumentOfWorkspaceObjects(
                          "lights_definition",
-                         IddObjectType::OS_Lights_Definition,
+                         LightsDefinition::iddObjectType(),
                          model);
     result.push_back(arg);
 

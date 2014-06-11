@@ -20,6 +20,7 @@
 #include <model_editor/InspectorGadget.hpp>
 #include <model_editor/InspectorDialog.hpp>
 
+#include <model/Building.hpp>
 #include <model/Model.hpp>
 #include <model/Model_Impl.hpp>
 #include <model/ModelObject.hpp>
@@ -34,6 +35,8 @@
 #include <utilities/idd/IddFile.hpp>
 #include <utilities/idd/IddObject.hpp>
 #include <utilities/idd/IddFactory.hxx>
+#include <utilities/idd/IddFactory.hxx>
+#include <utilities/idd/IddFieldEnums.hxx>
 
 #include <QLabel>
 #include <QIcon>
@@ -114,7 +117,7 @@ bool InspectorDialog::setIddObjectType(const openstudio::IddObjectType& iddObjec
       continue;
     }
 
-    if (data.toInt() == iddObjectType.value()){
+    if (data.toString().toStdString() == iddObjectType.valueName()){
       //select this row
       m_listWidget->setCurrentRow(i);
       break;
@@ -418,7 +421,7 @@ void InspectorDialog::onListWidgetSelectionChanged()
 
     QVariant data = selectedItems.at(0)->data(Qt::UserRole);
     if (data.isValid()){
-      IddObjectType iddObjectType(data.toInt());
+      IddObjectType iddObjectType(data.toString().toStdString());
       setIddObjectType(iddObjectType);
     }
 
@@ -528,7 +531,7 @@ void InspectorDialog::init(InspectorDialogClient client)
         m_typesToDisplay.insert(iddObject.type());
       }
 
-      m_iddObjectType = IddObjectType::OS_Building;
+      m_iddObjectType = Building::iddObjectType();
 
       break;
     case InspectorDialogClient::SketchUpPlugin:
@@ -539,180 +542,180 @@ void InspectorDialog::init(InspectorDialogClient client)
 
       // TYPES TO DISPLAY
 
-      //m_typesToDisplay.insert(IddObjectType::OS_Version);
+      //m_typesToDisplay.insert(iddobjectname::OS_Version);
 
-      m_typesToDisplay.insert(IddObjectType::OS_ConvergenceLimits);
-      m_typesToDisplay.insert(IddObjectType::OS_HeatBalanceAlgorithm);
-      m_typesToDisplay.insert(IddObjectType::OS_RunPeriod);
-      m_typesToDisplay.insert(IddObjectType::OS_RunPeriodControl_DaylightSavingTime);
-      //m_typesToDisplay.insert(IddObjectType::OS_RunPeriodControl_SpecialDays);
-      m_typesToDisplay.insert(IddObjectType::OS_ShadowCalculation);
-      m_typesToDisplay.insert(IddObjectType::OS_SimulationControl);
-      m_typesToDisplay.insert(IddObjectType::OS_Sizing_Parameters);
-      m_typesToDisplay.insert(IddObjectType::OS_SurfaceConvectionAlgorithm_Inside);
-      m_typesToDisplay.insert(IddObjectType::OS_SurfaceConvectionAlgorithm_Outside);
-      m_typesToDisplay.insert(IddObjectType::OS_Timestep);
-      m_typesToDisplay.insert(IddObjectType::OS_ZoneAirContaminantBalance);
-      m_typesToDisplay.insert(IddObjectType::OS_ZoneAirHeatBalanceAlgorithm);
-      m_typesToDisplay.insert(IddObjectType::OS_ZoneCapacitanceMultiplier_ResearchSpecial);
+      m_typesToDisplay.insert(iddobjectname::OS_ConvergenceLimits);
+      m_typesToDisplay.insert(iddobjectname::OS_HeatBalanceAlgorithm);
+      m_typesToDisplay.insert(iddobjectname::OS_RunPeriod);
+      m_typesToDisplay.insert(iddobjectname::OS_RunPeriodControl_DaylightSavingTime);
+      //m_typesToDisplay.insert(iddobjectname::OS_RunPeriodControl_SpecialDays);
+      m_typesToDisplay.insert(iddobjectname::OS_ShadowCalculation);
+      m_typesToDisplay.insert(iddobjectname::OS_SimulationControl);
+      m_typesToDisplay.insert(iddobjectname::OS_Sizing_Parameters);
+      m_typesToDisplay.insert(iddobjectname::OS_SurfaceConvectionAlgorithm_Inside);
+      m_typesToDisplay.insert(iddobjectname::OS_SurfaceConvectionAlgorithm_Outside);
+      m_typesToDisplay.insert(iddobjectname::OS_Timestep);
+      m_typesToDisplay.insert(iddobjectname::OS_ZoneAirContaminantBalance);
+      m_typesToDisplay.insert(iddobjectname::OS_ZoneAirHeatBalanceAlgorithm);
+      m_typesToDisplay.insert(iddobjectname::OS_ZoneCapacitanceMultiplier_ResearchSpecial);
 
-      m_typesToDisplay.insert(IddObjectType::OS_Site);
-      m_typesToDisplay.insert(IddObjectType::OS_Site_GroundReflectance);
-      m_typesToDisplay.insert(IddObjectType::OS_Site_GroundTemperature_BuildingSurface);
-      m_typesToDisplay.insert(IddObjectType::OS_Site_WaterMainsTemperature);
-      m_typesToDisplay.insert(IddObjectType::OS_SizingPeriod_DesignDay);
-      m_typesToDisplay.insert(IddObjectType::OS_SizingPeriod_WeatherFileConditionType);
-      m_typesToDisplay.insert(IddObjectType::OS_SizingPeriod_WeatherFileDays);
-      m_typesToDisplay.insert(IddObjectType::OS_WeatherFile);
-      m_typesToDisplay.insert(IddObjectType::OS_WeatherProperty_SkyTemperature);
+      m_typesToDisplay.insert(iddobjectname::OS_Site);
+      m_typesToDisplay.insert(iddobjectname::OS_Site_GroundReflectance);
+      m_typesToDisplay.insert(iddobjectname::OS_Site_GroundTemperature_BuildingSurface);
+      m_typesToDisplay.insert(iddobjectname::OS_Site_WaterMainsTemperature);
+      m_typesToDisplay.insert(iddobjectname::OS_SizingPeriod_DesignDay);
+      m_typesToDisplay.insert(iddobjectname::OS_SizingPeriod_WeatherFileConditionType);
+      m_typesToDisplay.insert(iddobjectname::OS_SizingPeriod_WeatherFileDays);
+      m_typesToDisplay.insert(iddobjectname::OS_WeatherFile);
+      m_typesToDisplay.insert(iddobjectname::OS_WeatherProperty_SkyTemperature);
 
-      m_typesToDisplay.insert(IddObjectType::OS_BuildingStory);
-      m_typesToDisplay.insert(IddObjectType::OS_DefaultConstructionSet);
-      m_typesToDisplay.insert(IddObjectType::OS_DefaultScheduleSet);
-      m_typesToDisplay.insert(IddObjectType::OS_DefaultSurfaceConstructions);
-      m_typesToDisplay.insert(IddObjectType::OS_DefaultSubSurfaceConstructions);
-      m_typesToDisplay.insert(IddObjectType::OS_Rendering_Color);
-      m_typesToDisplay.insert(IddObjectType::OS_DesignSpecification_OutdoorAir);
-      m_typesToDisplay.insert(IddObjectType::OS_SpaceType);
-      m_typesToDisplay.insert(IddObjectType::OS_ShadingControl);
+      m_typesToDisplay.insert(iddobjectname::OS_BuildingStory);
+      m_typesToDisplay.insert(iddobjectname::OS_DefaultConstructionSet);
+      m_typesToDisplay.insert(iddobjectname::OS_DefaultScheduleSet);
+      m_typesToDisplay.insert(iddobjectname::OS_DefaultSurfaceConstructions);
+      m_typesToDisplay.insert(iddobjectname::OS_DefaultSubSurfaceConstructions);
+      m_typesToDisplay.insert(iddobjectname::OS_Rendering_Color);
+      m_typesToDisplay.insert(iddobjectname::OS_DesignSpecification_OutdoorAir);
+      m_typesToDisplay.insert(iddobjectname::OS_SpaceType);
+      m_typesToDisplay.insert(iddobjectname::OS_ShadingControl);
 
-      m_typesToDisplay.insert(IddObjectType::OS_Material);
-      m_typesToDisplay.insert(IddObjectType::OS_Material_AirGap);
-      m_typesToDisplay.insert(IddObjectType::OS_Material_AirWall);
-      m_typesToDisplay.insert(IddObjectType::OS_Material_InfraredTransparent);
-      m_typesToDisplay.insert(IddObjectType::OS_Material_NoMass);
-      m_typesToDisplay.insert(IddObjectType::OS_Material_RoofVegetation);
-      m_typesToDisplay.insert(IddObjectType::OS_WindowMaterial_Blind);
-      m_typesToDisplay.insert(IddObjectType::OS_WindowMaterial_Gas);
-      m_typesToDisplay.insert(IddObjectType::OS_WindowMaterial_GasMixture);
-      m_typesToDisplay.insert(IddObjectType::OS_WindowMaterial_Glazing);
-      m_typesToDisplay.insert(IddObjectType::OS_WindowMaterial_GlazingGroup_Thermochromic);
-      m_typesToDisplay.insert(IddObjectType::OS_WindowMaterial_Glazing_RefractionExtinctionMethod);
-      m_typesToDisplay.insert(IddObjectType::OS_WindowMaterial_Screen);
-      m_typesToDisplay.insert(IddObjectType::OS_WindowMaterial_Shade);
-      m_typesToDisplay.insert(IddObjectType::OS_WindowMaterial_SimpleGlazingSystem);
+      m_typesToDisplay.insert(iddobjectname::OS_Material);
+      m_typesToDisplay.insert(iddobjectname::OS_Material_AirGap);
+      m_typesToDisplay.insert(iddobjectname::OS_Material_AirWall);
+      m_typesToDisplay.insert(iddobjectname::OS_Material_InfraredTransparent);
+      m_typesToDisplay.insert(iddobjectname::OS_Material_NoMass);
+      m_typesToDisplay.insert(iddobjectname::OS_Material_RoofVegetation);
+      m_typesToDisplay.insert(iddobjectname::OS_WindowMaterial_Blind);
+      m_typesToDisplay.insert(iddobjectname::OS_WindowMaterial_Gas);
+      m_typesToDisplay.insert(iddobjectname::OS_WindowMaterial_GasMixture);
+      m_typesToDisplay.insert(iddobjectname::OS_WindowMaterial_Glazing);
+      m_typesToDisplay.insert(iddobjectname::OS_WindowMaterial_GlazingGroup_Thermochromic);
+      m_typesToDisplay.insert(iddobjectname::OS_WindowMaterial_Glazing_RefractionExtinctionMethod);
+      m_typesToDisplay.insert(iddobjectname::OS_WindowMaterial_Screen);
+      m_typesToDisplay.insert(iddobjectname::OS_WindowMaterial_Shade);
+      m_typesToDisplay.insert(iddobjectname::OS_WindowMaterial_SimpleGlazingSystem);
 
-      m_typesToDisplay.insert(IddObjectType::OS_Construction);
-      m_typesToDisplay.insert(IddObjectType::OS_Construction_CfactorUndergroundWall);
-      m_typesToDisplay.insert(IddObjectType::OS_Construction_FfactorGroundFloor);
-      m_typesToDisplay.insert(IddObjectType::OS_Construction_InternalSource);
-      m_typesToDisplay.insert(IddObjectType::OS_Construction_WindowDataFile);
-      m_typesToDisplay.insert(IddObjectType::OS_Construction_InternalSource);
+      m_typesToDisplay.insert(iddobjectname::OS_Construction);
+      m_typesToDisplay.insert(iddobjectname::OS_Construction_CfactorUndergroundWall);
+      m_typesToDisplay.insert(iddobjectname::OS_Construction_FfactorGroundFloor);
+      m_typesToDisplay.insert(iddobjectname::OS_Construction_InternalSource);
+      m_typesToDisplay.insert(iddobjectname::OS_Construction_WindowDataFile);
+      m_typesToDisplay.insert(iddobjectname::OS_Construction_InternalSource);
 
-      m_typesToDisplay.insert(IddObjectType::OS_Schedule_Compact);
-      m_typesToDisplay.insert(IddObjectType::OS_Schedule_Day);
-      m_typesToDisplay.insert(IddObjectType::OS_Schedule_Week);
-      m_typesToDisplay.insert(IddObjectType::OS_Schedule_Year);
-      m_typesToDisplay.insert(IddObjectType::OS_Schedule_FixedInterval);
-      m_typesToDisplay.insert(IddObjectType::OS_Schedule_VariableInterval);
-      m_typesToDisplay.insert(IddObjectType::OS_ScheduleTypeLimits);
+      m_typesToDisplay.insert(iddobjectname::OS_Schedule_Compact);
+      m_typesToDisplay.insert(iddobjectname::OS_Schedule_Day);
+      m_typesToDisplay.insert(iddobjectname::OS_Schedule_Week);
+      m_typesToDisplay.insert(iddobjectname::OS_Schedule_Year);
+      m_typesToDisplay.insert(iddobjectname::OS_Schedule_FixedInterval);
+      m_typesToDisplay.insert(iddobjectname::OS_Schedule_VariableInterval);
+      m_typesToDisplay.insert(iddobjectname::OS_ScheduleTypeLimits);
 
-      m_typesToDisplay.insert(IddObjectType::OS_ElectricEquipment_Definition);
-      m_typesToDisplay.insert(IddObjectType::OS_GasEquipment_Definition);
-      m_typesToDisplay.insert(IddObjectType::OS_HotWaterEquipment_Definition);
-      m_typesToDisplay.insert(IddObjectType::OS_SteamEquipment_Definition);
-      m_typesToDisplay.insert(IddObjectType::OS_OtherEquipment_Definition);
-      m_typesToDisplay.insert(IddObjectType::OS_Lights_Definition);
-      m_typesToDisplay.insert(IddObjectType::OS_Luminaire_Definition);
-      m_typesToDisplay.insert(IddObjectType::OS_People_Definition);
-      m_typesToDisplay.insert(IddObjectType::OS_InternalMass_Definition);
+      m_typesToDisplay.insert(iddobjectname::OS_ElectricEquipment_Definition);
+      m_typesToDisplay.insert(iddobjectname::OS_GasEquipment_Definition);
+      m_typesToDisplay.insert(iddobjectname::OS_HotWaterEquipment_Definition);
+      m_typesToDisplay.insert(iddobjectname::OS_SteamEquipment_Definition);
+      m_typesToDisplay.insert(iddobjectname::OS_OtherEquipment_Definition);
+      m_typesToDisplay.insert(iddobjectname::OS_Lights_Definition);
+      m_typesToDisplay.insert(iddobjectname::OS_Luminaire_Definition);
+      m_typesToDisplay.insert(iddobjectname::OS_People_Definition);
+      m_typesToDisplay.insert(iddobjectname::OS_InternalMass_Definition);
 
-      m_typesToDisplay.insert(IddObjectType::OS_Building);
-      //m_typesToDisplay.insert(IddObjectType::OS_DaylightingDevice_Shelf);
-      m_typesToDisplay.insert(IddObjectType::OS_Facility);
-      m_typesToDisplay.insert(IddObjectType::OS_InteriorPartitionSurfaceGroup);
-      m_typesToDisplay.insert(IddObjectType::OS_InteriorPartitionSurface);
-      m_typesToDisplay.insert(IddObjectType::OS_ShadingSurfaceGroup);
-      m_typesToDisplay.insert(IddObjectType::OS_ShadingSurface);
-      m_typesToDisplay.insert(IddObjectType::OS_Space);
-      m_typesToDisplay.insert(IddObjectType::OS_Surface);
-      m_typesToDisplay.insert(IddObjectType::OS_SubSurface);
+      m_typesToDisplay.insert(iddobjectname::OS_Building);
+      //m_typesToDisplay.insert(iddobjectname::OS_DaylightingDevice_Shelf);
+      m_typesToDisplay.insert(iddobjectname::OS_Facility);
+      m_typesToDisplay.insert(iddobjectname::OS_InteriorPartitionSurfaceGroup);
+      m_typesToDisplay.insert(iddobjectname::OS_InteriorPartitionSurface);
+      m_typesToDisplay.insert(iddobjectname::OS_ShadingSurfaceGroup);
+      m_typesToDisplay.insert(iddobjectname::OS_ShadingSurface);
+      m_typesToDisplay.insert(iddobjectname::OS_Space);
+      m_typesToDisplay.insert(iddobjectname::OS_Surface);
+      m_typesToDisplay.insert(iddobjectname::OS_SubSurface);
 
-      m_typesToDisplay.insert(IddObjectType::OS_ElectricEquipment);
-      m_typesToDisplay.insert(IddObjectType::OS_GasEquipment);
-      m_typesToDisplay.insert(IddObjectType::OS_HotWaterEquipment);
-      m_typesToDisplay.insert(IddObjectType::OS_SteamEquipment);
-      m_typesToDisplay.insert(IddObjectType::OS_OtherEquipment);
-      m_typesToDisplay.insert(IddObjectType::OS_Lights);
-      m_typesToDisplay.insert(IddObjectType::OS_Luminaire);
-      m_typesToDisplay.insert(IddObjectType::OS_People);
-      m_typesToDisplay.insert(IddObjectType::OS_SpaceInfiltration_DesignFlowRate);
-      m_typesToDisplay.insert(IddObjectType::OS_SpaceInfiltration_EffectiveLeakageArea);
-      m_typesToDisplay.insert(IddObjectType::OS_InternalMass);
+      m_typesToDisplay.insert(iddobjectname::OS_ElectricEquipment);
+      m_typesToDisplay.insert(iddobjectname::OS_GasEquipment);
+      m_typesToDisplay.insert(iddobjectname::OS_HotWaterEquipment);
+      m_typesToDisplay.insert(iddobjectname::OS_SteamEquipment);
+      m_typesToDisplay.insert(iddobjectname::OS_OtherEquipment);
+      m_typesToDisplay.insert(iddobjectname::OS_Lights);
+      m_typesToDisplay.insert(iddobjectname::OS_Luminaire);
+      m_typesToDisplay.insert(iddobjectname::OS_People);
+      m_typesToDisplay.insert(iddobjectname::OS_SpaceInfiltration_DesignFlowRate);
+      m_typesToDisplay.insert(iddobjectname::OS_SpaceInfiltration_EffectiveLeakageArea);
+      m_typesToDisplay.insert(iddobjectname::OS_InternalMass);
 
-      m_typesToDisplay.insert(IddObjectType::OS_Daylighting_Control);
-      m_typesToDisplay.insert(IddObjectType::OS_IlluminanceMap);
-      m_typesToDisplay.insert(IddObjectType::OS_Glare_Sensor);
-      //m_typesToDisplay.insert(IddObjectType::OS_LightingDesignDay);
-      //m_typesToDisplay.insert(IddObjectType::OS_LightingSimulationControl);
-      //m_typesToDisplay.insert(IddObjectType::OS_LightingSimulationZone);
+      m_typesToDisplay.insert(iddobjectname::OS_Daylighting_Control);
+      m_typesToDisplay.insert(iddobjectname::OS_IlluminanceMap);
+      m_typesToDisplay.insert(iddobjectname::OS_Glare_Sensor);
+      //m_typesToDisplay.insert(iddobjectname::OS_LightingDesignDay);
+      //m_typesToDisplay.insert(iddobjectname::OS_LightingSimulationControl);
+      //m_typesToDisplay.insert(iddobjectname::OS_LightingSimulationZone);
 
-      m_typesToDisplay.insert(IddObjectType::OS_ThermalZone);
-      m_typesToDisplay.insert(IddObjectType::OS_ThermostatSetpoint_DualSetpoint);
+      m_typesToDisplay.insert(iddobjectname::OS_ThermalZone);
+      m_typesToDisplay.insert(iddobjectname::OS_ThermostatSetpoint_DualSetpoint);
 
-      m_typesToDisplay.insert(IddObjectType::OS_Meter);
-      m_typesToDisplay.insert(IddObjectType::OS_Output_Variable);
+      m_typesToDisplay.insert(iddobjectname::OS_Meter);
+      m_typesToDisplay.insert(iddobjectname::OS_Output_Variable);
 
       // DISABLE ADD
       
-      m_disableAddTypes.insert(IddObjectType::OS_RunPeriod);
-      m_disableAddTypes.insert(IddObjectType::OS_Site);
-      m_disableAddTypes.insert(IddObjectType::OS_WeatherFile);
-      m_disableAddTypes.insert(IddObjectType::OS_ShadingControl);
-      m_disableAddTypes.insert(IddObjectType::OS_InteriorPartitionSurface);
-      m_disableAddTypes.insert(IddObjectType::OS_InteriorPartitionSurfaceGroup);
-      m_disableAddTypes.insert(IddObjectType::OS_ShadingSurface);
-      m_disableAddTypes.insert(IddObjectType::OS_ShadingSurfaceGroup);
-      m_disableAddTypes.insert(IddObjectType::OS_Space);
-      m_disableAddTypes.insert(IddObjectType::OS_Surface);
-      m_disableAddTypes.insert(IddObjectType::OS_SubSurface);
-      m_disableAddTypes.insert(IddObjectType::OS_Daylighting_Control);
-      m_disableAddTypes.insert(IddObjectType::OS_IlluminanceMap);
-      m_disableAddTypes.insert(IddObjectType::OS_Luminaire);
-      m_disableAddTypes.insert(IddObjectType::OS_Glare_Sensor);
+      m_disableAddTypes.insert(iddobjectname::OS_RunPeriod);
+      m_disableAddTypes.insert(iddobjectname::OS_Site);
+      m_disableAddTypes.insert(iddobjectname::OS_WeatherFile);
+      m_disableAddTypes.insert(iddobjectname::OS_ShadingControl);
+      m_disableAddTypes.insert(iddobjectname::OS_InteriorPartitionSurface);
+      m_disableAddTypes.insert(iddobjectname::OS_InteriorPartitionSurfaceGroup);
+      m_disableAddTypes.insert(iddobjectname::OS_ShadingSurface);
+      m_disableAddTypes.insert(iddobjectname::OS_ShadingSurfaceGroup);
+      m_disableAddTypes.insert(iddobjectname::OS_Space);
+      m_disableAddTypes.insert(iddobjectname::OS_Surface);
+      m_disableAddTypes.insert(iddobjectname::OS_SubSurface);
+      m_disableAddTypes.insert(iddobjectname::OS_Daylighting_Control);
+      m_disableAddTypes.insert(iddobjectname::OS_IlluminanceMap);
+      m_disableAddTypes.insert(iddobjectname::OS_Luminaire);
+      m_disableAddTypes.insert(iddobjectname::OS_Glare_Sensor);
       
       // DISABLE COPY
 
-      m_disableCopyTypes.insert(IddObjectType::OS_RunPeriod);
-      m_disableCopyTypes.insert(IddObjectType::OS_Site);
-      m_disableCopyTypes.insert(IddObjectType::OS_WeatherFile);
-      m_disableCopyTypes.insert(IddObjectType::OS_InteriorPartitionSurface);
-      m_disableCopyTypes.insert(IddObjectType::OS_InteriorPartitionSurfaceGroup);
-      m_disableCopyTypes.insert(IddObjectType::OS_ShadingSurface);
-      m_disableCopyTypes.insert(IddObjectType::OS_ShadingSurfaceGroup);
-      m_disableCopyTypes.insert(IddObjectType::OS_Space);
-      m_disableCopyTypes.insert(IddObjectType::OS_Surface);
-      m_disableCopyTypes.insert(IddObjectType::OS_SubSurface);
-      m_disableCopyTypes.insert(IddObjectType::OS_Daylighting_Control);
-      m_disableCopyTypes.insert(IddObjectType::OS_IlluminanceMap);
-      m_disableCopyTypes.insert(IddObjectType::OS_Luminaire);
-      m_disableCopyTypes.insert(IddObjectType::OS_Glare_Sensor);
+      m_disableCopyTypes.insert(iddobjectname::OS_RunPeriod);
+      m_disableCopyTypes.insert(iddobjectname::OS_Site);
+      m_disableCopyTypes.insert(iddobjectname::OS_WeatherFile);
+      m_disableCopyTypes.insert(iddobjectname::OS_InteriorPartitionSurface);
+      m_disableCopyTypes.insert(iddobjectname::OS_InteriorPartitionSurfaceGroup);
+      m_disableCopyTypes.insert(iddobjectname::OS_ShadingSurface);
+      m_disableCopyTypes.insert(iddobjectname::OS_ShadingSurfaceGroup);
+      m_disableCopyTypes.insert(iddobjectname::OS_Space);
+      m_disableCopyTypes.insert(iddobjectname::OS_Surface);
+      m_disableCopyTypes.insert(iddobjectname::OS_SubSurface);
+      m_disableCopyTypes.insert(iddobjectname::OS_Daylighting_Control);
+      m_disableCopyTypes.insert(iddobjectname::OS_IlluminanceMap);
+      m_disableCopyTypes.insert(iddobjectname::OS_Luminaire);
+      m_disableCopyTypes.insert(iddobjectname::OS_Glare_Sensor);
       
       // DISABLE REMOVE
 
-      m_disableRemoveTypes.insert(IddObjectType::OS_RunPeriod);
-      m_disableRemoveTypes.insert(IddObjectType::OS_SimulationControl);
-      m_disableRemoveTypes.insert(IddObjectType::OS_Site);
-      m_disableRemoveTypes.insert(IddObjectType::OS_WeatherFile);
-      m_disableRemoveTypes.insert(IddObjectType::OS_InteriorPartitionSurface);
-      m_disableRemoveTypes.insert(IddObjectType::OS_InteriorPartitionSurfaceGroup);
-      m_disableRemoveTypes.insert(IddObjectType::OS_ShadingSurface);
-      m_disableRemoveTypes.insert(IddObjectType::OS_ShadingSurfaceGroup);
-      m_disableRemoveTypes.insert(IddObjectType::OS_Space);
-      m_disableRemoveTypes.insert(IddObjectType::OS_Surface);
-      m_disableRemoveTypes.insert(IddObjectType::OS_SubSurface);
-      m_disableRemoveTypes.insert(IddObjectType::OS_Daylighting_Control);
-      m_disableRemoveTypes.insert(IddObjectType::OS_IlluminanceMap);
-      m_disableRemoveTypes.insert(IddObjectType::OS_Luminaire);
-      m_disableRemoveTypes.insert(IddObjectType::OS_Glare_Sensor);
+      m_disableRemoveTypes.insert(iddobjectname::OS_RunPeriod);
+      m_disableRemoveTypes.insert(iddobjectname::OS_SimulationControl);
+      m_disableRemoveTypes.insert(iddobjectname::OS_Site);
+      m_disableRemoveTypes.insert(iddobjectname::OS_WeatherFile);
+      m_disableRemoveTypes.insert(iddobjectname::OS_InteriorPartitionSurface);
+      m_disableRemoveTypes.insert(iddobjectname::OS_InteriorPartitionSurfaceGroup);
+      m_disableRemoveTypes.insert(iddobjectname::OS_ShadingSurface);
+      m_disableRemoveTypes.insert(iddobjectname::OS_ShadingSurfaceGroup);
+      m_disableRemoveTypes.insert(iddobjectname::OS_Space);
+      m_disableRemoveTypes.insert(iddobjectname::OS_Surface);
+      m_disableRemoveTypes.insert(iddobjectname::OS_SubSurface);
+      m_disableRemoveTypes.insert(iddobjectname::OS_Daylighting_Control);
+      m_disableRemoveTypes.insert(iddobjectname::OS_IlluminanceMap);
+      m_disableRemoveTypes.insert(iddobjectname::OS_Luminaire);
+      m_disableRemoveTypes.insert(iddobjectname::OS_Glare_Sensor);
       
       // DISABLE PURGE
 
-      //m_disablePurgeTypes.insert(IddObjectType::OS_RunPeriod);
+      //m_disablePurgeTypes.insert(iddobjectname::OS_RunPeriod);
 
       // INITIAL SELECTION
 
-      m_iddObjectType = IddObjectType::OS_Building;
+      m_iddObjectType = iddobjectname::OS_Building;
 
       break;
     default:
@@ -1085,7 +1088,7 @@ void InspectorDialog::loadListWidgetData()
       listItem = new QListWidgetItem();
       listItem->setText(text);
       listItem->setFlags(Qt::NoItemFlags | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      listItem->setData(Qt::UserRole, type.value());
+      listItem->setData(Qt::UserRole, QString::fromStdString(type.valueName()));
 
       if (alternate){
         listItem->setBackground(itemAlternateBackground);
@@ -1110,7 +1113,7 @@ void InspectorDialog::updateListWidgetData()
       continue;
     }
 
-    IddObjectType type(data.toInt());
+    IddObjectType type(data.toString().toStdString());
     unsigned numObjects = m_model.numObjectsOfType(type);
 
     QString text(type.valueDescription().c_str());

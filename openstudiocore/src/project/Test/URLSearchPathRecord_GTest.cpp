@@ -25,6 +25,7 @@
 #include <project/ProjectDatabase.hpp>
 
 #include <utilities/idf/URLSearchPath.hpp>
+#include <utilities/idd/OS_WeatherFile_FieldEnums.hxx>
 
 #include <resources.hxx>
 
@@ -37,7 +38,7 @@ TEST_F(ProjectFixture, URLSearchPathRecord)
 {
   ProjectDatabase database = getCleanDatabase("URLSearchPathRecord");
 
-  URLSearchPath localSearchPath(toPath("./local/"), URLSearchPath::ToCurrentWorkingDir, IddObjectType::OS_WeatherFile);
+  URLSearchPath localSearchPath(toPath("./local/"), URLSearchPath::ToCurrentWorkingDir, iddobjectname::OS_WeatherFile);
   URLSearchPath remoteSearchPath(QUrl("http://openstudio.nrel.gov"), URLSearchPath::ToInputFile);
 
   URLSearchPathRecord localSearchPathRecord(localSearchPath, database);

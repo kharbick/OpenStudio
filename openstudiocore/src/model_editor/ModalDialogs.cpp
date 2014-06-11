@@ -53,12 +53,20 @@
 #include <utilities/core/Assert.hpp>
 
 #include <utilities/idd/OS_ElectricEquipment_FieldEnums.hxx>
+#include <utilities/idd/OS_ElectricEquipment_Definition_FieldEnums.hxx>
 #include <utilities/idd/OS_GasEquipment_FieldEnums.hxx>
+#include <utilities/idd/OS_GasEquipment_Definition_FieldEnums.hxx>
 #include <utilities/idd/OS_HotWaterEquipment_FieldEnums.hxx>
+#include <utilities/idd/OS_HotWaterEquipment_Definition_FieldEnums.hxx>
 #include <utilities/idd/OS_InternalMass_FieldEnums.hxx>
+#include <utilities/idd/OS_InternalMass_Definition_FieldEnums.hxx>
 #include <utilities/idd/OS_Lights_FieldEnums.hxx>
+#include <utilities/idd/OS_Lights_Definition_FieldEnums.hxx>
 #include <utilities/idd/OS_Luminaire_FieldEnums.hxx>
+#include <utilities/idd/OS_Luminaire_Definition_FieldEnums.hxx>
 #include <utilities/idd/OS_People_FieldEnums.hxx>
+#include <utilities/idd/OS_People_Definition_FieldEnums.hxx>
+#include <utilities/idd/OS_ThermalZone_FieldEnums.hxx>
 
 #include <utilities/idd/IddFile.hpp>
 #include <utilities/idd/IddObject.hpp>
@@ -345,7 +353,7 @@ void ensureThermalZone(openstudio::model::Space& space)
     return;
   }
 
-  IddObjectType thermalZoneType = IddObjectType::OS_ThermalZone;
+  IddObjectType thermalZoneType(iddobjectname::OS_ThermalZone);
   boost::optional<ModelObject> selectedModelObject;
   if (!model.getObjectsByType(thermalZoneType).empty()){
 
@@ -395,33 +403,33 @@ void ensureSpaceLoadDefinition(openstudio::model::SpaceLoadInstance& instance)
   boost::optional<WorkspaceObject> currentDefinition;
 
   switch(instance.iddObjectType().value()){
-    case IddObjectType::OS_ElectricEquipment:
+    case iddobjectvalue::OS_ElectricEquipment:
       currentDefinition = instance.getTarget(OS_ElectricEquipmentFields::ElectricEquipmentDefinitionName);
-      definitionType = IddObjectType::OS_ElectricEquipment_Definition;
+      definitionType = iddobjectname::OS_ElectricEquipment_Definition;
       break;
-    case IddObjectType::OS_GasEquipment:
+    case iddobjectvalue::OS_GasEquipment:
       currentDefinition = instance.getTarget(OS_GasEquipmentFields::GasEquipmentDefinitionName);
-      definitionType = IddObjectType::OS_GasEquipment_Definition;
+      definitionType = iddobjectname::OS_GasEquipment_Definition;
       break;
-    case IddObjectType::OS_HotWaterEquipment:
+    case iddobjectvalue::OS_HotWaterEquipment:
       currentDefinition = instance.getTarget(OS_HotWaterEquipmentFields::HotWaterEquipmentDefinitionName);
-      definitionType = IddObjectType::OS_HotWaterEquipment_Definition;
+      definitionType = iddobjectname::OS_HotWaterEquipment_Definition;
       break;
-    case IddObjectType::OS_InternalMass:
+    case iddobjectvalue::OS_InternalMass:
       currentDefinition = instance.getTarget(OS_InternalMassFields::InternalMassDefinitionName);
-      definitionType = IddObjectType::OS_InternalMass_Definition;
+      definitionType = iddobjectname::OS_InternalMass_Definition;
       break;
-    case IddObjectType::OS_Lights:
+    case iddobjectvalue::OS_Lights:
       currentDefinition = instance.getTarget(OS_LightsFields::LightsDefinitionName);
-      definitionType = IddObjectType::OS_Lights_Definition;
+      definitionType = iddobjectname::OS_Lights_Definition;
       break;
-    case IddObjectType::OS_Luminaire:
+    case iddobjectvalue::OS_Luminaire:
       currentDefinition = instance.getTarget(OS_LuminaireFields::LuminaireDefinitionName);
-      definitionType = IddObjectType::OS_Luminaire_Definition;
+      definitionType = iddobjectname::OS_Luminaire_Definition;
       break;
-    case IddObjectType::OS_People:
+    case iddobjectvalue::OS_People:
       currentDefinition = instance.getTarget(OS_PeopleFields::PeopleDefinitionName);
-      definitionType = IddObjectType::OS_People_Definition;
+      definitionType = iddobjectname::OS_People_Definition;
       break;
     default:
       LOG_FREE_AND_THROW("openstudio.ensureSpaceLoadDefinition", "Unknown IddObjectType " << instance.iddObjectType().valueName());
@@ -467,25 +475,25 @@ void ensureSpaceLoadDefinition(openstudio::model::SpaceLoadInstance& instance)
 
   // make new definition
   switch(instance.iddObjectType().value()){
-    case IddObjectType::OS_ElectricEquipment:
+    case iddobjectvalue::OS_ElectricEquipment:
       definition = ElectricEquipmentDefinition(model);
       break;
-    case IddObjectType::OS_GasEquipment:
+    case iddobjectvalue::OS_GasEquipment:
       definition = GasEquipmentDefinition(model);
       break;
-    case IddObjectType::OS_HotWaterEquipment:
+    case iddobjectvalue::OS_HotWaterEquipment:
       definition = HotWaterEquipmentDefinition(model);
       break;
-    case IddObjectType::OS_InternalMass:
+    case iddobjectvalue::OS_InternalMass:
       definition = InternalMassDefinition(model);
       break;
-    case IddObjectType::OS_Lights:
+    case iddobjectvalue::OS_Lights:
       definition = LightsDefinition(model);
       break;
-    case IddObjectType::OS_Luminaire:
+    case iddobjectvalue::OS_Luminaire:
       definition = LuminaireDefinition(model);
       break;
-    case IddObjectType::OS_People:
+    case iddobjectvalue::OS_People:
       definition = PeopleDefinition(model);
       break;
     default:
