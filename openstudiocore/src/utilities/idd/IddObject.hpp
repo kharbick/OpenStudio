@@ -38,7 +38,7 @@ namespace openstudio {
 class ExtensibleIndex;
 class IddObjectType;
 
-std::ostream &operator<<(std::ostream &stream, const IddObjectType & type);
+UTILITIES_API std::ostream &operator<<(std::ostream &stream, const IddObjectType & type);
 
 namespace detail {
   class IddObject_Impl;

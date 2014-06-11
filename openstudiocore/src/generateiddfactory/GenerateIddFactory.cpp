@@ -50,6 +50,7 @@ void initializeOutFiles(GenerateIddFactoryOutFiles& outFiles,
     << "#define UTILITIES_IDD_IDDENUMS_HXX" << std::endl
     << std::endl
     << "#include <utilities/core/Enum.hpp>" << std::endl
+    << "#include <utilities/UtilitiesAPI.hpp>" << std::endl
     << std::endl
     << "#include <boost/optional.hpp>" << std::endl
     << std::endl
@@ -427,7 +428,7 @@ void completeOutFiles(const IddFileFactoryDataVector& iddFiles,
     << std::endl
 
     << std::endl
-    << "class IddObjectType" << std::endl
+    << "class UTILITIES_API IddObjectType" << std::endl
     << "{" << std::endl
     << "  public:" << std::endl
     << std::endl
