@@ -27,6 +27,21 @@
 #include <model/Construction_Impl.hpp>
 #include <model/Material.hpp>
 #include <model/Material_Impl.hpp>
+#include <model/Blind.hpp>
+#include <model/Gas.hpp>
+#include <model/GasMixture.hpp>
+#include <model/StandardGlazing.hpp>
+#include <model/RefractionExtinctionGlazing.hpp>
+#include <model/ThermochromicGlazing.hpp>
+#include <model/Screen.hpp>
+#include <model/Shade.hpp>
+#include <model/AirGap.hpp>
+#include <model/InfraredTransparentMaterial.hpp>
+#include <model/MasslessOpaqueMaterial.hpp>
+#include <model/RoofVegetation.hpp>
+#include <model/AirWallMaterial.hpp>
+#include <model/SimpleGlazing.hpp>
+#include <model/StandardOpaqueMaterial.hpp>
 
 #include <utilities/core/Assert.hpp>
 #include <utilities/idd/OS_Construction_FieldEnums.hxx>
@@ -138,25 +153,25 @@ void ConstructionObjectVectorController::setParentWidget(QWidget * parentWidget)
 
 ConstructionObjectVectorController::LayerType ConstructionObjectVectorController::getLayerType(IddObjectType iddObjectType)
 {
-  if(iddObjectType == IddObjectType::OS_WindowMaterial_Blind ||
-   iddObjectType == IddObjectType::OS_WindowMaterial_Gas ||
-   iddObjectType == IddObjectType::OS_WindowMaterial_GasMixture ||
-   iddObjectType == IddObjectType::OS_WindowMaterial_Glazing ||
-   iddObjectType == IddObjectType::OS_WindowMaterial_Glazing_RefractionExtinctionMethod ||
-   iddObjectType == IddObjectType::OS_WindowMaterial_GlazingGroup_Thermochromic ||
-   iddObjectType == IddObjectType::OS_WindowMaterial_Screen ||
-   iddObjectType == IddObjectType::OS_WindowMaterial_Shade ||
-   iddObjectType == IddObjectType::OS_WindowMaterial_SimpleGlazingSystem){
+  if(iddObjectType == model::Blind::iddObjectType() ||
+   iddObjectType == model::Gas::iddObjectType() ||
+   iddObjectType == model::GasMixture::iddObjectType() ||
+   iddObjectType == model::StandardGlazing::iddObjectType() ||
+   iddObjectType == model::RefractionExtinctionGlazing::iddObjectType() ||
+   iddObjectType == model::ThermochromicGlazing::iddObjectType() ||
+   iddObjectType == model::Screen::iddObjectType() ||
+   iddObjectType == model::Shade::iddObjectType() ||
+   iddObjectType == model::SimpleGlazing::iddObjectType()){
     return ConstructionObjectVectorController::FENESTRATION;
   }
-  else if(iddObjectType == IddObjectType::OS_Material ||
-          iddObjectType == IddObjectType::OS_Material_AirGap ||
-          iddObjectType == IddObjectType::OS_Material_InfraredTransparent ||
-          iddObjectType == IddObjectType::OS_Material_NoMass ||
-          iddObjectType == IddObjectType::OS_Material_RoofVegetation){
+  else if(iddObjectType == model::StandardOpaqueMaterial::iddObjectType() ||
+          iddObjectType == model::AirGap::iddObjectType() ||
+          iddObjectType == model::InfraredTransparentMaterial::iddObjectType() ||
+          iddObjectType == model::MasslessOpaqueMaterial::iddObjectType() ||
+          iddObjectType == model::RoofVegetation::iddObjectType()){
     return ConstructionObjectVectorController::OPAQUE;
   }
-  else if(iddObjectType == IddObjectType::OS_Material_AirWall){
+  else if(iddObjectType == model::AirWallMaterial::iddObjectType()){
     return ConstructionObjectVectorController::AIRWALL;
   }
   else{

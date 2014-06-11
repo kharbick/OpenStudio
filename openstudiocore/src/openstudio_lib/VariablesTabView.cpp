@@ -203,7 +203,7 @@ namespace openstudio {
     LOG(Debug, "onAdded: " << type.valueName());
 
     /// \todo if the user is able to add an output variable through some other means it will not show up here and now
-    if (type != openstudio::IddObjectType::OS_Output_Variable)
+    if (type != model::OutputVariable::iddObjectType())
     {
       if (!m_dirty){
         m_dirty = true;
@@ -217,7 +217,7 @@ namespace openstudio {
     LOG(Debug, "onRemoved " << type.valueName());
 
     /// \todo if the user is remove to add an output variable through some other means it will not show up here and now
-    if (type != openstudio::IddObjectType::OS_Output_Variable)
+    if (type != model::OutputVariable::iddObjectType())
     {
       if (!m_dirty){
         m_dirty = true;

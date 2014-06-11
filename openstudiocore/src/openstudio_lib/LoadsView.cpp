@@ -30,6 +30,15 @@
 #include <openstudio_lib/WaterUseEquipmentInspectorView.hpp>
 
 #include <model/Model_Impl.hpp>
+#include <model/PeopleDefinition.hpp>
+#include <model/LightsDefinition.hpp>
+#include <model/LuminaireDefinition.hpp>
+#include <model/ElectricEquipmentDefinition.hpp>
+#include <model/GasEquipmentDefinition.hpp>
+#include <model/SteamEquipmentDefinition.hpp>
+#include <model/OtherEquipmentDefinition.hpp>
+#include <model/InternalMassDefinition.hpp>
+#include <model/WaterUseEquipmentDefinition.hpp>
 
 #include <utilities/core/Assert.hpp>
 
@@ -63,15 +72,15 @@ std::vector<std::pair<IddObjectType, std::string> > LoadsView::modelObjectTypesA
 {
   std::vector<std::pair<IddObjectType, std::string> > result;
   
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_People_Definition, "People Definitions"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Lights_Definition, "Lights Definitions"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Luminaire_Definition, "Luminaire Definitions"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_ElectricEquipment_Definition, "Electric Equipment Definitions"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_GasEquipment_Definition, "Gas Equipment Definitions"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_SteamEquipment_Definition, "Steam Equipment Definitions"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_OtherEquipment_Definition, "Other Equipment Definitions"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_InternalMass_Definition, "Internal Mass Definitions"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_WaterUse_Equipment_Definition, "Water Use Equipment Definitions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::PeopleDefinition::iddObjectType(), "People Definitions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::LightsDefinition::iddObjectType(), "Lights Definitions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::LuminaireDefinition::iddObjectType(), "Luminaire Definitions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::ElectricEquipmentDefinition::iddObjectType(), "Electric Equipment Definitions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::GasEquipmentDefinition::iddObjectType(), "Gas Equipment Definitions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::SteamEquipmentDefinition::iddObjectType(), "Steam Equipment Definitions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::OtherEquipmentDefinition::iddObjectType(), "Other Equipment Definitions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::InternalMassDefinition::iddObjectType(), "Internal Mass Definitions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::WaterUseEquipmentDefinition::iddObjectType(), "Water Use Equipment Definitions"));
 
   return result;
 }
@@ -97,37 +106,47 @@ void LoadsInspectorView::onClearSelection()
 
 void LoadsInspectorView::onSelectModelObject(const openstudio::model::ModelObject& modelObject)
 {
-  switch( modelObject.iddObjectType().value() )
+  IddObjectType type = modelObject.iddObjectType();
+
+  if( model::PeopleDefinition::iddObjectType() == type )
   {
-    case IddObjectType::OS_People_Definition:
-      this->showPeopleDefinitionsInspector(modelObject);
-      break;
-    case IddObjectType::OS_Lights_Definition:
-      this->showLightsDefinitionsInspector(modelObject);
-      break;
-    case IddObjectType::OS_Luminaire_Definition:
-      this->showLuminaireDefinitionsInspector(modelObject);
-      break;
-    case IddObjectType::OS_ElectricEquipment_Definition:
-      this->showElectricEquipmentDefinitionsInspector(modelObject);
-      break;
-    case IddObjectType::OS_GasEquipment_Definition:
-      this->showGasEquipmentDefinitionsInspector(modelObject);
-      break;
-    case IddObjectType::OS_SteamEquipment_Definition:
-      this->showSteamEquipmentDefinitionsInspector(modelObject);
-      break;
-    case IddObjectType::OS_OtherEquipment_Definition:
-      this->showOtherEquipmentDefinitionsInspector(modelObject);
-      break;
-    case IddObjectType::OS_InternalMass_Definition:
-      this->showInternalMassDefinitionsInspector(modelObject);
-      break;
-    case IddObjectType::OS_WaterUse_Equipment_Definition:
-      this->showWaterUseEquipmentDefinitionsInspector(modelObject);
-      break;
-    default:
-      showDefaultView();      
+    this->showPeopleDefinitionsInspector(modelObject);
+  }
+  else if( model::LightsDefinition::iddObjectType() == type )
+  {
+    this->showLightsDefinitionsInspector(modelObject);
+  }
+  else if( model::LuminaireDefinition::iddObjectType() == type )
+  {
+    this->showLuminaireDefinitionsInspector(modelObject);
+  }
+  else if( model::ElectricEquipmentDefinition::iddObjectType() == type )
+  {
+    this->showElectricEquipmentDefinitionsInspector(modelObject);
+  }
+  else if( model::GasEquipmentDefinition::iddObjectType() == type )
+  {
+    this->showGasEquipmentDefinitionsInspector(modelObject);
+  }
+  else if( model::SteamEquipmentDefinition::iddObjectType() == type )
+  {
+    this->showSteamEquipmentDefinitionsInspector(modelObject);
+  }
+  else if( model::OtherEquipmentDefinition::iddObjectType() == type )
+  {
+    this->showOtherEquipmentDefinitionsInspector(modelObject);
+  }
+  else if( model::InternalMassDefinition::iddObjectType() == type )
+  {
+    this->showInternalMassDefinitionsInspector(modelObject);
+  }
+  else if( model::WaterUseEquipmentDefinition::iddObjectType() == type )
+  {
+    this->showWaterUseEquipmentDefinitionsInspector(modelObject);
+  }
+  else
+  {
+    showDefaultView();      
   }
 }
 

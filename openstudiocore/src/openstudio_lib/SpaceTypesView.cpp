@@ -39,7 +39,7 @@ namespace openstudio {
 
 SpaceTypesView::SpaceTypesView(const openstudio::model::Model& model, 
                               QWidget * parent)
-  : ModelSubTabView(new ModelObjectListView(IddObjectType::OS_SpaceType, model, true, parent),
+  : ModelSubTabView(new ModelObjectListView(model::SpaceType::iddObjectType(), model, true, parent),
                     new SpaceTypeInspectorView(model, parent),
                     parent)
 {

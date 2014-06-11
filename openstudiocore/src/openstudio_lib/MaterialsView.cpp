@@ -38,6 +38,22 @@
 
 #include <model/Model_Impl.hpp>
 
+#include <model/StandardOpaqueMaterial.hpp>
+#include <model/MasslessOpaqueMaterial.hpp>
+#include <model/AirGap.hpp>
+#include <model/SimpleGlazing.hpp>
+#include <model/StandardGlazing.hpp>
+#include <model/Gas.hpp>
+#include <model/GasMixture.hpp>
+#include <model/Blind.hpp>
+#include <model/Screen.hpp>
+#include <model/Shade.hpp>
+#include <model/AirWallMaterial.hpp>
+#include <model/InfraredTransparentMaterial.hpp>
+#include <model/RoofVegetation.hpp>
+#include <model/RefractionExtinctionGlazing.hpp>
+#include <model/ThermochromicGlazing.hpp>
+
 #include <utilities/core/Assert.hpp>
 
 #include <QStackedWidget>
@@ -62,24 +78,24 @@ MaterialsView::MaterialsView(bool isIP,
 std::vector<std::pair<IddObjectType, std::string> > MaterialsView::modelObjectTypesAndNames()
 {
   std::vector<std::pair<IddObjectType, std::string> > result;
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Material, "Materials"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Material_NoMass, "No Mass Materials"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Material_AirGap, "Air Gap Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::StandardOpaqueMaterial::iddObjectType(), "Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::MasslessOpaqueMaterial::iddObjectType(), "No Mass Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::AirGap::iddObjectType(), "Air Gap Materials"));
 
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_WindowMaterial_SimpleGlazingSystem, "Simple Glazing System Window Materials"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_WindowMaterial_Glazing, "Glazing Window Materials"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_WindowMaterial_Gas, "Gas Window Materials"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_WindowMaterial_GasMixture, "Gas Mixture Window Materials"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_WindowMaterial_Blind, "Blind Window Materials"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_WindowMaterial_Screen, "Screen Window Materials"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_WindowMaterial_Shade, "Shade Window Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::SimpleGlazing::iddObjectType(), "Simple Glazing System Window Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::StandardGlazing::iddObjectType(), "Glazing Window Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::Gas::iddObjectType(), "Gas Window Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::GasMixture::iddObjectType(), "Gas Mixture Window Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::Blind::iddObjectType(), "Blind Window Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::Screen::iddObjectType(), "Screen Window Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::Shade::iddObjectType(), "Shade Window Materials"));
 
   // Oddballs to be listed at the bottom of the list
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Material_AirWall, "Air Wall Materials"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Material_InfraredTransparent, "Infrared Transparent Materials"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Material_RoofVegetation, "Roof Vegetation Materials"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_WindowMaterial_Glazing_RefractionExtinctionMethod, "Refraction Extinction Method Glazing Window Materials"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_WindowMaterial_GlazingGroup_Thermochromic, "Glazing Group Thermochromic Window Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::AirWallMaterial::iddObjectType(), "Air Wall Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::InfraredTransparentMaterial::iddObjectType(), "Infrared Transparent Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::RoofVegetation::iddObjectType(), "Roof Vegetation Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::RefractionExtinctionGlazing::iddObjectType(), "Refraction Extinction Method Glazing Window Materials"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::ThermochromicGlazing::iddObjectType(), "Glazing Group Thermochromic Window Materials"));
   
   return result;
 }
@@ -129,55 +145,71 @@ void MaterialsInspectorView::onUpdate()
 
 void MaterialsInspectorView::onSelectModelObject(const openstudio::model::ModelObject& modelObject)
 {
-  switch( modelObject.iddObjectType().value() )
+  IddObjectType type = modelObject.iddObjectType();
+
+  if( model::StandardOpaqueMaterial::iddObjectType() == type )
   {
-  case IddObjectType::OS_Material:
-      this->showMaterialInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_Material_AirGap:
-      this->showMaterialAirGapInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_Material_AirWall:
-      this->showMaterialAirWallInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_Material_InfraredTransparent:
-      this->showMaterialInfraredTransparentInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_Material_NoMass:
-      this->showMaterialNoMassInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_Material_RoofVegetation:
-      this->showMaterialRoofVegetationInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_WindowMaterial_Blind:
-      this->showWindowMaterialBlindInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_WindowMaterial_Gas:
-      this->showWindowMaterialGasInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_WindowMaterial_GasMixture:
-      this->showWindowMaterialGasMixtureInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_WindowMaterial_Glazing:
-      this->showWindowMaterialGlazingInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_WindowMaterial_Glazing_RefractionExtinctionMethod:
-      this->showWindowMaterialGlazingRefractionExtinctionMethodInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_WindowMaterial_GlazingGroup_Thermochromic:
-      this->showWindowMaterialGlazingGroupThermochromicInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_WindowMaterial_Screen:
-      this->showWindowMaterialScreenInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_WindowMaterial_Shade:
-      this->showWindowMaterialShadeInspectorView(modelObject);
-      break;
-    case IddObjectType::OS_WindowMaterial_SimpleGlazingSystem:
-      this->showWindowMaterialSimpleGlazingSystemInspectorView(modelObject);
-      break;      
-    default:
-      showDefaultView();      
+    this->showMaterialInspectorView(modelObject);
+  }
+  else if( model::AirGap::iddObjectType() == type )
+  {
+    this->showMaterialAirGapInspectorView(modelObject);
+  }
+  else if( model::AirWallMaterial::iddObjectType() == type )
+  {
+    this->showMaterialAirWallInspectorView(modelObject);
+  }
+  else if( model::InfraredTransparentMaterial::iddObjectType() == type )
+  {
+    this->showMaterialInfraredTransparentInspectorView(modelObject);
+  }
+  else if( model::MasslessOpaqueMaterial::iddObjectType() == type )
+  {
+    this->showMaterialNoMassInspectorView(modelObject);
+  }
+  else if( model::RoofVegetation::iddObjectType() == type )
+  {
+    this->showMaterialRoofVegetationInspectorView(modelObject);
+  }
+  else if( model::Blind::iddObjectType() == type )
+  {
+    this->showWindowMaterialBlindInspectorView(modelObject);
+  }
+  else if( model::Gas::iddObjectType() == type )
+  {
+    this->showWindowMaterialGasInspectorView(modelObject);
+  }
+  else if( model::GasMixture::iddObjectType() == type )
+  {
+    this->showWindowMaterialGasMixtureInspectorView(modelObject);
+  }
+  else if( model::StandardGlazing::iddObjectType() == type )
+  {
+    this->showWindowMaterialGlazingInspectorView(modelObject);
+  }
+  else if( model::RefractionExtinctionGlazing::iddObjectType() == type )
+  {
+    this->showWindowMaterialGlazingRefractionExtinctionMethodInspectorView(modelObject);
+  }
+  else if( model::ThermochromicGlazing::iddObjectType() == type )
+  {
+    this->showWindowMaterialGlazingGroupThermochromicInspectorView(modelObject);
+  }
+  else if( model::Screen::iddObjectType() == type )
+  {
+    this->showWindowMaterialScreenInspectorView(modelObject);
+  }
+  else if( model::Shade::iddObjectType() == type )
+  {
+    this->showWindowMaterialShadeInspectorView(modelObject);
+  }
+  else if( model::SimpleGlazing::iddObjectType() == type )
+  {
+    this->showWindowMaterialSimpleGlazingSystemInspectorView(modelObject);
+  }
+  else
+  {
+    showDefaultView();      
   }
 }
 

@@ -57,54 +57,69 @@ void MaterialsController::onAddObject(const openstudio::IddObjectType& iddObject
   model::Model model = this->model();
   boost::optional<model::Material> mat;
 
-  switch(iddObjectType.value()){
-    case IddObjectType::OS_Material:
-      mat = openstudio::model::StandardOpaqueMaterial(model);
-      break;
-    case IddObjectType::OS_Material_NoMass:
-      mat = openstudio::model::MasslessOpaqueMaterial(model);
-      break;
-    case IddObjectType::OS_Material_AirGap:
-      mat = openstudio::model::AirGap(model);
-      break;
-    case IddObjectType::OS_Material_AirWall:
-      mat = openstudio::model::AirWallMaterial(model);
-      break;
-    case IddObjectType::OS_Material_InfraredTransparent:
-      mat = openstudio::model::InfraredTransparentMaterial(model);
-      break;
-    case IddObjectType::OS_Material_RoofVegetation:
-      mat = openstudio::model::RoofVegetation(model);
-      break;
-    case IddObjectType::OS_WindowMaterial_SimpleGlazingSystem:
-      mat = openstudio::model::SimpleGlazing(model);
-      break;
-    case IddObjectType::OS_WindowMaterial_Glazing:
-      mat = openstudio::model::StandardGlazing(model);
-      break;
-    case IddObjectType::OS_WindowMaterial_Gas:
-      mat = openstudio::model::Gas(model);
-      break;
-    case IddObjectType::OS_WindowMaterial_GasMixture:
-      mat = openstudio::model::GasMixture(model);
-      break;
-    case IddObjectType::OS_WindowMaterial_Blind:
-      mat = openstudio::model::Blind(model);
-      break;
-    case IddObjectType::OS_WindowMaterial_Screen:
-      mat = openstudio::model::Screen(model);
-      break;
-    case IddObjectType::OS_WindowMaterial_Shade:
-      mat = openstudio::model::Shade(model);
-      break;
-    case IddObjectType::OS_WindowMaterial_Glazing_RefractionExtinctionMethod:
-      mat = openstudio::model::RefractionExtinctionGlazing(model);
-      break;
-    case IddObjectType::OS_WindowMaterial_GlazingGroup_Thermochromic:
-      mat = openstudio::model::ThermochromicGlazing(model);
-      break;
-    default:
-      LOG_FREE_AND_THROW("MaterialsController", "Unknown IddObjectType '" << iddObjectType.valueName() << "'");
+  if( model::StandardOpaqueMaterial::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::StandardOpaqueMaterial(model);
+  }
+  else if( model::MasslessOpaqueMaterial::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::MasslessOpaqueMaterial(model);
+  }
+  else if( model::AirGap::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::AirGap(model);
+  }
+  else if( model::AirWallMaterial::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::AirWallMaterial(model);
+  }
+  else if( model::InfraredTransparentMaterial::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::InfraredTransparentMaterial(model);
+  }
+  else if( model::RoofVegetation::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::RoofVegetation(model);
+  }
+  else if( model::SimpleGlazing::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::SimpleGlazing(model);
+  }
+  else if( model::StandardGlazing::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::StandardGlazing(model);
+  }
+  else if( model::Gas::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::Gas(model);
+  }
+  else if( model::GasMixture::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::GasMixture(model);
+  }
+  else if( model::Blind::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::Blind(model);
+  }
+  else if( model::Screen::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::Screen(model);
+  }
+  else if( model::Shade::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::Shade(model);
+  }
+  else if( model::RefractionExtinctionGlazing::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::RefractionExtinctionGlazing(model);
+  }
+  else if( model::ThermochromicGlazing::iddObjectType() == iddObjectType )
+  {
+    mat = openstudio::model::ThermochromicGlazing(model);
+  }
+  else
+  {
+    LOG_FREE_AND_THROW("MaterialsController", "Unknown IddObjectType '" << iddObjectType.valueName() << "'");
   }
 }
 

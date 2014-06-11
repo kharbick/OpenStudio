@@ -242,7 +242,7 @@ void ModelObjectTreeItem::setStyle(int headerLevel, const QString& color)
     static QIcon defaultIcon(":images/bug.png");
 
     QIcon icon(defaultIcon);
-    const QPixmap* pixMap = IconLibrary::Instance().findMiniIcon(this->modelObject()->iddObjectType().value());
+    const QPixmap* pixMap = IconLibrary::Instance().findMiniIcon(this->modelObject()->iddObjectType());
     if (pixMap){
       icon = QIcon(*pixMap);
     }
@@ -400,21 +400,23 @@ void ModelObjectTreeItem::change()
   OS_ASSERT(modelObject);
 
   // these objects have 'type' fields that are not relationships but change tree structure
-  switch (modelObject->iddObjectType().value()){
-    case IddObjectType::OS_ShadingSurfaceGroup:
-      refreshTree();
-      break;
-    case IddObjectType::OS_InteriorPartitionSurfaceGroup:
-      refreshTree();
-      break;
-    case IddObjectType::OS_Surface:
-      refreshTree();
-      break;
-    case IddObjectType::OS_SubSurface:
-      refreshTree();
-      break;
-    default:
-      ;
+  IddObjectType type = modelObject->iddObjectType();
+
+  if( model::ShadingSurfaceGroup::iddObjectType() == type )
+  {
+    refreshTree();
+  }
+  else if( model::InteriorPartitionSurfaceGroup::iddObjectType() == type )
+  {
+    refreshTree();
+  }
+  else if( model::Surface::iddObjectType() == type )
+  {
+    refreshTree();
+  }
+  else if( model::SubSurface::iddObjectType() == type )
+  {
+    refreshTree();
   }
 }
 
@@ -426,124 +428,150 @@ void ModelObjectTreeItem::changeRelationship(int index, Handle newHandle, Handle
 
   boost::optional<model::ModelObject> modelObject = this->modelObject();
   OS_ASSERT(modelObject);
+  IddObjectType type = modelObject->iddObjectType();
 
-  switch (modelObject->iddObjectType().value()){
-    case IddObjectType::OS_Building:
-      if (index == OS_BuildingFields::SpaceTypeName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_BuildingStory:
-      break;
-    case IddObjectType::OS_ThermalZone:
-      break;
-    case IddObjectType::OS_SpaceType:
-      if (index == OS_SpaceTypeFields::DesignSpecificationOutdoorAirObjectName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_Space:
-      if (index == OS_SpaceFields::BuildingStoryName ||
-          index == OS_SpaceFields::SpaceTypeName ||
-          index == OS_SpaceFields::ThermalZoneName ||
-          index == OS_SpaceFields::DesignSpecificationOutdoorAirObjectName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_ShadingSurfaceGroup:
-      // handle in onChange
-      break;
-    case IddObjectType::OS_ShadingSurface:
-      if (index == OS_ShadingSurfaceFields::ShadingSurfaceGroupName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_InteriorPartitionSurfaceGroup:
-      // handle in onChange
-      break;
-    case IddObjectType::OS_InteriorPartitionSurface:
-      if (index == OS_InteriorPartitionSurfaceFields::InteriorPartitionSurfaceGroupName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_Surface:
-      // handle in onChange
-      if (index == OS_SurfaceFields::SpaceName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_SubSurface:
-      // handle in onChange
-      break;
-    case IddObjectType::OS_Daylighting_Control:
-      if (index == OS_Daylighting_ControlFields::SpaceName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_IlluminanceMap:
-      if (index == OS_IlluminanceMapFields::SpaceName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_InternalMass:
-      if (index == OS_InternalMassFields::SpaceorSpaceTypeName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_People:
-      if (index == OS_PeopleFields::SpaceorSpaceTypeName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_Lights:
-      if (index == OS_LightsFields::SpaceorSpaceTypeName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_Luminaire:
-      if (index == OS_LuminaireFields::SpaceorSpaceTypeName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_ElectricEquipment:
-      if (index == OS_ElectricEquipmentFields::SpaceorSpaceTypeName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_GasEquipment:
-      if (index == OS_GasEquipmentFields::SpaceorSpaceTypeName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_HotWaterEquipment:
-      if (index == OS_HotWaterEquipmentFields::SpaceorSpaceTypeName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_SteamEquipment:
-      if (index == OS_SteamEquipmentFields::SpaceorSpaceTypeName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_OtherEquipment:
-      if (index == OS_OtherEquipmentFields::SpaceorSpaceTypeName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_SpaceInfiltration_DesignFlowRate:
-      if (index == OS_SpaceInfiltration_DesignFlowRateFields::SpaceorSpaceTypeName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_SpaceInfiltration_EffectiveLeakageArea:
-      if (index == OS_SpaceInfiltration_EffectiveLeakageAreaFields::SpaceorSpaceTypeName){
-        refreshTree();
-      }
-      break;
-    case IddObjectType::OS_DesignSpecification_OutdoorAir:
-      break;
-    default:
+  if( model::Building::iddObjectType() == type )
+  {
+    if (index == OS_BuildingFields::SpaceTypeName){
       refreshTree();
+    }
+  }
+  else if( model::BuildingStory::iddObjectType() == type )
+  {
+  }
+  else if( model::ThermalZone::iddObjectType() == type )
+  {
+  }
+  else if( model::SpaceType::iddObjectType() == type )
+  {
+    if (index == OS_SpaceTypeFields::DesignSpecificationOutdoorAirObjectName){
+      refreshTree();
+    }
+  }
+  else if( model::Space::iddObjectType() == type )
+  {
+    if (index == OS_SpaceFields::BuildingStoryName ||
+        index == OS_SpaceFields::SpaceTypeName ||
+        index == OS_SpaceFields::ThermalZoneName ||
+        index == OS_SpaceFields::DesignSpecificationOutdoorAirObjectName){
+      refreshTree();
+    }
+  }
+  else if( model::ShadingSurfaceGroup::iddObjectType() == type )
+  {
+    // handle in onChange
+  }
+  else if( model::ShadingSurface::iddObjectType() == type )
+  {
+    if (index == OS_ShadingSurfaceFields::ShadingSurfaceGroupName){
+      refreshTree();
+    }
+  }
+  else if( model::InteriorPartitionSurfaceGroup::iddObjectType() == type )
+  {
+    // handle in onChange
+  }
+  else if( model::InteriorPartitionSurface::iddObjectType() == type )
+  {
+    if (index == OS_InteriorPartitionSurfaceFields::InteriorPartitionSurfaceGroupName){
+      refreshTree();
+    }
+  }
+  else if( model::Surface::iddObjectType() == type )
+  {
+    // handle in onChange
+    if (index == OS_SurfaceFields::SpaceName){
+      refreshTree();
+    }
+  }
+  else if( model::SubSurface::iddObjectType() == type )
+  {
+    // handle in onChange
+  }
+  else if( model::DaylightingControl::iddObjectType() == type )
+  {
+    if (index == OS_Daylighting_ControlFields::SpaceName){
+      refreshTree();
+    }
+  }
+  else if( model::IlluminanceMap::iddObjectType() == type )
+  {
+    if (index == OS_IlluminanceMapFields::SpaceName){
+      refreshTree();
+    }
+  }
+  else if( model::InternalMass::iddObjectType() == type )
+  {
+    if (index == OS_InternalMassFields::SpaceorSpaceTypeName){
+      refreshTree();
+    }
+  }
+  else if( model::People::iddObjectType() == type )
+  {
+    if (index == OS_PeopleFields::SpaceorSpaceTypeName){
+      refreshTree();
+    }
+  }
+  else if( model::Lights::iddObjectType() == type )
+  {
+    if (index == OS_LightsFields::SpaceorSpaceTypeName){
+      refreshTree();
+    }
+  }
+  else if( model::Luminaire::iddObjectType() == type )
+  {
+    if (index == OS_LuminaireFields::SpaceorSpaceTypeName){
+      refreshTree();
+    }
+  }
+  else if( model::ElectricEquipment::iddObjectType() == type )
+  {
+    if (index == OS_ElectricEquipmentFields::SpaceorSpaceTypeName){
+      refreshTree();
+    }
+  }
+  else if( model::GasEquipment::iddObjectType() == type )
+  {
+    if (index == OS_GasEquipmentFields::SpaceorSpaceTypeName){
+      refreshTree();
+    }
+  }
+  else if( model::HotWaterEquipment::iddObjectType() == type )
+  {
+    if (index == OS_HotWaterEquipmentFields::SpaceorSpaceTypeName){
+      refreshTree();
+    }
+  }
+  else if( model::SteamEquipment::iddObjectType() == type )
+  {
+    if (index == OS_SteamEquipmentFields::SpaceorSpaceTypeName){
+      refreshTree();
+    }
+  }
+  else if( model::OtherEquipment::iddObjectType() == type )
+  {
+    if (index == OS_OtherEquipmentFields::SpaceorSpaceTypeName){
+      refreshTree();
+    }
+  }
+  else if( model::SpaceInfiltrationDesignFlowRate::iddObjectType() == type )
+  {
+    if (index == OS_SpaceInfiltration_DesignFlowRateFields::SpaceorSpaceTypeName){
+      refreshTree();
+    }
+  }
+  else if( model::SpaceInfiltrationEffectiveLeakageArea::iddObjectType() == type )
+  {
+    if (index == OS_SpaceInfiltration_EffectiveLeakageAreaFields::SpaceorSpaceTypeName){
+      refreshTree();
+    }
+  }
+  else if( model::DesignSpecificationOutdoorAir::iddObjectType() == type )
+  {
+  }
+  else
+  {
+    refreshTree();
   }
 }
 
@@ -689,13 +717,13 @@ std::vector<model::ModelObject> BuildingTreeItem::modelObjectChildren() const
   openstudio::model::Model model = this->model();
   std::vector<model::ModelObject> result;
 
-  if (m_sortByType == IddObjectType::OS_BuildingStory){
+  if (m_sortByType == model::BuildingStory::iddObjectType()){
     std::vector<model::BuildingStory> buildingStories = model.getConcreteModelObjects<model::BuildingStory>();
     result.insert(result.end(), buildingStories.begin(), buildingStories.end());
-  }else if (m_sortByType == IddObjectType::OS_ThermalZone){
+  }else if (m_sortByType == model::ThermalZone::iddObjectType()){
     std::vector<model::ThermalZone> thermalZones = model.getConcreteModelObjects<model::ThermalZone>();
     result.insert(result.end(), thermalZones.begin(), thermalZones.end());
-  }else if (m_sortByType == IddObjectType::OS_SpaceType){
+  }else if (m_sortByType == model::SpaceType::iddObjectType()){
     std::vector<model::SpaceType> spaceTypes = model.getConcreteModelObjects<model::SpaceType>();
     result.insert(result.end(), spaceTypes.begin(), spaceTypes.end());
   }
@@ -726,11 +754,11 @@ std::vector<std::string> BuildingTreeItem::nonModelObjectChildren() const
   std::vector<std::string> result;
   result.push_back(BuildingShadingTreeItem::itemName());
 
-  if (m_sortByType == IddObjectType::OS_BuildingStory){
+  if (m_sortByType == model::BuildingStory::iddObjectType()){
     result.push_back(NoBuildingStoryTreeItem::itemName());
-  }else if (m_sortByType == IddObjectType::OS_ThermalZone){
+  }else if (m_sortByType == model::ThermalZone::iddObjectType()){
     result.push_back(NoThermalZoneTreeItem::itemName());
-  }else if (m_sortByType == IddObjectType::OS_SpaceType){
+  }else if (m_sortByType == model::SpaceType::iddObjectType()){
     result.push_back(NoSpaceTypeTreeItem::itemName());
   }
 

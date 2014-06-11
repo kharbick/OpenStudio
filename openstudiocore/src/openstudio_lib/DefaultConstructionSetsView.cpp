@@ -38,7 +38,7 @@ DefaultConstructionSetsView::DefaultConstructionSetsView(const openstudio::model
                                      const QString& tabLabel,
                                      bool hasSubTabs,
                                      QWidget * parent)
-  : ModelSubTabView(new ModelObjectListView(IddObjectType::OS_DefaultConstructionSet, model, true, parent),
+  : ModelSubTabView(new ModelObjectListView(model::DefaultConstructionSet::iddObjectType(), model, true, parent),
                     new DefaultConstructionSetInspectorView(model, parent),
                     parent)
 {

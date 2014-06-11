@@ -461,7 +461,7 @@ SpaceLoadInstanceMiniView::SpaceLoadInstanceMiniView(const model::SpaceLoadInsta
   // icon
   static QIcon defaultIcon(":images/bug.png");
   QIcon icon(defaultIcon);
-  const QPixmap* pixMap = IconLibrary::Instance().findMiniIcon(m_spaceLoadInstance.iddObjectType().value());
+  const QPixmap* pixMap = IconLibrary::Instance().findMiniIcon(m_spaceLoadInstance.iddObjectType());
   if (pixMap){
     icon = QIcon(*pixMap);
   }
@@ -874,7 +874,7 @@ void SpaceLoadInstancesWidget::onSpaceRelationshipChange(int index, Handle newHa
 
 void SpaceLoadInstancesWidget::objectAdded(boost::shared_ptr<openstudio::detail::WorkspaceObject_Impl> impl, const openstudio::IddObjectType& iddObjectType, const openstudio::UUID& handle)
 {
-  if (iddObjectType == IddObjectType::OS_SpaceType){
+  if (iddObjectType == model::SpaceType::iddObjectType()){
     bool isConnected = connect(impl.get(),
                                SIGNAL(onRelationshipChange(int, Handle, Handle)),
                                this, 

@@ -492,9 +492,9 @@ void LocationView::onDesignDayBtnClicked()
       openstudio::Workspace ddyWorkspace(StrictnessLevel::None, IddFileType::EnergyPlus);
       BOOST_FOREACH(IdfObject idfObject, ddyIdfFile->objects()){
         IddObjectType iddObjectType = idfObject.iddObject().type();
-        if((iddObjectType == IddObjectType::SizingPeriod_DesignDay) ||
-           (iddObjectType == IddObjectType::SizingPeriod_WeatherFileDays) ||
-           (iddObjectType == IddObjectType::SizingPeriod_WeatherFileConditionType)){
+        if((iddObjectType == model::DesignDay::iddObjectType()) ||
+           (iddObjectType == model::WeatherFileDays::iddObjectType()) ||
+           (iddObjectType == model::WeatherFileConditionType::iddObjectType())){
            
           ddyWorkspace.addObject(idfObject);
         }

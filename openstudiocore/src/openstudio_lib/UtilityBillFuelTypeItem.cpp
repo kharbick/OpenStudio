@@ -24,6 +24,7 @@
 #include <model/Model.hpp>
 #include <model/Model_Impl.hpp>
 #include <model/ModelObject_Impl.hpp>
+#include <model/UtilityBill.hpp>
 
 #include <utilities/core/Assert.hpp>
 #include <utilities/data/DataEnums.hpp>
@@ -44,7 +45,7 @@ IddObjectType UtilityBillFuelTypeItem::iddObjectType() const
   OSItemList* itemList = this->itemList();
   UtilityBillFuelTypeListView* utilityBillFuelTypeListView = qobject_cast<UtilityBillFuelTypeListView*>(itemList);
   OS_ASSERT(utilityBillFuelTypeListView);
-  OS_ASSERT(utilityBillFuelTypeListView->iddObjectType() == openstudio::IddObjectType::OS_UtilityBill);
+  OS_ASSERT(utilityBillFuelTypeListView->iddObjectType() == model::UtilityBill::iddObjectType());
   return utilityBillFuelTypeListView->iddObjectType();
 }
 

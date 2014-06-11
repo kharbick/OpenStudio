@@ -22,6 +22,8 @@
 
 #include <model/DefaultConstructionSet.hpp>
 #include <model/DefaultConstructionSet_Impl.hpp>
+#include <model/DefaultSurfaceConstructions.hpp>
+#include <model/DefaultSubSurfaceConstructions.hpp>
 
 #include <utilities/core/Logger.hpp>
 
@@ -38,13 +40,14 @@ DefaultConstructionSetsController::~DefaultConstructionSetsController()
 
 void DefaultConstructionSetsController::onAddObject(const openstudio::IddObjectType& iddObjectType)
 {
-  switch(iddObjectType.value()){
-    case IddObjectType::OS_DefaultConstructionSet:
+    if( model::DefaultConstructionSet::iddObjectType() == iddObjectType )
+    {
       openstudio::model::DefaultConstructionSet(this->model());
-      break;
-    default:
+    }
+    else
+    {
       LOG_FREE_AND_THROW("DefaultConstructionSetsController", "Unknown IddObjectType '" << iddObjectType.valueName() << "'");
-  }
+    }
 }
 
 void DefaultConstructionSetsController::onCopyObject(const openstudio::model::ModelObject& modelObject)
@@ -64,10 +67,10 @@ void DefaultConstructionSetsController::onReplaceObject(openstudio::model::Model
 
 void DefaultConstructionSetsController::onPurgeObjects(const openstudio::IddObjectType& iddObjectType)
 {
-  if (iddObjectType == IddObjectType::OS_DefaultConstructionSet){
-    this->model().purgeUnusedResourceObjects(IddObjectType::OS_DefaultConstructionSet);
-    this->model().purgeUnusedResourceObjects(IddObjectType::OS_DefaultSurfaceConstructions);
-    this->model().purgeUnusedResourceObjects(IddObjectType::OS_DefaultSubSurfaceConstructions);
+  if (iddObjectType == model::DefaultConstructionSet::iddObjectType()){
+    this->model().purgeUnusedResourceObjects(model::DefaultConstructionSet::iddObjectType());
+    this->model().purgeUnusedResourceObjects(model::DefaultSurfaceConstructions::iddObjectType());
+    this->model().purgeUnusedResourceObjects(model::DefaultSubSurfaceConstructions::iddObjectType());
   }else{
     this->model().purgeUnusedResourceObjects(iddObjectType);
   }

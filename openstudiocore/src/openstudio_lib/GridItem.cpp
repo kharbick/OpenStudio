@@ -1377,7 +1377,7 @@ void OneThreeStraightItem::paint(QPainter *painter, const QStyleOptionGraphicsIt
 
   if( modelObject() )
   {
-    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type().value() );
+    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type() );
     painter->drawPixmap(12,12,75,75,*qPixmap);
 
     //if(m_deleteAble)
@@ -1461,7 +1461,7 @@ void OneThreeWaterToAirItem::paint(QPainter *painter, const QStyleOptionGraphics
 
   if( modelObject() )
   {
-    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type().value() );
+    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type() );
     painter->drawPixmap(12,12,75,75,*qPixmap);
 
     //if(m_deleteAble)
@@ -1545,7 +1545,7 @@ void OneThreeWaterToWaterItem::paint(QPainter *painter, const QStyleOptionGraphi
 
   if( modelObject() )
   {
-    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type().value() );
+    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type() );
     painter->drawPixmap(12,12,75,75,*qPixmap);
 
     //if(m_deleteAble)
@@ -1592,7 +1592,7 @@ void TwoFourStraightItem::paint(QPainter *painter, const QStyleOptionGraphicsIte
     painter->translate(100,0);
     painter->rotate(90);
 
-    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type().value() );
+    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type() );
     painter->drawPixmap(12,12,75,75,*qPixmap);
 
     painter->rotate(-90);
@@ -1638,7 +1638,7 @@ void OASupplyStraightItem::paint(QPainter *painter, const QStyleOptionGraphicsIt
     painter->translate(100,0);
     painter->rotate(90);
 
-    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type().value() );
+    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type() );
     painter->drawPixmap(12,12,75,75,*qPixmap);
 
     painter->rotate(-90);
@@ -1697,7 +1697,7 @@ void OAReliefStraightItem::paint(QPainter *painter, const QStyleOptionGraphicsIt
     painter->translate(0,100);
     painter->rotate(-90);
 
-    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type().value() );
+    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type() );
     painter->drawPixmap(12,12,75,75,*qPixmap);
 
     painter->rotate(90);
@@ -1764,7 +1764,7 @@ void OAAirToAirItem::paint(QPainter *painter,
 
   if( modelObject() )
   {
-    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type().value() );
+    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type() );
     painter->drawPixmap(0,0,200,100,*qPixmap);
   }
 }
@@ -1964,7 +1964,7 @@ void FourTwoStraightItem::paint(QPainter *painter, const QStyleOptionGraphicsIte
     painter->translate(0,100);
     painter->rotate(-90);
 
-    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type().value() );
+    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type() );
     painter->drawPixmap(12,12,75,75,*qPixmap);
 
     painter->rotate(90);
@@ -2352,7 +2352,7 @@ void OAMixerItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
   if( modelObject() )
   {
-    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type().value() );
+    const QPixmap * qPixmap = IconLibrary::Instance().findIcon( modelObject()->iddObject().type() );
     painter->drawPixmap(0,0,200,100,*qPixmap);
   }
 }
@@ -2433,7 +2433,7 @@ void SplitterItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
   {
     midpointIndex = 0;
     const QPixmap * qPixmap = IconLibrary::Instance().findIcon( 
-                              modelObject()->iddObject().type().value() );
+                              modelObject()->iddObject().type() );
     painter->drawPixmap(12,(midpointIndex * 100) + 12,75,75,*qPixmap);
   }
   else
@@ -2542,7 +2542,7 @@ void MixerItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
   {
     midpointIndex = 0;
     const QPixmap * qPixmap = IconLibrary::Instance().findIcon( 
-                              modelObject()->iddObject().type().value() );
+                              modelObject()->iddObject().type() );
     painter->drawPixmap(12,(midpointIndex * 100) + 12,75,75,*qPixmap);
   }
   else

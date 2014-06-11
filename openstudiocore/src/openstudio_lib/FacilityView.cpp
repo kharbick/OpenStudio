@@ -38,6 +38,9 @@
 
 #include <model/ThermalZone.hpp>
 #include <model/ThermalZone_Impl.hpp>
+#include <model/Space.hpp>
+#include <model/Surface.hpp>
+#include <model/SubSurface.hpp>
 
 #include <utilities/core/Assert.hpp>
 
@@ -103,7 +106,7 @@ FacilityInspectorView::FacilityInspectorView(bool isIP,
                       SIGNAL(dropZoneItemClicked(OSItem*)));
   OS_ASSERT(isConnected);
   index = this->stackedWidget()->addWidget(buildingInspectorView);
-  m_inspectorIndexMap[IddObjectType::OS_Building] = index;
+  m_inspectorIndexMap[model::Building::iddObjectType()] = index;
 
   BuildingStoryInspectorView* buildingStoryInspectorView = new BuildingStoryInspectorView(model, parent);
   isConnected = connect(this, 
@@ -117,7 +120,7 @@ FacilityInspectorView::FacilityInspectorView(bool isIP,
                         SIGNAL(dropZoneItemClicked(OSItem*)));
   OS_ASSERT(isConnected);
   index = this->stackedWidget()->addWidget(buildingStoryInspectorView);
-  m_inspectorIndexMap[IddObjectType::OS_BuildingStory] = index;
+  m_inspectorIndexMap[model::BuildingStory::iddObjectType()] = index;
 
   ThermalZoneView* thermalZoneView = new ThermalZoneView(isIP,model, parent);
   isConnected = connect(this, 
@@ -131,7 +134,7 @@ FacilityInspectorView::FacilityInspectorView(bool isIP,
                         SIGNAL(dropZoneItemClicked(OSItem*)));
   OS_ASSERT(isConnected);
   index = this->stackedWidget()->addWidget(thermalZoneView);
-  m_inspectorIndexMap[IddObjectType::OS_ThermalZone] = index;
+  m_inspectorIndexMap[model::ThermalZone::iddObjectType()] = index;
 
   SpaceTypeInspectorView* spaceTypeInspectorView = new SpaceTypeInspectorView(model, parent);
   isConnected = connect(spaceTypeInspectorView, 
@@ -140,7 +143,7 @@ FacilityInspectorView::FacilityInspectorView(bool isIP,
                         SIGNAL(dropZoneItemClicked(OSItem*)));
   OS_ASSERT(isConnected);
   index = this->stackedWidget()->addWidget(spaceTypeInspectorView);
-  m_inspectorIndexMap[IddObjectType::OS_SpaceType] = index;
+  m_inspectorIndexMap[model::SpaceType::iddObjectType()] = index;
   SpaceInspectorView* spaceInspectorView = new SpaceInspectorView(isIP, model, parent);
   isConnected = connect(this, 
                         SIGNAL(toggleUnitsClicked(bool)),
@@ -153,7 +156,7 @@ FacilityInspectorView::FacilityInspectorView(bool isIP,
                         SIGNAL(dropZoneItemClicked(OSItem*)));
   OS_ASSERT(isConnected);
   index = this->stackedWidget()->addWidget(spaceInspectorView);
-  m_inspectorIndexMap[IddObjectType::OS_Space] = index;
+  m_inspectorIndexMap[model::Space::iddObjectType()] = index;
 
   SurfaceInspectorView* surfaceInspectorView = new SurfaceInspectorView(isIP, model, parent);
   isConnected = connect(this, 
@@ -167,7 +170,7 @@ FacilityInspectorView::FacilityInspectorView(bool isIP,
                         SIGNAL(dropZoneItemClicked(OSItem*)));
   OS_ASSERT(isConnected);
   index = this->stackedWidget()->addWidget(surfaceInspectorView);
-  m_inspectorIndexMap[IddObjectType::OS_Surface] = index;
+  m_inspectorIndexMap[model::Surface::iddObjectType()] = index;
 
   SubSurfaceInspectorView* subSurfaceInspectorView = new SubSurfaceInspectorView(isIP, model, parent);
   isConnected = connect(this, 
@@ -181,7 +184,7 @@ FacilityInspectorView::FacilityInspectorView(bool isIP,
                         SIGNAL(dropZoneItemClicked(OSItem*)));
   OS_ASSERT(isConnected);
   index = this->stackedWidget()->addWidget(subSurfaceInspectorView);
-  m_inspectorIndexMap[IddObjectType::OS_SubSurface] = index;
+  m_inspectorIndexMap[model::SubSurface::iddObjectType()] = index;
   //ShadingSurfaceGroupInspectorView* shadingSurfaceGroupInspectorView = new ShadingSurfaceGroupInspectorView(model, parent);
   //isConnected = connect(this, 
   //                      SIGNAL(toggleUnitsClicked(bool)),

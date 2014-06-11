@@ -283,7 +283,7 @@ YearSettingsWidget::YearSettingsWidget(const model::Model & model, QWidget * par
 
 void YearSettingsWidget::onWorkspaceObjectAdd(boost::shared_ptr<openstudio::detail::WorkspaceObject_Impl> wo)
 {
-  if(wo->iddObject().type() == IddObjectType::OS_RunPeriodControl_DaylightSavingTime)
+  if(wo->iddObject().type() == model::RunPeriodControlDaylightSavingTime::iddObjectType())
   {
     connect( wo.get(),
              SIGNAL(onChange()),
@@ -296,7 +296,7 @@ void YearSettingsWidget::onWorkspaceObjectAdd(boost::shared_ptr<openstudio::deta
 
 void YearSettingsWidget::onWorkspaceObjectRemove(boost::shared_ptr<openstudio::detail::WorkspaceObject_Impl> wo)
 {
-  if(wo->iddObject().type() == IddObjectType::OS_RunPeriodControl_DaylightSavingTime)
+  if(wo->iddObject().type() == model::RunPeriodControlDaylightSavingTime::iddObjectType())
   {
     scheduleRefresh();
   }

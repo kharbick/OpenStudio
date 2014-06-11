@@ -35,6 +35,24 @@
 #include <model/Space.hpp>
 #include <model/Surface.hpp>
 #include <model/SubSurface.hpp>
+#include <model/ShadingSurfaceGroup.hpp>
+#include <model/ShadingSurface.hpp>
+#include <model/InteriorPartitionSurface.hpp>
+#include <model/InteriorPartitionSurfaceGroup.hpp>
+#include <model/DaylightingControl.hpp>
+#include <model/IlluminanceMap.hpp>
+#include <model/InternalMass.hpp>
+#include <model/People.hpp>
+#include <model/Lights.hpp>
+#include <model/Luminaire.hpp>
+#include <model/ElectricEquipment.hpp>
+#include <model/GasEquipment.hpp>
+#include <model/SteamEquipment.hpp>
+#include <model/OtherEquipment.hpp>
+#include <model/SpaceInfiltrationDesignFlowRate.hpp>
+#include <model/SpaceInfiltrationEffectiveLeakageArea.hpp>
+#include <model/DesignSpecificationOutdoorAir.hpp>
+#include <model/Facility.hpp>
 
 #include <utilities/core/Assert.hpp>
 
@@ -63,7 +81,7 @@
 namespace openstudio {
 
 FacilityTreeWidget::FacilityTreeWidget(const model::Model& model, QWidget* parent )
-  : ModelObjectTreeWidget(model, parent), m_sortByType(IddObjectType::OS_BuildingStory)
+  : ModelObjectTreeWidget(model, parent), m_sortByType(model::BuildingStory::iddObjectType())
 { 
   this->setObjectName("GrayWidget"); 
 
@@ -121,29 +139,29 @@ boost::optional<openstudio::model::ModelObject> FacilityTreeWidget::selectedMode
 
 void FacilityTreeWidget::onObjectAdded(const openstudio::model::ModelObject& modelObject, const openstudio::IddObjectType& iddObjectType, const openstudio::Handle& handle)
 {
-  if ((iddObjectType == IddObjectType::OS_Facility) ||
-      (iddObjectType == IddObjectType::OS_ShadingSurfaceGroup) ||
-      (iddObjectType == IddObjectType::OS_ShadingSurface) ||
-      (iddObjectType == IddObjectType::OS_Building) ||
-      (iddObjectType == IddObjectType::OS_BuildingStory) ||
-      (iddObjectType == IddObjectType::OS_ThermalZone) ||
-      (iddObjectType == IddObjectType::OS_SpaceType) ||
-      (iddObjectType == IddObjectType::OS_Space) ||
-      (iddObjectType == IddObjectType::OS_InteriorPartitionSurfaceGroup) ||
-      (iddObjectType == IddObjectType::OS_InteriorPartitionSurface) ||
-      (iddObjectType == IddObjectType::OS_Daylighting_Control) ||
-      (iddObjectType == IddObjectType::OS_IlluminanceMap) ||
-      (iddObjectType == IddObjectType::OS_InternalMass) ||
-      (iddObjectType == IddObjectType::OS_People) ||
-      (iddObjectType == IddObjectType::OS_Lights) ||
-      (iddObjectType == IddObjectType::OS_Luminaire) ||
-      (iddObjectType == IddObjectType::OS_ElectricEquipment) ||
-      (iddObjectType == IddObjectType::OS_GasEquipment) ||
-      (iddObjectType == IddObjectType::OS_SteamEquipment) ||
-      (iddObjectType == IddObjectType::OS_OtherEquipment) ||
-      (iddObjectType == IddObjectType::OS_SpaceInfiltration_DesignFlowRate) ||
-      (iddObjectType == IddObjectType::OS_SpaceInfiltration_EffectiveLeakageArea) ||
-      (iddObjectType == IddObjectType::OS_DesignSpecification_OutdoorAir)){
+  if ((iddObjectType == model::Facility::iddObjectType()) ||
+      (iddObjectType == model::ShadingSurfaceGroup::iddObjectType()) ||
+      (iddObjectType == model::ShadingSurface::iddObjectType()) ||
+      (iddObjectType == model::Building::iddObjectType()) ||
+      (iddObjectType == model::BuildingStory::iddObjectType()) ||
+      (iddObjectType == model::ThermalZone::iddObjectType()) ||
+      (iddObjectType == model::SpaceType::iddObjectType()) ||
+      (iddObjectType == model::Space::iddObjectType()) ||
+      (iddObjectType == model::InteriorPartitionSurfaceGroup::iddObjectType()) ||
+      (iddObjectType == model::InteriorPartitionSurface::iddObjectType()) ||
+      (iddObjectType == model::DaylightingControl::iddObjectType()) ||
+      (iddObjectType == model::IlluminanceMap::iddObjectType()) ||
+      (iddObjectType == model::InternalMass::iddObjectType()) ||
+      (iddObjectType == model::People::iddObjectType()) ||
+      (iddObjectType == model::Lights::iddObjectType()) ||
+      (iddObjectType == model::Luminaire::iddObjectType()) ||
+      (iddObjectType == model::ElectricEquipment::iddObjectType()) ||
+      (iddObjectType == model::GasEquipment::iddObjectType()) ||
+      (iddObjectType == model::SteamEquipment::iddObjectType()) ||
+      (iddObjectType == model::OtherEquipment::iddObjectType()) ||
+      (iddObjectType == model::SpaceInfiltrationDesignFlowRate::iddObjectType()) ||
+      (iddObjectType == model::SpaceInfiltrationEffectiveLeakageArea::iddObjectType()) ||
+      (iddObjectType == model::DesignSpecificationOutdoorAir::iddObjectType())){
 
     refresh();
   }
@@ -151,29 +169,29 @@ void FacilityTreeWidget::onObjectAdded(const openstudio::model::ModelObject& mod
 
 void FacilityTreeWidget::onObjectRemoved(const openstudio::model::ModelObject& modelObject, const openstudio::IddObjectType& iddObjectType, const openstudio::Handle& handle)
 {
-  if ((iddObjectType == IddObjectType::OS_Facility) ||
-      (iddObjectType == IddObjectType::OS_ShadingSurfaceGroup) ||
-      (iddObjectType == IddObjectType::OS_ShadingSurface) ||
-      (iddObjectType == IddObjectType::OS_Building) ||
-      (iddObjectType == IddObjectType::OS_BuildingStory) ||
-      (iddObjectType == IddObjectType::OS_ThermalZone) ||
-      (iddObjectType == IddObjectType::OS_SpaceType) ||
-      (iddObjectType == IddObjectType::OS_Space) ||
-      (iddObjectType == IddObjectType::OS_InteriorPartitionSurfaceGroup) ||
-      (iddObjectType == IddObjectType::OS_InteriorPartitionSurface) ||
-      (iddObjectType == IddObjectType::OS_Daylighting_Control) ||
-      (iddObjectType == IddObjectType::OS_IlluminanceMap) ||
-      (iddObjectType == IddObjectType::OS_InternalMass) ||
-      (iddObjectType == IddObjectType::OS_People) ||
-      (iddObjectType == IddObjectType::OS_Lights) ||
-      (iddObjectType == IddObjectType::OS_Luminaire) ||
-      (iddObjectType == IddObjectType::OS_ElectricEquipment) ||
-      (iddObjectType == IddObjectType::OS_GasEquipment) ||
-      (iddObjectType == IddObjectType::OS_SteamEquipment) ||
-      (iddObjectType == IddObjectType::OS_OtherEquipment) ||
-      (iddObjectType == IddObjectType::OS_SpaceInfiltration_DesignFlowRate) ||
-      (iddObjectType == IddObjectType::OS_SpaceInfiltration_EffectiveLeakageArea) ||
-      (iddObjectType == IddObjectType::OS_DesignSpecification_OutdoorAir)){
+  if ((iddObjectType == model::Facility::iddObjectType()) ||
+      (iddObjectType == model::ShadingSurfaceGroup::iddObjectType()) ||
+      (iddObjectType == model::ShadingSurface::iddObjectType()) ||
+      (iddObjectType == model::Building::iddObjectType()) ||
+      (iddObjectType == model::BuildingStory::iddObjectType()) ||
+      (iddObjectType == model::ThermalZone::iddObjectType()) ||
+      (iddObjectType == model::SpaceType::iddObjectType()) ||
+      (iddObjectType == model::Space::iddObjectType()) ||
+      (iddObjectType == model::InteriorPartitionSurfaceGroup::iddObjectType()) ||
+      (iddObjectType == model::InteriorPartitionSurface::iddObjectType()) ||
+      (iddObjectType == model::DaylightingControl::iddObjectType()) ||
+      (iddObjectType == model::IlluminanceMap::iddObjectType()) ||
+      (iddObjectType == model::InternalMass::iddObjectType()) ||
+      (iddObjectType == model::People::iddObjectType()) ||
+      (iddObjectType == model::Lights::iddObjectType()) ||
+      (iddObjectType == model::Luminaire::iddObjectType()) ||
+      (iddObjectType == model::ElectricEquipment::iddObjectType()) ||
+      (iddObjectType == model::GasEquipment::iddObjectType()) ||
+      (iddObjectType == model::SteamEquipment::iddObjectType()) ||
+      (iddObjectType == model::OtherEquipment::iddObjectType()) ||
+      (iddObjectType == model::SpaceInfiltrationDesignFlowRate::iddObjectType()) ||
+      (iddObjectType == model::SpaceInfiltrationEffectiveLeakageArea::iddObjectType()) ||
+      (iddObjectType == model::DesignSpecificationOutdoorAir::iddObjectType())){
 
     refresh();
   }
@@ -190,20 +208,20 @@ void FacilityTreeWidget::paintEvent ( QPaintEvent * event )
 void FacilityTreeWidget::onSortByChanged(const QString& text)
 {
   if (text == "Building Story"){
-    if (m_sortByType != IddObjectType::OS_BuildingStory){
-      m_sortByType = IddObjectType::OS_BuildingStory;
+    if (m_sortByType != model::BuildingStory::iddObjectType()){
+      m_sortByType = model::BuildingStory::iddObjectType();
       this->treeWidget()->clear();
       QTimer::singleShot(0, this, SLOT(initialize()));
     }
   }else if (text == "Thermal Zone"){
-    if (m_sortByType != IddObjectType::OS_ThermalZone){
-      m_sortByType = IddObjectType::OS_ThermalZone;
+    if (m_sortByType != model::ThermalZone::iddObjectType()){
+      m_sortByType = model::ThermalZone::iddObjectType();
       this->treeWidget()->clear();
       QTimer::singleShot(0, this, SLOT(initialize()));
     }
   }else if (text == "Space Type"){
-    if (m_sortByType != IddObjectType::OS_SpaceType){
-      m_sortByType = IddObjectType::OS_SpaceType;
+    if (m_sortByType != model::SpaceType::iddObjectType()){
+      m_sortByType = model::SpaceType::iddObjectType();
       this->treeWidget()->clear();
       QTimer::singleShot(0, this, SLOT(initialize()));
     }

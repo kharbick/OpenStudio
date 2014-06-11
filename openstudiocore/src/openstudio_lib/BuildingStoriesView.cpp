@@ -22,6 +22,7 @@
 #include <openstudio_lib/ModelObjectListView.hpp>
 
 #include <model/Model_Impl.hpp>
+#include <model/BuildingStory.hpp>
 
 #include <utilities/core/Assert.hpp>
 
@@ -39,7 +40,7 @@ namespace openstudio {
 
 BuildingStoriesView::BuildingStoriesView(const openstudio::model::Model& model, 
                                          QWidget * parent)
-  : ModelSubTabView(new ModelObjectListView(IddObjectType::OS_BuildingStory, model, true, parent),
+  : ModelSubTabView(new ModelObjectListView(model::BuildingStory::iddObjectType(), model, true, parent),
                new BuildingStoryInspectorView(model, parent),
                parent)
 {

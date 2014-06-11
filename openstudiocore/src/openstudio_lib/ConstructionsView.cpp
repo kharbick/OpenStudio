@@ -27,6 +27,11 @@
 #include <openstudio_lib/ModelObjectTypeListView.hpp>
 
 #include <model/Model_Impl.hpp>
+#include <model/Construction.hpp>
+#include <model/ConstructionWithInternalSource.hpp>
+#include <model/CFactorUndergroundWallConstruction.hpp>
+#include <model/FFactorGroundFloorConstruction.hpp>
+#include <model/WindowDataFile.hpp>
 
 #include <utilities/core/Assert.hpp>
 
@@ -50,10 +55,10 @@ ConstructionsView::ConstructionsView(bool isIP,
 std::vector<std::pair<IddObjectType, std::string> > ConstructionsView::modelObjectTypesAndNames()
 {
   std::vector<std::pair<IddObjectType, std::string> > result;
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Construction, "Constructions"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Construction_InternalSource, "Internal Source Constructions"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Construction_CfactorUndergroundWall, "C-factor Underground Wall Constructions"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Construction_FfactorGroundFloor, "F-factor Ground Floor Constructions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::Construction::iddObjectType(), "Constructions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::ConstructionWithInternalSource::iddObjectType(), "Internal Source Constructions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::CFactorUndergroundWallConstruction::iddObjectType(), "C-factor Underground Wall Constructions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(model::FFactorGroundFloorConstruction::iddObjectType(), "F-factor Ground Floor Constructions"));
   // Not currently supported
   //result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Construction_WindowDataFile, "Window Data File Constructions"));
 
@@ -85,25 +90,31 @@ void ConstructionsInspectorView::onUpdate()
 
 void ConstructionsInspectorView::onSelectModelObject(const openstudio::model::ModelObject& modelObject)
 {
-  switch( modelObject.iddObjectType().value() )
+  IddObjectType type = modelObject.iddObjectType();
+
+  if( model::Construction::iddObjectType() == type )
   {
-    case IddObjectType::OS_Construction:
-      this->showConstructionInspector(modelObject);
-      break;
-    case IddObjectType::OS_Construction_CfactorUndergroundWall:
-      this->showCfactorUndergroundWallInspector(modelObject);
-      break;
-    case IddObjectType::OS_Construction_FfactorGroundFloor:
-      this->showFfactorGroundFloorInspector(modelObject);
-      break;
-    case IddObjectType::OS_Construction_InternalSource:
-      this->showInternalSourceInspector(modelObject);
-      break;
-    case IddObjectType::OS_Construction_WindowDataFile:
-      this->showWindowDataFileInspector(modelObject);
-      break;
-    default:
-      showDefaultView();      
+    this->showConstructionInspector(modelObject);
+  }
+  else if( model::CFactorUndergroundWallConstruction::iddObjectType() == type )
+  {
+    this->showCfactorUndergroundWallInspector(modelObject);
+  }
+  else if( model::FFactorGroundFloorConstruction::iddObjectType() == type )
+  {
+    this->showFfactorGroundFloorInspector(modelObject);
+  }
+  else if( model::ConstructionWithInternalSource::iddObjectType() == type )
+  {
+    this->showInternalSourceInspector(modelObject);
+  }
+  else if( model::WindowDataFile::iddObjectType() == type )
+  {
+    this->showWindowDataFileInspector(modelObject);
+  }
+  else
+  {
+    showDefaultView();      
   }
 }
 

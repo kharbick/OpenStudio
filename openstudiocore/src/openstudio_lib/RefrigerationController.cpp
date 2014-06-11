@@ -91,7 +91,7 @@ void RefrigerationController::refreshRefrigerationSystemView(RefrigerationSystem
 
       systemView->refrigerationCondenserView->setCondenserName(QString::fromStdString(condenser->name().get()));
 
-      const QPixmap * pixmap = IconLibrary::Instance().findIcon(condenser->iddObjectType().value());
+      const QPixmap * pixmap = IconLibrary::Instance().findIcon(condenser->iddObjectType());
       systemView->refrigerationCondenserView->setIcon(*pixmap);
     }
 

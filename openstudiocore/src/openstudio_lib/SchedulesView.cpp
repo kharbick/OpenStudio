@@ -335,7 +335,7 @@ void SchedulesView::removeSchedule( boost::shared_ptr<openstudio::detail::Worksp
                                     const openstudio::IddObjectType&, 
                                     const openstudio::UUID& )
 {
-  if( workspaceObjectImpl->iddObject().type() == IddObjectType::OS_Schedule_Ruleset )
+  if( workspaceObjectImpl->iddObject().type() == model::ScheduleRuleset::iddObjectType() )
   {
     int removedIndex = -1;
 
