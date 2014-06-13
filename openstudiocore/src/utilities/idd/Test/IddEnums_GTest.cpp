@@ -44,17 +44,17 @@ TEST_F(IddFixture,IddEnums_IddObjectType)
   iddType = openstudio::IddObjectType::CommentOnly;
   
   iddType = openstudio::IddObjectType("BuildingSurface:Detailed");
-  EXPECT_EQ("BuildingSurface_Detailed",iddType.valueName());
+  EXPECT_EQ("BuildingSurface:Detailed",iddType.valueName());
   EXPECT_EQ("BuildingSurface:Detailed",iddType.valueDescription());
 
-  iddType = openstudio::IddObjectType("zone");
+  iddType = openstudio::IddObjectType("Zone");
   EXPECT_EQ("Zone",iddType.valueDescription());
-  iddType = openstudio::IddObjectType("zoNe");
+  iddType = openstudio::IddObjectType("Zone");
   EXPECT_EQ("Zone",iddType.valueDescription());
 
-  iddType = openstudio::IddObjectType("simulation data");
+  iddType = openstudio::IddObjectType("SimulationData");
   EXPECT_EQ("SimulationData",iddType.valueName());
-  EXPECT_EQ("Simulation Data",iddType.valueDescription());
+  EXPECT_EQ("SimulationData",iddType.valueDescription());
 }
 
 TEST_F(IddFixture,IddEnums_FieldEnums) {
