@@ -51,6 +51,7 @@ void initializeOutFiles(GenerateIddFactoryOutFiles& outFiles,
     << std::endl
     << "#include <utilities/core/Enum.hpp>" << std::endl
     << "#include <utilities/UtilitiesAPI.hpp>" << std::endl
+    << "#include <boost/algorithm/string.hpp>" << std::endl
     << std::endl
     << "#include <boost/optional.hpp>" << std::endl
     << std::endl
@@ -435,11 +436,13 @@ void completeOutFiles(const IddFileFactoryDataVector& iddFiles,
     << "  IddObjectType(const IddObjectType & otherType)" << std::endl
     << "  {" << std::endl
     << "    m_name = otherType.m_name;" << std::endl
+    << "    m_upperName = boost::to_upper_copy(m_name);" << std::endl
     << "  }" << std::endl
     << std::endl
     << "  IddObjectType()" << std::endl
     << "  {" << std::endl
     << "    m_name = \"UserCustom\";" << std::endl
+    << "    m_upperName = \"USERCUSTOM\";" << std::endl
     << "  }" << std::endl
     << std::endl
     << "  unsigned value() const" << std::endl
@@ -459,46 +462,47 @@ void completeOutFiles(const IddFileFactoryDataVector& iddFiles,
     << "  IddObjectType(const std::string & name)" << std::endl
     << "  {" << std::endl
     << "    m_name = name;" << std::endl
+    << "    m_upperName = boost::to_upper_copy(m_name);" << std::endl
     << "  }" << std::endl
     << std::endl
     << "  bool operator==(const IddObjectType &other) const" << std::endl
     << "  {" << std::endl
-    << "    return (m_name == other.m_name);" << std::endl
+    << "    return (m_upperName == other.m_upperName);" << std::endl
     << "  }" << std::endl
     << std::endl
     << "  bool operator==(const std::string &other) const" << std::endl
     << "  {" << std::endl
-    << "    return (m_name == other);" << std::endl
+    << "    return (m_upperName == boost::to_upper_copy(other));" << std::endl
     << "  }" << std::endl
     << std::endl
     << "  bool operator!=(const IddObjectType &other) const" << std::endl
     << "  {" << std::endl
-    << "    return (m_name != other.m_name);" << std::endl
+    << "    return (m_upperName != other.m_upperName);" << std::endl
     << "  }" << std::endl
     << std::endl
     << "  bool operator!=(const std::string &other) const" << std::endl
     << "  {" << std::endl
-    << "    return (m_name != other);" << std::endl
+    << "    return (m_upperName != boost::to_upper_copy(other));" << std::endl
     << "  }" << std::endl
     << std::endl
     << "  bool operator<(const IddObjectType &other) const" << std::endl
     << "  {" << std::endl
-    << "    return (m_name < other.m_name);" << std::endl
+    << "    return (m_upperName < other.m_upperName);" << std::endl
     << "  }" << std::endl
     << std::endl
     << "  bool operator<(const std::string &other) const" << std::endl
     << "  {" << std::endl
-    << "    return (m_name < other);" << std::endl
+    << "    return (m_upperName < boost::to_upper_copy(other));" << std::endl
     << "  }" << std::endl
     << std::endl
     << "  bool operator<=(const IddObjectType &other) const" << std::endl
     << "  {" << std::endl
-    << "    return (m_name <= other.m_name);" << std::endl
+    << "    return (m_upperName <= other.m_upperName);" << std::endl
     << "  }" << std::endl
     << std::endl
     << "  bool operator<=(const std::string &other) const" << std::endl
     << "  {" << std::endl
-    << "    return (m_name <= other);" << std::endl
+    << "    return (m_upperName <= boost::to_upper_copy(other));" << std::endl
     << "  }" << std::endl
     << std::endl
     << "  static std::set<int> getValues()" << std::endl
@@ -535,6 +539,7 @@ void completeOutFiles(const IddFileFactoryDataVector& iddFiles,
     << std::endl
     << "  static std::map<std::string,int> m_valueMap;" << std::endl
     << "  std::string m_name;" << std::endl
+    << "  std::string m_upperName;" << std::endl
     << "};" << std::endl
     << std::endl
     
