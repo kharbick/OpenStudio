@@ -84,12 +84,7 @@ IddFileType IdfFile::iddFileType() const {
 }
 
 boost::optional<IdfObject> IdfFile::versionObject() const {
-  OptionalIdfObject result;
-  if (m_versionObjectIndices.size() == 1u) {
-    unsigned index = *(m_versionObjectIndices.begin());
-    result = m_objects[index];
-  }
-  return result;
+  return m_versionObject;
 }
 
 boost::optional<IdfObject> IdfFile::getObject(unsigned index) const {
@@ -114,16 +109,13 @@ boost::optional<IdfObject> IdfFile::getObject(const Handle& handle) const {
 
 std::vector<IdfObject> IdfFile::objects() const {
   IdfObjectVector result = m_objects;
-  for (std::set<unsigned>::const_reverse_iterator it = m_versionObjectIndices.rbegin(),
-       itEnd = m_versionObjectIndices.rend(); it != itEnd; ++it)
+  if( m_versionObject )
   {
-    IdfObjectVector::iterator oit = result.begin();
-    for (unsigned i = 0; i < *it; ++i, ++oit);
-    OS_ASSERT(oit->iddObject().isVersionObject() ||
-                 ((oit->iddObject().type() == iddobjectname::Catchall) &&
-                  (oit->numFields() > 0u) &&
-                  (boost::regex_match(oit->getString(0).get(),iddRegex::versionObjectName()))));
-    result.erase(oit);
+    std::vector<IdfObject>::iterator it = std::find(result.begin(),result.end(),m_versionObject);
+    if( it != result.end() )
+    {
+      result.erase(it); 
+    }
   }
   return result;
 }
@@ -169,13 +161,13 @@ void IdfFile::setHeader(const std::string& header) {
 void IdfFile::addObject(const IdfObject& object) {
   m_objects.push_back(object);
   if (object.iddObject().isVersionObject()) {
-    m_versionObjectIndices.insert(m_objects.size() - 1);
+    m_versionObject = object;
   }
   else if ((object.iddObject().type() == iddobjectname::Catchall) &&
            (object.numFields() > 0u) &&
            (boost::regex_match(object.getString(0).get(),iddRegex::versionObjectName()))) 
   {
-    m_versionObjectIndices.insert(m_objects.size() - 1);
+    m_versionObject = object;
   }
 }
 
@@ -196,9 +188,7 @@ void IdfFile::insertObjectByIddObjectType(const IdfObject& object) {
            (object.numFields() > 0u) &&
            (boost::regex_match(object.getString(0).get(),iddRegex::versionObjectName())))) 
       {
-        unsigned index = unsigned(it - m_objects.begin());
-        m_versionObjectIndices.insert(index);
-        OS_ASSERT(m_objects[index] == object);
+        m_versionObject = object;
       }
       return;
     }
@@ -209,25 +199,11 @@ bool IdfFile::removeObject(const IdfObject& object) {
   IdfObjectVector::iterator it = std::find_if(m_objects.begin(),m_objects.end(),
                                               boost::bind(handleEquals<IdfObject,Handle>,_1,object.handle()));
   if (it != m_objects.end()) {
-    unsigned index(it - m_objects.begin());
-    if (it->iddObject().isVersionObject() || 
-        ((object.iddObject().type() == iddobjectname::Catchall) &&
-         (object.numFields() > 0u) &&
-         (boost::regex_match(object.getString(0).get(),iddRegex::versionObjectName())))) 
+    if( m_versionObject && ( object == m_versionObject.get() ) )
     {
-      m_versionObjectIndices.erase(index);
+      m_versionObject = boost::none;
     }
     m_objects.erase(it);
-    std::vector<unsigned> toModify;
-    BOOST_FOREACH(unsigned i,m_versionObjectIndices) {
-      if (i > index) {
-        toModify.push_back(i);
-      }
-    }
-    BOOST_FOREACH(unsigned i, toModify) {
-      m_versionObjectIndices.erase(i);
-      m_versionObjectIndices.insert(i-1);
-    }
     return true;
   }
   return false;
@@ -723,7 +699,7 @@ void IdfFile::addVersionObject() {
     }
     return;
   }
-  if (m_versionObjectIndices.empty()) {
+  if (! m_versionObject ) {
     IdfObject versionObject(*versionIdd);
     // look for field named "Version Identifier"
     OptionalInt index = versionObject.iddObject().getFieldIndex("Version Identifier");

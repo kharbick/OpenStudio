@@ -222,7 +222,7 @@ class UTILITIES_API IdfFile {
 
   std::string m_header;
   std::vector<IdfObject> m_objects;
-  std::set<unsigned> m_versionObjectIndices;
+  boost::optional<IdfObject> m_versionObject;
 
   IddFileAndFactoryWrapper m_iddFileAndFactoryWrapper;
 
