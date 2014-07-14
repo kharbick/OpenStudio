@@ -17,20 +17,24 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  **********************************************************************/
 
-#ifndef OPENSTUDIO_OSITEM_H
-#define OPENSTUDIO_OSITEM_H
+#ifndef OPENSTUDIO_OSITEM_HPP
+#define OPENSTUDIO_OSITEM_HPP
+
+#include <shared_gui_components/LocalLibrary.hpp>
 
 #include <QVariant>
 #include <QWidget>
 #include <vector>
 
-class QLabel;
-class QPushButton;
-class QMimeData;
 class QDragEnterEvent;
 class QDropEvent;
+class QLabel;
+class QMimeData;
+class QPushButton;
 
 namespace openstudio {
+
+class MeasureBadge;
 
 class OSItemId
 {
@@ -59,23 +63,10 @@ class OSItem : public QWidget
 
   public:
 
-    enum AspectRatio{
-      SQUARE,
-      RECTANGLE
-    };
-
-    enum Type{
-      COLLAPSIBLE_LIST_HEADER, // has the arrow
-      LIST_ITEM,               // regular item
-      LIBRARY_ITEM,            // library or my model item
-      DROPZONE_SQUARE,         // in scrolling drop zone
-      DROPZONE_RECTANGLE,      // for fixed drop zone 
-    };
-
     // creates a new OSItem if possible
-    static OSItem* makeItem(const OSItemId& itemId, Type type = LIST_ITEM);
+    static OSItem* makeItem(const OSItemId& itemId, OSItemType osItemType = OSItemType::ListItem);
 
-    OSItem(const OSItemId& itemId, Type type = LIST_ITEM, QWidget * parent = 0);
+    OSItem(const OSItemId& itemId, OSItemType osItemType = OSItemType::ListItem, QWidget * parent = 0);
 
     virtual ~OSItem() {}
 
@@ -107,10 +98,10 @@ class OSItem : public QWidget
     QPixmap rightPixmap() const;
     void setRightPixmap(const QPixmap & pixmap);
 
-    void setAspectRatio(OSItem::AspectRatio aspectRatio);
+    void setAspectRatio(AspectRatio aspectRatio);
 
-    Type type() const;
-    void setType(Type type);
+    OSItemType osItemType() const;
+    void setOSItemType(OSItemType osItemType);
 
     bool useLargeIcon();
     void setUseLargeIcon(bool userLargeIcon);
@@ -157,13 +148,13 @@ class OSItem : public QWidget
 
     QColor textColor();
     void setTextColor(QColor color = Qt::black);
-    QLabel * m_bclBadge;
+    MeasureBadge * m_measureBadge;
 
   private:
     void setFixedSize(const QSize & size);
     void setFixedWidth(int width);
     void setFixedHeight(int height);
-    void setAttributes(Type type);
+    void setAttributes(OSItemType osItemType);
     void createLayout();
     //void setItemSize();
     void setLabelPixmap(QLabel * label, const QPixmap & pixmap);
@@ -182,7 +173,7 @@ class OSItem : public QWidget
     bool m_inspectable;
     bool m_acceptsDrops;
     QSize m_size;
-    Type m_type;
+    OSItemType m_osItemType;
     QColor m_borderColor;
     bool m_useLargeIcon;
     // Large icon used behind everything else
@@ -195,4 +186,4 @@ class OSItem : public QWidget
 Q_DECLARE_METATYPE(openstudio::OSItemId)
 Q_DECLARE_METATYPE(std::vector<openstudio::OSItemId>)
 
-#endif // OPENSTUDIO_OSITEM_H
+#endif // OPENSTUDIO_OSITEM_HPP

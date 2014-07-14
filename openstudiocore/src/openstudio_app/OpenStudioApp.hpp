@@ -17,38 +17,37 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  **********************************************************************/
 
-#ifndef OPENSTUDIO_OPENSTUDIOAPP_H
-#define OPENSTUDIO_OPENSTUDIOAPP_H
+#ifndef OPENSTUDIO_OPENSTUDIOAPP_HPP
+#define OPENSTUDIO_OPENSTUDIOAPP_HPP
 
-#include <openstudio_lib/SOConstants.hpp>
-#include <openstudio_lib/OSAppBase.hpp>
+#include "../openstudio_lib/SOConstants.hpp"
+#include "../openstudio_lib/OSAppBase.hpp"
 
-#include <model/Model.hpp>
-#include <model/AirTerminalSingleDuctUncontrolled.hpp>
-#include <model/AirTerminalSingleDuctVAVReheat.hpp>
-#include <model/FanConstantVolume.hpp>
-#include <model/CurveQuadratic.hpp>
-#include <model/CurveBiquadratic.hpp>
-#include <model/AirLoopHVACOutdoorAirSystem.hpp>
-#include <model/ControllerOutdoorAir.hpp>
-#include <model/AvailabilityManagerScheduled.hpp>
-#include <model/ControllerOutdoorAir.hpp>
-#include <model/CoilHeatingGas.hpp>
-#include <model/CoilCoolingDXSingleSpeed.hpp>
-#include <model/EvaporativeCoolerDirectResearchSpecial.hpp>
-#include <model/ScheduleCompact.hpp>
-#include <model/SetpointManagerSingleZoneReheat.hpp>
-#include <model/SetpointManagerMixedAir.hpp>
-#include <model/SetpointManagerScheduled.hpp>
-#include <model/ChillerElectricEIR.hpp>
-#include <model/BoilerHotWater.hpp>
-#include <model/PumpVariableSpeed.hpp>
-#include <model/CoilCoolingWater.hpp>
-#include <model/CoilHeatingWater.hpp>
-#include <model/DistrictHeating.hpp>
-#include <model/DistrictCooling.hpp>
+#include "../model/Model.hpp"
+#include "../model/AirTerminalSingleDuctUncontrolled.hpp"
+#include "../model/AirTerminalSingleDuctVAVReheat.hpp"
+#include "../model/FanConstantVolume.hpp"
+#include "../model/CurveQuadratic.hpp"
+#include "../model/CurveBiquadratic.hpp"
+#include "../model/AirLoopHVACOutdoorAirSystem.hpp"
+#include "../model/AvailabilityManagerScheduled.hpp"
+#include "../model/ControllerOutdoorAir.hpp"
+#include "../model/CoilHeatingGas.hpp"
+#include "../model/CoilCoolingDXSingleSpeed.hpp"
+#include "../model/EvaporativeCoolerDirectResearchSpecial.hpp"
+#include "../model/ScheduleCompact.hpp"
+#include "../model/SetpointManagerSingleZoneReheat.hpp"
+#include "../model/SetpointManagerMixedAir.hpp"
+#include "../model/SetpointManagerScheduled.hpp"
+#include "../model/ChillerElectricEIR.hpp"
+#include "../model/BoilerHotWater.hpp"
+#include "../model/PumpVariableSpeed.hpp"
+#include "../model/CoilCoolingWater.hpp"
+#include "../model/CoilHeatingWater.hpp"
+#include "../model/DistrictHeating.hpp"
+#include "../model/DistrictCooling.hpp"
 
-#include <utilities/core/Path.hpp>
+#include "../utilities/core/Path.hpp"
 
 #include <vector>
 #include <map>
@@ -84,7 +83,7 @@ class OpenStudioApp : public OSAppBase
 
   virtual ~OpenStudioApp() {}
 
-  virtual boost::shared_ptr<OSDocument> currentDocument() const;
+  virtual std::shared_ptr<OSDocument> currentDocument() const;
 
   static OpenStudioApp * instance();
 
@@ -96,11 +95,15 @@ class OpenStudioApp : public OSAppBase
 
   virtual bool notify(QObject* receiver, QEvent* event);
 
+ signals:
+
  public slots:
   
   void quit();
 
   void importIdf(); 
+
+  void importgbXML(); 
 
   void importSDD(); 
 
@@ -114,6 +117,10 @@ class OpenStudioApp : public OSAppBase
 
   void showAbout();
 
+  virtual void reloadFile(const QString& fileToLoad, bool modified, bool saveCurrentTabs);
+
+  void revertToSaved();
+
  private slots:
 
   void newFromTemplateSlot( NewFromTemplateEnum newFromTemplateEnum );
@@ -126,12 +133,27 @@ class OpenStudioApp : public OSAppBase
 
  private:
 
-  bool openFile(const QString& fileName);
+  enum fileType{
+    SDD,
+    GBXML
+  };
+
+  void import(fileType type);
+
+  bool openFile(const QString& fileName, bool restoreTabs = false);
 
   void buildCompLibraries();
 
   void versionUpdateMessageBox(const osversion::VersionTranslator& translator, bool successful, const QString& fileName, 
       const openstudio::path &tempModelDir);
+
+  void readSettings();
+
+  void writeSettings();
+
+  QString lastPath() const;
+
+  void setLastPath(const QString& t_lastPath);
 
   QSharedPointer<ruleset::RubyUserScriptArgumentGetter> m_argumentGetter;
 
@@ -139,14 +161,16 @@ class OpenStudioApp : public OSAppBase
 
   openstudio::model::Model m_hvacCompLibrary;
 
-  boost::shared_ptr<StartupView> m_startupView;
+  std::shared_ptr<StartupView> m_startupView;
 
-  boost::shared_ptr<OSDocument> m_osDocument;
+  std::shared_ptr<OSDocument> m_osDocument;
 
-  boost::shared_ptr<StartupMenu> m_startupMenu;
+  std::shared_ptr<StartupMenu> m_startupMenu;
+
+  QString m_lastPath;
 };
 
 } // openstudio
 
-#endif // OPENSTUDIO_OPENSTUDIOAPP_H
+#endif // OPENSTUDIO_OPENSTUDIOAPP_HPP
 

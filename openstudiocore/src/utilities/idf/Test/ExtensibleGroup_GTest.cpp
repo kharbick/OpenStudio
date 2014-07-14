@@ -18,12 +18,12 @@
 **********************************************************************/
 
 #include <gtest/gtest.h>
-#include <utilities/idf/Test/IdfFixture.hpp>
-#include <utilities/idf/IdfObject.hpp>
-#include <utilities/idf/WorkspaceObject.hpp>
-#include <utilities/idf/WorkspaceObject_Impl.hpp>
-#include <utilities/idf/WorkspaceExtensibleGroup.hpp>
-#include <utilities/idf/Workspace.hpp>
+#include "IdfFixture.hpp"
+#include "../IdfObject.hpp"
+#include "../WorkspaceObject.hpp"
+#include "../WorkspaceObject_Impl.hpp"
+#include "../WorkspaceExtensibleGroup.hpp"
+#include "../Workspace.hpp"
 
 #include <utilities/idd/BuildingSurface_Detailed_FieldEnums.hxx>
 #include <utilities/idd/Construction_FieldEnums.hxx>
@@ -35,8 +35,6 @@
 
 #include <resources.hxx>
 
-#include <boost/foreach.hpp>
-
 using namespace std;
 using namespace boost;
 using namespace openstudio;
@@ -44,7 +42,7 @@ using namespace openstudio;
 TEST_F(IdfFixture,ExtensibleGroup_ExtensibleObjects) {
   LOG(Info,"The following types of objects in IdfFixture::epIdfFile are extensible: ");
   IddObjectTypeVector iddTypes;
-  BOOST_FOREACH(const IdfObject& object,epIdfFile.objects()) {
+  for (const IdfObject& object : epIdfFile.objects()) {
     if (object.iddObject().properties().extensible) {
       if (std::find(iddTypes.begin(),iddTypes.end(),object.iddObject().type()) == iddTypes.end()) {
         iddTypes.push_back(object.iddObject().type());
@@ -65,7 +63,7 @@ TEST_F(IdfFixture,IdfExtensibleGroup_Getters) {
   ASSERT_TRUE(bldgSurfaces.size() > 0);
 
   LOG(Debug,"Looping through all BuildingSurface:Detailed objects.");
-  BOOST_FOREACH(const WorkspaceObject& surface,bldgSurfaces) {
+  for (const WorkspaceObject& surface : bldgSurfaces) {
     unsigned nVertices = 0;
     IdfExtensibleGroup vertex = surface.getExtensibleGroup(nVertices);
     while (!vertex.empty()) {
@@ -286,7 +284,7 @@ TEST_F(IdfFixture,WorkspaceExtensibleGroup_Setters) {
   EXPECT_FALSE(ok);
   objType = IddObjectType(iddobjectname::Material);
   WorkspaceObjectVector materials = ws.getObjectsByType(objType);
-  BOOST_FOREACH(WorkspaceObject& material,materials) {
+  for (WorkspaceObject& material : materials) {
     ok = layer.setPointer(ConstructionExtensibleFields::Layer,material.handle());
     EXPECT_TRUE(ok);
     OptionalWorkspaceObject oRetrievedMaterial = layer.getTarget(ConstructionExtensibleFields::Layer);

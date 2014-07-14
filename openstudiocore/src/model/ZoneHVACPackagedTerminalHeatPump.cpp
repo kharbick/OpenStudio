@@ -17,32 +17,32 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  **********************************************************************/
 
-#include <model/ZoneHVACPackagedTerminalHeatPump.hpp>
-#include <model/ZoneHVACPackagedTerminalHeatPump_Impl.hpp>
+#include "ZoneHVACPackagedTerminalHeatPump.hpp"
+#include "ZoneHVACPackagedTerminalHeatPump_Impl.hpp"
 
-#include <model/Schedule.hpp>
-#include <model/Schedule_Impl.hpp>
-#include <model/Model.hpp>
-#include <model/Model_Impl.hpp>
-#include <model/HVACComponent.hpp>
-#include <model/HVACComponent_Impl.hpp>
-#include <model/FanOnOff.hpp>
-#include <model/FanOnOff_Impl.hpp>
-#include <model/FanConstantVolume.hpp>
-#include <model/FanConstantVolume_Impl.hpp>
-#include <model/CoilCoolingDXSingleSpeed.hpp>
-#include <model/CoilCoolingDXSingleSpeed_Impl.hpp>
-#include <model/CoilHeatingDXSingleSpeed.hpp>
-#include <model/CoilHeatingDXSingleSpeed_Impl.hpp>
-#include <model/CoilHeatingGas.hpp>
-#include <model/CoilHeatingGas_Impl.hpp>
-#include <model/CoilHeatingElectric.hpp>
-#include <model/CoilHeatingElectric_Impl.hpp>
+#include "Schedule.hpp"
+#include "Schedule_Impl.hpp"
+#include "Model.hpp"
+#include "Model_Impl.hpp"
+#include "HVACComponent.hpp"
+#include "HVACComponent_Impl.hpp"
+#include "FanOnOff.hpp"
+#include "FanOnOff_Impl.hpp"
+#include "FanConstantVolume.hpp"
+#include "FanConstantVolume_Impl.hpp"
+#include "CoilCoolingDXSingleSpeed.hpp"
+#include "CoilCoolingDXSingleSpeed_Impl.hpp"
+#include "CoilHeatingDXSingleSpeed.hpp"
+#include "CoilHeatingDXSingleSpeed_Impl.hpp"
+#include "CoilHeatingGas.hpp"
+#include "CoilHeatingGas_Impl.hpp"
+#include "CoilHeatingElectric.hpp"
+#include "CoilHeatingElectric_Impl.hpp"
 
 #include <utilities/idd/IddFactory.hxx>
 #include <utilities/idd/OS_ZoneHVAC_PackagedTerminalHeatPump_FieldEnums.hxx>
 
-#include <utilities/core/Assert.hpp>
+#include "../utilities/core/Assert.hpp"
 
 namespace openstudio {
 namespace model {
@@ -1080,7 +1080,7 @@ HVACComponent ZoneHVACPackagedTerminalHeatPump::coolingCoil() const
 }
 
 /// @cond
-ZoneHVACPackagedTerminalHeatPump::ZoneHVACPackagedTerminalHeatPump(boost::shared_ptr<detail::ZoneHVACPackagedTerminalHeatPump_Impl> impl)
+ZoneHVACPackagedTerminalHeatPump::ZoneHVACPackagedTerminalHeatPump(std::shared_ptr<detail::ZoneHVACPackagedTerminalHeatPump_Impl> impl)
   : ZoneHVACComponent(impl)
 {}
 /// @endcond

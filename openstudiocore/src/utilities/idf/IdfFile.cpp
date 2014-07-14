@@ -17,31 +17,29 @@
 *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 **********************************************************************/
 
-#include <utilities/idf/IdfFile.hpp>
+#include "IdfFile.hpp"
 #include <utilities/idf/IdfObject_Impl.hpp> // needed for serialization
-#include <utilities/idf/IdfRegex.hpp>
-#include <utilities/idf/ValidityReport.hpp>
+#include "IdfRegex.hpp"
+#include "ValidityReport.hpp"
 
 #include <utilities/idd/IddObject_Impl.hpp> // needed for serialization
 #include <utilities/idd/IddField_Impl.hpp> // needed for serialization
 #include <utilities/idd/IddFile_Impl.hpp> // needed for serialization
-#include <utilities/idd/IddRegex.hpp>
+#include "../idd/IddRegex.hpp"
 #include <utilities/idd/IddFactory.hxx>
-#include <utilities/idd/CommentRegex.hpp>
-#include <utilities/idd/Comments.hpp>
+#include "../idd/CommentRegex.hpp"
+#include "../idd/Comments.hpp"
 #include <utilities/idd/IddEnums.hxx>
 
-#include <utilities/plot/ProgressBar.hpp>
-#include <utilities/core/PathHelpers.hpp>
-#include <utilities/core/String.hpp>
-#include <utilities/core/Assert.hpp>
-#include <utilities/core/Compare.hpp>
+#include "../plot/ProgressBar.hpp"
+#include "../core/PathHelpers.hpp"
+#include "../core/String.hpp"
+#include "../core/Assert.hpp"
+#include "../core/Compare.hpp"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/split.hpp>
-#include <boost/foreach.hpp>
 #include <boost/regex.hpp>
-#include <boost/bind.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/iostreams/filter/newline.hpp>
@@ -98,7 +96,7 @@ boost::optional<IdfObject> IdfFile::getObject(unsigned index) const {
 boost::optional<IdfObject> IdfFile::getObject(const Handle& handle) const {
   OptionalIdfObject result;
   if (handle.isNull()) { return result; }
-  BOOST_FOREACH(const IdfObject& object,m_objects) {
+  for (const IdfObject& object : m_objects) {
     if (object.handle() == handle) {
       result = object;
       break;
@@ -122,10 +120,9 @@ std::vector<IdfObject> IdfFile::objects() const {
 
 std::vector<IdfObject> IdfFile::getObjectsByType(IddObjectType objectType) const {
   IdfObjectVector result;
-  for (IdfObjectVector::const_iterator it = m_objects.begin(),
-       itEnd = m_objects.end(); it != itEnd; ++it) {
-    if (it->iddObject().type() == objectType) {
-      result.push_back(*it);
+  for (const auto & idfObject : m_objects) {
+    if (idfObject.iddObject().type() == objectType) {
+      result.push_back(idfObject);
     }
   }
   return result;
@@ -133,7 +130,7 @@ std::vector<IdfObject> IdfFile::getObjectsByType(IddObjectType objectType) const
 
 std::vector<IdfObject> IdfFile::getObjectsByType(const IddObject& objectType) const {
   IdfObjectVector result;
-  BOOST_FOREACH(const IdfObject& object,objects()) {
+  for (const IdfObject& object : objects()) {
     if (object.iddObject() == objectType) {
       result.push_back(object);
     }
@@ -143,7 +140,7 @@ std::vector<IdfObject> IdfFile::getObjectsByType(const IddObject& objectType) co
 
 std::vector<IdfObject> IdfFile::getObjectsByName(const std::string& name) const {
   IdfObjectVector result;
-  BOOST_FOREACH(const IdfObject& object,m_objects) {
+  for (const IdfObject& object : m_objects) {
     OptionalString objectName = object.name();
     if (objectName && openstudio::istringEqual(name,*objectName)) {
       result.push_back(object);
@@ -172,13 +169,13 @@ void IdfFile::addObject(const IdfObject& object) {
 }
 
 void IdfFile::addObjects(const std::vector<IdfObject>& objects) {
-  BOOST_FOREACH(const IdfObject& object,objects) {
+  for (const IdfObject& object : objects) {
     addObject(object);
   }
 }
 
 void IdfFile::insertObjectByIddObjectType(const IdfObject& object) {
-  for (IdfObjectVector::iterator it = m_objects.begin(), itEnd = m_objects.end();
+  for (auto it = m_objects.begin(), itEnd = m_objects.end();
        it != itEnd; ++it) {
     if (it == itEnd || object.iddObject().type() < it->iddObject().type()) {
       // insert object immediately before it
@@ -196,8 +193,8 @@ void IdfFile::insertObjectByIddObjectType(const IdfObject& object) {
 }
 
 bool IdfFile::removeObject(const IdfObject& object) {
-  IdfObjectVector::iterator it = std::find_if(m_objects.begin(),m_objects.end(),
-                                              boost::bind(handleEquals<IdfObject,Handle>,_1,object.handle()));
+  auto it = std::find_if(m_objects.begin(),m_objects.end(),
+    std::bind(handleEquals<IdfObject, Handle>, std::placeholders::_1, object.handle()));
   if (it != m_objects.end()) {
     if( m_versionObject && ( object == m_versionObject.get() ) )
     {
@@ -211,7 +208,7 @@ bool IdfFile::removeObject(const IdfObject& object) {
 
 int IdfFile::removeObjects(const std::vector<IdfObject>& objects) {
   int result(0);
-  BOOST_FOREACH(const IdfObject& object,objects) {
+  for (const IdfObject& object : objects) {
     bool ok = removeObject(object);
     if (ok) {
       ++result;
@@ -254,7 +251,7 @@ ValidityReport IdfFile::validityReport(StrictnessLevel level) const {
   // \todo Only way there can be no IddFile is if IddFileType is set to UserCustom
 
   // by-object items
-  BOOST_FOREACH(const IdfObject& object, m_objects) {
+  for (const IdfObject& object : m_objects) {
     // object-level report
     ValidityReport objectReport = object.validityReport(level);
     OptionalDataError oError = objectReport.nextError();
@@ -278,7 +275,7 @@ ValidityReport IdfFile::validityReport(StrictnessLevel level) const {
   // DataErrorType::NullAndRequired
   // collection-level: required object missing
   IddObjectVector requiredObjects = m_iddFileAndFactoryWrapper.requiredObjects();
-  BOOST_FOREACH(const IddObject& iddObject, requiredObjects){
+  for (const IddObject& iddObject : requiredObjects){
     if (numObjectsOfType(iddObject.type()) < 1) {
       report.insertError(DataError(DataErrorType(DataErrorType::NullAndRequired),iddObject.type()));
     }
@@ -287,7 +284,7 @@ ValidityReport IdfFile::validityReport(StrictnessLevel level) const {
   // DataErrorType::Duplicate
   // collection-level: unique object duplicated
   IddObjectVector uniqueObjects = m_iddFileAndFactoryWrapper.uniqueObjects();
-  BOOST_FOREACH(const IddObject& iddObject, uniqueObjects){
+  for (const IddObject& iddObject : uniqueObjects){
     if (numObjectsOfType(iddObject.type()) > 1) {
       report.insertError(DataError(DataErrorType(DataErrorType::Duplicate),iddObject.type()));
     }
@@ -400,7 +397,7 @@ boost::optional<VersionString> IdfFile::loadVersionOnly(std::istream& is) {
   IddFile catchallIdd = IddFile::catchallIddFile();
   IdfFile idf(catchallIdd);
   OS_ASSERT(!idf.versionObject());
-  idf.m_load(is,NULL,true);
+  idf.m_load(is,nullptr,true);
   if (OptionalIdfObject oVersionObject = idf.versionObject()) {
     unsigned n = oVersionObject->numFields();
     std::string versionString = oVersionObject->getString(n - 1,true).get();
@@ -431,7 +428,7 @@ std::ostream& IdfFile::print(std::ostream& os) const {
     os << m_header << std::endl;
   }
   os << std::endl;
-  BOOST_FOREACH(const IdfObject& object, m_objects){
+  for (const IdfObject& object : m_objects){
     object.print(os);
   }
   return os;
@@ -748,8 +745,8 @@ IdfObjectVector IdfFile::m_objectsWithConflictingNames(const std::string& name,b
     StringVector refs = candidates[i].iddObject().references();
     for (unsigned j = 0; j < n; ++j) {
       if (j == i) { continue; }
-      BOOST_FOREACH(const std::string& ref,candidates[j].iddObject().references()) {
-        if (std::find_if(refs.begin(),refs.end(),boost::bind(openstudio::istringEqual,_1,ref)) != refs.end()) {
+      for (const std::string& ref : candidates[j].iddObject().references()) {
+        if (std::find_if(refs.begin(), refs.end(), std::bind(openstudio::istringEqual, std::placeholders::_1, ref)) != refs.end()) {
           hasConflict[i] = true;
           hasConflict[j] = true;
           break;

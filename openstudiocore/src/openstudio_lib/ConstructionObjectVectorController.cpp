@@ -17,33 +17,33 @@
 *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 **********************************************************************/
 
-#include <openstudio_lib/ConstructionObjectVectorController.hpp>
+#include "ConstructionObjectVectorController.hpp"
 
-#include <openstudio_lib/ModelObjectItem.hpp>
-#include <openstudio_lib/OSAppBase.hpp>
-#include <openstudio_lib/OSDocument.hpp>
+#include "ModelObjectItem.hpp"
+#include "OSAppBase.hpp"
+#include "OSDocument.hpp"
 
-#include <model/Construction.hpp>
-#include <model/Construction_Impl.hpp>
-#include <model/Material.hpp>
-#include <model/Material_Impl.hpp>
-#include <model/Blind.hpp>
-#include <model/Gas.hpp>
-#include <model/GasMixture.hpp>
-#include <model/StandardGlazing.hpp>
-#include <model/RefractionExtinctionGlazing.hpp>
-#include <model/ThermochromicGlazing.hpp>
-#include <model/Screen.hpp>
-#include <model/Shade.hpp>
-#include <model/AirGap.hpp>
-#include <model/InfraredTransparentMaterial.hpp>
-#include <model/MasslessOpaqueMaterial.hpp>
-#include <model/RoofVegetation.hpp>
-#include <model/AirWallMaterial.hpp>
-#include <model/SimpleGlazing.hpp>
-#include <model/StandardOpaqueMaterial.hpp>
+#include "../model/Construction.hpp"
+#include "../model/Construction_Impl.hpp"
+#include "../model/Material.hpp"
+#include "../model/Material_Impl.hpp"
+#include "../model/Blind.hpp"
+#include "../model/Gas.hpp"
+#include "../model/GasMixture.hpp"
+#include "../model/StandardGlazing.hpp"
+#include "../model/RefractionExtinctionGlazing.hpp"
+#include "../model/ThermochromicGlazing.hpp"
+#include "../model/Screen.hpp"
+#include "../model/Shade.hpp"
+#include "../model/AirGap.hpp"
+#include "../model/InfraredTransparentMaterial.hpp"
+#include "../model/MasslessOpaqueMaterial.hpp"
+#include "../model/RoofVegetation.hpp"
+#include "../model/AirWallMaterial.hpp"
+#include "../model/SimpleGlazing.hpp"
+#include "../model/StandardOpaqueMaterial.hpp"
 
-#include <utilities/core/Assert.hpp>
+#include "../utilities/core/Assert.hpp"
 #include <utilities/idd/OS_Construction_FieldEnums.hxx>
 
 #include <QMessageBox>
@@ -69,7 +69,7 @@ std::vector<OSItemId> ConstructionObjectVectorController::makeVector()
   if(m_modelObject){
     model::LayeredConstruction construction = m_modelObject->cast<model::LayeredConstruction>();
     std::vector<model::Material> layers = construction.layers();
-    BOOST_FOREACH(model::Material layer, layers){
+    for (model::Material layer : layers){
       result.push_back(modelObjectToItemId(layer, false));
     }
   }
@@ -83,7 +83,7 @@ void ConstructionObjectVectorController::onRemoveItem(OSItem * item)
     std::vector<model::Material> layers = construction.layers();
     OSAppBase * app = OSAppBase::instance();
     unsigned idx = 0;
-    BOOST_FOREACH(model::Material layer,layers){
+    for (model::Material layer : layers){
       boost::optional<model::ModelObject> modelObject = app->currentDocument()->getModelObject(item->itemId());
       if(modelObject){
         if(modelObject->handle() == layer.handle()){

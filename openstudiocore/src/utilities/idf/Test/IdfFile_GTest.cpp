@@ -18,12 +18,12 @@
 **********************************************************************/
 
 #include <gtest/gtest.h>
-#include <utilities/idf/Test/IdfFixture.hpp>
+#include "IdfFixture.hpp"
 
-#include <utilities/idf/IdfFile.hpp>
-#include <utilities/idf/ValidityReport.hpp>
+#include "../IdfFile.hpp"
+#include "../ValidityReport.hpp"
 
-#include <utilities/time/Time.hpp>
+#include "../../time/Time.hpp"
 
 #include <utilities/idd/Building_FieldEnums.hxx>
 #include <utilities/idd/Zone_FieldEnums.hxx>
@@ -37,7 +37,6 @@
 #include <resources.hxx>
 
 #include <boost/filesystem/fstream.hpp>
-#include <boost/foreach.hpp>
 
 #include <iostream>
 #include <sstream>
@@ -158,6 +157,6 @@ TEST_F(IdfFixture, IdfFile_ObjectComments) {
 
   // print out result for debugging purposes
   boost::filesystem::ofstream outFile(resourcesPath()/toPath("utilities/Idf/CommentTest_Roundtrip.idf"));
-  ASSERT_TRUE(outFile);
+  ASSERT_TRUE(outFile?true:false);
   oFile->print(outFile);
 }

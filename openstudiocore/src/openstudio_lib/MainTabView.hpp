@@ -17,11 +17,10 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  **********************************************************************/
 
-#ifndef OPENSTUDIO_MAINTABVIEW_H
-#define OPENSTUDIO_MAINTABVIEW_H
+#ifndef OPENSTUDIO_MAINTABVIEW_HPP
+#define OPENSTUDIO_MAINTABVIEW_HPP
 
 #include <QWidget>
-#include <boost/shared_ptr.hpp>
 #include <vector>
 
 class QStackedWidget;
@@ -47,7 +46,14 @@ public:
 
   // Returns the id of the current sub tab.
   // Returns -1 if there are no sub tabs.
-  int currentId() const;
+  int subTabId() const;
+
+  // Returns the index of the current sub tab.
+  // Returns -1 if there are no sub tabs.
+  int subTabIndex() const;
+
+  // Public method for setting the current sub tab.
+  bool selectSubTabByIndex(int index);
 
 signals:
 
@@ -82,4 +88,4 @@ private:
 
 } // namespace openstudio
 
-#endif // OPENSTUDIO_MAINTABVIEW_H
+#endif // OPENSTUDIO_MAINTABVIEW_HPP

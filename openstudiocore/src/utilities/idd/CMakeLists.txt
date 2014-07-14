@@ -1,6 +1,6 @@
 # generate the IddFactory files
   
-ADD_CUSTOM_COMMAND(
+add_custom_command(
   OUTPUT 
   "${CMAKE_CURRENT_BINARY_DIR}/idd/IddFactory_done.stamp"
   COMMAND GenerateIddFactory "--outdir=${CMAKE_CURRENT_BINARY_DIR}/idd" "EnergyPlus,${CMAKE_SOURCE_DIR}/resources/energyplus/ProposedEnergy+.idd" "${CMAKE_SOURCE_DIR}/resources/model/OpenStudio.idd"
@@ -24,9 +24,9 @@ set_source_files_properties(
   PROPERTIES GENERATED true )
 
 # include the generated files
-#INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_BINARY_DIR}/idd/ )
+#include_directories(${CMAKE_CURRENT_BINARY_DIR}/idd/)
 
-SET( idd_src
+set(idd_src
   idd/mainpage.hpp
   ${CMAKE_CURRENT_BINARY_DIR}/idd/IddFactory_done.stamp
   ${CMAKE_CURRENT_BINARY_DIR}/idd/IddFactoryFileIndex.hxx
@@ -67,7 +67,7 @@ SET( idd_src
   idd/Comments.cpp
 )
 
-SET( idd_test_src
+set(idd_test_src
   idd/Test/IddFixture.hpp
   idd/Test/IddFixture.cpp
   idd/Test/IddFile_GTest.cpp
@@ -81,7 +81,7 @@ SET( idd_test_src
   idd/Test/IddEnums_GTest.cpp
 )
 
-SET( idd_swig_src
+set(idd_swig_src
   ${CMAKE_CURRENT_BINARY_DIR}/idd/IddFieldEnums.ixx
   idd/Idd.i
 )

@@ -18,25 +18,26 @@
 **********************************************************************/
 
 #include <gtest/gtest.h>
-#include <energyplus/Test/EnergyPlusFixture.hpp>
+#include "EnergyPlusFixture.hpp"
 
-#include <energyplus/ForwardTranslator.hpp>
-#include <energyplus/ReverseTranslator.hpp>
+#include "../ForwardTranslator.hpp"
+#include "../ReverseTranslator.hpp"
 
-#include <utilities/data/TimeSeries.hpp>
-#include <utilities/time/Date.hpp>
-#include <utilities/time/Time.hpp>
+#include "../../utilities/data/TimeSeries.hpp"
+#include "../../utilities/time/Date.hpp"
+#include "../../utilities/time/Time.hpp"
+
+#include "../../model/Model.hpp"
+#include "../../model/ScheduleInterval.hpp"
+#include "../../model/ScheduleInterval_Impl.hpp"
+#include "../../model/ScheduleFixedInterval.hpp"
+#include "../../model/ScheduleFixedInterval_Impl.hpp"
+#include "../../model/ScheduleVariableInterval.hpp"
+#include "../../model/ScheduleVariableInterval_Impl.hpp"
+
 #include <utilities/idd/Schedule_Compact_FieldEnums.hxx>
 #include <utilities/idd/Schedule_Year_FieldEnums.hxx>
 #include <utilities/idd/Zone_FieldEnums.hxx>
-
-#include <model/Model.hpp>
-#include <model/ScheduleInterval.hpp>
-#include <model/ScheduleInterval_Impl.hpp>
-#include <model/ScheduleFixedInterval.hpp>
-#include <model/ScheduleFixedInterval_Impl.hpp>
-#include <model/ScheduleVariableInterval.hpp>
-#include <model/ScheduleVariableInterval_Impl.hpp>
 
 #include <boost/regex.hpp>
 

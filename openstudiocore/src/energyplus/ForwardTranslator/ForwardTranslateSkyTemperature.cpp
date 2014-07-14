@@ -17,8 +17,8 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  **********************************************************************/
 
-#include <energyplus/ForwardTranslator.hpp>
-#include <model/SkyTemperature.hpp>
+#include "../ForwardTranslator.hpp"
+#include "../../model/SkyTemperature.hpp"
 #include <utilities/idd/IddEnums.hxx>
 #include <utilities/idd/WeatherProperty_SkyTemperature_FieldEnums.hxx>
 

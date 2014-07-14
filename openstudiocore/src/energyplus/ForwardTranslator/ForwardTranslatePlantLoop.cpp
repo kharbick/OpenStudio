@@ -17,61 +17,62 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  **********************************************************************/
 
-#include <energyplus/ForwardTranslator.hpp>
+#include "../ForwardTranslator.hpp"
 
-#include <model/Model.hpp>
-#include <model/PlantLoop.hpp>
-#include <model/PlantLoop_Impl.hpp>
-#include <model/DistrictHeating.hpp>
-#include <model/DistrictHeating_Impl.hpp>
-#include <model/DistrictCooling.hpp>
-#include <model/DistrictCooling_Impl.hpp>
-#include <model/GroundHeatExchangerVertical.hpp>
-#include <model/GroundHeatExchangerVertical_Impl.hpp>
-#include <model/SizingPlant.hpp>
-#include <model/SizingPlant_Impl.hpp>
-#include <model/Node.hpp>
-#include <model/Node_Impl.hpp>
-#include <model/Splitter.hpp>
-#include <model/Splitter_Impl.hpp>
-#include <model/Mixer.hpp>
-#include <model/Mixer_Impl.hpp>
-#include <model/PumpVariableSpeed.hpp>
-#include <model/PumpVariableSpeed.hpp>
-#include <model/Schedule.hpp>
-#include <model/Schedule_Impl.hpp>
-#include <model/BoilerHotWater.hpp>
-#include <model/BoilerHotWater_Impl.hpp>
-#include <model/ChillerElectricEIR.hpp>
-#include <model/ChillerElectricEIR_Impl.hpp>
-#include <model/WaterHeaterMixed.hpp>
-#include <model/WaterHeaterMixed_Impl.hpp>
-#include <model/CoolingTowerVariableSpeed.hpp>
-#include <model/CoolingTowerVariableSpeed_Impl.hpp>
-#include <model/CoolingTowerSingleSpeed.hpp>
-#include <model/CoolingTowerSingleSpeed_Impl.hpp>
-#include <model/WaterToAirComponent.hpp>
-#include <model/WaterToAirComponent_Impl.hpp>
-#include <model/WaterToWaterComponent.hpp>
-#include <model/WaterToWaterComponent_Impl.hpp>
-#include <model/CoilHeatingWaterBaseboard.hpp>
-#include <model/CoilHeatingWaterBaseboard_Impl.hpp>
-#include <model/CoilCoolingCooledBeam.hpp>
-#include <model/CoilCoolingCooledBeam_Impl.hpp>
-#include <model/StraightComponent.hpp>
-#include <model/StraightComponent_Impl.hpp>
-#include <model/CoilHeatingLowTempRadiantConstFlow.hpp>
-#include <model/CoilHeatingLowTempRadiantConstFlow_Impl.hpp>
-#include <model/CoilCoolingLowTempRadiantConstFlow.hpp>
-#include <model/CoilCoolingLowTempRadiantConstFlow_Impl.hpp>
-#include <model/CoilHeatingLowTempRadiantVarFlow.hpp>
-#include <model/CoilHeatingLowTempRadiantVarFlow_Impl.hpp>
-#include <model/CoilCoolingLowTempRadiantVarFlow.hpp>
-#include <model/CoilCoolingLowTempRadiantVarFlow_Impl.hpp>
-#include <model/ZoneHVACComponent.hpp>
-#include <model/ZoneHVACComponent_Impl.hpp>
-#include <model/LifeCycleCost.hpp>
-#include <utilities/idf/IdfExtensibleGroup.hpp>
+#include "../../model/Model.hpp"
+#include "../../model/PlantLoop.hpp"
+#include "../../model/PlantLoop_Impl.hpp"
+#include "../../model/SizingPlant.hpp"
+#include "../../model/SizingPlant_Impl.hpp"
+#include "../../model/Node.hpp"
+#include "../../model/Node_Impl.hpp"
+#include "../../model/Splitter.hpp"
+#include "../../model/Splitter_Impl.hpp"
+#include "../../model/Mixer.hpp"
+#include "../../model/Mixer_Impl.hpp"
+#include "../../model/PumpVariableSpeed.hpp"
+#include "../../model/PumpVariableSpeed.hpp"
+#include "../../model/Schedule.hpp"
+#include "../../model/Schedule_Impl.hpp"
+#include "../../model/BoilerHotWater.hpp"
+#include "../../model/BoilerHotWater_Impl.hpp"
+#include "../../model/ChillerElectricEIR.hpp"
+#include "../../model/ChillerElectricEIR_Impl.hpp"
+#include "../../model/DistrictCooling.hpp"
+#include "../../model/DistrictCooling_Impl.hpp"
+#include "../../model/DistrictHeating.hpp"
+#include "../../model/DistrictHeating_Impl.hpp"
+#include "../../model/GroundHeatExchangerVertical.hpp"
+#include "../../model/GroundHeatExchangerVertical_Impl.hpp"
+#include "../../model/WaterHeaterMixed.hpp"
+#include "../../model/WaterHeaterMixed_Impl.hpp"
+#include "../../model/CoolingTowerVariableSpeed.hpp"
+#include "../../model/CoolingTowerVariableSpeed_Impl.hpp"
+#include "../../model/CoolingTowerSingleSpeed.hpp"
+#include "../../model/CoolingTowerSingleSpeed_Impl.hpp"
+#include "../../model/WaterToAirComponent.hpp"
+#include "../../model/WaterToAirComponent_Impl.hpp"
+#include "../../model/WaterToWaterComponent.hpp"
+#include "../../model/WaterToWaterComponent_Impl.hpp"
+#include "../../model/CoilHeatingWaterBaseboard.hpp"
+#include "../../model/CoilHeatingWaterBaseboard_Impl.hpp"
+#include "../../model/CoilCoolingCooledBeam.hpp"
+#include "../../model/CoilCoolingCooledBeam_Impl.hpp"
+#include "../../model/StraightComponent.hpp"
+#include "../../model/StraightComponent_Impl.hpp"
+#include "../../model/CoilHeatingLowTempRadiantConstFlow.hpp"
+#include "../../model/CoilHeatingLowTempRadiantConstFlow_Impl.hpp"
+#include "../../model/CoilCoolingLowTempRadiantConstFlow.hpp"
+#include "../../model/CoilCoolingLowTempRadiantConstFlow_Impl.hpp"
+#include "../../model/CoilHeatingLowTempRadiantVarFlow.hpp"
+#include "../../model/CoilHeatingLowTempRadiantVarFlow_Impl.hpp"
+#include "../../model/CoilCoolingLowTempRadiantVarFlow.hpp"
+#include "../../model/CoilCoolingLowTempRadiantVarFlow_Impl.hpp"
+#include "../../model/ZoneHVACComponent.hpp"
+#include "../../model/ZoneHVACComponent_Impl.hpp"
+#include "../../model/SetpointManager.hpp"
+#include "../../model/LifeCycleCost.hpp"
+#include "../../utilities/idf/IdfExtensibleGroup.hpp"
 #include <utilities/idd/IddEnums.hxx>
 #include <utilities/idd/IddFactory.hxx>
 #include <utilities/idd/PlantLoop_FieldEnums.hxx>
@@ -91,7 +92,7 @@
 #include <utilities/idd/AirTerminal_SingleDuct_ConstantVolume_CooledBeam_FieldEnums.hxx>
 #include <utilities/idd/ZoneHVAC_AirDistributionUnit_FieldEnums.hxx>
 
-#include <utilities/core/Assert.hpp>
+#include "../../utilities/core/Assert.hpp"
 
 using namespace openstudio::model;
 
@@ -133,7 +134,8 @@ boost::optional<Node> isSetpointComponent(PlantLoop & plantLoop,const ModelObjec
   Node componentOutletNode = nodes.front();
   if( componentOutletNode != supplyOutletNode )
   {
-    if( componentOutletNode.getImpl<model::detail::Node_Impl>()->setpointManager() )
+    std::vector<SetpointManager> _setpointManagers = componentOutletNode.setpointManagers();
+    if( ! _setpointManagers.empty() )
     {
       result = componentOutletNode;
     }
@@ -150,9 +152,7 @@ IdfObject ForwardTranslator::populateBranch( IdfObject & branchIdfObject,
   {
     int i = 0;
 
-    for( std::vector<ModelObject>::iterator it = modelObjects.begin();
-         it < modelObjects.end();
-         ++it )
+    for( auto & modelObject : modelObjects )
     {
       boost::optional<Node> inletNode;
       boost::optional<Node> outletNode;
@@ -161,13 +161,13 @@ IdfObject ForwardTranslator::populateBranch( IdfObject & branchIdfObject,
     
       //translate and map each model object
       //in most cases, the name and idd object type come directly from the resulting idfObject
-      if ( boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(*it) )
+      if ( boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(modelObject) )
       {
         objectName = idfObject->name().get();
         iddType = idfObject->iddObject().name();
       }
 
-      if( boost::optional<StraightComponent> straightComponent = it->optionalCast<StraightComponent>() )
+      if( boost::optional<StraightComponent> straightComponent = modelObject.optionalCast<StraightComponent>() )
       {
         inletNode = straightComponent->inletModelObject()->optionalCast<Node>();
         outletNode = straightComponent->outletModelObject()->optionalCast<Node>();
@@ -176,7 +176,7 @@ IdfObject ForwardTranslator::populateBranch( IdfObject & branchIdfObject,
         //ZoneHVACBaseboardConvectiveWater and CoilHeatingWaterBaseboard.  The ZoneHVAC goes onto the zone and
         //has a child coil that goes onto the plantloop.  In order to get the correct translation to E+, we need
         //to put the name of the containing ZoneHVACBaseboardConvectiveWater onto the branch.
-        if (boost::optional<CoilHeatingWaterBaseboard> coilBB = it->optionalCast<CoilHeatingWaterBaseboard>() )
+        if (boost::optional<CoilHeatingWaterBaseboard> coilBB = modelObject.optionalCast<CoilHeatingWaterBaseboard>() )
         {
           if (boost::optional<ZoneHVACComponent> contZnBB = coilBB->containingZoneHVACComponent())
           {
@@ -190,7 +190,7 @@ IdfObject ForwardTranslator::populateBranch( IdfObject & branchIdfObject,
           }
         }
         //special case for AirTerminalSingleDuctConstantVolumeChilledBeam
-        if (boost::optional<CoilCoolingCooledBeam> coilCB = it->optionalCast<CoilCoolingCooledBeam>() )
+        if (boost::optional<CoilCoolingCooledBeam> coilCB = modelObject.optionalCast<CoilCoolingCooledBeam>() )
         {
           if (boost::optional<StraightComponent> airTerm = coilCB->containingStraightComponent())
           {  
@@ -209,7 +209,7 @@ IdfObject ForwardTranslator::populateBranch( IdfObject & branchIdfObject,
         //ZoneHVACBaseboardConvectiveWater and CoilHeatingWaterBaseboard.  The ZoneHVAC goes onto the zone and
         //has a child coil that goes onto the plantloop.  In order to get the correct translation to E+, we need
         //to put the name of the containing ZoneHVACBaseboardConvectiveWater onto the branch.
-        if (boost::optional<CoilHeatingLowTempRadiantConstFlow> coilHLRC = it->optionalCast<CoilHeatingLowTempRadiantConstFlow>() )
+        if (boost::optional<CoilHeatingLowTempRadiantConstFlow> coilHLRC = modelObject.optionalCast<CoilHeatingLowTempRadiantConstFlow>() )
         {
           if (boost::optional<ZoneHVACComponent> znLowTempRadConst = coilHLRC->containingZoneHVACComponent())
           {
@@ -222,7 +222,7 @@ IdfObject ForwardTranslator::populateBranch( IdfObject & branchIdfObject,
             }
           }
         }
-        if (boost::optional<CoilCoolingLowTempRadiantConstFlow> coilCLRC = it->optionalCast<CoilCoolingLowTempRadiantConstFlow>() )
+        if (boost::optional<CoilCoolingLowTempRadiantConstFlow> coilCLRC = modelObject.optionalCast<CoilCoolingLowTempRadiantConstFlow>() )
         {
           if (boost::optional<ZoneHVACComponent> znLowTempRadConst = coilCLRC->containingZoneHVACComponent())
           {
@@ -235,7 +235,7 @@ IdfObject ForwardTranslator::populateBranch( IdfObject & branchIdfObject,
             }
           }
         }
-        if (boost::optional<CoilHeatingLowTempRadiantVarFlow> coilHLRC = it->optionalCast<CoilHeatingLowTempRadiantVarFlow>() )
+        if (boost::optional<CoilHeatingLowTempRadiantVarFlow> coilHLRC = modelObject.optionalCast<CoilHeatingLowTempRadiantVarFlow>() )
         {
           if (boost::optional<ZoneHVACComponent> znLowTempRadVar = coilHLRC->containingZoneHVACComponent())
           {
@@ -248,7 +248,7 @@ IdfObject ForwardTranslator::populateBranch( IdfObject & branchIdfObject,
             }
           }
         }
-        if (boost::optional<CoilCoolingLowTempRadiantVarFlow> coilCLRC = it->optionalCast<CoilCoolingLowTempRadiantVarFlow>() )
+        if (boost::optional<CoilCoolingLowTempRadiantVarFlow> coilCLRC = modelObject.optionalCast<CoilCoolingLowTempRadiantVarFlow>() )
         {
           if (boost::optional<ZoneHVACComponent> znLowTempRadVar = coilCLRC->containingZoneHVACComponent())
           {
@@ -262,12 +262,12 @@ IdfObject ForwardTranslator::populateBranch( IdfObject & branchIdfObject,
           }
         }
       }
-      else if( boost::optional<WaterToAirComponent> waterToAirComponent = it->optionalCast<WaterToAirComponent>() )
+      else if( boost::optional<WaterToAirComponent> waterToAirComponent = modelObject.optionalCast<WaterToAirComponent>() )
       {
         inletNode = waterToAirComponent->waterInletModelObject()->optionalCast<Node>();
         outletNode = waterToAirComponent->waterOutletModelObject()->optionalCast<Node>();
       }
-      else if( boost::optional<WaterToWaterComponent> waterToWaterComponent = it->optionalCast<WaterToWaterComponent>() )
+      else if( boost::optional<WaterToWaterComponent> waterToWaterComponent = modelObject.optionalCast<WaterToWaterComponent>() )
       {
         if( plantLoop.supplyComponent(waterToWaterComponent->handle()) )
         {
@@ -306,7 +306,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   IdfObject idfObject(iddobjectname::PlantLoop);
   m_idfObjects.push_back(idfObject);
 
-  BOOST_FOREACH(LifeCycleCost lifeCycleCost, plantLoop.lifeCycleCosts()){
+  for (LifeCycleCost lifeCycleCost : plantLoop.lifeCycleCosts()){
     translateAndMapModelObject(lifeCycleCost);
   }
 
@@ -414,152 +414,164 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   std::vector<ModelObject> uncontrolledComponents;
   std::vector<SetpointComponentInfo> setpointComponents;
 
-  // These will be used later, but only if resonable sizing values have not already been provided.
+  // These will be used later, but only if reasonable sizing values have not already been provided.
   bool sizeAsCondenserSystem = false;
   bool sizeAsHotWaterSystem = false;
   bool sizeAsChilledWaterSystem = false;
 
-  for( std::vector<ModelObject>::iterator it = supplyComponents.begin();
-       it < supplyComponents.end();
-       ++it )
+  for( const auto & supplyComponent : supplyComponents )
   {
     bool autosize = false;
     double flowRate = 0.0;
 
-    IddObjectType type = it->iddObjectType();
-    if( type == BoilerHotWater::iddObjectType() )
+    IddObjectType type = supplyComponent.iddObjectType();
     {
-      sizeAsHotWaterSystem = true;
-      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
+      if( type == BoilerHotWater::iddObjectType() )
       {
-        BoilerHotWater boiler = it->cast<BoilerHotWater>();
-        if( boiler.isDesignWaterFlowRateAutosized() )
+        sizeAsHotWaterSystem = true;
+        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,supplyComponent) ) 
         {
-          autosize = true;
+          BoilerHotWater boiler = supplyComponent.cast<BoilerHotWater>();
+          if( boiler.isDesignWaterFlowRateAutosized() )
+          {
+            autosize = true;
+          }
+          else if(boost::optional<double> optionalFlowRate = boiler.designWaterFlowRate())
+          {
+            flowRate = optionalFlowRate.get();
+          }
+          setpointComponents.push_back(SetpointComponentInfo(supplyComponent,*outletNode,flowRate,autosize,HEATING));
         }
-        else if(boost::optional<double> optionalFlowRate = boiler.designWaterFlowRate())
+        else
         {
-          flowRate = optionalFlowRate.get();
+          heatingComponents.push_back(supplyComponent);
         }
-        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,flowRate,autosize,HEATING));
+        break;
+      }
+      else if( type == WaterHeaterMixed::iddObjectType() )
+      {
+        sizeAsHotWaterSystem = true;
+        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,supplyComponent) ) 
+        {
+          WaterHeaterMixed waterHeater = supplyComponent.cast<WaterHeaterMixed>();
+          if( waterHeater.isUseSideDesignFlowRateAutosized() )
+          {
+            autosize = true;
+          }
+          else if(boost::optional<double> optionalFlowRate = waterHeater.useSideDesignFlowRate())
+          {
+            flowRate = optionalFlowRate.get();
+          }
+          setpointComponents.push_back(SetpointComponentInfo(supplyComponent,*outletNode,flowRate,autosize,HEATING));
+        }
+        else
+        {
+          heatingComponents.push_back(supplyComponent);
+        }
+        break;
+      }
+      else if( type == DistrictHeating::iddObjectType() )
+      {
+        sizeAsHotWaterSystem = true;
+        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,supplyComponent) ) 
+        {
+          setpointComponents.push_back(SetpointComponentInfo(supplyComponent,*outletNode,0.0,true,HEATING));
+        }
+        else
+        {
+          heatingComponents.push_back(supplyComponent);
+        }
+        break;
+      }      
+      else if( type == ChillerElectricEIR::iddObjectType() )
+      {
+        sizeAsChilledWaterSystem = true;
+        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,supplyComponent) ) 
+        {
+          ChillerElectricEIR chiller = supplyComponent.cast<ChillerElectricEIR>();
+          if( chiller.isReferenceChilledWaterFlowRateAutosized() )
+          {
+            autosize = true;
+          }
+          else if(boost::optional<double> optionalFlowRate = chiller.referenceChilledWaterFlowRate())
+          {
+            flowRate = optionalFlowRate.get();
+          }
+          setpointComponents.push_back(SetpointComponentInfo(supplyComponent,*outletNode,flowRate,autosize,COOLING));
+        }
+        else
+        {
+          coolingComponents.push_back(supplyComponent);
+        }
+        break;
+      }
+      else if( type == DistrictCooling::iddObjectType() )
+      {
+        sizeAsChilledWaterSystem = true;
+        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,supplyComponent) ) 
+        {
+          setpointComponents.push_back(SetpointComponentInfo(supplyComponent,*outletNode,0.0,true,COOLING));
+        }
+        else
+        {
+          coolingComponents.push_back(supplyComponent);
+        }
+        break;
+      }      
+      else if( type == CoolingTowerSingleSpeed::iddObjectType() )
+      {
+        sizeAsCondenserSystem = true;
+        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,supplyComponent) ) 
+        {
+          CoolingTowerSingleSpeed tower = supplyComponent.cast<CoolingTowerSingleSpeed>();
+          if( tower.isDesignWaterFlowRateAutosized() )
+          {
+            autosize = true;
+          }
+          else if(boost::optional<double> optionalFlowRate = tower.designWaterFlowRate())
+          {
+            flowRate = optionalFlowRate.get();
+          }
+          setpointComponents.push_back(SetpointComponentInfo(supplyComponent,*outletNode,0.0,true,COOLING));
+        }
+        else
+        {
+          coolingComponents.push_back(supplyComponent);
+        }
+        break;
+      }
+      else if( type == CoolingTowerVariableSpeed::iddObjectType() )
+      {
+        sizeAsCondenserSystem = true;
+        if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,supplyComponent) ) 
+        {
+          CoolingTowerVariableSpeed tower = supplyComponent.cast<CoolingTowerVariableSpeed>();
+          if( tower.isDesignWaterFlowRateAutosized() )
+          {
+            autosize = true;
+          }
+          else if(boost::optional<double> optionalFlowRate = tower.designWaterFlowRate())
+          {
+            flowRate = optionalFlowRate.get();
+          }
+          setpointComponents.push_back(SetpointComponentInfo(supplyComponent,*outletNode,0.0,true,COOLING));
+        }
+        else
+        {
+          coolingComponents.push_back(supplyComponent);
+        }
+        break;
+      }
+      else if( type == GroundHeatExchangerVertical::iddObjectType() )
+      {
+        sizeAsCondenserSystem = true;
+        uncontrolledComponents.push_back(supplyComponent);
+        break;
       }
       else
       {
-        heatingComponents.push_back(*it);
+        break;
       }
-    }
-    else if( type == WaterHeaterMixed::iddObjectType() )
-    {
-      sizeAsHotWaterSystem = true;
-      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
-      {
-        WaterHeaterMixed waterHeater = it->cast<WaterHeaterMixed>();
-        if( waterHeater.isUseSideDesignFlowRateAutosized() )
-        {
-          autosize = true;
-        }
-        else if(boost::optional<double> optionalFlowRate = waterHeater.useSideDesignFlowRate())
-        {
-          flowRate = optionalFlowRate.get();
-        }
-        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,flowRate,autosize,HEATING));
-      }
-      else
-      {
-        heatingComponents.push_back(*it);
-      }
-    }
-    else if( type == DistrictHeating::iddObjectType() )
-    {
-      sizeAsHotWaterSystem = true;
-      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
-      {
-        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,0.0,true,HEATING));
-      }
-      else
-      {
-        heatingComponents.push_back(*it);
-      }
-    }      
-    else if( type == ChillerElectricEIR::iddObjectType() )
-    {
-      sizeAsChilledWaterSystem = true;
-      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
-      {
-        ChillerElectricEIR chiller = it->cast<ChillerElectricEIR>();
-        if( chiller.isReferenceChilledWaterFlowRateAutosized() )
-        {
-          autosize = true;
-        }
-        else if(boost::optional<double> optionalFlowRate = chiller.referenceChilledWaterFlowRate())
-        {
-          flowRate = optionalFlowRate.get();
-        }
-        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,flowRate,autosize,COOLING));
-      }
-      else
-      {
-        coolingComponents.push_back(*it);
-      }
-    }
-    else if( type == DistrictCooling::iddObjectType() )
-    {
-      sizeAsChilledWaterSystem = true;
-      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
-      {
-        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,0.0,true,COOLING));
-      }
-      else
-      {
-        coolingComponents.push_back(*it);
-      }
-    }      
-    else if( type == CoolingTowerSingleSpeed::iddObjectType() )
-    {
-      sizeAsCondenserSystem = true;
-      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
-      {
-        CoolingTowerSingleSpeed tower = it->cast<CoolingTowerSingleSpeed>();
-        if( tower.isDesignWaterFlowRateAutosized() )
-        {
-          autosize = true;
-        }
-        else if(boost::optional<double> optionalFlowRate = tower.designWaterFlowRate())
-        {
-          flowRate = optionalFlowRate.get();
-        }
-        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,0.0,true,COOLING));
-      }
-      else
-      {
-        coolingComponents.push_back(*it);
-      }
-    }
-    else if( type == CoolingTowerVariableSpeed::iddObjectType() )
-    {
-      sizeAsCondenserSystem = true;
-      if( boost::optional<Node> outletNode = isSetpointComponent(plantLoop,*it) ) 
-      {
-        CoolingTowerVariableSpeed tower = it->cast<CoolingTowerVariableSpeed>();
-        if( tower.isDesignWaterFlowRateAutosized() )
-        {
-          autosize = true;
-        }
-        else if(boost::optional<double> optionalFlowRate = tower.designWaterFlowRate())
-        {
-          flowRate = optionalFlowRate.get();
-        }
-        setpointComponents.push_back(SetpointComponentInfo(*it,*outletNode,0.0,true,COOLING));
-      }
-      else
-      {
-        coolingComponents.push_back(*it);
-      }
-    }
-    else if( type == GroundHeatExchangerVertical::iddObjectType() )
-    {
-      sizeAsCondenserSystem = true;
-      uncontrolledComponents.push_back(*it);
     }
   }
 
@@ -754,20 +766,18 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   supplyInletModelObjects.erase(supplyInletModelObjects.begin());
   supplyInletModelObjects.erase(supplyInletModelObjects.end() - 1);
 
-  for( std::vector<ModelObject>::iterator it = supplyInletModelObjects.begin();
-        it < supplyInletModelObjects.end();
-        ++it )
+  for( auto & supplyInletModelObject : supplyInletModelObjects )
   {
     //nodes don't go onto branches, but still need to be translated and mapped
     //because doing so translates their setpoint managers
-    if( boost::optional<Node> node = it->optionalCast<Node>() )
+    if( boost::optional<Node> node = supplyInletModelObject.optionalCast<Node>() )
     {
-      boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(*it);
+      boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(supplyInletModelObject);
     }
     //all other types of objects go onto the branch
     else
     {
-      supplyInletBranchModelObjects.push_back(*it);
+      supplyInletBranchModelObjects.push_back(supplyInletModelObject);
     }
   }
 
@@ -802,11 +812,9 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   std::vector<model::ModelObject> splitterOutletObjects = supplySplitter.outletModelObjects();
   std::vector<model::ModelObject> mixerInletObjects = supplyMixer.inletModelObjects();
 
-  std::vector<model::ModelObject>::iterator it2 = mixerInletObjects.begin();
+  auto it2 = mixerInletObjects.begin();
   unsigned i = 0;
-  for( std::vector<model::ModelObject>::iterator it1 = splitterOutletObjects.begin();
-       it1 < splitterOutletObjects.end();
-       ++it1 )
+  for( auto & splitterOutletObject : splitterOutletObjects )
   {
     i++;
 
@@ -814,7 +822,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     ss << i;
     std::string istring = ss.str();
 
-    model::HVACComponent comp1 = it1->optionalCast<model::HVACComponent>().get();
+    model::HVACComponent comp1 = splitterOutletObject.optionalCast<model::HVACComponent>().get();
     model::HVACComponent comp2 = it2->optionalCast<model::HVACComponent>().get();
 
     std::vector<model::ModelObject> allComponents = plantLoop.supplyComponents(comp1,comp2);
@@ -834,20 +842,18 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     eg = _supplyBranchList.pushExtensibleGroup();
     eg.setString(BranchListExtensibleFields::BranchName,_equipmentBranch.name().get());
 
-    for( std::vector<ModelObject>::iterator it = allComponents.begin();
-          it < allComponents.end();
-          ++it )
+    for( auto & component : allComponents )
     {
       //nodes don't go onto branches, but still need to be translated and mapped
       //because doing so translates their setpoint managers
-      if( boost::optional<Node> node = it->optionalCast<Node>() )
+      if( boost::optional<Node> node = component.optionalCast<Node>() )
       {
-        boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(*it);
+        boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(component);
       }
       //all other types of objects go onto the branch
       else
       {
-        branchComponents.push_back(*it);
+        branchComponents.push_back(component);
       }
     }
 
@@ -901,20 +907,18 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   supplyOutletModelObjects.erase(supplyOutletModelObjects.begin());
   supplyOutletModelObjects.erase(supplyOutletModelObjects.end() - 1);
 
-  for( std::vector<ModelObject>::iterator it = supplyOutletModelObjects.begin();
-         it < supplyOutletModelObjects.end();
-         ++it )
+  for( auto & supplyOutletModelObject : supplyOutletModelObjects )
   {
     //nodes don't go onto branches, but still need to be translated and mapped
     //because doing so translates their setpoint managers
-    if( boost::optional<Node> node = it->optionalCast<Node>() )
+    if( boost::optional<Node> node = supplyOutletModelObject.optionalCast<Node>() )
     {
-      boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(*it);
+      boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(supplyOutletModelObject);
     }
     //all other types of objects go onto the branch
     else
     {
-      supplyOutletBranchModelObjects.push_back(*it);
+      supplyOutletBranchModelObjects.push_back(supplyOutletModelObject);
     }
   }
 
@@ -1009,20 +1013,18 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   demandInletModelObjects.erase(demandInletModelObjects.begin());
   demandInletModelObjects.erase(demandInletModelObjects.end() - 1);
 
-  for( std::vector<ModelObject>::iterator it = demandInletModelObjects.begin();
-         it < demandInletModelObjects.end();
-         ++it )
+  for( auto & demandInletModelObject : demandInletModelObjects )
   {
     //nodes don't go onto branches, but still need to be translated and mapped
     //because doing so translates their setpoint managers
-    if( boost::optional<Node> node = it->optionalCast<Node>() )
+    if( boost::optional<Node> node = demandInletModelObject.optionalCast<Node>() )
     {
-      boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(*it);
+      boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(demandInletModelObject);
     }
     //all other types of objects go onto the branch
     else
     {
-      demandInletBranchModelObjects.push_back(*it);
+      demandInletBranchModelObjects.push_back(demandInletModelObject);
     }
   }
 
@@ -1059,9 +1061,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   it2 = mixerInletObjects.begin();
   i = 0;
-  for( std::vector<model::ModelObject>::iterator it1 = splitterOutletObjects.begin();
-       it1 < splitterOutletObjects.end();
-       ++it1 )
+  for( auto & splitterOutletObject : splitterOutletObjects )
   {
     i++;
 
@@ -1069,7 +1069,7 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     ss << i;
     std::string istring = ss.str();
 
-    model::HVACComponent comp1 = it1->optionalCast<model::HVACComponent>().get();
+    model::HVACComponent comp1 = splitterOutletObject.optionalCast<model::HVACComponent>().get();
     model::HVACComponent comp2 = it2->optionalCast<model::HVACComponent>().get();
 
     std::vector<model::ModelObject> allComponents = plantLoop.demandComponents(comp1,comp2);
@@ -1089,20 +1089,18 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
     eg = _demandBranchList.pushExtensibleGroup();
     eg.setString(BranchListExtensibleFields::BranchName,_equipmentBranch.name().get());
 
-    for( std::vector<ModelObject>::iterator allCompIt = allComponents.begin();
-         allCompIt < allComponents.end();
-         ++allCompIt )
+    for( auto & component : allComponents )
     {
       //nodes don't go onto branches, but still need to be translated and mapped
       //because doing so translates their setpoint managers
-      if( boost::optional<Node> node = allCompIt->optionalCast<Node>() )
+      if( boost::optional<Node> node = component.optionalCast<Node>() )
       {
-        boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(*allCompIt);
+        boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(component);
       }
       //all other types of objects go onto the branch
       else
       {
-        branchComponents.push_back(*allCompIt);
+        branchComponents.push_back(component);
       }
     }
 
@@ -1192,20 +1190,18 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
   demandOutletModelObjects.erase(demandOutletModelObjects.begin());
   demandOutletModelObjects.erase(demandOutletModelObjects.end() - 1);
 
-  for( std::vector<ModelObject>::iterator it = demandOutletModelObjects.begin();
-         it < demandOutletModelObjects.end();
-         ++it )
+  for( auto & demandOutletModelObject : demandOutletModelObjects )
   {
     //nodes don't go onto branches, but still need to be translated and mapped
     //because doing so translates their setpoint managers
-    if( boost::optional<Node> node = it->optionalCast<Node>() )
+    if( boost::optional<Node> node = demandOutletModelObject.optionalCast<Node>() )
     {
-      boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(*it);
+      boost::optional<IdfObject> idfObject = this->translateAndMapModelObject(demandOutletModelObject);
     }
     //all other types of objects go onto the branch
     else
     {
-      demandOutletBranchModelObjects.push_back(*it);
+      demandOutletBranchModelObjects.push_back(demandOutletModelObject);
     }
   }
 
@@ -1239,11 +1235,9 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   if( _optionalHeatingPlantEquipmentList )
   {
-    for( std::vector<ModelObject>::iterator it = heatingComponents.begin();
-         it < heatingComponents.end();
-         ++it )
+    for( auto & heatingComponent : heatingComponents )
     {
-      boost::optional<IdfObject> _idfObject = translateAndMapModelObject(*it);
+      boost::optional<IdfObject> _idfObject = translateAndMapModelObject(heatingComponent);
 
       if( _idfObject )
       {
@@ -1256,11 +1250,9 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   if( _optionalCoolingPlantEquipmentList )
   {
-    for( std::vector<ModelObject>::iterator it = coolingComponents.begin();
-         it < coolingComponents.end();
-         ++it )
+    for( auto & coolingComponent : coolingComponents )
     {
-      boost::optional<IdfObject> _idfObject = translateAndMapModelObject(*it);
+      boost::optional<IdfObject> _idfObject = translateAndMapModelObject(coolingComponent);
 
       if( _idfObject )
       {
@@ -1273,11 +1265,9 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   if( _optionalUncontrolledPlantEquipmentList )
   {
-    for( std::vector<ModelObject>::iterator it = uncontrolledComponents.begin();
-         it < uncontrolledComponents.end();
-         ++it )
+    for( auto & uncontrolledComponent : uncontrolledComponents )
     {
-      boost::optional<IdfObject> _idfObject = translateAndMapModelObject(*it);
+      boost::optional<IdfObject> _idfObject = translateAndMapModelObject(uncontrolledComponent);
 
       if( _idfObject )
       {
@@ -1290,28 +1280,26 @@ boost::optional<IdfObject> ForwardTranslator::translatePlantLoop( PlantLoop & pl
 
   if( _optionalSetpointOperation )
   {
-    for( std::vector<SetpointComponentInfo>::iterator it = setpointComponents.begin();
-         it < setpointComponents.end();
-         ++it )
+    for( auto & setpointComponent : setpointComponents )
     {
-      boost::optional<IdfObject> _idfObject = translateAndMapModelObject(it->modelObject);
+      boost::optional<IdfObject> _idfObject = translateAndMapModelObject(setpointComponent.modelObject);
 
       OS_ASSERT(_idfObject);
 
       IdfExtensibleGroup eg = _optionalSetpointOperation->pushExtensibleGroup();
       eg.setString(PlantEquipmentOperation_ComponentSetpointExtensibleFields::EquipmentObjectType,_idfObject->iddObject().name());
       eg.setString(PlantEquipmentOperation_ComponentSetpointExtensibleFields::EquipmentName,_idfObject->name().get());
-      eg.setString(PlantEquipmentOperation_ComponentSetpointExtensibleFields::DemandCalculationNodeName,it->outletNode.name().get());
-      eg.setString(PlantEquipmentOperation_ComponentSetpointExtensibleFields::SetpointNodeName,it->outletNode.name().get());
-      if( it->isFlowRateAutosized )
+      eg.setString(PlantEquipmentOperation_ComponentSetpointExtensibleFields::DemandCalculationNodeName,setpointComponent.outletNode.name().get());
+      eg.setString(PlantEquipmentOperation_ComponentSetpointExtensibleFields::SetpointNodeName,setpointComponent.outletNode.name().get());
+      if( setpointComponent.isFlowRateAutosized )
       {
         eg.setString(PlantEquipmentOperation_ComponentSetpointExtensibleFields::ComponentFlowRate,"Autosize");
       }
       else
       {
-        eg.setDouble(PlantEquipmentOperation_ComponentSetpointExtensibleFields::ComponentFlowRate,it->flowRate);
+        eg.setDouble(PlantEquipmentOperation_ComponentSetpointExtensibleFields::ComponentFlowRate,setpointComponent.flowRate);
       }
-      switch(it->type)
+      switch(setpointComponent.type)
       {
         case HEATING :
           eg.setString(PlantEquipmentOperation_ComponentSetpointExtensibleFields::OperationType,"Heating");

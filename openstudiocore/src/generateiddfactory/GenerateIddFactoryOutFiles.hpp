@@ -20,13 +20,14 @@
 #ifndef GENERATEIDDFACTORY_GENERATEIDDFACTORYOUTFILES_HPP
 #define GENERATEIDDFACTORY_GENERATEIDDFACTORYOUTFILES_HPP
 
-#include <utilities/core/Path.hpp>
 #include <map>
 #include <vector>
 #include <boost/filesystem/fstream.hpp>
-#include <boost/shared_ptr.hpp>
+#include <boost/filesystem/path.hpp>
 
 namespace openstudio {
+
+typedef boost::filesystem::path path;
 
 class IddFileFactoryData;
 
@@ -59,7 +60,7 @@ struct GenerateIddFactoryOutFiles {
   IddFactoryOutFile iddFieldEnumsIxx;
   IddFactoryOutFile iddFactoryHxx;
   IddFactoryOutFile iddFactoryCxx;
-  std::vector< boost::shared_ptr<IddFactoryOutFile> > iddFactoryIddFileCxxs;
+  std::vector< std::shared_ptr<IddFactoryOutFile> > iddFactoryIddFileCxxs;
   std::map<std::string,std::pair<std::string,bool> > checksumMap; // filename, (checksum, encountered)
   
   GenerateIddFactoryOutFiles(const path& outPath,

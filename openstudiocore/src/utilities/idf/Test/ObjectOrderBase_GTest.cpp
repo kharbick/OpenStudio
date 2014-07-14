@@ -18,9 +18,9 @@
 **********************************************************************/
 
 #include <gtest/gtest.h>
-#include <utilities/idf/Test/IdfFixture.hpp>
+#include "IdfFixture.hpp"
 
-#include <utilities/idf/ObjectOrderBase.hpp>
+#include "../ObjectOrderBase.hpp"
 
 #include <utilities/idd/Building_FieldEnums.hxx>
 #include <utilities/idd/AirflowNetwork_Distribution_Node_FieldEnums.hxx>

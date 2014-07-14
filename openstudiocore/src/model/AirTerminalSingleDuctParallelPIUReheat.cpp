@@ -17,32 +17,32 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  **********************************************************************/
 
-#include <model/AirTerminalSingleDuctParallelPIUReheat.hpp>
-#include <model/AirTerminalSingleDuctParallelPIUReheat_Impl.hpp>
-#include <model/Schedule.hpp>
-#include <model/Schedule_Impl.hpp>
-#include <model/CoilHeatingElectric.hpp>
-#include <model/CoilHeatingElectric_Impl.hpp>
-#include <model/CoilHeatingGas.hpp>
-#include <model/CoilHeatingGas_Impl.hpp>
-#include <model/CoilHeatingWater.hpp>
-#include <model/CoilHeatingWater_Impl.hpp>
-#include <model/FanConstantVolume.hpp>
-#include <model/FanConstantVolume_Impl.hpp>
-#include <model/Node.hpp>
-#include <model/Node_Impl.hpp>
-#include <model/PortList.hpp>
-#include <model/PortList_Impl.hpp>
-#include <model/ThermalZone.hpp>
-#include <model/ThermalZone_Impl.hpp>
-#include <model/AirLoopHVACZoneSplitter.hpp>
-#include <model/AirLoopHVACZoneSplitter_Impl.hpp>
-#include <model/AirLoopHVACZoneMixer.hpp>
-#include <model/AirLoopHVACZoneMixer_Impl.hpp>
-#include <model/Model.hpp>
+#include "AirTerminalSingleDuctParallelPIUReheat.hpp"
+#include "AirTerminalSingleDuctParallelPIUReheat_Impl.hpp"
+#include "Schedule.hpp"
+#include "Schedule_Impl.hpp"
+#include "CoilHeatingElectric.hpp"
+#include "CoilHeatingElectric_Impl.hpp"
+#include "CoilHeatingGas.hpp"
+#include "CoilHeatingGas_Impl.hpp"
+#include "CoilHeatingWater.hpp"
+#include "CoilHeatingWater_Impl.hpp"
+#include "FanConstantVolume.hpp"
+#include "FanConstantVolume_Impl.hpp"
+#include "Node.hpp"
+#include "Node_Impl.hpp"
+#include "PortList.hpp"
+#include "PortList_Impl.hpp"
+#include "ThermalZone.hpp"
+#include "ThermalZone_Impl.hpp"
+#include "AirLoopHVACZoneSplitter.hpp"
+#include "AirLoopHVACZoneSplitter_Impl.hpp"
+#include "AirLoopHVACZoneMixer.hpp"
+#include "AirLoopHVACZoneMixer_Impl.hpp"
+#include "Model.hpp"
 #include <utilities/idd/IddFactory.hxx>
 #include <utilities/idd/OS_AirTerminal_SingleDuct_ParallelPIU_Reheat_FieldEnums.hxx>
-#include <utilities/core/Assert.hpp>
+#include "../utilities/core/Assert.hpp"
 
 namespace openstudio {
 
@@ -492,15 +492,13 @@ namespace detail {
     boost::optional<unsigned> targetPort = this->connectedObjectPort(this->outletPort());
 
     std::vector<ThermalZone> thermalZones = _model.getConcreteModelObjects<ThermalZone>();
-    for( std::vector<ThermalZone>::iterator it = thermalZones.begin();
-         it != thermalZones.end();
-         ++it )
+    for( auto & thermalZone : thermalZones )
     {
-      std::vector<ModelObject> equipment = it->equipment();
+      std::vector<ModelObject> equipment = thermalZone.equipment();
 
       if( std::find(equipment.begin(),equipment.end(),thisObject) != equipment.end() )
       {
-        it->removeEquipment(thisObject);
+        thermalZone.removeEquipment(thisObject);
 
         break;
       }
@@ -796,7 +794,7 @@ unsigned AirTerminalSingleDuctParallelPIUReheat::secondaryAirInletPort() const
 
 /// @cond
 
-AirTerminalSingleDuctParallelPIUReheat::AirTerminalSingleDuctParallelPIUReheat(boost::shared_ptr<detail::AirTerminalSingleDuctParallelPIUReheat_Impl> impl)
+AirTerminalSingleDuctParallelPIUReheat::AirTerminalSingleDuctParallelPIUReheat(std::shared_ptr<detail::AirTerminalSingleDuctParallelPIUReheat_Impl> impl)
   : StraightComponent(impl)
 {}
 

@@ -18,9 +18,9 @@
 **********************************************************************/
 
 #include <gtest/gtest.h>
-#include <utilities/idf/Test/IdfFixture.hpp>
-#include <utilities/idf/WorkspaceObject.hpp>
-#include <utilities/idf/WorkspaceObjectOrder.hpp>
+#include "IdfFixture.hpp"
+#include "../WorkspaceObject.hpp"
+#include "../WorkspaceObjectOrder.hpp"
 #include <utilities/idd/Material_FieldEnums.hxx>
 #include <utilities/idd/Construction_FieldEnums.hxx>
 
@@ -77,7 +77,7 @@ TEST_F(IdfFixture,WorkspaceObjectOrder_ByIddObjectType) {
   WorkspaceObjectOrder wsOrder = workspace.order();
   IddObjectTypeVector orderByType;
   StringSet enumValues = IddObjectType::getStringValues();
-  BOOST_FOREACH(std::string val,enumValues) {
+  for (std::string val : enumValues) {
     orderByType.push_back(IddObjectType(val));
   }
   wsOrder.setIddOrder(orderByType);
@@ -88,7 +88,7 @@ TEST_F(IdfFixture,WorkspaceObjectOrder_ByIddObjectType) {
   // expect Materials before Constructions
   OptionalWorkspaceObject oMaterial;
   OptionalWorkspaceObject oConstruction;
-  BOOST_FOREACH(const WorkspaceObject& object,objectsInNewOrder) {
+  for (const WorkspaceObject& object : objectsInNewOrder) {
     if (!oMaterial && (object.iddObject().type() == iddobjectname::Material)) {
       oMaterial = object;
       EXPECT_FALSE(oConstruction);
@@ -106,7 +106,7 @@ TEST_F(IdfFixture,WorkspaceObjectOrder_ByIddObjectType) {
   objectsInNewOrder = workspace.objects(true);
   oMaterial = boost::none;
   oConstruction = boost::none;
-  BOOST_FOREACH(const WorkspaceObject& object,objectsInNewOrder) {
+  for (const WorkspaceObject& object : objectsInNewOrder) {
     if (!oMaterial && (object.iddObject().type() == iddobjectname::Material)) {
       oMaterial = object;
     }

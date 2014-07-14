@@ -17,15 +17,15 @@
 *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 **********************************************************************/
 
-#include <openstudio_lib/DefaultConstructionSetsController.hpp>
-#include <openstudio_lib/DefaultConstructionSetsView.hpp>
+#include "DefaultConstructionSetsController.hpp"
+#include "DefaultConstructionSetsView.hpp"
 
-#include <model/DefaultConstructionSet.hpp>
-#include <model/DefaultConstructionSet_Impl.hpp>
-#include <model/DefaultSurfaceConstructions.hpp>
-#include <model/DefaultSubSurfaceConstructions.hpp>
+#include "../model/DefaultConstructionSet.hpp"
+#include "../model/DefaultConstructionSet_Impl.hpp"
+#include "../model/DefaultSurfaceConstructions.hpp"
+#include "../model/DefaultSubSurfaceConstructions.hpp"
 
-#include <utilities/core/Logger.hpp>
+#include "../utilities/core/Logger.hpp"
 
 namespace openstudio {
 

@@ -18,13 +18,11 @@
 **********************************************************************/
 
 #include <gtest/gtest.h>
-#include <utilities/idd/Test/IddFixture.hpp>
-#include <utilities/idd/IddFileAndFactoryWrapper.hpp>
+#include "IddFixture.hpp"
+#include "../IddFileAndFactoryWrapper.hpp"
 #include <utilities/idd/OS_AirLoopHVAC_FieldEnums.hxx>
 #include <utilities/idd/Window_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
-
-#include <boost/foreach.hpp>
 
 using namespace openstudio;
 
@@ -78,6 +76,7 @@ TEST_F(IddFixture,IddFileAndFactoryWrapper_DefaultConstructor)
               IddFactory::instance().getUniqueObjects(IddFileType::OpenStudio).size());
 }
 
+<<<<<<< HEAD
 //TEST_F(IddFixture,IddFileAndFactoryWrapper_DirectlySetUserCustom) {
 //  IddFileAndFactoryWrapper wrapper(IddFileType::UserCustom);
 //  IddFile file = wrapper.iddFile();
@@ -86,3 +85,13 @@ TEST_F(IddFixture,IddFileAndFactoryWrapper_DefaultConstructor)
 //    EXPECT_FALSE(wrapper.getObject(IddObjectType(typeIndex)));
 //  }
 //}
+=======
+TEST_F(IddFixture,IddFileAndFactoryWrapper_DirectlySetUserCustom) {
+  IddFileAndFactoryWrapper wrapper(IddFileType::UserCustom);
+  IddFile file = wrapper.iddFile();
+  EXPECT_TRUE(file.objects().empty());
+  for (int typeIndex : IddObjectType::getValues()) {
+    EXPECT_FALSE(wrapper.getObject(IddObjectType(typeIndex)));
+  }
+}
+>>>>>>> origin/develop

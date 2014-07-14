@@ -18,18 +18,16 @@
 **********************************************************************/
 
 #include <gtest/gtest.h>
-#include <utilities/idd/Test/IddFixture.hpp>
+#include "IddFixture.hpp"
+#include "utilities/idd/IddField.hpp"
+#include "utilities/idd/IddFieldProperties.hpp"
+#include "utilities/idd/IddKey.hpp"
 #include <utilities/idd/IddFactory.hxx>
-#include <utilities/idd/IddField.hpp>
-#include <utilities/idd/IddFieldProperties.hpp>
-#include <utilities/idd/IddKey.hpp>
 #include <utilities/idd/Zone_FieldEnums.hxx>
 #include <utilities/idd/ZoneList_FieldEnums.hxx>
 #include <utilities/idd/SizingPeriod_DesignDay_FieldEnums.hxx>
 #include <utilities/idd/SizingPeriod_WeatherFileDays_FieldEnums.hxx>
 #include <utilities/idd/Lights_FieldEnums.hxx>
-
-#include <boost/foreach.hpp>
 
 using namespace std;
 using namespace boost;

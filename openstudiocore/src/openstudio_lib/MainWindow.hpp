@@ -17,8 +17,8 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  **********************************************************************/
 
-#ifndef OPENSTUDIO_MAINWINDOW_H
-#define OPENSTUDIO_MAINWINDOW_H
+#ifndef OPENSTUDIO_MAINWINDOW_HPP
+#define OPENSTUDIO_MAINWINDOW_HPP
 
 #include <QMainWindow>
 
@@ -29,6 +29,8 @@ class QSplitter;
 namespace openstudio {
 
 class HorizontalTabWidget;
+
+class MainTabView;
 
 class VerticalTabWidget;
 
@@ -47,6 +49,8 @@ class MainWindow : public QMainWindow
                        const QString & selectedImagePath,
                        const QString & unSelectedImagePath );
 
+  void deleteAllVerticalTabs();
+
   void setMainRightColumnView(QWidget * widget);
 
   //void addHorizontalTab( QWidget * widget,
@@ -54,6 +58,12 @@ class MainWindow : public QMainWindow
   //                       const QString & label );
 
   void selectVerticalTab(int id);
+
+  void selectVerticalTabByIndex(int index);
+
+  MainTabView* verticalTabByIndex(int index);
+
+  int verticalTabIndex();
 
   //void selectHorizontalTab(int id);
 
@@ -63,6 +73,10 @@ class MainWindow : public QMainWindow
 
   bool displayIP();
 
+  void enableRevertToSavedAction(bool enable);
+
+  QString lastPath() const;
+
   signals:
 
   void closeClicked();
@@ -71,7 +85,13 @@ class MainWindow : public QMainWindow
 
   void exportClicked();
 
+  void exportgbXMLClicked();
+
+  void exportSDDClicked();
+
   void importClicked();
+
+  void importgbXMLClicked();
 
   void importSDDClicked();
 
@@ -84,6 +104,8 @@ class MainWindow : public QMainWindow
   void saveAsFileClicked(); 
 
   void saveFileClicked();
+
+  void revertFileClicked();
 
   void scanForToolsClicked();
 
@@ -101,16 +123,26 @@ class MainWindow : public QMainWindow
 
   void toggleUnitsClicked(bool displayIP);
 
-  void openBclDlgClicked();
+  void downloadComponentsClicked();
 
   void openLibDlgClicked();
+
+  void changeMyMeasuresDir();
+
+  void changeBclLogin();
+
+  void applyMeasureClicked();
+
+  void downloadMeasuresClicked();
+
+  void enableRevertToSaved(bool enable);
 
   protected:
 
   void closeEvent(QCloseEvent * event);
 
   void dragEnterEvent(QDragEnterEvent * event);
-  
+
   void dropEvent(QDropEvent * event);
 
   QSize sizeHint() const;
@@ -131,18 +163,19 @@ class MainWindow : public QMainWindow
 
   bool m_displayIP;
 
+  QString m_lastPath;
+
   private slots:
 
   void toggleUnits(bool displayIP);
 
-  private slots:
-  
   void configureProxyClicked();
+
   void loadProxySettings();
 
 };
 
 } // openstudio
 
-#endif // OPENSTUDIO_MAINWINDOW_H
+#endif // OPENSTUDIO_MAINWINDOW_HPP
 
