@@ -50,15 +50,11 @@ class MODEL_API ThermochromicGlazing : public Glazing {
   /** @name Getters */
   //@{
 
-  double opticalDataTemperature() const;
-
   // TODO: Handle this object's extensible fields.
 
   //@}
   /** @name Setters */
   //@{
-
-  void setOpticalDataTemperature(double value);
 
   // TODO: Handle this object's extensible fields.
 
