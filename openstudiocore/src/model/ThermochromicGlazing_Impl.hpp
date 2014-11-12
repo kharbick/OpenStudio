@@ -50,7 +50,6 @@ namespace detail {
     virtual ~ThermochromicGlazing_Impl() {}
 
     //@}
-
     /** @name Virtual Methods */
     //@{
 
@@ -66,11 +65,16 @@ namespace detail {
     // required by Material
     virtual boost::optional<double> getVisibleTransmittance() const;
 
+    std::vector<ThermochromicGlazingDataPoint > thermochromicGlazingDataPoints() const;
+
     //@}
     /** @name Setters */
     //@{
 
+    // required by Material
     virtual bool setVisibleTransmittance(double value);
+
+    bool setThermochromicGlazingDataPoints(const std::vector<ThermochromicGlazingDataPoint> thermochromicGlazingDataPoints);
 
     //@}
     /** @name Other */
@@ -78,10 +82,18 @@ namespace detail {
 
     //@}
    protected:
+
    private:
+
     REGISTER_LOGGER("openstudio.model.ThermochromicGlazing");
 
-    std::vector<Glazing> mf_glazings() const;
+    std::vector<Glazing> glazings() const;
+
+    std::vector<double> temperatures();
+
+    bool setGlazings(const std::vector<Glazing> glazings);
+
+    bool setTemperatures(const std::vector<double> temperatures);
 
   };
 
