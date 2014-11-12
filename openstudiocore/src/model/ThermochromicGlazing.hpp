@@ -35,7 +35,7 @@ namespace detail {
 struct ThermochromicGlazingDataPoint
 {
   OptionalGlazing m_glazingMaterial;
-  double m_opticalDataTemperature = 0;
+  double m_opticalDataTemperature = 80.0;
 };
 
 /** ThermochromicGlazing is a Glazing that wraps the OpenStudio IDD object 'OS:WindowMaterial:GlazingGroup:Thermochromic'. */
@@ -45,7 +45,7 @@ class MODEL_API ThermochromicGlazing : public Glazing {
   //@{
 
   explicit ThermochromicGlazing(const Model& model,
-    double opticalDataTemperature = 80.0);
+    std::vector<ThermochromicGlazingDataPoint> thermochromicGlazingDataPoints = std::vector<ThermochromicGlazingDataPoint>());
 
   virtual ~ThermochromicGlazing() {}
 

@@ -89,7 +89,7 @@ namespace detail {
 
     std::vector<Glazing> glazings() const;
 
-    std::vector<double> temperatures();
+    std::vector<double> temperatures() const;
 
     bool setGlazings(const std::vector<Glazing> glazings);
 

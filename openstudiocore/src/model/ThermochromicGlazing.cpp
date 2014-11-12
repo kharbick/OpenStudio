@@ -69,9 +69,9 @@ namespace detail {
 
     std::vector<Glazing> glazings(glazings());
 
-    std::vector<double> temperatures;// (this->temperatures()); TODO
+    std::vector<double> temperatures(this->temperatures());
 
-    OS_ASSERT(glazings.size() == temperatures.size());
+    OS_ASSERT(glazings.size() == temperatures.size()); // TODO: Dan, is this approach correct, or should it be more forgiving?
 
     for (unsigned index = 0; index < glazings.size(); ++index) {
       ThermochromicGlazingDataPoint thermochromicGlazingDataPoint;
@@ -115,7 +115,6 @@ namespace detail {
   //  return result;
   //}
 
-  // LayeredConstruction_Impl
   std::vector<Glazing> ThermochromicGlazing_Impl::glazings() const
   {
     std::vector<Glazing> result;
@@ -143,17 +142,16 @@ namespace detail {
       OS_ASSERT(glazing.model() == model());
       ModelExtensibleGroup group = pushExtensibleGroup(StringVector()).cast<ModelExtensibleGroup>();
       OS_ASSERT(!group.empty());
-      bool ok = group.setPointer(0, glazing.handle());
+      bool ok = group.setPointer(OS_WindowMaterial_GlazingGroup_ThermochromicExtensibleFields::WindowMaterialGlazingName, glazing.handle());
       OS_ASSERT(ok);
     }
     return true;
   }
 
-  // PlanarSurface_Impl
-  std::vector<double> ThermochromicGlazing_Impl::temperatures()
+  std::vector<double> ThermochromicGlazing_Impl::temperatures() const
   {
     std::vector<double> results;
-    
+
     for (const ModelExtensibleGroup& group : castVector<ModelExtensibleGroup>(extensibleGroups())) {
       OptionalDouble temperature = group.getDouble(0);
 
@@ -173,12 +171,12 @@ namespace detail {
 
     bool result = true;
 
-    clearExtensibleGroups(false);
+    //clearExtensibleGroups(false);
 
     for (unsigned index = 0; index < n; ++index) {
       std::vector<std::string> values;
       values.push_back(toString(temperatures[index]));
-      ModelExtensibleGroup group = pushExtensibleGroup(values, false).cast<ModelExtensibleGroup>();
+      ModelExtensibleGroup group = pushExtensibleGroup(values).cast<ModelExtensibleGroup>();
       OS_ASSERT(!group.empty());
     }
 
@@ -201,15 +199,15 @@ namespace detail {
 
 } // detail
 
-ThermochromicGlazing::ThermochromicGlazing(const Model& model,double opticalDataTemperature) // TODO
+ThermochromicGlazing::ThermochromicGlazing(const Model& model, std::vector<ThermochromicGlazingDataPoint> thermochromicGlazingDataPoints)
   : Glazing(ThermochromicGlazing::iddObjectType(),model)
 {
   OS_ASSERT(getImpl<detail::ThermochromicGlazing_Impl>());
 
-  // TODO: Appropriately handle the following required object-list fields.
-  bool ok = true;
-  // ok = setHandle();
-  OS_ASSERT(ok);
+  setThermochromicGlazingDataPoints(thermochromicGlazingDataPoints);
+
+  std::vector<ThermochromicGlazingDataPoint > dataPoints = this->thermochromicGlazingDataPoints();
+  OS_ASSERT(dataPoints.size() == thermochromicGlazingDataPoints.size());
 }
 
 IddObjectType ThermochromicGlazing::iddObjectType() {
